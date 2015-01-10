@@ -6,6 +6,7 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'', include('Works.urls')),
+    url(r'', include('Thirdauth.urls')),
 )
 
 if settings.DEBUG:

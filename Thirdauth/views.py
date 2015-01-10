@@ -1,5 +1,14 @@
 # -*- encoding: utf-8 -*-
+from django.shortcuts import render_to_response
+from django.contrib.auth import login
+from django.views.generic import FormView
+from .forms import LoginForm
 
-from django.shortcuts import render
+class LoginView(FormView):
+	template_name = 'login-form.html'
+	form_class = LoginForm
+	success_url = '/explorar'
 
-# Create your views here.
+	def form_valid(self,form):
+		login(self.request,form.user_cache)
+		return super(LoginView,self).form_valid(form)
