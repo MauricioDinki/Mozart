@@ -1,12 +1,12 @@
+# -*- encoding: utf-8 -*-
+
 from .models import Work
 from django.http import JsonResponse
 from django.shortcuts import render,get_list_or_404
-from django.views.generic import ListView
+from django.views.generic import ListView,DetailView
 
 class WorkListView(ListView):
     model = Work
-    template_name = "work_list.html"
-    context_object_name = 'works'
 
     def get(self, request, *args, **kwargs):
         self.object_list = self.get_queryset()
@@ -23,7 +23,23 @@ class WorkListView(ListView):
     def get_queryset(self):
         if self.kwargs.get('category'):
             queryset = get_list_or_404(self.model,category=self.kwargs['category'])
+       	elif self.kwargs.get('username'):
+   			queryset = get_list_or_404(self.model,user__username__iexact=self.kwargs['username'])
         else:
             queryset = super(WorkListView, self).get_queryset()
         return queryset
 
+class WorkDetailView(DetailView):
+	model = Work
+
+	def get(self, request, *args, **kwargs):
+		self.object = self.get_object()
+		data = [{
+			'user': self.object.user.username,
+			'title':self.object.title,
+			'category':self.object.category,
+			'date':self.object.date,
+			'cover':self.object.cover.url,
+			'archive':self.object.archive.url,
+		}]
+		return JsonResponse(data,safe=False)

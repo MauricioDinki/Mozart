@@ -1,3 +1,5 @@
+# -*- encoding: utf-8 -*-
+
 from django.db import models
 from sorl.thumbnail import ImageField
 from django.contrib.auth.models import User
