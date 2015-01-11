@@ -12,7 +12,7 @@ sexuality = (
 
 def profile_picture_url(self,filename):
 	return str('profile-images/%s/%s')%(self.user.username,filename)
-
+	
 class Artist(models.Model):
 	user = models.OneToOneField(User)
 	date_of_birth = models.DateField(blank=True,null=True)
@@ -27,3 +27,25 @@ class Artist(models.Model):
 	def __unicode__(self):
 		return self.user.username
 	
+class Contact(models.Model):
+	user = models.OneToOneField(User)
+	phone_number = models.BigIntegerField(blank=True,null=True)
+	adress = models.CharField(blank=True,null=True, max_length=50)
+
+	def __unicode__(self):
+		return self.user.username
+
+class SocialNetwork(models.Model):
+	user = models.OneToOneField(User)
+	facebook = models.URLField(blank=True,null=True, max_length=50)
+	twitter = models.URLField(blank=True,null=True, max_length=50)
+	youtube = models.URLField(blank=True,null=True, max_length=50)
+	google = models.URLField(blank=True,null=True, max_length=50)
+
+	class Meta:
+		verbose_name = "Social Network"
+		verbose_name_plural = "Social Networks"
+
+	def __unicode__(self):
+		return self.user.username
+    
