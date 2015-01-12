@@ -12,6 +12,10 @@ sexuality = (
 
 def profile_picture_url(self,filename):
 	return str('profile-images/%s/%s')%(self.user.username,filename)
+
+def presentation_file_url(self,filename):
+	return str('presentation-file/%s/%s')%(self.user.username,filename)
+	pass
 	
 class Artist(models.Model):
 	user = models.OneToOneField(User)
@@ -19,6 +23,7 @@ class Artist(models.Model):
 	sex = models.CharField(blank=True,null=True, max_length=50,choices=sexuality)
 	nationality = CountryField(blank=True,null=True)
 	profile_picture = ImageField(blank=True,null=True,upload_to=profile_picture_url)
+	presentation_file = models.FileField(blank=True,null=True,upload_to=presentation_file_url)
 
 	class Meta:
 		verbose_name = "Artist"
