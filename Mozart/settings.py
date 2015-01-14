@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     'Thirdauth',
     'Works',
     'Profiles',
+    'rest_framework',
 )
 
 MIDDLEWARE_CLASSES = (

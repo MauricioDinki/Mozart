@@ -4,6 +4,8 @@ from .models import Work
 from django.http import JsonResponse
 from django.shortcuts import render,get_list_or_404
 from django.views.generic import ListView,DetailView
+from rest_framework import viewsets
+from .serializers import WorkSerializer
 
 class WorkListView(ListView):
     model = Work
@@ -43,3 +45,10 @@ class WorkDetailView(DetailView):
 			'archive':self.object.archive.url,
 		}]
 		return JsonResponse(data,safe=False)
+
+# Vistas Del API REST
+
+class WorkViewSet(viewsets.ModelViewSet):
+	model = Work
+	queryset = Work.objects.all()
+	serializer_class = WorkSerializer 
