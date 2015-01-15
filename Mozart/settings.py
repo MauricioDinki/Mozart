@@ -42,7 +42,6 @@ INSTALLED_APPS = (
     'Thirdauth',
     'Works',
     'Profiles',
-    'rest_framework',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -90,6 +89,12 @@ USE_TZ = True
 STATIC_ROOT = os.sep.join(os.path.abspath(__file__).split(os.sep)[:-2] + ['static'])
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS = (
+    # Put strings here, like "/home/html/static" or "C:/www/django/static".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+    os.path.join(PROJECT_PATH,'static'),
+)
 MEDIA_ROOT = os.path.join(PROJECT_PATH,'media')
 MEDIA_URL = '/media/'
 

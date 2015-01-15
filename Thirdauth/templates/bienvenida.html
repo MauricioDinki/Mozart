@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es" ng-app="mozArtApp">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<link rel="stylesheet" href="{{ STATIC_URL }}css/estilos.css">
+	<link rel="stylesheet" href="{{ STATIC_URL }}css/fuentes.css">
+	<link rel="stylesheet" href="{{ STATIC_URL }}css/ng-tags-input.css">
+	<link rel="stylesheet" href="{{ STATIC_URL }}css/normalize.css">
+	<link rel="icon" type="image/png" href="{{ STATIC_URL }}img/favicon.png" />
+	<title>Bienvenido a mozArt</title>
+</head>
+<body>
+	<header>
+		<div id="menu-mozart" class="menu-superior" ng-controller="menuIzquierdoCtrl">
+			<a id="botonMenuIzquierdo" class="iconos icono-menu" ng-click="mostrarMenu()">
+			</a>
+			<div ng-style="posicionIzquierda" off-click="mostrarMenu()" off-click-filter="#botonMenuIzquierdo" off-click-if="visible">
+				<ul class="menu-bloques">
+					<li class="opcion-menu"><a class="iconos icono-explorar" href="/explorar">Explorar obras</a></li>
+					<li class="opcion-menu"><a href="/promotores" class="iconos icono-promotores">Promotores</a></li>
+					<li class="opcion-menu"><a href="/recorrido" class="iconos icono-recorrido">Recorrido por mozArt</a></li>
+					<li class="opcion-menu"><a href="/aleatorio/obra" class="iconos icono-aleatorio">Obra aleatoria</a></li>
+					<li class="opcion-menu"><a href="/aleatorio/usuario" class="iconos icono-aleatorio">Usuario aleatorio</a></li>
+				</ul>
+				<footer>
+					<a href="#"><span>Donaciones</span></a>
+					<a href="#"><span>Acerca del sitio</span></a>
+					<a href="#"><span>Políticas, terminos y condiciones</span></a>
+					<a href="#"><span>Dudas y sugerencias</span></a>
+					<span>© 2014 mozArt. Desarrollado por <a href="#" ng-click="accionMenu(1)">zero</a></span>
+				</footer>
+			</div>
+		</div>
+		<div id="menu-usuario" class="menu-superior" ng-controller="menuDerechoCtrl">
+			<a class="cantidad" title="0 notificaciones" href="/panel/notificaciones" ng-click="ocultarMenus()"> 0 </a>
+			<figure id="botonMenuDerecho" ng-click="mostrarMenu()">
+				<img class="redondo" src="{{ STATIC_URL }}img/default.png"/>
+			</figure>
+			<div ng-style="posicionDerecha" off-click="mostrarMenu()" off-click-filter="#botonMenuDerecho" off-click-if="visible">
+				<ul class="menu-bloques">
+					<li class="opcion-menu"><a href="/login" class="iconos icono-login">Iniciar sesión</a></li>
+					<li class="opcion-menu"><a href="/registro/artista" class="iconos icono-registro">Unirse a mozArt</a></li>
+					<li class="opcion-menu"><a href="/artista/0" class="iconos icono-perfil">Ver mi Perfil</a></li>
+					<li class="opcion-menu"><a href="/panel/informacion" class="iconos icono-panel">Panel de usuario</a></li>
+					<li class="opcion-menu"><a  href="/crear" class="iconos icono-cargar">Crear obra</a>
+					</li>
+					<li class="opcion-menu"><a href="/logout" class="iconos icono-salir">Cerrar sesión</a></li>
+				</ul>
+			</div>
+		</div>
+		<figure id="mozart-logo" ng-click="ocultarMenus()">
+			<a href="/explorar"><img src="{{ STATIC_URL }}img/logo.png" alt="mozArt"></a>
+		</figure>
+		<form id="cuadro-busqueda" ng-click="ocultarMenus()">
+			<div class="contenedor">
+				<input type="search" name="busqueda" class="cuadrotexto" placeholder="Buscar obras, artistas y promotores" ng-model="texto" autocomplete="off"/>
+				<button type="submit" class="iconos boton-busqueda"></button>
+				<ul ng-show="texto.length > 0" ng-animate="fadeIn">
+					<li class="copia-texto">Resultados para <b ng-bind="texto"></b></li>
+					<li class="resultado">No hay resultados</li>
+				</ul>
+			</div>
+		</form>
+	</header>
+	<section id="bienvenida">
+		<article class="recuadro">
+			<img src="{{ STATIC_URL }}img/fondo1.jpg" />
+			<div>
+				Explora
+				<p>
+					Da un paseo por mozArt y disfruta de la increíble variedad de obras de arte.
+				</p>
+				<a href="/explorar">Entrar sin cuenta</a>
+			</div>
+		</article>
+		<article class="recuadro">
+			<img src="{{ STATIC_URL }}img/fondo2.jpg" />
+			<div>
+				Descubre
+				<p>
+					Una nueva forma de compartir el arte. Uneté como artista y forma parte de la comunidad mozArt.
+				</p>
+				<a href="/#">Conoce la cuenta de artista</a>
+			</div>
+		</article>
+		<article class="recuadro">
+			<img src="{{ STATIC_URL }}img/fondo3.jpg" />
+			<div>
+				Comparte
+				<p>
+					Todo el contenido en mozArt es libre de ser compartido en tus redes sociales favoritas.
+				</p>
+				<a href="/#">Leer acerca de las licencias</a>
+			</div>
+		</article>
+		<article class="recuadro">
+			<img src="{{ STATIC_URL }}img/fondo4.jpg" />
+			<div>
+				Contacta
+				<p>
+					Los artistas necesitan alguien que los ayude a alcanzar el éxito, ¿estás dispuesto a ser tu?
+				</p>
+				<a href="/#">Conoce la cuenta de promotor</a>
+			</div>
+		</article>
+		<article class="recuadro">
+			<img src="{{ STATIC_URL }}img/fondo5.jpg" />
+			<div>
+				Colabora
+				<p>
+					¿Te gusta mozArt? Ayuda a que el proyecto crezca.
+				</p>
+				<a href="/#">Realizar donación</a>
+			</div>
+		</article>
+		<p>Todo esto, a unos cuantos clics de distancia.</p>
+	</section>
+	<script src="{{ STATIC_URL }}js/lib/angular.min.js"></script>
+	<script src="{{ STATIC_URL }}js/lib/angular-route.min.js"></script>
+	<script src="{{ STATIC_URL }}js/app.js"></script>
+	<script src="{{ STATIC_URL }}js/controllers.js"></script>
+	<script src="{{ STATIC_URL }}js/directives.js"></script>
+	<script src="{{ STATIC_URL }}js/services.js"></script>
+	<script src="{{ STATIC_URL }}js/ng-tags-input.min.js"></script>
+</body>
+</html>
