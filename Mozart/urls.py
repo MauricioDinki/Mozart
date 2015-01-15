@@ -7,7 +7,7 @@ from Works.views import WorkViewSet
 
 router = routers.DefaultRouter()
 router.register(r'works',WorkViewSet)
-router.register(r'user',UserViewSet)
+router.register(r'users',UserViewSet)
 
 urlpatterns = patterns('',
 
@@ -15,6 +15,7 @@ urlpatterns = patterns('',
     url(r'', include('Works.urls')),
     url(r'', include('Thirdauth.urls')),
     url(r'^api/', include(router.urls)),
+    url(r'^api-oauth/', include('rest_framework.urls',namespace='rest_framework')),
 )
 
 if settings.DEBUG:
