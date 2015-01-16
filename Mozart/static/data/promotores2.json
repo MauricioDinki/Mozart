@@ -1,0 +1,11 @@
+[{
+	"nickname": "Promotor1",
+	"url" : "#/promotor/1",
+	"imagen" : "static/img//foto1.jpg",
+	"descripcion" : "Hola mucho gusto, quiero ayudarte."
+}, {
+	"nickname": "Promotor2",
+	"url" : "#/promotor/2",
+	"imagen" : "static/img//foto2.jpg",
+	"descripcion" : "Hola mucho gusto, yo tambien quiero ayudarte."
+}]
