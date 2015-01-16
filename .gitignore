@@ -3,3 +3,4 @@ db.sqlite3
 Works/migrations/
 Thirdauth/migrations/
 Profiles/migrations/
+entorno/
