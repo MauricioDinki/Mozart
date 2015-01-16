@@ -1,0 +1,125 @@
+tags-input {
+  display: inline-block;
+  overflow-x: scroll !important;
+  overflow-y: hidden;
+}
+tags-input.cuadrotexto {
+  background: white;
+  height: auto;
+  padding: 0;
+}
+tags-input *, tags-input *:before, tags-input *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+tags-input .host {
+  position: relative;
+  height: 100%;
+  outline: 0px;
+}
+tags-input .host:active {
+  outline: 0px;
+  height: 100%;
+}
+
+tags-input .tags {
+  -moz-appearance: textfield;
+  -webkit-appearance: textfield;
+  overflow: hidden;
+  word-wrap: break-word;
+  color: #333;
+  cursor: text;
+  height: 100%;
+}
+tags-input .tags.focused {
+  outline: 0px;
+}
+tags-input .tags .tag-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+tags-input .tags .tag-item {
+  margin: 8px 2px 0 5px;
+  padding: 0 5px;
+  display: inline-block;
+  float: left;
+  height: 26px;
+  line-height: 25px;
+  border-radius: 3px;
+  background: #2474e0;
+  color: white;
+}
+tags-input .tags .tag-item.selected {
+  background: #4fadfd;
+}
+tags-input .tags .tag-item .remove-button {
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  vertical-align: middle;
+  color: white;
+}
+tags-input .tags .tag-item .remove-button:hover, tags-input .tags .tag-item .remove-button:active {
+  color: red;
+}
+tags-input .tags .input {
+  border: 0;
+  outline: 0px;
+  margin: 0;
+  height: 40px;
+  padding: 0 0 0 15px;
+  float: left;
+}
+tags-input .tags .input.invalid-tag {
+  color: red;
+}
+tags-input .tags .input::-ms-clear {
+  display: none;
+}
+tags-input.ng-invalid .tags {
+  -webkit-box-shadow: 0 0 3px 1px rgba(255, 0, 0, 0.6);
+  -moz-box-shadow: 0 0 3px 1px rgba(255, 0, 0, 0.6);
+  box-shadow: 0 0 3px 1px rgba(255, 0, 0, 0.6);
+}
+
+tags-input .autocomplete {
+  margin-top: 5px;
+  position: absolute;
+  padding: 5px 0;
+  z-index: 999;
+  width: 100%;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+tags-input .autocomplete .suggestion-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+tags-input .autocomplete .suggestion-item {
+  padding: 5px 10px;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: black;
+  background-color: white;
+}
+tags-input .autocomplete .suggestion-item.selected {
+  color: white;
+  background-color: #0097cf;
+}
+tags-input .autocomplete .suggestion-item.selected em {
+  color: white;
+  background-color: #0097cf;
+}
+tags-input .autocomplete .suggestion-item em {
+  color: black;
+  background-color: white;
+}
