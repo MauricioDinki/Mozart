@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 # -*- encoding: utf-8 -*-
 
 from .models import Mozart_User,Contact,Social_Network,Date_of_Birth
@@ -35,4 +33,3 @@ class UserViewSet(viewsets.ModelViewSet):
 	model = User
 	queryset = User.objects.all()
 	serializer_class = UserSerializer
->>>>>>> master
