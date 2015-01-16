@@ -1,8 +1,7 @@
 # -*- encoding: utf-8 -*-
 
 from django.conf.urls import patterns, url,include
-from .views import WorkListView, WorkDetailView,WorkViewSet
-from rest_framework import routers
+from .views import WorkListView, WorkDetailView
 
 urlpatterns = patterns('',
 	url(r'^explorar/$', WorkListView.as_view(), name='work_list'),

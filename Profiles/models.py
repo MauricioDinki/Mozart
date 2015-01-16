@@ -7,8 +7,7 @@ from sorl.thumbnail import ImageField
 
 sexuality = (
 	('Masculino', 'Masculino'),
-	('Femenino', 'Femenino'),
-)
+	('Femenino', 'Femenino'),)
 
 days = (
 	('1','1'),
@@ -41,8 +40,7 @@ days = (
 	('28','28'),
 	('29','29'),
 	('30','30'),
-	('31','31'),
-)
+	('31','31'),)
 
 months = (
 	('Enero', 'Enero'),
@@ -56,8 +54,7 @@ months = (
 	('Septiembre', 'Septiembre'),
 	('Octubre', 'Octubre'),
 	('Noviembre', 'Noviembre'),
-	('Diciembre', 'Diciembre'),
-)
+	('Diciembre', 'Diciembre'),)
 
 
 def profile_picture_url(self,filename):
@@ -65,7 +62,6 @@ def profile_picture_url(self,filename):
 
 def presentation_file_url(self,filename):
 	return str('presentation-file/%s/%s')%(self.user.username,filename)
-	pass
 	
 class Mozart_User(models.Model):
 	user = models.OneToOneField(User)
