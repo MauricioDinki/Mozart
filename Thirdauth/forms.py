@@ -36,4 +36,6 @@ class LoginForm(forms.Form):
                 raise forms.ValidationError(custom_error_messages['inactive'])
         return self.cleaned_data
 
+class RegisterForm(forms.Form):
+    # TODO: Define form fields here
     

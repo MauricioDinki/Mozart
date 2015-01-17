@@ -2,12 +2,13 @@
 
 from .models import Work
 from django.http import JsonResponse
-from django.shortcuts import render,get_list_or_404
-from django.views.generic import ListView,DetailView
+from django.shortcuts import render,get_list_or_404,redirect
+from django.views.generic import ListView,DetailView,TemplateView
 from rest_framework import viewsets
 from .serializers import WorkSerializer
 
 class WorkListView(ListView):
+
     model = Work
 
     def get(self, request, *args, **kwargs):
@@ -32,6 +33,7 @@ class WorkListView(ListView):
         return queryset
 
 class WorkDetailView(DetailView):
+
 	model = Work
 
 	def get(self, request, *args, **kwargs):
@@ -45,6 +47,21 @@ class WorkDetailView(DetailView):
 			'archive':self.object.archive.url,
 		}]
 		return JsonResponse(data,safe=False)
+
+
+# Vista Para el Home
+
+class HomeView(TemplateView):
+
+    template_name = "Nombre_del_Template"
+
+    def get(self, request, *args, **kwargs):
+    	if request.user.is_authenticated():
+    		return redirect('work_list')
+    	else:
+	        context = self.get_context_data(**kwargs)
+	        return self.render_to_response(context)
+
 
 # Vistas Del API REST
 

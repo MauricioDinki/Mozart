@@ -15,5 +15,5 @@ class LoginView(FormView):
 
 def LogoutView(request):
 	logout(request)
-	return redirect('work_list')
+	return redirect('home')
 
