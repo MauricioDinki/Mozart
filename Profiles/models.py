@@ -10,6 +10,7 @@ sexuality = (
 	('Femenino', 'Femenino'),)
 
 days = (
+	('',''),
 	('1','1'),
 	('2','2'),
 	('3','3'),
@@ -43,6 +44,7 @@ days = (
 	('31','31'),)
 
 months = (
+	('',''),
 	('Enero', 'Enero'),
 	('Febrero', 'Febrero'),
 	('Marzo', 'Marzo'),
@@ -119,6 +121,3 @@ class Date_of_Birth(models.Model):
 
 	def __unicode__(self):
 		return self.user.username
-    
-    
-    

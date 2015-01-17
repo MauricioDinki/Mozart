@@ -2,7 +2,7 @@
 from django.shortcuts import render_to_response,redirect
 from django.contrib.auth import login,logout
 from django.views.generic import FormView
-from .forms import LoginForm
+from .forms import LoginForm,RegisterForm
 
 class LoginView(FormView):
 	template_name = 'login-form.html'
@@ -16,4 +16,9 @@ class LoginView(FormView):
 def LogoutView(request):
 	logout(request)
 	return redirect('home')
+
+class RegisterView(FormView):
+	template_name = 'registro.html'
+	form_class = RegisterForm
+	success_url = '/explorar'
 

@@ -3,7 +3,6 @@
 from django import forms
 from django.contrib.auth.models import User
 
-# Mensajes de error
 custom_error_messages = {
     'invalid_login': ('Usuario o password incorrectos'),
     'inactive': ('Su cuenta fue inhabilitada'),
@@ -13,6 +12,10 @@ custom_error_messages = {
     'password_mismatch':('Las contraseñas no coinciden'),
     'user_exist':('Ese usuario ya esta ocupado'),
     'email_exist':('Ese email ya esta asociado una cuenta'),
+}
+
+default_error_messages = {
+    'required': 'Este campo no puede estar vacio',
 }
 
 def validate_null(data):
