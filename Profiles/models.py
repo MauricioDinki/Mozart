@@ -5,10 +5,6 @@ from django.contrib.auth.models import User
 from django_countries.fields import CountryField
 from sorl.thumbnail import ImageField
 
-sexuality = (
-	('Masculino', 'Masculino'),
-	('Femenino', 'Femenino'),)
-
 days = (
 	('',''),
 	('1','1'),
@@ -58,6 +54,16 @@ months = (
 	('Noviembre', 'Noviembre'),
 	('Diciembre', 'Diciembre'),)
 
+sexuality = (
+	('',''),
+	('Masculino', 'Masculino'),
+	('Femenino', 'Femenino'),)
+
+type_of_users = (
+	('',''),
+	('Promotor','Promotor'),
+	('Artista','Artista'),
+)
 
 def profile_picture_url(self,filename):
 	return str('profile-images/%s/%s')%(self.user.username,filename)

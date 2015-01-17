@@ -20,5 +20,10 @@ def LogoutView(request):
 class RegisterView(FormView):
 	template_name = 'registro.html'
 	form_class = RegisterForm
-	success_url = '/explorar'
+	success_url = '/success'
+
+	def form_valid(self,form):
+		form.save()
+		login(self.request,form.user_cache)
+		return super(RegisterView,self).form_valid(form)
 
