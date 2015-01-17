@@ -3,6 +3,7 @@ from django import forms
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from .validations import *
+from Profiles.models import days,months
 
 class LoginForm(forms.Form):
 
@@ -37,5 +38,55 @@ class LoginForm(forms.Form):
         return self.cleaned_data
 
 class RegisterForm(forms.Form):
-    # TODO: Define form fields here
+
+    email = forms.EmailField(
+        max_length=20,
+        required=True,
+    )
+
+    last_name = forms.CharField(
+        max_length=20,
+        required=True,
+    )
+
+    name = forms.CharField(
+        max_length=20,
+        required=True,
+    )
+
+    password = forms.CharField(
+        max_length=20,
+        required=True,
+        widget=forms.PasswordInput(),
+    )
+
+    username = forms.CharField(
+        max_length=20,
+        required=True,
+    )
+
+    day_of_birth = forms.ChoiceField(
+        required=True,
+        choices=days,
+    )
+
+    month_of_birth = forms.ChoiceField(
+        required=True,
+        choices=months,
+    )
+
+    year_of_birth = forms.IntegerField(
+        required=True,
+        max_value=2015,
+        min_value=1905,
+    )
+
+
+
+
+
+
+
+
+
     
