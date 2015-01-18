@@ -9,11 +9,15 @@ from Profiles.models import days,months,type_of_users,sexuality,Mozart_User,Date
 class LoginForm(forms.Form):
 
     username = forms.CharField(
-    	widget=forms.TextInput(attrs={'placeholder':'username'}),
+        error_message=default_error_messages,
+        max_length=30,
+        required=True,
     )
 
     password = forms.CharField(
-    	widget=forms.PasswordInput(attrs={'placeholder':'password'}),
+        error_message=default_error_messages,
+        max_length=30,
+        required=True,
     )
 
     def __init__(self, *args, **kwargs):
