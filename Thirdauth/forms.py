@@ -9,13 +9,13 @@ from Profiles.models import days,months,type_of_users,sexuality,Mozart_User,Date
 class LoginForm(forms.Form):
 
     username = forms.CharField(
-        error_message=default_error_messages,
+        error_messages=default_error_messages,
         max_length=30,
         required=True,
     )
 
     password = forms.CharField(
-        error_message=default_error_messages,
+        error_messages=default_error_messages,
         max_length=30,
         required=True,
     )
