@@ -13,6 +13,13 @@ class LoginView(FormView):
 		login(self.request,form.user_cache)
 		return super(LoginView,self).form_valid(form)
 
+	def get(self, request, *args, **kwargs):
+    	if request.user.is_authenticated():
+    		return redirect('work_list')
+    	else:
+	        context = self.get_context_data(**kwargs)
+	        return self.render_to_response(context)
+
 def LogoutView(request):
 	logout(request)
 	return redirect('home')
