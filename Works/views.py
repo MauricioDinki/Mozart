@@ -6,6 +6,7 @@ from django.shortcuts import render,get_list_or_404,redirect
 from django.views.generic import ListView,DetailView,TemplateView
 from rest_framework import viewsets
 from .serializers import WorkSerializer
+from Thirdauth.mixins import AuthRedirectMixin
 
 class WorkListView(ListView):
 
@@ -51,17 +52,8 @@ class WorkDetailView(DetailView):
 
 # Vista Para el Home
 
-class HomeView(TemplateView):
-
+class HomeView(AuthRedirectMixin,TemplateView):
     template_name = "Nombre_del_Template"
-
-    def get(self, request, *args, **kwargs):
-    	if request.user.is_authenticated():
-    		return redirect('work_list')
-    	else:
-	        context = self.get_context_data(**kwargs)
-	        return self.render_to_response(context)
-
 
 # Vistas Del API REST
 

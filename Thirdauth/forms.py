@@ -196,7 +196,6 @@ class RegisterForm(forms.Form):
     def save(self):
         day_of_birth = self.cleaned_data.get('day_of_birth')
         email = self.cleaned_data.get('email')
-        print email
         first_name = self.cleaned_data.get('first_name')
         last_name = self.cleaned_data.get('last_name')
         month_of_birth = self.cleaned_data.get('month_of_birth')
