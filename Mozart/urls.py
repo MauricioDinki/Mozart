@@ -2,8 +2,8 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from django.conf import settings
 from rest_framework import routers
-from Profiles.views import UserViewSet,MozartUserViewSet,SocialNetworkViewSet,ContactViewSet,DateBirthViewSet
-from Works.views import WorkViewSet
+from Profiles.viewsets import UserViewSet,MozartUserViewSet,SocialNetworkViewSet,ContactViewSet,DateBirthViewSet
+from Works.viewsets import WorkViewSet
 
 router = routers.DefaultRouter()
 

@@ -21,7 +21,8 @@ class UserInformationForm(forms.Form):
 		max_length=200,
 		required=True,
 	)
-	facebook = forms.URLField(
+
+	facebook_url = forms.URLField(
 		error_messages=default_error_messages,
 		required=True,
 		max_length=30,
@@ -33,7 +34,7 @@ class UserInformationForm(forms.Form):
 		required=True,
 	)
 
-	google = forms.URLField(
+	google_url = forms.URLField(
 		error_messages=default_error_messages,
 		required=True,
 		max_length=30,
@@ -82,7 +83,7 @@ class UserInformationForm(forms.Form):
 	)
 
 
-	twitter = forms.URLField(
+	twitter_url = forms.URLField(
 		error_messages=default_error_messages,
 		required=True,
 		max_length=30,
@@ -95,7 +96,7 @@ class UserInformationForm(forms.Form):
 	    min_value=1905,
 	)
 
-	youtube = forms.URLField(
+	youtube_url = forms.URLField(
 		error_messages=default_error_messages,
 		required=True,
 		max_length=30,
@@ -103,3 +104,59 @@ class UserInformationForm(forms.Form):
 
 	def __init__(self, *args, **kwargs):
 		super(UserInformationForm, self).__init__(*args, **kwargs)
+
+
+	def clean_day_of_birth(self):
+	    day_of_birth = self.cleaned_data.get('day_of_birth')
+	    validate_null(day_of_birth)
+	    return day_of_birth
+
+	def clean_description(self):
+		description = self.cleaned_data.get('description')
+		validate_null(description)
+		return description
+
+	def clean_facebook_url(self):
+		facebook_url = self.cleaned_data.get('facebook_url')
+		validate_null(facebook_url)
+		return facebook_url
+
+	def clean_first_name(self):
+		first_name = self.cleaned_data.get('first_name')
+		validate_null(first_name)
+		return first_name
+
+	def clean_month_of_birth(self):
+	    month_of_birth = self.cleaned_data.get('month_of_birth')
+	    validate_null(month_of_birth)
+	    return month_of_birth
+
+	def clean_nationality(self):
+		nationality = self.cleaned_data.get('nationality')
+		validate_null(nationality)
+		return validate_null
+
+	def clean_personal_homepage(self):
+		personal_homepage = self.cleaned_data.get('personal_homepage')
+		validate_null(personal_homepage)
+		return personal_homepage
+
+	def cleaned_phone_number(self):
+		phone_number = self.cleaned_data.get('phone_number')
+		validate_null(personal_homepage)
+		return personal_homepage
+
+	def clean_twitter_url(self):
+		twitter_url = self.cleaned_data.get('twitter_url')
+		validate_null(twitter_url)
+		return twitter_url
+
+	def clean_year_of_birth(self):
+	    year_of_birth = self.cleaned_data.get('year_of_birth')
+	    validate_null(year_of_birth)
+	    return year_of_birth
+
+	def clean_youtube_url(self):
+		youtube_url = self.cleaned_data.get('youtube_url')
+		validate_null(youtube_url)
+		return year_of_birth

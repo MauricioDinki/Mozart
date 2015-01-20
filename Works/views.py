@@ -4,8 +4,6 @@ from .models import Work
 from django.http import JsonResponse
 from django.shortcuts import render,get_list_or_404,redirect
 from django.views.generic import ListView,DetailView,TemplateView
-from rest_framework import viewsets
-from .serializers import WorkSerializer
 from Thirdauth.mixins import AuthRedirectMixin
 
 class WorkListView(ListView):
@@ -54,10 +52,3 @@ class WorkDetailView(DetailView):
 
 class HomeView(AuthRedirectMixin,TemplateView):
     template_name = "Nombre_del_Template"
-
-# Vistas Del API REST
-
-class WorkViewSet(viewsets.ModelViewSet):
-	model = Work
-	queryset = Work.objects.all()
-	serializer_class = WorkSerializer 
