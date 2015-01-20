@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
 
+from django.contrib.auth.models import User
 from django.db import models
 from sorl.thumbnail import ImageField
-from django.contrib.auth.models import User
 
 def archive_url(self,filename):
 	return str('files/%s/%s')%(self.user.username,filename)

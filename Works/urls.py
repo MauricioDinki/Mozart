@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 
-from django.conf.urls import patterns, url,include
 from .views import WorkListView, WorkDetailView, HomeView
+from django.conf.urls import patterns, url,include
 
 urlpatterns = patterns('',
 	url(r'^$', HomeView.as_view(), name='home',),

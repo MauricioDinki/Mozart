@@ -1,10 +1,11 @@
 # -*- encoding: utf-8 -*-
-from django.shortcuts import render_to_response,redirect
-from django.contrib.auth import login,logout
-from django.views.generic import FormView
+
 from .forms import LoginForm,RegisterForm
 from .mixins import AuthRedirectMixin
+from django.contrib.auth import login,logout
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import render_to_response,redirect
+from django.views.generic import FormView
 
 
 class LoginView(AuthRedirectMixin,FormView):

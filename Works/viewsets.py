@@ -1,7 +1,8 @@
 # -*- encoding: utf-8 -*-
-from rest_framework import viewsets
-from .serializers import WorkSerializer
+
 from .models import Work
+from .serializers import WorkSerializer
+from rest_framework import viewsets
 
 class WorkViewSet(viewsets.ModelViewSet):
 	model = Work
