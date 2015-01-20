@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 
+from .validations import *
 from django import forms
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
-from .validations import *
 from Profiles.models import days,months,type_of_users,sexuality,Mozart_User,Date_of_Birth
 
 class LoginForm(forms.Form):
@@ -66,19 +66,6 @@ class RegisterForm(forms.Form):
         required=True,
     )
 
-    first_name = forms.CharField(
-        error_messages=default_error_messages,
-        max_length=20,
-        required=True,
-    )
-
-    last_name = forms.CharField(
-        error_messages=default_error_messages,
-        max_length=30,
-        required=True,
-    )
-
-
     month_of_birth = forms.ChoiceField(
         error_messages={
             'invalid_choice':('Selecciona una opcion valida'),
@@ -100,15 +87,6 @@ class RegisterForm(forms.Form):
         max_length=20,
         required=True,
         widget=forms.PasswordInput(),
-    )
-
-    sexuality = forms.ChoiceField(
-        error_messages={
-            'invalid_choice':('Selecciona una opcion valida'),
-            'required': default_error_messages['required']
-        },
-        required=True,
-        choices=sexuality
     )
 
     type_of_user = forms.ChoiceField(
@@ -147,16 +125,6 @@ class RegisterForm(forms.Form):
         validate_email(email)
         return email
 
-    def clean_first_name(self):
-        first_name = self.cleaned_data.get('first_name')
-        validate_null(first_name)
-        return first_name
-
-    def clean_last_name(self):
-        last_name = self.cleaned_data.get('last_name')
-        validate_null(last_name)
-        return last_name
-
     def clean_month_of_birth(self):
         month_of_birth = self.cleaned_data.get('month_of_birth')
         validate_null(month_of_birth)
@@ -172,11 +140,6 @@ class RegisterForm(forms.Form):
         password_2 = self.cleaned_data.get("password_2")
         validate_password(password_1,password_2)
         return password_1 and password_2
-
-    def clean_sexuality(self):
-        sexuality = self.cleaned_data.get('sexuality')
-        validate_null(sexuality)
-        return sexuality
 
     def clean_type_of_user(self):
         type_of_user = self.cleaned_data.get('type_of_user')
@@ -196,21 +159,15 @@ class RegisterForm(forms.Form):
     def save(self):
         day_of_birth = self.cleaned_data.get('day_of_birth')
         email = self.cleaned_data.get('email')
-        first_name = self.cleaned_data.get('first_name')
-        last_name = self.cleaned_data.get('last_name')
         month_of_birth = self.cleaned_data.get('month_of_birth')
         password = self.cleaned_data.get("password_2")
-        sexuality = self.cleaned_data.get("sexuality")
         type_of_user = self.cleaned_data.get('type_of_user')
         username = self.cleaned_data.get('username')
         year_of_birth = self.cleaned_data.get('year_of_birth')
 
         user = User.objects.create_user(username,email,password)
-        user.first_name = first_name
-        user.last_name = last_name
-        user.save()
 
-        newExtendedUser = Mozart_User(user=user,sex=sexuality,user_type=type_of_user)
+        newExtendedUser = Mozart_User(user=user,user_type=type_of_user)
         newExtendedUser.save()
 
         newUserAge = Date_of_Birth(user=user,day=day_of_birth,month=month_of_birth,year=year_of_birth)
