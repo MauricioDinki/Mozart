@@ -19,9 +19,8 @@ class InformationFormView(FormView):
 		return kwargs
 
 	def get_initial(self):
-
-		initial={
-			'day_of_birth':self.request.user.date_of_birth.day,
+		initial = {
+			'nationality':self.request.user.mozart_user.nationality
 		}
 		return initial
 

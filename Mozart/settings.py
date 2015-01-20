@@ -8,6 +8,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.7/ref/settings/
 """
 
+from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -31,6 +33,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
+    'suit',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,7 +42,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'sorl.thumbnail',
     'django_countries',
-    'Authentification',
+    'Thirdauth',
     'Works',
     'Profiles',
     'rest_framework',
@@ -53,6 +56,10 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = TCP + (
+    'django.core.context_processors.request',
 )
 
 ROOT_URLCONF = 'Mozart.urls'
@@ -97,3 +104,8 @@ MEDIA_ROOT = os.path.join(PROJECT_PATH,'media')
 MEDIA_URL = '/media/'
 
 THUMBNAIL_DEBUG = True
+
+
+SUIT_CONFIG = {
+    'ADMIN_NAME': 'Mozart',
+}
