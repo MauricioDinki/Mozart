@@ -39,7 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'sorl.thumbnail',
     'django_countries',
-    'Thirdauth',
+    'Authentification',
     'Works',
     'Profiles',
     'rest_framework',

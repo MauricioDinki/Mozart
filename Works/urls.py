@@ -4,7 +4,7 @@ from django.conf.urls import patterns, url,include
 from .views import WorkListView, WorkDetailView, HomeView
 
 urlpatterns = patterns('',
-	url(r'^$', HomeView.as_view(), name='home'),
+	url(r'^$', HomeView.as_view(), name='home',),
 	url(r'^explorar/$', WorkListView.as_view(), name='work_list'),
 	url(r'^explorar/(?P<category>[\w\-]+)/$', WorkListView.as_view(), name='work_list_category'),
 	url(r'^(?P<username>[\w\-]+)/obras/$', WorkListView.as_view(), name='work_user_list'),

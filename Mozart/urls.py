@@ -21,12 +21,13 @@ router.register(r'works',WorkViewSet)
 urlpatterns = patterns('',
 
     url(r'', include('Works.urls')),
-    url(r'', include('Thirdauth.urls')),
+    url(r'', include('Authentification.urls')),
     url(r'', include('Profiles.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^api-oauth/', include('rest_framework.urls',namespace='rest_framework')),
     url(r'^api/', include(router.urls)),
+
 )
 
 

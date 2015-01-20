@@ -4,7 +4,7 @@ from .models import Work
 from django.http import JsonResponse
 from django.shortcuts import render,get_list_or_404,redirect
 from django.views.generic import ListView,DetailView,TemplateView
-from Thirdauth.mixins import AuthRedirectMixin
+from Authentification.mixins import AuthRedirectMixin
 
 class WorkListView(ListView):
 

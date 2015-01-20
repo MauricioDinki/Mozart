@@ -12,6 +12,7 @@ custom_error_messages = {
     'password_mismatch':('Las contraseñas no coinciden'),
     'user_exist':('Ese usuario ya esta ocupado'),
     'email_exist':('Ese email ya esta asociado una cuenta'),
+    'incorrect_password':('La Contraseña introducida es incorrecta'),
 }
 
 default_error_messages = {
