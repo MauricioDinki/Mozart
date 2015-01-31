@@ -13,5 +13,10 @@
 	{% if user.is_authenticated %}
 		<p>Estas Logueado</p>
 	{% endif %}
+	
+	<p>
+		<a href="{% url 'social:begin' 'facebook' %}">Login with Facebook</a> 
+	</p>
+
 </body>
 </html>

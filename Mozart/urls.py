@@ -20,9 +20,11 @@ router.register(r'works',WorkViewSet)
 
 urlpatterns = patterns('',
 
-    url(r'', include('Works.urls')),
-    url(r'', include('Thirdauth.urls')),
-    url(r'', include('Profiles.urls')),
+	url('', include('social.apps.django_app.urls', namespace='social')),
+
+    url('', include('Works.urls')),
+    url('', include('Thirdauth.urls')),
+    url('', include('Profiles.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^api-oauth/', include('rest_framework.urls',namespace='rest_framework')),
