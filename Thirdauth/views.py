@@ -7,7 +7,6 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render_to_response,redirect
 from django.views.generic import FormView
 
-
 class LoginView(FormView):
 	template_name = 'login-form.html'
 	form_class = LoginForm
@@ -32,3 +31,17 @@ class RegisterView(AuthRedirectMixin,FormView):
 		login(self.request,form.user_cache)
 		return super(RegisterView,self).form_valid(form)
 
+
+from social.apps.django_app.default.models import UserSocialAuth
+from django.template import RequestContext
+from Profiles.models import Mozart_User
+
+def social_user(request):
+	template = 'socialCuenta.html'
+	cuentas = UserSocialAuth.objects.filter(user__username = request.user.username)
+	ctx = {'cuentas':cuentas}
+	return render_to_response(template, ctx, context_instance = RequestContext(request))
+
+def deletesocial(request):
+	pass
+	
