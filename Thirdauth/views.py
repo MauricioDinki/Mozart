@@ -31,4 +31,3 @@ class RegisterView(AuthRedirectMixin,FormView):
 		form.save()
 		login(self.request,form.user_cache)
 		return super(RegisterView,self).form_valid(form)
-
