@@ -8,7 +8,7 @@ from django.shortcuts import render_to_response,redirect
 from django.views.generic import FormView
 
 
-class LoginView(AuthRedirectMixin,FormView):
+class LoginView(FormView):
 	template_name = 'login-form.html'
 	form_class = LoginForm
 	success_url = '/explorar'

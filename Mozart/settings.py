@@ -97,13 +97,11 @@ SUIT_CONFIG = {
     'ADMIN_NAME': 'Mozart',
 }
 
-#FACEBOOK_KEYS
-
+#Facebook Keys
 SOCIAL_AUTH_FACEBOOK_KEY = os.environ.get("SOCIAL_AUTH_FACEBOOK_KEY", None)
 SOCIAL_AUTH_FACEBOOK_SECRET = os.environ.get("SOCIAL_AUTH_FACEBOOK_SECRET", None)
 
-# SOCIAL_AUTH_PIPELINE
-
+# Social Auth Pipeline
 SOCIAL_AUTH_PIPELINE = (    
     'social.pipeline.social_auth.social_details',
     'social.pipeline.social_auth.social_uid',
@@ -112,3 +110,11 @@ SOCIAL_AUTH_PIPELINE = (
     'social.pipeline.user.get_username',
     'social.pipeline.social_auth.associate_user',
 )
+
+# Login Urls
+LOGIN_ERROR_URL    = '/login-error/'
+LOGIN_REDIRECT_URL = 'home'
+LOGIN_URL          = '/login/'
+
+# Social Auth Urls
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = 'home'
