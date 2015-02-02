@@ -124,4 +124,4 @@ LOGIN_REDIRECT_URL = 'home'
 LOGIN_URL          = '/login/'
 
 # Social Auth Urls
-SOCIAL_AUTH_LOGIN_REDIRECT_URL = 'home'
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/explorar/'
