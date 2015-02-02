@@ -5,8 +5,8 @@ from .models import Mozart_User,Contact,Social_Network,Date_of_Birth
 
 @admin.register(Mozart_User)
 class AdminMozartUser(admin.ModelAdmin):
-	list_display = ('sex','nationality', 'user_type',)
-	list_filter = ('sex','nationality', 'user_type',)
+	list_display = ('user','sex','nationality', 'user_type',)
+	list_filter = ('user','sex','nationality', 'user_type',)
 
 @admin.register(Contact)
 class AdminContact(admin.ModelAdmin):
