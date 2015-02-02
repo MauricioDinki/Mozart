@@ -16,10 +16,10 @@ class LoginView(FormView):
 		login(self.request,form.user_cache)
 		return super(LoginView,self).form_valid(form)
 
-@login_required(login_url='login_view')
+@login_required(login_url='login')
 def LogoutView(request):
 	logout(request)
-	return redirect('home')
+	return redirect('login')
 
 class RegisterView(AuthRedirectMixin,FormView):
 	template_name = 'registro.html'
