@@ -6,9 +6,11 @@
 </head>
 <body>
 	<p>Mis Cuentas</p>
-
+	
 	{% for cuenta in cuentas %}
-		{{cuenta.user}} - {{cuenta.provider}} <br> 
+		<p>
+			{{cuenta.user}} - {{cuenta.provider}} - {{cuenta.extendusersocialauth.username_identificator}}
+		</p>
 	{% endfor %}
 </body>
 </html>

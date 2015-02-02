@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
 
 from django.contrib import admin
-from .models import SocialUserName
+from .models import ExtendUserSocialAuth
 
-@admin.register(SocialUserName)
+@admin.register(ExtendUserSocialAuth)
 class AdminSocialUserName(admin.ModelAdmin):
-    list_display = ('user','facebook','twitter','google')
+	list_display = ('user','username_identificator')
