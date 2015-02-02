@@ -39,9 +39,8 @@ from Profiles.models import Mozart_User
 def social_user(request):
 	template = 'socialCuenta.html'
 	cuentas = UserSocialAuth.objects.filter(user__username = request.user.username)
+	print social_user
+	for cuenta in cuentas:
+		print cuenta.extra_data
 	ctx = {'cuentas':cuentas}
 	return render_to_response(template, ctx, context_instance = RequestContext(request))
-
-def deletesocial(request):
-	pass
-	
