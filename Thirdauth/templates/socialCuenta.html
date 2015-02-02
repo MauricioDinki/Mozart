@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Hola</title>
+</head>
+<body>
+	<p>Mis Cuentas</p>
+
+	{% for cuenta in cuentas %}
+		{{cuenta.user}} - {{cuenta.provider}} <br> 
+	{% endfor %}
+</body>
+</html>

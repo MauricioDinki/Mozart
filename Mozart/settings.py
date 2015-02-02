@@ -64,10 +64,21 @@ ROOT_URLCONF = 'Mozart.urls'
 
 WSGI_APPLICATION = 'Mozart.wsgi.application'
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql', 
+        'NAME': 'mozart_db',
+        'USER': 'root',
+        'PASSWORD': 'meji@r@mirez123',
+        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
+        'PORT': '3306',
     }
 }
 
@@ -105,8 +116,11 @@ SOCIAL_AUTH_FACEBOOK_SECRET = os.environ.get("SOCIAL_AUTH_FACEBOOK_SECRET", None
 SOCIAL_AUTH_TWITTER_KEY = os.environ.get("SOCIAL_AUTH_TWITTER_KEY", None)
 SOCIAL_AUTH_TWITTER_SECRET = os.environ.get("SOCIAL_AUTH_TWITTER_SECRET", None)
 
+# Google Keys
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.environ.get("SOCIAL_AUTH_GOOGLE_OAUTH2_KEY", None)
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ.get("SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET", None)
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ["https://www.googleapis.com/auth/plus.me","https://www.googleapis.com/auth/userinfo.email"]
 
 # Social Auth Pipeline
 SOCIAL_AUTH_PIPELINE = (    
@@ -116,6 +130,8 @@ SOCIAL_AUTH_PIPELINE = (
     'social.pipeline.social_auth.social_user',
     'social.pipeline.user.get_username',
     'social.pipeline.social_auth.associate_user',
+    'social.pipeline.social_auth.load_extra_data',
+    'Thirdauth.pipeline.save_extra_params',
 )
 
 # Login Urls
@@ -124,4 +140,5 @@ LOGIN_REDIRECT_URL = 'home'
 LOGIN_URL          = '/login/'
 
 # Social Auth Urls
-SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/explorar/'
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = 'home'
+
