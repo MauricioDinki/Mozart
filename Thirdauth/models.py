@@ -1,15 +1,18 @@
 # -*- encoding: utf-8 -*-
 
 from django.db import models
+from django.contrib.auth.models import User
 
 class SocialUserName(models.Model):
-	facebook = models.CharField(required=False,null=False, max_length=50)
-	twitter = models.CharField(required=False,null=False, max_length=50)
-	google = models.CharField(required=False,null=False, max_length=50)
-    class Meta:
-        verbose_name = "Social username"
-        verbose_name_plural = "Social username"
+	user = models.OneToOneField(User)
+	facebook = models.CharField(blank=True,null=True, max_length=50)
+	twitter = models.CharField(blank=True,null=True, max_length=50)
+	google = models.CharField(blank=True,null=True, max_length=50)
 
-    def __str__(self):
-        pass
+	class Meta:
+		verbose_name = "Social username"
+		verbose_name_plural = "Social username"
+
+	def __unicode__(self):
+		return self.user.username
 

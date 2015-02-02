@@ -5,6 +5,7 @@ from django import forms
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from Profiles.models import days,months,type_of_users,sexuality,Mozart_User,Date_of_Birth
+from Thirdauth.models import SocialUserName
 
 class LoginForm(forms.Form):
 
@@ -41,7 +42,7 @@ class LoginForm(forms.Form):
         if username and password:
             self.user_cache = authenticate(username=username, password=password)
             if self.user_cache is None:
-                raise forms.ValidationError(custom_error_messages['invalid_choice_login'],)
+                raise forms.ValidationError(custom_error_messages['invalid_login'],)
             elif not self.user_cache.is_active:
                 raise forms.ValidationError(custom_error_messages['inactive'])
         return self.cleaned_data
@@ -172,5 +173,8 @@ class RegisterForm(forms.Form):
 
         newUserAge = Date_of_Birth(user=user,day=day_of_birth,month=month_of_birth,year=year_of_birth)
         newUserAge.save()
+
+        social_names = SocialUserName(user = user)
+        social_names.save()
 
         self.user_cache = authenticate(username=username, password=password)

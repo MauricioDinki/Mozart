@@ -136,8 +136,8 @@ SOCIAL_AUTH_PIPELINE = (
 
 # Login Urls
 LOGIN_ERROR_URL    = '/login-error/'
-LOGIN_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'work_list'
 LOGIN_URL          = '/login/'
 
 # Social Auth Urls
-SOCIAL_AUTH_LOGIN_REDIRECT_URL = 'home'
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = 'work_list'
