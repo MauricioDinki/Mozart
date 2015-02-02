@@ -8,5 +8,4 @@ urlpatterns = patterns('',
 	url(r'^logout/$', 'Thirdauth.views.LogoutView', name='logout'),
 	url(r'^registrarse/$', RegisterView.as_view(), name='register'),
 	url(r'^social/$', 'Thirdauth.views.social_user', name='social'),
-	url(r'^social/delete/(?P<uid>\w+)/$', 'Thirdauth.views.deletesocial', name='delete_social'),
 )
