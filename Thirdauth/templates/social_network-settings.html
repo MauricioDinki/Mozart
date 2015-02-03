@@ -2,14 +2,15 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Hola</title>
+	<title>Redes Sociales</title>
 </head>
 <body>
 	<p>Mis Cuentas</p>
 	
 	{% for cuenta in cuentas %}
 		<p>
-			{{cuenta.user}} - {{cuenta.provider}} - {{cuenta.extendusersocialauth.username_identificator}}
+			{{cuenta.user}} - {{cuenta.provider}} - {{cuenta.extendusersocialauth.username_identificator}} - {{cuenta.provider}}
+			<a href=" {% url 'delete_account' cuenta.provider cuenta.id %} ">Eliminar</a>
 		</p>
 	{% endfor %}
 </body>

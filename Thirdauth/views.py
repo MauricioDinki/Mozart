@@ -8,6 +8,7 @@ from django.shortcuts import render_to_response,redirect
 from django.template import RequestContext
 from django.views.generic import FormView,View
 from social.apps.django_app.default.models import UserSocialAuth
+from django.http import HttpResponseRedirect
 
 class LoginView(FormView):
 	template_name = 'login-form.html'
@@ -40,3 +41,8 @@ class SocialNetworkSettingsView(View):
 		cuentas = UserSocialAuth.objects.filter(user__username = request.user.username)
 		ctx = {'cuentas':cuentas}
 		return render_to_response(self.template_name, ctx, context_instance = RequestContext(request))
+
+def deleteSocialAccountView(request,provider,account_id):
+	account_to_delete = UserSocialAuth.objects.get(user__username = request.user.username, provider = provider, id = account_id )
+	account_to_delete.delete()
+	return HttpResponseRedirect('/configuracion/cuentas')
