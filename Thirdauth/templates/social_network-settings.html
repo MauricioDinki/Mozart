@@ -1,17 +1,47 @@
 <!DOCTYPE html>
+{% load static from staticfiles %}
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<title>Redes Sociales</title>
+	<link rel="stylesheet" href="{% static "bower_components/bootstrap/dist/css/bootstrap.min.css" %}">
 </head>
 <body>
-	<p>Mis Cuentas</p>
-	
-	{% for cuenta in cuentas %}
-		<p>
-			{{cuenta.user}} - {{cuenta.provider}} - {{cuenta.extendusersocialauth.username_identificator}} - {{cuenta.provider}}
-			<a href=" {% url 'delete_account' cuenta.provider cuenta.id %} ">Eliminar</a>
-		</p>
-	{% endfor %}
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-1"></div>
+			<div class="col-xs-6">
+				<h1>Sincronizacion de Redes Sociales</h1>
+			</div>
+		</div>
+		{% for cuenta in cuentas %}
+
+			<div class="row" style="margin-top:2em">
+				<div class="col-xs-1"></div>
+				<div class="col-xs-2">
+					<button style="width:100%" type="button" class="btn btn-success">
+						{% if cuenta.provider = 'facebook' %}
+							Facebook
+						{% elif  cuenta.provider = 'twitter' %}
+							Twitter
+						{% elif cuenta.provider = 'google-oauth2' %}
+							Google
+						{% endif %}
+					</button> 
+				</div>
+				<div class="col-xs-2">
+					{% if cuenta.provider = 'twitter' %}
+						<strong style="line-height:30px">@{{cuenta.extendusersocialauth.username_identificator}}</strong>
+					{% else %}
+						<strong style="line-height:30px">{{cuenta.extendusersocialauth.username_identificator}}</strong>
+					{% endif %}
+
+				</div>
+				<div class="col-md-2">
+					<a class="btn btn-danger"href=" {% url 'delete_account' cuenta.provider cuenta.id %} ">Eliminar</a>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
 </body>
 </html>
