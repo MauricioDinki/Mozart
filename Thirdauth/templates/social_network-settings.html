@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="{% static "bower_components/bootstrap/dist/css/bootstrap.min.css" %}">
 </head>
 <body>
-	<div class="container-fluid">
+	<div class="center-block">
 		<div class="row">
 			<div class="col-xs-1"></div>
 			<div class="col-xs-6">
@@ -15,7 +15,6 @@
 			</div>
 		</div>
 		{% for cuenta in cuentas %}
-
 			<div class="row" style="margin-top:2em">
 				<div class="col-xs-1"></div>
 				<div class="col-xs-2">
@@ -35,13 +34,24 @@
 					{% else %}
 						<strong style="line-height:30px">{{cuenta.extendusersocialauth.username_identificator}}</strong>
 					{% endif %}
-
 				</div>
 				<div class="col-md-2">
 					<a class="btn btn-danger"href=" {% url 'delete_account' cuenta.provider cuenta.id %} ">Eliminar</a>
 				</div>
 			</div>
 		{% endfor %}
+		<div class="row" style="margin-top:2em">
+			<div class="col-xs-1"></div>
+			<div class="col-xs-2">
+				<a class="btn btn-warning" style="margin-top:2em; margin-left:-2.3em" href="{% url 'social:begin' 'facebook' %}">Sincronizar Facebook</a> 
+			</div>
+			<div class="col-xs-2">
+				<a class="btn btn-warning" style="margin-top:2em; margin-left:-2.3em" href="{% url 'social:begin' 'twitter' %}">Sincronizar Twitter</a>
+			</div>
+			<div class="col-xs-2">
+				<a class="btn btn-warning" style="margin-top:2em; margin-left:-2.3em" href="{% url 'social:begin' 'google-oauth2' %}">Sincronizar Google</a> 
+			</div>
+		</div>
 	</div>
 </body>
 </html>

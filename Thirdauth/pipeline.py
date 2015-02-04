@@ -1,6 +1,6 @@
 from social.backends.twitter import TwitterOAuth
 from .models import ExtendUserSocialAuth
-from django.http import Http404
+from django.http import Http404,HttpResponseRedirect
 
 def save_extra_params(backend, details, response, uid, user, *args, **kwargs):
 	parameters = backend.get_user_details(response)
@@ -12,6 +12,7 @@ def save_extra_params(backend, details, response, uid, user, *args, **kwargs):
 		extend_name = ExtendUserSocialAuth(user = social_user)			
 		extend_name.username_identificator = user_username
 		extend_name.save()
+		return HttpResponseRedirect('/configuracion/cuentas')
 	else:
 		try:
 			extend_name = ExtendUserSocialAuth.objects.get(user = social_user )

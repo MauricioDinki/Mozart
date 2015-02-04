@@ -134,11 +134,9 @@ SOCIAL_AUTH_PIPELINE = (
     'Thirdauth.pipeline.save_extra_params',
 )
 
-# Login Urls
-LOGIN_ERROR_URL    = '/login-error/'
-LOGIN_REDIRECT_URL = 'work_list'
-LOGIN_URL          = '/login/'
 
-# Social Auth Urls
-SOCIAL_AUTH_LOGIN_REDIRECT_URL = 'work_list'
+# Login Urls
+LOGIN_REDIRECT_URL = 'work_list'
+LOGIN_URL = 'login'
+
 
