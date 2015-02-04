@@ -12,12 +12,14 @@ class LoginForm(forms.Form):
         error_messages=default_error_messages,
         max_length=30,
         required=True,
+        widget=forms.TextInput(attrs={'class' : 'form-control', 'placeholder':'Username'}),
     )
 
     password = forms.CharField(
         error_messages=default_error_messages,
         max_length=30,
         required=True,
+        widget=forms.PasswordInput(attrs={'class' : 'form-control', 'placeholder':'Password'}),
     )
 
     def __init__(self, *args, **kwargs):

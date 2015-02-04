@@ -1,28 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load static from staticfiles %}
 <head>
 	<meta charset="UTF-8">
 	<title>Login-Mozart</title>
+	<link rel="stylesheet" href="{% static "bower_components/bootstrap/dist/css/bootstrap.min.css" %}">
 </head>
 <body>
+	<div class="center-block">
+		<div class="row">
+			<div class="col-xs-4"></div>
+			<div class="col-xs-6" style="margin-top:2em; margin-left:13em">
+				<h1>Login</h1>
+			</div>
+		</div>
+	</div>
 	<form action="" method="Post">
 		{% csrf_token %}
-		{{form}}
-		<button type="submit">Login</button>
+		<div class="row" style="margin:2em 0 0 2em;">
+			<div class="col-xs-4"></div>
+			<div class="col-xs-4">
+				{{form.username}}
+			</div>
+		</div>
+		<div class="row" style="margin:2em 0 0 2em;">
+			<div class="col-xs-4"></div>
+			<div class="col-xs-4">
+				{{form.password}}
+			</div>
+		</div>
+		<div class="row" style="margin:2em 0 0 -8em;">
+			<div class="col-xs-4"></div>
+			<div class="col-xs-5">
+				<button style="width:100%"class="btn btn-success" type="submit">Login</button>
+			</div>
+		</div>
 	</form>
-	{% if user.is_authenticated %}
-		<p>Estas Logueado</p>
-	{% endif %}
-	
-	<p>
-		<a href="{% url 'social:begin' 'facebook' %}">Login with Facebook</a> 
-	</p>
-	<p>
-		<a href="{% url 'social:begin' 'twitter' %}">Login with Twitter</a>
-	</p>
-	<p>
-		<a href="{% url 'social:begin' 'google-oauth2' %}">Login with Google</a> 
-	</p>
-
+	<div class="row" style="margin-top:2em; margin-left:9em">
+			<div class="col-xs-3"></div>
+			<div class="col-xs-2">
+				<a class="btn btn-primary" style="margin-top:2em; margin-left:-2.3em" href="{% url 'social:begin' 'facebook' %}">Login Facebook</a> 
+			</div>
+			<div class="col-xs-2">
+				<a class="btn btn-info" style="margin-top:2em; margin-left:-2.3em" href="{% url 'social:begin' 'twitter' %}">Login Twitter</a>
+			</div>
+			<div class="col-xs-2">
+				<a class="btn btn-danger" style="margin-top:2em; margin-left:-2.3em" href="{% url 'social:begin' 'google-oauth2' %}">Login Google</a> 
+			</div>
+		</div>
 </body>
 </html>
