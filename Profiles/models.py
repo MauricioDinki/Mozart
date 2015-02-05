@@ -103,12 +103,11 @@ class Contact(models.Model):
 		verbose_name_plural = 'Contact'
 
 
-class Social_Network(models.Model):
+class Social_Network_URL(models.Model):
 	user = models.OneToOneField(User)
 	facebook = models.URLField(blank=True,null=True, max_length=50)
 	google = models.URLField(blank=True,null=True, max_length=50)
 	twitter = models.URLField(blank=True,null=True, max_length=50)
-	youtube = models.URLField(blank=True,null=True, max_length=50)
 
 	class Meta:
 		verbose_name = "Social Network"

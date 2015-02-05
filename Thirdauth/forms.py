@@ -4,7 +4,7 @@ from .validations import *
 from django import forms
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
-from Profiles.models import days,months,type_of_users,sexuality,Mozart_User,Date_of_Birth
+from Profiles.models import days,months,type_of_users,sexuality,Mozart_User,Date_of_Birth,Social_Network_URL
 
 class LoginForm(forms.Form):
 
@@ -181,5 +181,9 @@ class RegisterForm(forms.Form):
 
         newUserAge = Date_of_Birth(user=user,day=day_of_birth,month=month_of_birth,year=year_of_birth)
         newUserAge.save()
+
+        newSocialNtworkURL = Social_Network_URL(user = user)
+        newSocialNtworkURL.save()
+
 
         self.user_cache = authenticate(username=username, password=password)

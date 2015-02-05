@@ -120,8 +120,6 @@ SOCIAL_AUTH_TWITTER_SECRET = os.environ.get("SOCIAL_AUTH_TWITTER_SECRET", None)
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.environ.get("SOCIAL_AUTH_GOOGLE_OAUTH2_KEY", None)
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ.get("SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET", None)
 
-# SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ["https://www.googleapis.com/auth/plus.me",]
-
 # Social Auth Pipeline
 SOCIAL_AUTH_PIPELINE = (    
     'social.pipeline.social_auth.social_details',
@@ -133,7 +131,6 @@ SOCIAL_AUTH_PIPELINE = (
     'social.pipeline.social_auth.load_extra_data',
     'Thirdauth.pipeline.save_extra_params',
 )
-
 
 # Login Urls
 LOGIN_REDIRECT_URL = 'work_list'

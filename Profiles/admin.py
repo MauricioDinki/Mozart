@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 
 from django.contrib import admin
-from .models import Mozart_User,Contact,Social_Network,Date_of_Birth
+from .models import Mozart_User,Contact,Social_Network_URL,Date_of_Birth
 
 @admin.register(Mozart_User)
 class AdminMozartUser(admin.ModelAdmin):
@@ -14,10 +14,10 @@ class AdminContact(admin.ModelAdmin):
 	list_filter = ('user','personal_homepage','phone_number',)
 
 
-@admin.register(Social_Network)
+@admin.register(Social_Network_URL)
 class AdminSocialNetwork(admin.ModelAdmin):
-	list_display = ('user','facebook','twitter','google','youtube')
-	list_filter = ('user','facebook','twitter','google','youtube')
+	list_display = ('user','facebook','twitter','google')
+	list_filter = ('user','facebook','twitter','google')
 
 @admin.register(Date_of_Birth)
 class AdminDateBirth(admin.ModelAdmin):
