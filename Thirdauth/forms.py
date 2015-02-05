@@ -57,6 +57,7 @@ class RegisterForm(forms.Form):
         },
         required=True,
         choices=days,
+        widget=forms.Select(attrs={'class' : 'form-control',}),
     )
 
     email = forms.EmailField(
@@ -66,6 +67,8 @@ class RegisterForm(forms.Form):
         },
         max_length=30,
         required=True,
+        widget=forms.EmailInput(attrs={'class' : 'form-control', 'placeholder':'Email'}),
+
     )
 
     month_of_birth = forms.ChoiceField(
@@ -75,20 +78,21 @@ class RegisterForm(forms.Form):
         },
         required=True,
         choices=months,
+        widget=forms.Select(attrs={'class' : 'form-control',}),
     )
 
     password_1 = forms.CharField(
         error_messages=default_error_messages,
         max_length=20,
         required=True,
-        widget=forms.PasswordInput(),
+        widget=forms.PasswordInput(attrs={'class' : 'form-control','placeholder':'Password'}),
     )
 
     password_2 = forms.CharField(
         error_messages=default_error_messages,
         max_length=20,
         required=True,
-        widget=forms.PasswordInput(),
+        widget=forms.PasswordInput(attrs={'class' : 'form-control','placeholder':'Confirmar Password'}),
     )
 
     type_of_user = forms.ChoiceField(
@@ -98,12 +102,14 @@ class RegisterForm(forms.Form):
         },
         required=True,
         choices=type_of_users,
+        widget=forms.Select(attrs={'class' : 'form-control',}),
     )
 
     username = forms.CharField(
         error_messages=default_error_messages,
         max_length=20,
         required=True,
+        widget=forms.TextInput(attrs={'class' : 'form-control', 'placeholder':'Username'}),
     )
 
     year_of_birth = forms.IntegerField(
@@ -111,6 +117,7 @@ class RegisterForm(forms.Form):
         required=True,
         max_value=2015,
         min_value=1905,
+        widget=forms.NumberInput(attrs={'class' : 'form-control', 'placeholder':'Año'}),
     )
 
     def __init__(self, *args, **kwargs):

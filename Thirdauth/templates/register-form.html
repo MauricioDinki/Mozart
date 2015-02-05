@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static from staticfiles %}
+<head>
+	<meta charset="UTF-8">
+	<title>Registrarse</title>
+	<link rel="stylesheet" href="{% static "bower_components/bootstrap/dist/css/bootstrap.min.css" %}">
+	<link rel="icon" type="image/png" href="{% static "img/icono.png" %}"/>
+</head>
+<body>
+	<div class="center-block">
+		<div class="row">
+			<div class="col-xs-4"></div>
+			<div class="col-xs-6" style="margin-top:2em; margin-left:10em">
+				<h1>Registrate</h1>
+			</div>
+		</div>
+	</div>
+	<form action="" method="POST">
+		{% csrf_token %}
+		<div class="row" style="margin:2em 0 0 2em;">
+			<div class="col-xs-4"></div>
+			<div class="col-xs-4">
+				{{form.username}}
+			</div>
+		</div>
+		<div class="row" style="margin:2em 0 0 2em;">
+			<div class="col-xs-4"></div>
+			<div class="col-xs-4">
+				{{form.email}}
+			</div>
+		</div>
+		<div class="row" style="margin:2em 0 0 2em;">
+			<div class="col-xs-4"></div>
+			<div class="col-xs-4">
+				{{form.type_of_user}}
+			</div>
+		</div>
+		<div class="row" style="margin:2em 0 0 2em;">
+			<div class="col-xs-4"></div>
+			<div class="col-xs-1">
+				{{form.day_of_birth}}
+			</div>
+			<div class="col-xs-2">
+				{{form.month_of_birth}}
+			</div>
+			<div class="col-xs-1">
+				{{form.year_of_birth}}
+			</div>
+		</div>
+		<div class="row" style="margin:2em 0 0 2em;">
+			<div class="col-xs-4"></div>
+			<div class="col-xs-4">
+				{{form.password_1}}
+			</div>
+		</div>
+		<div class="row" style="margin:2em 0 0 2em;">
+			<div class="col-xs-4"></div>
+			<div class="col-xs-4">
+				{{form.password_2}}
+			</div>
+		</div>
+		<div class="row" style="margin:2em 0 0 -7em;">
+				<div class="col-xs-4"></div>
+				<div class="col-xs-5">
+					<button style="width:100%"class="btn btn-success" type="submit">Registrame</button>
+				</div>
+			</div>
+	</form>
+</body>
+</html>

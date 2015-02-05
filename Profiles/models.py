@@ -8,7 +8,7 @@ from django.forms.widgets import Textarea
 from django import forms
 
 days = (
-	('',''),
+	('','Dia'),
 	('1','1'),
 	('2','2'),
 	('3','3'),
@@ -42,7 +42,7 @@ days = (
 	('31','31'),)
 
 months = (
-	('',''),
+	('','Mes'),
 	('Enero', 'Enero'),
 	('Febrero', 'Febrero'),
 	('Marzo', 'Marzo'),
@@ -62,7 +62,7 @@ sexuality = (
 	('Femenino', 'Femenino'),)
 
 type_of_users = (
-	('',''),
+	('','Selecciona un tipo de usuario'),
 	('Promotor','Promotor'),
 	('Artista','Artista'),
 )
