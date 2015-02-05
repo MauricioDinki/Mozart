@@ -11,6 +11,10 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
+TEMPLATE_DIRS = (
+    os.path.join(PROJECT_PATH,'static/app/views'),
+)
+
 ALLOWED_HOSTS = []
 
 INSTALLED_APPS = (
@@ -26,11 +30,8 @@ INSTALLED_APPS = (
     'Thirdauth',
     'Works',
     'Profiles',
-<<<<<<< HEAD
     'rest_framework',
     'social.apps.django_app.default',
-=======
->>>>>>> origin/PruebasFrontend
 )
 
 MIDDLEWARE_CLASSES = (
