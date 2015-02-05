@@ -6,6 +6,7 @@ from django_countries.fields import CountryField
 from sorl.thumbnail import ImageField
 from django.forms.widgets import Textarea
 from django import forms
+from social.apps.django_app.default.models import UserSocialAuth
 
 days = (
 	('','Dia'),
@@ -103,18 +104,38 @@ class Contact(models.Model):
 		verbose_name_plural = 'Contact'
 
 
-class Social_Network_URL(models.Model):
-	user = models.OneToOneField(User)
-	facebook = models.URLField(blank=True,null=True, max_length=50)
-	google = models.URLField(blank=True,null=True, max_length=50)
-	twitter = models.URLField(blank=True,null=True, max_length=50)
+class Social_Network_Facebook_URL(models.Model):
+	user = models.OneToOneField(UserSocialAuth)
+	facebook = models.URLField(blank=True,null=True, max_length=200)
 
 	class Meta:
-		verbose_name = "Social Network"
-		verbose_name_plural = "Social Networks"
+		verbose_name = "Facebook Profile URL"
+		verbose_name_plural = "Facebook Profile URL"
 
 	def __unicode__(self):
-		return self.user.username
+		return self.user.user.username
+
+class Social_Network_Twitter_URL(models.Model):
+	user = models.OneToOneField(UserSocialAuth)
+	twitter = models.URLField(blank=True,null=True, max_length=200)
+
+	class Meta:
+		verbose_name = "Twitter Profile URL"
+		verbose_name_plural = "Twitter Profile URL"
+
+	def __unicode__(self):
+		return self.user.user.username
+
+class Social_Network_Google_URL(models.Model):
+	user = models.OneToOneField(UserSocialAuth)
+	google = models.URLField(blank=True,null=True, max_length=200)
+
+	class Meta:
+		verbose_name = "Google Profile URL"
+		verbose_name_plural = "Google Profile URL"
+
+	def __unicode__(self):
+		return self.user.user.username
 
 class Date_of_Birth(models.Model):
 	user = models.OneToOneField(User)
