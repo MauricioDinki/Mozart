@@ -6,7 +6,7 @@ from django.shortcuts import render,redirect
 from django.views.generic import FormView
 
 class InformationFormView(FormView):
-	template_name = 'edit-info.html'
+	template_name = 'account-settings.html'
 	form_class = UserInformationForm
 	success_url = '/configuracion/informacion'
 
