@@ -19,19 +19,10 @@ router.register(r'works',WorkViewSet)
 
 
 urlpatterns = patterns('',
-
-<<<<<<< HEAD
 	url('', include('social.apps.django_app.urls', namespace='social')),
-
     url('', include('Works.urls')),
     url('', include('Thirdauth.urls')),
     url('', include('Profiles.urls')),
-
-=======
-    url(r'', include('Works.urls')),
-    url(r'', include('Thirdauth.urls')),
-    url(r'', include('Profiles.urls')),
->>>>>>> origin/PruebasFrontend
     url(r'^admin/', include(admin.site.urls)),
     url(r'^api-oauth/', include('rest_framework.urls',namespace='rest_framework')),
     url(r'^api/', include(router.urls)),
