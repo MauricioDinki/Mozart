@@ -76,7 +76,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql', 
         'NAME': 'mozart_db',
         'USER': 'root',
-        'PASSWORD': 'meji@r@mirez123',
+        'PASSWORD': 'n0m3l0',
         'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
         'PORT': '3306',
     }

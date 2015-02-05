@@ -11,7 +11,6 @@ django-suit==0.2.12
 djangorestframework==3.0.3
 oauthlib==0.7.2
 pydot==1.0.2
-pygraphviz==1.2
 pyparsing==1.5.7
 python-openid==2.2.5
 python-social-auth==0.2.1
