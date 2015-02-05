@@ -1,0 +1,91 @@
+[{
+	"nombre": "Había una vez una pequeña obra",
+	"url" : "#/obra/9",
+	"autor": "Con nickname al azar",
+	"imagen" : "static/img//gato.jpg",
+	"urlautor" : "#/artista/1",
+	"imgperfil" : "static/img//foto1.jpg",
+	"formato" : "IMAGEN",
+	"fecha" : "17/05/2014",
+	"categoria" : "categoria2"
+}, {
+	"nombre": "Amor",
+	"url" : "#/obra/8",
+	"autor": "Autor2",
+	"imagen" : "static/img//amor.jpg",
+	"urlautor" : "#/artista/2",
+	"imgperfil" : "static/img//foto2.jpg",
+	"formato" : "IMAGEN",
+	"fecha" : "17/05/2014",
+	"categoria" : "categoria4"
+}, {
+	"nombre": "Un animal",
+	"url" : "#/obra/7",
+	"autor": "Autor4",
+	"imagen" : "static/img//animal.jpg",
+	"urlautor" : "#/artista/4",
+	"imgperfil" : "static/img//foto4.jpg",
+	"formato" : "IMAGEN",
+	"fecha" : "17/05/2014",
+	"categoria" : "categoria3"
+}, {
+	"nombre": "Flor",
+	"url" : "#/obra/6",
+	"autor": "Autor2",
+	"imagen" : "static/img//flor.jpg",
+	"urlautor" : "#/artista/2",
+	"imgperfil" : "static/img//foto2.jpg",
+	"formato" : "IMAGEN",
+	"fecha" : "17/05/2014",
+	"categoria" : "categoria4"
+}, {
+	"nombre": "Globos",
+	"url" : "#/obra/5",
+	"autor": "Autor1",
+	"imagen" : "static/img//globos.jpg",
+	"urlautor" : "#/artista/1",
+	"imgperfil" : "static/img//foto1.jpg",
+	"formato" : "IMAGEN",
+	"fecha" : "16/05/2014",
+	"categoria" : "categoria5"
+}, {
+	"nombre": "Un niño",
+	"url" : "#/obra/4",
+	"autor": "Autor2",
+	"imagen" : "static/img//nino.jpg",
+	"urlautor" : "#/artista/2",
+	"imgperfil" : "static/img//foto2.jpg",
+	"formato" : "IMAGEN",
+	"fecha" : "16/05/2014",
+	"categoria" : "categoria1"
+}, {
+	"nombre": "Panda sexy",
+	"url" : "#/obra/3",
+	"autor": "Autor4",
+	"imagen" : "static/img//panda.jpg",
+	"urlautor" : "#/artista/4",
+	"imgperfil" : "static/img//foto4.jpg",
+	"formato" : "IMAGEN",
+	"fecha" : "16/05/2014",
+	"categoria" : "categoria1"
+}, {
+	"nombre": "Carlos",
+	"url" : "#/obra/2",
+	"autor": "Autor3",
+	"imagen" : "static/img//persona.jpg",
+	"urlautor" : "#/artista/3",
+	"imgperfil" : "static/img//foto3.jpg",
+	"formato" : "IMAGEN",
+	"fecha" : "16/05/2014",
+	"categoria" : "categoria2"
+}, {
+	"nombre": "Mi logotipo",
+	"url" : "#/obra/1",
+	"autor": "Autor3",
+	"imagen" : "static/img//unlogo.jpg",
+	"urlautor" : "#/artista/3",
+	"imgperfil" : "static/img//foto3.jpg",
+	"formato" : "IMAGEN",
+	"fecha" : "16/05/2014",
+	"categoria" : "categoria6"
+}]

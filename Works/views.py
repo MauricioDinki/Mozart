@@ -47,7 +47,6 @@ class WorkDetailView(DetailView):
 		}]
 		return JsonResponse(data,safe=False)
 
-
 # Vista Para el Home
 
 class HomeView(AuthRedirectMixin,TemplateView):

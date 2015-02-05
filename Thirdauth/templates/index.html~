@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es" ng-app="mozArtApp">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<link rel="stylesheet" href="static/css/estilos.css">
+	<link rel="stylesheet" href="css/fuentes.css">
+	<link rel="stylesheet" href="css/ng-tags-input.css">
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="icon" type="image/png" href="imagenes/favicon.png" />
+	<title ng-bind=" title + 'mozArt'">mozArt (nombre provisional)</title>
+</head>
+<body>
+	<header mozart-header>
+	</header>
+	<div id="contenido" ng-view>
+<iframe src="index.html"></iframe>
+	</div>
+	<script src="src/lib/angular.min.js"></script>
+	<script src="src/lib/angular-route.min.js"></script>
+	<script src="src/app.js"></script>
+	<script src="src/controllers.js"></script>
+	<script src="src/directives.js"></script>
+	<script src="src/services.js"></script>
+	<script src="src/ng-tags-input.min.js"></script>
+</body>
+</html>

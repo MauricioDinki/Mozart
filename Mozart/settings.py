@@ -26,8 +26,11 @@ INSTALLED_APPS = (
     'Thirdauth',
     'Works',
     'Profiles',
+<<<<<<< HEAD
     'rest_framework',
     'social.apps.django_app.default',
+=======
+>>>>>>> origin/PruebasFrontend
 )
 
 MIDDLEWARE_CLASSES = (
