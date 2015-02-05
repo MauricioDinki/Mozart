@@ -1,0 +1,81 @@
+<nav id="barra-categorias">
+	<ul class="categorias">
+		<li><a href="#/artista/0/obras/" class="iconos icono-todas" title="Todas las categorías"></a></li>
+		<li><a href="#/artista/0/obras/dyp" class="iconos icono-dyp" title="Dibujo y pintura"></a</li>
+		<li><a href="#/artista/0/obras/fyf" class="iconos icono-fyf" title="Fotografía y filme"></a></li>
+		<li><a href="#/artista/0/obras/tyl" class="iconos icono-tyl" title="eatro y literatura"></a></li>
+		<li><a href="#/artista/0/obras/myb" class="iconos icono-myb" title="Música y baile"></a></li>
+		<li><a href="#/artista/0/obras/eyc" class="iconos icono-eyc" title="Escultura y cerámica"></a></li>
+		<li><a href="#/artista/0/obras/ad" class="iconos icono-ad" title="Arte digital"></a></li>
+		<li><a href="#/artista/0/obras/otros" class="iconos icono-otros" title="Otros"></a></li>
+	</ul>
+</nav>
+<div id="obras-principal">
+	<div id="contenedor-principal" ng-controller="informacionPerfilCtrl">
+		<div id="barra-lateral">
+			<figure id="avatar-perfil">
+				<img src="static/img/default.png" />
+			</figure>
+			<h2>
+				Con nickname al azar
+			</h2>
+			<p>
+				-Esta es una breve descripción que el usuario hace de sí mismo, cuya extensión no exceda los 200 caracteres. Puede hablar de sus pasatiempos, habilidades, etc., para que la comunidad lo conozca mejor.
+			</p>
+			<ul class="menu-bloques">
+				<li class="opcion-menu "><a class="iconos icono-tarjeta" href="#/artista/0">Mi tarjeta</a></li>
+				<li class="opcion-menu "><a class="iconos icono-carpetas" href="#/artista/0/carpetas">Mis carpetas</a></li>
+				<li class="opcion-menu "><a class="iconos icono-suscripcion" ng-click="suscribir()">Suscribirse</a></li>
+				<li class="opcion-menu "><a class="iconos icono-mensajes" ng-click="mensaje()">Mensaje privado</a></li>
+				<li class="opcion-menu "><a class="iconos icono-reportar" ng-click="reportar()">Reportar perfil</a></li>
+			</ul>
+		</div>
+		<section id="informacion">
+			<h3 class="titulo-caja">Título de presentación</h3>
+			<div>
+				<video src="static/video.mp4" poster="static/img/fondo1.jpg" controls="true">El usuario aún no ha subido su video de presentación.</video>
+			</div>
+			<div class="bloque">
+				<h3 class="titulo-caja">Datos personales</h3>
+				<div>
+					<h4>Nombre completo</h4>
+					<span>Juanito Banana de la Soledad</span>
+					<h4>Fecha de nacimiento</h4>
+					Deshabilitado por el usuario
+					<h4>Sexo</h4>
+					Masculino
+					<h4>País</h4>
+					<span>México</span>
+				</div>
+			</div>
+			<div class="bloque">
+				<h3 class="titulo-caja">Contactame</h3>
+				<div>
+					<h4>Email</h4>
+					<span>juanito_banana@outlook.com</span>
+					<h4>Telefono</h4>
+					55-5555-5555
+					<h4>Domicilio</h4>
+					<span>Calle de los palmos no. 84 col. Arenas, México DF</span>
+					<h4>Redes sociales</h4>
+					<a class="iconos redes1" href="#"></a>
+					<a class="iconos redes2" href="#"></a>
+					<a class="iconos redes3" href="#"></a>
+				</div>
+			</div>
+			<div class="bloque">
+				<h3 class="titulo-caja">Estadísticas</h3>
+				<div>
+					<h4>Miembro desde</h4>
+				12 de Septiembre del 2014
+					<h4>Total de obras en mozArt</h4>
+					9
+					<h4>Suscriptores</h4>
+					0
+					<h4>Boletínes</h4>
+					4
+				</div>
+			</div>
+		</section>
+	</div>
+</div>

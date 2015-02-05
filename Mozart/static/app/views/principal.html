@@ -1,0 +1,22 @@
+<nav id="barra-categorias">
+	<ul class="categorias">
+		<li><a href="#/explorar/" class="iconos icono-todas" title="Todas las categorías"></a></li>
+		<li><a href="#/explorar/dyp" class="iconos icono-dyp" title="Dibujo y pintura"></a</li>
+		<li><a href="#/explorar/fyf" class="iconos icono-fyf" title="Fotografía y filme"></a></li>
+		<li><a href="#/explorar/tyl" class="iconos icono-tyl" title="Teatro y literatura"></a></li>
+		<li><a href="#/explorar/myb" class="iconos icono-myb" title="Música y baile"></a></li>
+		<li><a href="#/explorar/eyc" class="iconos icono-eyc" title="Escultura y cerámica"></a></li>
+		<li><a href="#/explorar/ad" class="iconos icono-ad" title="Arte digital"></a></li>
+		<li><a href="#/explorar/otros" class="iconos icono-otros" title="Otros"></a></li>
+	</ul>
+</nav>
+<section id="obras-principal">
+	<article class="publicacion" ng-repeat="obra in obras">
+		<thumbnail-obra></thumbnail-obra>
+		<imagen-autor></imagen-autor>
+		<titulo-obra></titulo-obra><br/>
+		<autor-fecha></autor-fecha>
+	</article>
+	<br/>
+	<button class="boton boton-verde" ng-click="cargar(cantidad)">Cargar más obras</button>
+</section>

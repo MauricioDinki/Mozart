@@ -1,0 +1,94 @@
+<section id="section-general">
+	<div id="contenedor-principal">
+		<div id="barra-lateral">
+			<ul class="menu-bloques">
+				<li class="opcion-menu "><a class="iconos icono-informacion activo" href="#/panel/informacion">Editar información</a></li>
+				<li class="opcion-menu "><a class="iconos icono-panel" href="#/panel/cuenta">Configurar cuenta</a></li>
+				<li class="opcion-menu "><a class="iconos icono-notificaciones" href="#/panel/notificaciones">Notificaciones</a></li>
+				<li class="opcion-menu "><a class="iconos icono-mensajes" href="#/panel/mensajes">Mensajes privados</a></li>
+				<li class="opcion-menu "><a class="iconos icono-estadisticas" href="#/panel/estadisticas">Mis estadísticas</a></li>
+				<li class="opcion-menu "><a class="iconos icono-listas" href="#/panel/listas">Gestionar listas</a></li>
+				<li class="opcion-menu "><a class="iconos icono-obras" href="#/panel/obras">Mis obras</a></li>
+				<li class="opcion-menu "><a class="iconos icono-carpetas" href="#/panel/carpetas">Gestionar carpetas</a></li>
+				<li class="opcion-menu "><a class="iconos icono-boletines" href="#/panel/boletines">Gestionar boletínes</a></li>
+				<li class="opcion-menu "><a class="iconos icono-eventos" href="#/panel/eventos">Gestionar eventos</a></li>
+			</ul>
+		</div>
+		<div id="configuraciones">
+			<form>
+				<fieldset class="un-cuadro">
+					<legend>Datos principales</legend>
+					<h4>Nombre completo</h4>
+					<span>Juanito Banana de la Soledad</span>
+					<h4>Sexo</h4>
+					<span>Masculino</span>
+					<h4>Fecha de nacimiento</h4>
+					<span>20/11/1980 </span>
+					<input type="checkbox" name="mostrarFecha" ng-model="mostrarFecha">Mostrar en mi perfil
+				</fieldset>
+				<fieldset class="un-cuadro">
+					<legend>Video de presentación</legend>
+					<input class="cuadrotexto un-cuadro" name="titulovideo" type="text" placeholder="Título del vídeo" ng-model="titulovideo"/><br/>
+					<div class="boton boton-azul">
+						<span>Cambiar video</span>
+						<input type="file" name="video" accept="video/*" file-upload file-bind="'archivoVideo'"/>
+					</div>
+					<div ng-show="video.name != ''"><strong>Archivo seleccionado: </strong> <span ng-bind="video.name"></span></div>
+					<div class="aviso-error" ng-hide="videoValido">El archivo que seleccionaste no es un archivo de video soportado por mozArt.</div>
+					<img src="static/img/fondo1.jpg" width="100%" />
+					<div class="boton boton-azul">
+						<span>Cambiar portada</span>
+						<input type="file" name="video" accept="image/*" file-upload file-bind="'archivoPortada'"/>
+					</div>
+					<div ng-show="portada.name != ''"><strong>Archivo de portada seleccionado: </strong> <span ng-bind="portada.name"></span></div>
+					<div class="aviso-error" ng-hide="portadaValida">La portada que seleccionaste no es un archivo de imagen soportado por mozArt.</div>
+				</fieldset>
+				<fieldset class="un-cuadro">
+					<legend>Imagen de perfil</legend>
+					<img src="static/img/default.png" width="200px"/><br/>
+					<div class="boton boton-azul">
+						<span>Cambiar imagen</span>
+						<input type="file" name="imagen" accept="image/*" file-upload file-bind="'archivoImagen'"/>
+					</div>
+					<div ng-show="imagen.name != ''"><strong>Archivo seleccionado: </strong> <span ng-bind="imagen.name"></span></div>
+					<div class="aviso-error" ng-hide="imagenValida">La imagen que seleccionaste no es un archivo de imagen soportado por mozArt.</div>
+				</fieldset>
+				<fieldset class="un-cuadro">
+					<legend>Editar datos</legend>
+					<label for="nickname">Nickname</label><br/>
+					<input id="nickname" type="text" class="cuadrotexto un-cuadro" name="nickname" placeholder="Elije un nickname de usuario" required ng-model="nickname" ng-minlength="4" ng-maxlength="20"/><br/>
+
+					<label for="descripcion">Descripción</label><br/>
+					<textarea id="descripcion" type="text" class="cuadrotexto un-cuadro" name="descripcion" placeholder="Elige una descripción que aparecerá en tu página de perfil, máximo 200 caracteres." ng-model="descripcion" ng-minlength="0" ng-maxlength="200" rows="8"></textarea><br/>
+
+					<label for="telefono">Teléfono</label><br/>
+					<input id="telefono" type="tel" class="cuadrotexto un-cuadro"  name="telefono" placeholder="Introduce tu telefono" ng-model="telefono" required /><br/>
+
+					<label for="pais">País</label><br/>
+					<select id="pais" class="cuadrotexto un-cuadro" name="nacionalidad" required ng-model="nacionalidad">
+						<option value="" disabled default>Selecciona tu país</option>
+						<option value="a">Ejemplo</option>
+						<option value="b">Ejemplo</option>
+						<option value="c">Ejemplo</option>
+						<option value="d">Ejemplo</option>
+					</select>
+				</fieldset>
+				<fieldset class="un-cuadro">
+					<legend>Domicilio</legend>
+					<label for="direccion">Dirección</label><br/>
+					<input id="direccion" type="text" class="cuadrotexto un-cuadro" name="direccion" placeholder="Escribe tu dirección" ng-model="direccion" ng-minlength="10" ng-maxlength="300"/><br/>
+
+					<label for="ciudad">Ciudad</label><br/>
+					<input id="ciudad" type="text" class="cuadrotexto un-cuadro" name="ciudad" placeholder="Escribe el nombre de tu ciudad" ng-model="ciudad" ng-minlength="2" ng-maxlength="200"/><br/>
+
+					<label for="codigopostal">Código postal</label><br/>
+					<input id="codigopostal" type="text" class="cuadrotexto un-cuadro" name="codigopostal" placeholder="Escribe tu código postal" ng-model="codigopostal" ng-minlength="5" ng-maxlength="8"/><br/>
+
+					<label for="vecindario">Vecindario</label><br/>
+					<input id="vecindario" type="text" class="cuadrotexto un-cuadro" name="vecindario" placeholder="Escribe el nombre de tu vecindario" ng-model="vecindario" ng-minlength="4" ng-maxlength="200"/>
+				</fieldset><br/><br/>
+				<button type="submit" class="boton boton-verde">Guardar cambios</button>
+			</form>
+		</div>
+	</div>
+</section>

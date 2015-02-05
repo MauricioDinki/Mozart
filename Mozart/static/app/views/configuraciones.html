@@ -1,0 +1,73 @@
+<section id="section-general">
+	<div id="contenedor-principal">
+		<div id="barra-lateral">
+			<ul class="menu-bloques">
+				<li class="opcion-menu "><a class="iconos icono-informacion" href="#/panel/informacion">Editar información</a></li>
+				<li class="opcion-menu "><a class="iconos icono-panel activo" href="#/panel/cuenta">Configurar cuenta</a></li>
+				<li class="opcion-menu "><a class="iconos icono-notificaciones" href="#/panel/notificaciones">Notificaciones</a></li>
+				<li class="opcion-menu "><a class="iconos icono-mensajes" href="#/panel/mensajes">Mensajes privados</a></li>
+				<li class="opcion-menu "><a class="iconos icono-estadisticas" href="#/panel/estadisticas">Mis estadísticas</a></li>
+				<li class="opcion-menu "><a class="iconos icono-listas" href="#/panel/listas">Gestionar listas</a></li>
+				<li class="opcion-menu "><a class="iconos icono-obras" href="#/panel/obras">Mis obras</a></li>
+				<li class="opcion-menu "><a class="iconos icono-carpetas" href="#/panel/carpetas">Gestionar carpetas</a></li>
+				<li class="opcion-menu "><a class="iconos icono-boletines" href="#/panel/boletines">Gestionar boletínes</a></li>
+				<li class="opcion-menu "><a class="iconos icono-eventos" href="#/panel/eventos">Gestionar eventos</a></li>
+			</ul>
+		</div>
+		<div id="configuraciones">
+			<form>
+				<fieldset class="un-cuadro">
+					<legend>Datos</legend>
+					<label for="">Contraseña actual (Necesitas llenar este campo para realizar cualquier cambio)</label><br/>
+					<input type="password" class="cuadrotexto un-cuadro"  name="password" placeholder="Escribe tu contraseña" ng-minlength="8" ng-maxlength="40" ng-model="password" required /><br/>
+					<label for="">Nueva contraseña (opcional)</label><br/>
+					<input type="password" class="cuadrotexto un-cuadro"  name="password" placeholder="Escribe tu nueva contraseña" ng-minlength="8" ng-maxlength="40" ng-model="newpassword"/><br/>
+					<label for="">Nuevo email (opcional)</label><br/>
+					<input type="email" class="cuadrotexto un-cuadro" name="email" placeholder="Escribe un nuevo email" ng-model="email"/><br/>
+
+				</fieldset>
+				<fieldset class="doble-cuadro">
+					<legend>Notificaciones</legend>
+					Módulo aun no disponible
+				</fieldset>
+				<fieldset class="un-cuadro">
+					<legend>Cuentas vinculadas</legend>
+					<ul class="lista-vinculadas">
+						<li class="iconos icono-facebook"> Alan Sánchez <input type="checkbox" name="redes" value="a102x"/></li>
+						<li class="iconos icono-twitter"> @alansanchez <input type="checkbox" name="redes" value="a103x"/></li>
+						<li class="iconos icono-google"> Alan Sánchez <input type="checkbox" name="redes" value="a1dsx"/></li>
+					</ul>
+					Una vez que vincules tus redes sociales con mozArt, podrás iniciar sesión con cualquiera de ellas.<br/>
+					<div style="display: inline-block" ng-controller="modalCtrl">
+						<button class="boton boton-azul" type="button" ng-click="toggleModal()">Agregar nueva</button>
+						<modal-dialog show="modalShown" titulo-ventana="Selecciona el servicio a vincular">
+							<div  class="ventana-modal-contenido" >
+							 	<ul class="lista-vinculadas">
+									<li class="iconos icono-facebook"> Facebook <input type="radio" name="seleccionarRed" value="facebook"/></li>
+									<li class="iconos icono-twitter"> Twitter <input type="radio" name="seleccionarRed" value="twitter"/></li>
+									<li class="iconos icono-google"> Google <input type="radio" name="seleccionarRed" value="google"/></li>
+								</ul>
+								La vinculación de cuentas se realizará incluso si no das clic en "Guardar cambios".
+							</div>
+							<button type="button" class="boton boton-verde">Listo</button>
+							<button type="button" class="boton boton-rojo" ng-click="toggleModal()">Cancelar</button>
+						</modal-dialog>
+					</div>
+					<div style="display: inline-block" ng-controller="modalCtrl">
+						<button class="boton boton-rojo" type="button" ng-click="toggleModal()">Eliminar seleccionadas</button>
+						<modal-dialog show="modalShown" titulo-ventana="¿Seguro de que deseas eliminar las cuentas seleccionadas?">
+							<div  class="ventana-modal-contenido" >
+							 	Si las eliminas ya no podrás iniciar sesión con ellas, pero puedes volver a vincularlas en cualquier momento. Recuerda que ningun cambio se realizará si no das clic en "Guardar cambios".
+							</div>
+							<button type="button" class="boton boton-rojo">Si</button>
+							<button type="button" class="boton boton-azul" ng-click="toggleModal()">No</button>
+						</modal-dialog>
+					</div>
+				</fieldset>
+				<br/><br/>
+				<button type="button" class="boton boton-rojo">Eliminar cuenta</button>
+				<button type="submit" class="boton boton-verde">Guardar cambios</button>
+			</form>
+		</div>
+	</div>
+</section>

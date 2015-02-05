@@ -1,0 +1,114 @@
+<section id="section-general">
+	<div class="formulario">
+		<h2>Llena este formulario para ser parte de la comunidad de promotores mozArt</h2>
+		<a class="titulo-azul" href="#/registro/artista" style="font-size: 25px">Registrate como artista</a>
+		<form id="registro" name="registro" ng-submit="validar()" method="post" action="hola.jsp"novalidate>
+			<div>
+				<label for="nombres">Nombre(s)</label><br/>
+				<input id="nombres" type="text" class="cuadrotexto un-cuadro" name="nombres" placeholder="Introduce tu(s) nombre(s)" required ng-model="nombres" ng-minlength="2" ng-maxlength="100"/><br/>
+
+				<label for="apellidos">Apellidos</label><br/>
+				<input id="apellidos" type="text" class="cuadrotexto un-cuadro" name="apellidos" placeholder="Introduce tus apellidos" required ng-model="apellidos" ng-minlength="2" ng-maxlength="100"/><br/>
+
+				<label for="email">Email</label><br/>
+				<input id="email" type="email" class="cuadrotexto un-cuadro" name="email" placeholder="Escribe tu email" required ng-model="email"ng-change="verificarEmail()"/><br/>
+
+				<div class="aviso-error" ng-hide="emailValido">El email que escribiste ya esta registrado en mozArt.</div>
+
+				<label for="nickname">Nickname</label><br/>
+				<input id="nickname" type="text" class="cuadrotexto un-cuadro" name="nickname" placeholder="Elije un nickname de usuario" required ng-model="nickname" ng-minlength="4" ng-maxlength="20" ng-change="verificarNickname()"/><br/>
+
+				<div class="aviso-error" ng-hide="nicknameValido">El nickname que escribiste no se encuentra disponible.</div>
+
+				<label for="password">Contraseña</label><br/>
+				<input id="password" type="password" class="cuadrotexto un-cuadro"  name="password" placeholder="Elije una contraseña" ng-minlength="8" ng-maxlength="40" ng-model="password" required /><br/>
+
+				Fecha de nacimiento<br/>
+				<label for="dia">Día</label>
+				<input id="dia" class="cuadrotexto triple-cuadro" type="number" min="1" max="31" name="dia" required ng-model="dia" placeholder="Escribe el día" ng-change="validarFecha()"/>
+
+				<label for="mes">Mes</label>
+				<select id="mes" class="cuadrotexto triple-cuadro" name="mes" ng-click="alert('holis');" required ng-model="mes" ng-change="validarFecha()">
+					<option value="" disabled default>Selecciona el mes</option>
+					<option value="01">Enero</option>
+					<option value="02">Febrero</option>
+					<option value="03">Marzo</option>
+					<option value="04">Abril</option>
+					<option value="05">Mayo</option>
+					<option value="06">Junio</option>
+					<option value="07">Julio</option>
+					<option value="08">Agosto</option>
+					<option value="09">Septiembre</option>
+					<option value="10">Octubre</option>
+					<option value="11">Noviembre</option>
+					<option value="12">Diciembre</option>
+				</select>
+				<label for="year">Año</a></label>
+				<input id="year" class="cuadrotexto triple-cuadro" type="number" name="year" min="{$this_year - 100$}" max="{$this_year - 18$}"  required ng-model="year" placeholder="Escribe el año" ng-change="validarFecha()"/><br/>
+
+				<div class="aviso-error" ng-hide="fechaValida">La fecha que introduciste no es valida</div>
+				<div class="aviso-error" ng-hide="mayorEdad">Lo sentimos, debes ser mayor de edad para poder registrarte</div>
+
+				<label for="pais">País</label><br/>
+				<select id="pais" class="cuadrotexto un-cuadro" name="nacionalidad" required ng-model="nacionalidad">
+					<option value="" disabled default>Selecciona tu país</option>
+					<option value="a">Ejemplo</option>
+					<option value="b">Ejemplo</option>
+					<option value="c">Ejemplo</option>
+					<option value="d">Ejemplo</option>
+				</select><br/>
+
+				<label for="telefono">Teléfono</label><br/>
+				<input id="telefono" type="tel" class="cuadrotexto un-cuadro"  name="telefono" placeholder="Introduce tu telefono" ng-model="telefono" required /><br/>
+
+				<fieldset>
+					<legend>Domicilio</legend>
+					<label for="direccion">Dirección</label><br/>
+					<input id="direccion" type="text" class="cuadrotexto un-cuadro" name="direccion" placeholder="Escribe tu dirección" required ng-model="direccion" ng-minlength="10" ng-maxlength="300"/><br/>
+
+					<label for="ciudad">Ciudad</label><br/>
+					<input id="ciudad" type="text" class="cuadrotexto un-cuadro" name="ciudad" placeholder="Escribe el nombre de tu ciudad" required ng-model="ciudad" ng-minlength="2" ng-maxlength="200"/><br/>
+
+					<label for="codigopostal">Código postal</label><br/>
+					<input id="codigopostal" type="text" class="cuadrotexto un-cuadro" name="codigopostal" placeholder="Escribe tu código postal" required ng-model="codigopostal" ng-minlength="5" ng-maxlength="8"/><br/>
+
+					<label for="vecindario">Vecindario</label><br/>
+					<input id="vecindario" type="text" class="cuadrotexto un-cuadro" name="vecindario" placeholder="Escribe el nombre de tu vecindario" required ng-model="vecindario" ng-minlength="4" ng-maxlength="200"/>
+				</fieldset>
+
+				<label for="sexo">Sexo</label><br/>
+				<select id="seco" class="cuadrotexto un-cuadro" name="sexo" required ng-model="sexo">
+					<option value="" disabled default>Selecciona tu sexo</option>
+					<option value="Masculino">Masculino</option>
+					<option value="Femenino">Femenino</option>
+				</select>
+			</div>
+			<p><input id="acepto" type="checkbox" name="acepto" ng-model="acepto" required/>Acepto ser <a href="#" title="¿Por qué?">mayor de edad</a>, además de haber leído y estar de acuerdo con las <a href="#">Políticas de uso</a> de mozArt.</p>
+			<button type="submit" class="boton boton-verde" name="Enviar" ng-disabled="!validar()">Registrarse</button>
+		</form>
+		<div class="letrero">
+			<img src="" />
+			<div>
+				Promocionate por medio de anuncios.
+			</div>
+		</div>
+		<div class="letrero">
+			<img src="" />
+			<div>
+				Interactua con la comunidad. Suscribete a otros usuarios y envía mensajes privados.
+			</div>
+		</div>
+		<div class="letrero">
+			<img src="" />
+			<div>
+				Vota y comenta tus obras favoritas.
+			</div>
+		</div>
+		<div class="letrero">
+			<img src="" />
+			<div>
+				Crea eventos para ayudar a los artistas a darse a conocer.
+			</div>
+		</div>
+	</div>
+</section>
