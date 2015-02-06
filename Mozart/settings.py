@@ -19,7 +19,6 @@ TEMPLATE_DIRS = (
 ALLOWED_HOSTS = []
 
 INSTALLED_APPS = (
-    'djangular',
     'suit',
     'django.contrib.admin',
     'django.contrib.auth',
