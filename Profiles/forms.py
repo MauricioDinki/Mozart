@@ -54,6 +54,34 @@ class UserInformationForm(forms.Form):
 		widget=forms.NumberInput(attrs={'class':'form-control','placeholder':'Numero Telefonico',})
 	)
 
+	adress = forms.CharField(
+		error_messages=default_error_messages,
+		max_length=30,
+		required=False,
+		widget=forms.TextInput(attrs = {'class':'form-control','placeholder':'Direccion'})
+	)
+
+	city = forms.CharField(
+		error_messages=default_error_messages,
+		max_length=30,
+		required=False,
+		widget=forms.TextInput(attrs = {'class':'form-control','placeholder':'Ciudad'})
+	)
+
+	zip_code = forms.CharField(
+		error_messages=default_error_messages,
+		max_length=30,
+		required=False,
+		widget=forms.NumberInput(attrs = {'class':'form-control','placeholder':'Codigo Postal'})
+	)
+
+	neighborhood = forms.CharField(
+		error_messages=default_error_messages,
+		max_length=30,
+		required=False,
+		widget=forms.TextInput(attrs = {'class':'form-control','placeholder':'Vecindario'})
+	)
+
 	password = forms.CharField(
 	    error_messages=default_error_messages,
 	    max_length=20,
@@ -96,6 +124,26 @@ class UserInformationForm(forms.Form):
 		validate_null(phone_number)
 		return phone_number
 
+	def clean_adress(self):
+		adress = self.cleaned_data.get('adress')
+		validate_null(adress)
+		return adress
+
+	def clean_city(self):
+		city = self.cleaned_data.get('city')
+		validate_null(city)
+		return city
+
+	def clean_zip_code(self):
+		zip_code = self.cleaned_data.get('zip_code')
+		validate_null(zip_code)
+		return zip_code
+
+	def clean_neighborhood(self):
+		neighborhood = self.cleaned_data.get('neighborhood')
+		validate_null(neighborhood)
+		return neighborhood
+
 	def clean_password(self):
 		password = self.cleaned_data.get('password')
 		validate_null(password)
@@ -117,6 +165,10 @@ class UserInformationForm(forms.Form):
 		description = self.cleaned_data.get('description')
 		personal_homepage = self.cleaned_data.get('personal_homepage')
 		phone_number = self.cleaned_data.get('phone_number')
+		adress = self.cleaned_data.get('adress')
+		city = self.cleaned_data.get('city')
+		zip_code = self.cleaned_data.get('zip_code')
+		neighborhood = self.cleaned_data.get('neighborhood')
 
 		user_to_change =  self.request.user
 
@@ -131,4 +183,10 @@ class UserInformationForm(forms.Form):
 		user_to_change.contact.personal_homepage = personal_homepage
 		user_to_change.contact.phone_number = phone_number
 		user_to_change.contact.save()
+
+		user_to_change.adress.adress = adress
+		user_to_change.adress.city = city
+		user_to_change.adress.zip_code = zip_code
+		user_to_change.adress.neighborhood = neighborhood
+		user_to_change.adress.save()
 

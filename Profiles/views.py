@@ -28,6 +28,10 @@ class InformationFormView(FormView):
 			'description':self.request.user.mozart_user.description,
 			'personal_homepage':self.request.user.contact.personal_homepage,
 			'phone_number':self.request.user.contact.phone_number,
+			'adress':self.request.user.adress.adress,
+			'city':self.request.user.adress.city,
+			'zip_code':self.request.user.adress.zip_code,
+			'neighborhood':self.request.user.adress.neighborhood,
 		}
 		return initial
 
