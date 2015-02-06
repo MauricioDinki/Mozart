@@ -11,9 +11,15 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
+TEMPLATE_DIRS = (
+    os.path.join(BASE_DIR,'templates'),
+    os.path.join(BASE_DIR,'templates'),
+)
+
 ALLOWED_HOSTS = []
 
 INSTALLED_APPS = (
+    'djangular',
     'suit',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -93,9 +99,10 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
+STATIC_ROOT = 'staticfiles'
 
 STATICFILES_DIRS = (
-    os.path.join(PROJECT_PATH,'static'),
+    os.path.join(BASE_DIR,'static'),
 )
 
 MEDIA_ROOT = os.path.join(PROJECT_PATH,'media')

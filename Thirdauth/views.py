@@ -10,13 +10,8 @@ from django.views.generic import FormView,View
 from social.apps.django_app.default.models import UserSocialAuth
 from django.http import HttpResponseRedirect
 
-<<<<<<< HEAD
 class LoginView(AuthRedirectMixin,FormView):
-	template_name = 'login-form.html'
-=======
-class LoginView(FormView):
 	template_name = 'login.html'
->>>>>>> origin/PruebasFrontend
 	form_class = LoginForm
 	success_url = '/explorar'
 
@@ -30,7 +25,7 @@ def LogoutView(request):
 	return redirect('index')
 
 class RegisterView(AuthRedirectMixin,FormView):
-	template_name = 'register-form.html'
+	template_name = 'registro.html'
 	form_class = RegisterForm
 	success_url = '/success'
 

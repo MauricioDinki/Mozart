@@ -6,30 +6,9 @@ from django.shortcuts import render,get_list_or_404,redirect
 from django.views.generic import ListView,DetailView,TemplateView
 from Thirdauth.mixins import AuthRedirectMixin
 
-class WorkListView(ListView):
-
+class WorkListView(TemplateView):
+    template_name = "explore.html"
     model = Work
-
-    def get(self, request, *args, **kwargs):
-        self.object_list = self.get_queryset()
-        data = [{
-	        'user': Work.user.username,
-	        'title':Work.title,
-	        'category':Work.category,
-	        'date':Work.date,
-	        'cover':Work.cover.url,
-	        'archive':Work.archive.url,
-        } for Work in self.object_list]
-    	return JsonResponse(data,safe=False)
-
-    def get_queryset(self):
-        if self.kwargs.get('category'):
-            queryset = get_list_or_404(self.model,category=self.kwargs['category'])
-       	elif self.kwargs.get('username'):
-   			queryset = get_list_or_404(self.model,user__username__iexact=self.kwargs['username'])
-        else:
-            queryset = super(WorkListView, self).get_queryset()
-        return queryset
 
 class WorkDetailView(DetailView):
 
@@ -50,4 +29,4 @@ class WorkDetailView(DetailView):
 # Vista Para el Home
 
 class HomeView(AuthRedirectMixin,TemplateView):
-    template_name = "Nombre_del_Template"
+    template_name = "index.html"
