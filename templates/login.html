@@ -1,0 +1,29 @@
+{% extends 'base_view.html' %}
+{% block title %}Login - mozArt{% endblock %}
+{% block content %}
+<section id="section-general">
+	<div class="formulario">
+		<h2>Inicia sesión con tu correo electrónico</h2>
+		<form id="login" name="login" ng-submit="validar()" novalidate>
+			<div>
+				<div class="un-cuadro s-mzfield">
+					<label for="email" class="etiqueta-input">Email</label>
+					<input mz-field id="email" type="email" class="cuadrotexto un-cuadro" name="email" placeholder="Escribe tu email" required ng-model="email"/>
+				</div>
+				<div class="un-cuadro s-mzfield">
+					<label for="password" class="etiqueta-input">Password</label>
+					<input mz-field id="password" type="password" class="cuadrotexto un-cuadro"  name="password" placeholder="Escribe tu contraseña" ng-minlength="6" ng-maxlength="40" ng-model="password" required />
+				</div>
+				<a href="#/forget" title="Da clic para recuperar tu contraseña">Olvide mi contraseña</a>
+			</div>
+			<button type="submit" class="boton boton-verde" name="Enviar" ng-disabled="login.$invalid">Iniciar sesión</button>
+		</form>
+		<h2>O desde alguna de tus redes sociales vinculadas</h2>
+		<div class="vincula">
+			<a class="iconos icono-facebook" href="#"></a>
+			<a class="iconos icono-twitter" href="#"></a>
+			<a class="iconos icono-google" href="#"></a>
+		</div>
+	</div>
+</section>
+{% endblock %}
