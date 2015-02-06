@@ -77,7 +77,7 @@ def presentation_file_url(self,filename):
 class Mozart_User(models.Model):
 	user = models.OneToOneField(User)
 	description = models.CharField(blank=True,null=True, max_length=200,)
-	nationality = CountryField(blank=True,null=True)
+	nationality = CountryField(blank=True,null=True, max_length=200,)
 	presentation_file = models.FileField(blank=True,null=True,upload_to=presentation_file_url)
 	profile_picture = ImageField(blank=True,null=True,upload_to=profile_picture_url)
 	sex = models.CharField(blank=True,null=True, max_length=50,choices=sexuality)
@@ -149,3 +149,18 @@ class Date_of_Birth(models.Model):
 
 	def __unicode__(self):
 		return self.user.username
+
+class Adress(models.Model):
+	user = models.OneToOneField(User)
+	adress = models.CharField(blank=True,null=True, max_length=50)
+	city = models.CharField(blank=True,null=True, max_length=50)
+	zip_code = models.IntegerField(blank=True,null=True,max_length=10)
+	neighborhood = models.CharField(blank=True,null=True, max_length=50)
+
+	class Meta:
+		verbose_name = "Adress"
+		verbose_name_plural = "Adress"
+
+	def __unicode__(self):
+		return self.user.username
+    

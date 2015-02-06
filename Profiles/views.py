@@ -11,6 +11,7 @@ class InformationFormView(FormView):
 	success_url = '/configuracion/informacion'
 
 	def form_valid(self,form):
+		form.save()
 		return super(InformationFormView,self).form_valid(form)
 
 	def get_form_kwargs(self):
@@ -20,7 +21,13 @@ class InformationFormView(FormView):
 
 	def get_initial(self):
 		initial = {
-			'nationality':self.request.user.mozart_user.nationality
+			'username' : self.request.user.username,
+			'first_name':self.request.user.first_name,
+			'last_name':self.request.user.last_name,
+			'nationality':self.request.user.mozart_user.nationality,
+			'description':self.request.user.mozart_user.description,
+			'personal_homepage':self.request.user.contact.personal_homepage,
+			'phone_number':self.request.user.contact.phone_number,
 		}
 		return initial
 

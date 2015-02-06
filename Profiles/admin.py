@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 
 from django.contrib import admin
-from .models import Mozart_User,Contact,Date_of_Birth,Social_Network_Facebook_URL,Social_Network_Twitter_URL,Social_Network_Google_URL
+from .models import Mozart_User,Contact,Date_of_Birth,Social_Network_Facebook_URL,Social_Network_Twitter_URL,Social_Network_Google_URL,Adress
 
 @admin.register(Mozart_User)
 class AdminMozartUser(admin.ModelAdmin):
@@ -29,4 +29,9 @@ class AdminTwitterURL(admin.ModelAdmin):
 @admin.register(Social_Network_Google_URL)
 class AdminGoolgeURL(admin.ModelAdmin):
 	list_display = ('user','google',)
+
+@admin.register(Adress)
+class AdminAdress(admin.ModelAdmin):
+	# list_display = ('user','adress','city','zip_code','neighborhood')
+	pass
 
