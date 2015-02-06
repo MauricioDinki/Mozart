@@ -2,8 +2,9 @@
 
 from .forms import UserInformationForm
 from django.core.urlresolvers import reverse
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,render_to_response
 from django.views.generic import FormView
+from django.template import RequestContext
 
 class InformationFormView(FormView):
 	template_name = 'account-settings.html'
@@ -12,7 +13,8 @@ class InformationFormView(FormView):
 
 	def form_valid(self,form):
 		form.save()
-		return super(InformationFormView,self).form_valid(form)
+		ctx = {'updated':'Perfil Actualizado','form':form}
+		return render_to_response(self.template_name, ctx, context_instance = RequestContext(self.request))
 
 	def get_form_kwargs(self):
 		kwargs = super( InformationFormView,self).get_form_kwargs()
