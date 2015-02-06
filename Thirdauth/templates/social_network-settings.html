@@ -21,11 +21,11 @@
 				<div class="col-xs-2">
 					<button style="width:100%" type="button" class="btn btn-success">
 						{% if cuenta.provider = 'facebook' %}
-							Facebook
+							<a target="_blank"style="text-decoration:none;color:white;"href="{{cuenta.social_network_facebook_url.facebook}}">Facebook</a>
 						{% elif  cuenta.provider = 'twitter' %}
-							Twitter
+							<a target="_blank"style="text-decoration:none;color:white;"href="{{cuenta.social_network_twitter_url.twitter}}">Twitter</a>
 						{% elif cuenta.provider = 'google-oauth2' %}
-							Google
+							<a target="_blank"style="text-decoration:none;color:white;"href="{{cuenta.social_network_google_url.google}}">Google</a>
 						{% endif %}
 					</button> 
 				</div>

@@ -1,3 +1,5 @@
+# -*- encoding: utf-8 -*-
+
 from .models import Mozart_User
 from django import forms
 from django.contrib.auth import authenticate
@@ -8,76 +10,83 @@ from Thirdauth.validations import *
 
 class UserInformationForm(forms.Form):
 
-	description = forms.CharField(
-		error_messages=default_error_messages,
-		max_length=200,
-		required=True,
-		widget=forms.Textarea()
-	)
-
-	facebook_url = forms.URLField(
-		error_messages=default_error_messages,
-		required=True,
-		max_length=30,
-	)
-
 	first_name = forms.CharField(
 		error_messages=default_error_messages,
 		max_length=30,
-		required=True,
-	)
-
-	google_url = forms.URLField(
-		error_messages=default_error_messages,
-		required=True,
-		max_length=30,
+		required=False,
+		widget=forms.TextInput(attrs = {'class':'form-control col-xs-4','placeholder':'Nombre(s)'})
 	)
 
 	last_name = forms.CharField(
 		error_messages=default_error_messages,
 		max_length=30,
-		required=True,
+		required=False,
+		widget=forms.TextInput(attrs = {'class':'form-control','placeholder':'Apellido(s)'})
 	)
-
-
+	
 	nationality = forms.ChoiceField(
 		choices=countries,
 		error_messages={
             'invalid_choice':('Selecciona una opcion valida'),
             'required': default_error_messages['required']
         },
-		required=True,
+		required=False,
+		widget=forms.Select(attrs = {'class':'form-control',})
 	)
-	
-	password = forms.CharField(
-	    error_messages=default_error_messages,
-	    max_length=20,
-	    required=True,
-	    widget=forms.PasswordInput(),
+
+	description = forms.CharField(
+		error_messages=default_error_messages,
+		max_length=200,
+		required=False,
+		widget=forms.Textarea(attrs = {'class':'form-control','placeholder':'Cuentanos Sobre ti'})
 	)
 
 	personal_homepage = forms.URLField(
 		error_messages=default_error_messages,
-		required=True,
+		required=False,
 		max_length=30,
+		widget=forms.URLInput(attrs={'class':'form-control','placeholder':'Pagina Personal',})
 	)
 
 	phone_number = forms.IntegerField(
 		error_messages=default_error_messages,
-		required=True,
+		required=False,
+		widget=forms.NumberInput(attrs={'class':'form-control','placeholder':'Numero Telefonico',})
 	)
 
-
-	twitter_url = forms.URLField(
+	adress = forms.CharField(
 		error_messages=default_error_messages,
-		required=True,
 		max_length=30,
+		required=False,
+		widget=forms.TextInput(attrs = {'class':'form-control','placeholder':'Direccion'})
 	)
 
-	youtube_url = forms.URLField(
+	city = forms.CharField(
 		error_messages=default_error_messages,
-		required=True,
 		max_length=30,
+		required=False,
+		widget=forms.TextInput(attrs = {'class':'form-control','placeholder':'Ciudad'})
+	)
+
+	zip_code = forms.CharField(
+		error_messages=default_error_messages,
+		max_length=30,
+		required=False,
+		widget=forms.TextInput(attrs = {'class':'form-control','placeholder':'Codigo Postal'})
+	)
+
+	neighborhood = forms.CharField(
+		error_messages=default_error_messages,
+		max_length=30,
+		required=False,
+		widget=forms.TextInput(attrs = {'class':'form-control','placeholder':'Vecindario'})
+	)
+
+	password = forms.CharField(
+	    error_messages=default_error_messages,
+	    max_length=20,
+	    required=False,
+	    widget=forms.PasswordInput(attrs={'class':'form-control','placeholder':'Password'}),
 	)
 
 	def __init__(self, *args, **kwargs):
@@ -85,41 +94,25 @@ class UserInformationForm(forms.Form):
 		self.user_cache = None
 		super(UserInformationForm, self).__init__(*args, **kwargs)
 
-
-	def clean_description(self):
-		description = self.cleaned_data.get('description')
-		validate_null(description)
-		return description
-
-	def clean_facebook_url(self):
-		facebook_url = self.cleaned_data.get('facebook_url')
-		validate_null(facebook_url)
-		return facebook_url
-
 	def clean_first_name(self):
 		first_name = self.cleaned_data.get('first_name')
 		validate_null(first_name)
 		return first_name
-
-	def clean_google_url(self):
-		google_url = self.cleaned_data.get('google_url')
-		validate_null(google_url)
-		return google_url
 
 	def clean_last_name(self):
 		last_name = self.cleaned_data.get('last_name')
 		validate_null(last_name)
 		return last_name
 
-	def clean_month_of_birth(self):
-	    month_of_birth = self.cleaned_data.get('month_of_birth')
-	    validate_null(month_of_birth)
-	    return month_of_birth
-
 	def clean_nationality(self):
 		nationality = self.cleaned_data.get('nationality')
 		validate_null(nationality)
-		return validate_null
+		return nationality
+
+	def clean_description(self):
+		description = self.cleaned_data.get('description')
+		validate_null(description)
+		return description
 
 	def clean_personal_homepage(self):
 		personal_homepage = self.cleaned_data.get('personal_homepage')
@@ -128,23 +121,33 @@ class UserInformationForm(forms.Form):
 
 	def cleaned_phone_number(self):
 		phone_number = self.cleaned_data.get('phone_number')
-		validate_null(personal_homepage)
-		return personal_homepage
+		validate_null(phone_number)
+		return phone_number
 
-	def clean_twitter_url(self):
-		twitter_url = self.cleaned_data.get('twitter_url')
-		validate_null(twitter_url)
-		return twitter_url
+	def clean_adress(self):
+		adress = self.cleaned_data.get('adress')
+		validate_null(adress)
+		return adress
 
-	def clean_year_of_birth(self):
-	    year_of_birth = self.cleaned_data.get('year_of_birth')
-	    validate_null(year_of_birth)
-	    return year_of_birth
+	def clean_city(self):
+		city = self.cleaned_data.get('city')
+		validate_null(city)
+		return city
 
-	def clean_youtube_url(self):
-		youtube_url = self.cleaned_data.get('youtube_url')
-		validate_null(youtube_url)
-		return youtube_url
+	def clean_zip_code(self):
+		zip_code = self.cleaned_data.get('zip_code')
+		validate_null(zip_code)
+		return zip_code
+
+	def clean_neighborhood(self):
+		neighborhood = self.cleaned_data.get('neighborhood')
+		validate_null(neighborhood)
+		return neighborhood
+
+	def clean_password(self):
+		password = self.cleaned_data.get('password')
+		validate_null(password)
+		return password
 
 	def clean(self):
 		password = self.cleaned_data.get('password')
@@ -154,3 +157,36 @@ class UserInformationForm(forms.Form):
 		    raise forms.ValidationError(custom_error_messages['incorrect_password'],)
 		else:
 			return self.cleaned_data
+
+	def save(self):
+		first_name = self.cleaned_data.get('first_name')
+		last_name = self.cleaned_data.get('last_name')
+		nationality = self.cleaned_data.get('nationality')
+		description = self.cleaned_data.get('description')
+		personal_homepage = self.cleaned_data.get('personal_homepage')
+		phone_number = self.cleaned_data.get('phone_number')
+		adress = self.cleaned_data.get('adress')
+		city = self.cleaned_data.get('city')
+		zip_code = self.cleaned_data.get('zip_code')
+		neighborhood = self.cleaned_data.get('neighborhood')
+
+		user_to_change =  self.request.user
+
+		user_to_change.first_name = first_name
+		user_to_change.last_name = last_name
+		user_to_change.save()
+
+		user_to_change.mozart_user.nationality = nationality
+		user_to_change.mozart_user.description = description
+		user_to_change.mozart_user.save()
+		
+		user_to_change.contact.personal_homepage = personal_homepage
+		user_to_change.contact.phone_number = phone_number
+		user_to_change.contact.save()
+
+		user_to_change.adress.adress = adress
+		user_to_change.adress.city = city
+		user_to_change.adress.zip_code = zip_code
+		user_to_change.adress.neighborhood = neighborhood
+		user_to_change.adress.save()
+
