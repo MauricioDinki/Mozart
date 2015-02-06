@@ -32,6 +32,6 @@ class AdminGoolgeURL(admin.ModelAdmin):
 
 @admin.register(Adress)
 class AdminAdress(admin.ModelAdmin):
-	# list_display = ('user','adress','city','zip_code','neighborhood')
+	list_display = ('user','adress','city','zip_code','neighborhood')
 	pass
 
