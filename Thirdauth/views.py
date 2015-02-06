@@ -11,7 +11,7 @@ from social.apps.django_app.default.models import UserSocialAuth
 from django.http import HttpResponseRedirect
 
 class LoginView(AuthRedirectMixin,FormView):
-	template_name = 'login-form.html'
+	template_name = 'login.html'
 	form_class = LoginForm
 	success_url = '/explorar'
 
@@ -25,7 +25,7 @@ def LogoutView(request):
 	return redirect('index')
 
 class RegisterView(AuthRedirectMixin,FormView):
-	template_name = 'register-form.html'
+	template_name = 'registro.html'
 	form_class = RegisterForm
 	success_url = '/success'
 

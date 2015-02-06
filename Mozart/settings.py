@@ -12,7 +12,8 @@ DEBUG = True
 TEMPLATE_DEBUG = True
 
 TEMPLATE_DIRS = (
-    os.path.join(PROJECT_PATH,'static/app/views'),
+    os.path.join(PROJECT_PATH,'static/dist'),
+    os.path.join(PROJECT_PATH,'static/dist/views'),
 )
 
 ALLOWED_HOSTS = []
