@@ -1,4 +1,4 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls import patterns,include,url
 from django.contrib import admin
 from django.conf import settings
 from rest_framework import routers
@@ -18,13 +18,10 @@ router.register(r'works',WorkViewSet)
 
 
 urlpatterns = patterns('',
-
 	url('', include('social.apps.django_app.urls', namespace='social')),
-
     url('', include('Works.urls')),
     url('', include('Thirdauth.urls')),
     url('', include('Profiles.urls')),
-
     url(r'^admin/', include(admin.site.urls)),
     url(r'^api-oauth/', include('rest_framework.urls',namespace='rest_framework')),
     url(r'^api/', include(router.urls)),

@@ -11,9 +11,15 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
+TEMPLATE_DIRS = (
+    os.path.join(PROJECT_PATH,'templates'),
+    os.path.join(PROJECT_PATH,'templates'),
+)
+
 ALLOWED_HOSTS = []
 
 INSTALLED_APPS = (
+    'djangular',
     'suit',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -64,21 +70,15 @@ ROOT_URLCONF = 'Mozart.urls'
 
 WSGI_APPLICATION = 'Mozart.wsgi.application'
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'mozart_db',
-        'USER': 'root',
-        'PASSWORD': 'meji@r@mirez123',
-        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
-        'PORT': '3306',
+        'NAME': os.environ.get("MOZART_DATABASE_NAME", None),
+        'USER': os.environ.get("MOZART_DATABASE_USER", None),
+        'PASSWORD': os.environ.get("MOZART_DATABASE_PASSWORD", None),
+        'HOST': os.environ.get("MOZART_DATABASE_HOST", None),
+        'PORT': os.environ.get("MOZART_DATABASE_PORT", None),
     }
 }
 
@@ -93,6 +93,7 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
+STATIC_ROOT = 'staticfiles'
 
 STATICFILES_DIRS = (
     os.path.join(PROJECT_PATH,'static'),
