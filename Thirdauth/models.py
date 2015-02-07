@@ -12,6 +12,6 @@ class ExtendUserSocialAuth(models.Model):
 		return self.user.user.username
 
 	class Meta:
-		verbose_name = "Usernames for social networks"
-		verbose_name_plural = "Usernames for social networks"
+		verbose_name = "Social Networks Usernames"
+		verbose_name_plural = "Social Network Username"
     

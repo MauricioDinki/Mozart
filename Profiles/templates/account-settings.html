@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+{% load static from staticfiles %}
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>Configuracion de la Cuenta</title>
+	<link rel="stylesheet" href="{% static "bower_components/bootstrap/dist/css/bootstrap.min.css" %}">
+	<link rel="icon" type="image/png" href="{% static "img/icono.png" %}"/>
+</head>
+<body>
+	<div class="row">
+		<div class="col-xs-3"></div>
+		<div class="col-xs-6" style="margin-top:2em; margin-left:7em">
+			<h1>Configuracion de la Cuenta</h1>
+		</div>
+	</div>
+	{% if updated %}
+		<div class="row" style="margin:1em 0 0 6em;">
+			<div class="col-xs-3"></div>
+			<div class="col-xs-5">
+				<div class="alert alert-success">{{updated}}</div>
+			</div>
+		</div>
+	{% endif %}
+	{% if form.non_field_errors %}
+		<div class="row" style="margin:1em 0 0 6em;">
+			<div class="col-xs-3"></div>
+			<div class="col-xs-5">
+				<div class="alert alert-danger">{{form.non_field_errors.as_text|cut:"*"}}</div>
+			</div>
+		</div>
+	{% endif %}
+	<form action="" method='POST'>
+		{% csrf_token %}
+		<div class="row" style="margin:1em 0 0 6em;">
+			<div class="col-xs-3"></div>
+			<div class="col-xs-5">
+				<legend style="text-align:center">Informacion Personal</legend>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-3"></div>
+			<div class="col-xs-4" style="margin-top:-1em; margin-left:7em">
+				{{form.username}}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-3"></div>
+			<div class="col-xs-4" style="margin-top:2em; margin-left:7em">
+				{{form.first_name}}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-3"></div>
+			<div class="col-xs-4" style="margin-top:2em; margin-left:7em">
+				{{form.last_name}}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-3"></div>
+			<div class="col-xs-4" style="margin-top:2em; margin-left:7em">
+				{{form.nationality}}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-3"></div>
+			<div class="col-xs-4" style="margin-top:2em; margin-left:7em">
+				{{form.description}}
+			</div>
+		</div>
+		<div class="row" style="margin:1em 0 0 6em;">
+			<div class="col-xs-3"></div>
+			<div class="col-xs-5">
+				<legend style="text-align:center">Contacto</legend>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-3"></div>
+			<div class="col-xs-4" style="margin-top:2em; margin-left:7em">
+				{{form.personal_homepage}}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-3"></div>
+			<div class="col-xs-4" style="margin-top:2em; margin-left:7em">
+				{{form.phone_number}}
+			</div>
+		</div>
+		<div class="row" style="margin:1em 0 0 6em;">
+			<div class="col-xs-3"></div>
+			<div class="col-xs-5">
+				<legend style="text-align:center">Domicilio</legend>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-3"></div>
+			<div class="col-xs-4" style="margin-top:2em; margin-left:7em">
+				{{form.adress}}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-3"></div>
+			<div class="col-xs-4" style="margin-top:2em; margin-left:7em">
+				{{form.city}}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-3"></div>
+			<div class="col-xs-4" style="margin-top:2em; margin-left:7em">
+				{{form.zip_code}}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-3"></div>
+			<div class="col-xs-4" style="margin-top:2em; margin-left:7em">
+				{{form.neighborhood}}
+			</div>
+		</div>
+		<div class="row" style="margin:2em 0 0 9.7em;">
+			<div class="col-xs-3"></div>
+			<div class="col-xs-5">
+				<h4>Inserta Tu Contraseña Para Guardar Los Cambios</h4>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-3"></div>
+			<div class="col-xs-4" style="margin-top:2em; margin-left:7em">
+				{{form.password}}
+			</div>
+		</div>
+		<div class="row" style="margin:2em 0 0 -8em;">
+			<div class="col-xs-4"></div>
+			<div class="col-xs-5">
+				<button style="width:100%"class="btn btn-success" type="submit">Guardar Cambios</button>
+			</div>
+		</div>
+	</form>
+</body>
+</html>

@@ -2,14 +2,13 @@ from django.conf.urls import patterns,include,url
 from django.contrib import admin
 from django.conf import settings
 from rest_framework import routers
-from Profiles.viewsets import UserViewSet,MozartUserViewSet,SocialNetworkViewSet,ContactViewSet,DateBirthViewSet
+from Profiles.viewsets import UserViewSet,MozartUserViewSet,ContactViewSet,DateBirthViewSet
 from Works.viewsets import WorkViewSet
 
 router = routers.DefaultRouter()
 
 # Profiles Modules
 router.register(r'mozart_user',MozartUserViewSet)
-router.register(r'social_network',SocialNetworkViewSet)
 router.register(r'user_contact',ContactViewSet)
 router.register(r'user_dateofbirth',DateBirthViewSet)
 router.register(r'users',UserViewSet)
