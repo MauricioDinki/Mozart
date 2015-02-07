@@ -24,7 +24,11 @@ class UserInformationForm(forms.Form):
 		widget=forms.TextInput(attrs = {'class':'form-control','placeholder':'Apellido(s)'})
 	)
 	
-	profile_picture = forms.ImageField()
+	profile_picture = forms.ImageField(
+		error_messages=default_error_messages,
+		required=False,
+		widget=forms.FileInput(attrs = {'class':'form-control'}),
+	)
 
 	nationality = forms.ChoiceField(
 		choices=countries,
