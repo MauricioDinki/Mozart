@@ -70,21 +70,15 @@ ROOT_URLCONF = 'Mozart.urls'
 
 WSGI_APPLICATION = 'Mozart.wsgi.application'
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'mozart_db',
-        'USER': 'root',
-        'PASSWORD': 'n0m3l0',
-        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
-        'PORT': '3306',
+        'NAME': os.environ.get("MOZART_DATABASE_NAME", None),
+        'USER': os.environ.get("MOZART_DATABASE_USER", None),
+        'PASSWORD': os.environ.get("MOZART_DATABASE_PASSWORD", None),
+        'HOST': os.environ.get("MOZART_DATABASE_HOST", None),
+        'PORT': os.environ.get("MOZART_DATABASE_PORT", None),
     }
 }
 
