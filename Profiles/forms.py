@@ -24,6 +24,8 @@ class UserInformationForm(forms.Form):
 		widget=forms.TextInput(attrs = {'class':'form-control','placeholder':'Apellido(s)'})
 	)
 	
+	profile_picture = forms.ImageField()
+
 	nationality = forms.ChoiceField(
 		choices=countries,
 		error_messages={
@@ -178,6 +180,7 @@ class UserInformationForm(forms.Form):
 
 		user_to_change.mozart_user.nationality = nationality
 		user_to_change.mozart_user.description = description
+		user_to_change.mozart_user.profile_picture = self.request.FILES['profile_picture']
 		user_to_change.mozart_user.save()
 		
 		user_to_change.contact.personal_homepage = personal_homepage
@@ -189,4 +192,3 @@ class UserInformationForm(forms.Form):
 		user_to_change.adress.zip_code = zip_code
 		user_to_change.adress.neighborhood = neighborhood
 		user_to_change.adress.save()
-

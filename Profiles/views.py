@@ -23,17 +23,18 @@ class InformationFormView(FormView):
 
 	def get_initial(self):
 		initial = {
-			'username' : self.request.user.username,
+			'adress':self.request.user.adress.adress,
+			'city':self.request.user.adress.city,
+			'description':self.request.user.mozart_user.description,
 			'first_name':self.request.user.first_name,
 			'last_name':self.request.user.last_name,
 			'nationality':self.request.user.mozart_user.nationality,
-			'description':self.request.user.mozart_user.description,
-			'personal_homepage':self.request.user.contact.personal_homepage,
-			'phone_number':self.request.user.contact.phone_number,
-			'adress':self.request.user.adress.adress,
-			'city':self.request.user.adress.city,
-			'zip_code':self.request.user.adress.zip_code,
 			'neighborhood':self.request.user.adress.neighborhood,
+			'personal_homepage':self.request.user.contact.personal_homepage,
+			'profile_picture':self.request.user.mozart_user.profile_picture,
+			'phone_number':self.request.user.contact.phone_number,
+			'username' : self.request.user.username,
+			'zip_code':self.request.user.adress.zip_code,
 		}
 		return initial
 
