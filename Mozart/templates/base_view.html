@@ -1,0 +1,87 @@
+<!doctype html>
+<html class="no-js">{% load static from staticfiles %}
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="{% static "stylesheets/estilos.css" %}">
+    <link rel="stylesheet" href="{% static "stylesheets/normalize.css" %}">
+    <link rel="stylesheet" href="{% static "stylesheets/fuentes.css" %}">
+    <link rel="icon" href="{% static "favicon.ico" %}">
+  </head>
+  <body ng-app="mozArtApp">
+    <header>
+    <div id="menu-mozart" class="menu-superior" ng-controller="menuIzquierdoCtrl">
+  <a id="botonMenuIzquierdo" class="iconos icono-menu" ng-click="mostrarMenu()">
+  </a>
+  <div ng-style="posicionIzquierda" off-click="mostrarMenu()" off-click-filter="#botonMenuIzquierdo" off-click-if="visible == true">
+    <ul class="menu-bloques" ng-click="mostrarMenu()">
+      <li class="opcion-menu"><a class="iconos icono-explorar" href="/explorar">Explorar obras</a></li>
+      <li class="opcion-menu"><a href="/promotores" class="iconos icono-promotores">Promotores</a></li>
+      <li class="opcion-menu"><a href="/recorrido" class="iconos icono-recorrido">Recorrido por mozArt</a></li>
+      <li class="opcion-menu"><a href="/aleatorio/obra" class="iconos icono-aleatorio">Obra aleatoria</a></li>
+      <li class="opcion-menu"><a href="/aleatorio/usuario" class="iconos icono-aleatorio">Usuario aleatorio</a></li>
+    </ul>
+    <footer>
+      <a href="#" ng-click="mostrarMenu()"><span>Donaciones</span></a>
+      <a href="#" ng-click="mostrarMenu()"><span>Acerca del sitio</span></a>
+      <a href="#" ng-click="mostrarMenu()"><span>Políticas, terminos y condiciones</span></a>
+      <a href="#" ng-click="mostrarMenu()"><span>Dudas y sugerencias</span></a>
+      <span>© 2014 mozArt. Desarrollado por <a href="#" ng-click="accionMenu(1)">zero</a></span>
+    </footer>
+  </div>
+</div>
+<div id="menu-usuario" class="menu-superior" ng-controller="menuDerechoCtrl">
+  <a class="cantidad" title="0 notificaciones" href="/panel/notificaciones" ng-click="ocultarMenus()"> 0 </a>
+  <figure id="botonMenuDerecho" ng-click="mostrarMenu()">
+    <img class="redondo" src="{% static "images/default.png" %}"/>
+  </figure>
+  <div ng-style="posicionDerecha" off-click="mostrarMenu()" off-click-filter="#botonMenuDerecho" off-click-if="visible == true">
+    <ul class="menu-bloques" ng-click="mostrarMenu()">
+      <li class="opcion-menu"><a href="/login" class="iconos icono-login">Iniciar sesión</a></li>
+      <li class="opcion-menu"><a href="/registrarse" class="iconos icono-registro">Unirse a mozArt</a></li>
+      <li class="opcion-menu"><a href="/artista/0" class="iconos icono-perfil">Ver mi Perfil</a></li>
+      <li class="opcion-menu"><a href="/panel/informacion" class="iconos icono-panel">Panel de usuario</a></li>
+      <li class="opcion-menu"><a  href="/crear" class="iconos icono-cargar">Crear obra</a>
+      </li>
+      <li class="opcion-menu"><a href="/logout" class="iconos icono-salir">Cerrar sesión</a></li>
+    </ul>
+  </div>
+</div>
+<figure id="mozart-logo" ng-click="ocultarMenus()">
+  <a href="/explorar"><img src="{% static "images/logo.png" %}" alt="mozArt"></a>
+</figure>
+<form id="cuadro-busqueda" ng-click="ocultarMenus()">
+  <div class="contenedor">
+    <input type="search" name="busqueda" class="cuadrotexto" placeholder="Buscar obras, artistas y promotores" ng-model="texto" autocomplete="off"/>
+    <button type="submit" class="iconos boton-busqueda"></button>
+    <ul ng-show="texto.length > 0" ng-animate="fadeIn">
+      <li class="copia-texto">Resultados para <b ng-bind="texto"></b></li>
+      <li class="resultado">No hay resultados</li>
+    </ul>
+  </div>
+</form>
+</header>
+  <main id="contenido">
+    {% block content %}{% endblock %}
+  </main>
+    <script src="{% static "bower_components/jquery/dist/jquery.js" %}"></script>
+    <script src="{% static "bower_components/angular/angular.js" %}"></script>
+    <script src="{% static "bower_components/ng-tags-input/ng-tags-input.min.js" %}"></script>
+    <script src="{% static "bower_components/ng-file-upload/angular-file-upload.js" %}"></script>
+    <script src="{% static "djangular/js/django-angular.min.js" %}" type="text/javascript"></script>
+    <script src="{% static "javascripts/app.js" %}"></script>
+    <script src="{% static "javascripts/services/peticionObras.js" %}"></script>
+    <script src="{% static "javascripts/services/peticionPromotores.js" %}"></script>
+    <script src="{% static "javascripts/controllers/menuIzquierdo.js" %}"></script>
+    <script src="{% static "javascripts/controllers/menuDerecho.js" %}"></script>
+    <script src="{% static "javascripts/controllers/cargarObras.js" %}"></script>
+    <script src="{% static "javascripts/controllers/formularioRegistro.js" %}"></script>
+    <script src="{% static "javascripts/controllers/subirObra.js" %}"></script>
+    <script src="{% static "javascripts/controllers/editarInformacion.js" %}"></script>
+    <script src="{% static "javascripts/controllers/modal.js" %}"></script>
+    <script src="{% static "javascripts/controllers/error.js" %}"></script>
+    <script src="{% static "javascripts/controllers/otros.js" %}"></script>
+    <script src="{% static "javascripts/directives.js" %}"></script>
+</body>

@@ -12,8 +12,8 @@ DEBUG = True
 TEMPLATE_DEBUG = True
 
 TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR,'templates'),
-    os.path.join(BASE_DIR,'templates'),
+    os.path.join(PROJECT_PATH,'templates'),
+    os.path.join(PROJECT_PATH,'templates'),
 )
 
 ALLOWED_HOSTS = []
@@ -102,7 +102,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = 'staticfiles'
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR,'static'),
+    os.path.join(PROJECT_PATH,'static'),
 )
 
 MEDIA_ROOT = os.path.join(PROJECT_PATH,'media')
