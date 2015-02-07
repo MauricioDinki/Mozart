@@ -74,7 +74,7 @@ class UserInformationForm(forms.Form):
 		error_messages=default_error_messages,
 		max_length=30,
 		required=False,
-		widget=forms.NumberInput(attrs = {'class':'form-control','placeholder':'Codigo Postal'})
+		widget=forms.TextInput(attrs = {'class':'form-control','placeholder':'Codigo Postal'})
 	)
 
 	neighborhood = forms.CharField(
