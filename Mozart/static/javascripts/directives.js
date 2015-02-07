@@ -105,12 +105,14 @@ app.directive('mzField', function() {
     link: function(scope, elem, attrs, ctrl) {
     	var elemento = '#' + attrs.id;
     	angular.element(elemento).focus(function(){
+        angular.element(elemento).prev('label').css('width', '0%'); 
+        angular.element(elemento).prev('label').css('padding', '5px 0');
     		angular.element(elemento).css('width', '90%');
-    		angular.element(elemento).prev('label').css('width', '0%');
     	});
     	angular.element(elemento).blur(function(){
-    		angular.element(elemento).css('width', '60%');
-    		angular.element(elemento).prev('label').css('width', '30%');
+    		angular.element(elemento).prev('label').css('padding', '5px 10px');
+        angular.element(elemento).prev('label').css('width', '30%');
+        angular.element(elemento).css('width', '60%');
     	});
     }
   };

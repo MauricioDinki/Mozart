@@ -206,13 +206,16 @@ body {
   border-radius: 4px;
   display: inline-block;
   height: 40px;
-  margin: 20px 0;
+  margin: 10px 0;
   padding: 6px 20px;
   position: relative;
 }
 .boton-verde:active {
   background: linear-gradient(#008000, #00a600);
   border-width: 2px;
+}
+.boton-verde.cargar-mas {
+  margin: 20px 0;
 }
 #cuadro-busqueda {
   position: absolute;
@@ -329,7 +332,7 @@ body {
   height: 40px;
   margin: 0 -5px 0 0;
   padding: 5px 10px;
-  transition: width 0.2s;
+  transition: padding 0.2s, width 0.2s;
   vertical-align: middle;
 }
 .fade-show-setup {
@@ -756,35 +759,13 @@ a.titulo-obra:hover {
 #section-general .formulario {
   background: #fff;
   display: inline-block;
-  margin: 5px 0 30px 0;
   padding: 20px;
   position: relative;
   width: 750px;
 }
 #section-general .formulario form {
-  text-align: center;
-  padding: 15px;
-}
-#section-general .formulario form div {
   line-height: 30px;
-}
-#section-general .formulario .letrero {
-  box-sizing: border-box;
-  font-size: 30px;
-  min-height: 300px;
-  padding: 0;
-  text-align: left;
-  width: 100%;
-}
-#section-general .formulario .letrero img {
-  display: inline-block;
-  height: auto;
-  width: 100%;
-}
-#section-general .formulario .letrero div {
-  display: inline-block;
-  padding: 10px;
-  width: 50%;
+  text-align: center;
 }
 .s-mzfield {
   margin: 0 auto;
@@ -941,8 +922,29 @@ textarea {
   padding: 10px;
   text-align: center;
 }
+.vincula a {
+  border-radius: 10px;
+  color: #fff;
+  display: inline-block;
+  font-weight: 700;
+  line-height: 30px;
+  margin: 5px;
+  padding: 5px;
+}
 .vincula .iconos:before {
-  font-size: 80px;
+  background: #fff;
+  border-radius: 6px;
+  font-size: 30px;
+  font-weight: normal;
+}
+.vincula .icono-facebook {
+  background: #4862a3;
+}
+.vincula .icono-google {
+  background: #b43525;
+}
+.vincula .icono-twitter {
+  background: #55acee;
 }
 @media screen and (max-width: 800px) {
   #barra-lateral {
@@ -974,9 +976,6 @@ textarea {
   }
   #section-general .formulario {
     width: 90%;
-  }
-  #section-general .formulario .letrero {
-    font-size: 23px;
   }
   .un-cuadro,
   .doble-cuadro,

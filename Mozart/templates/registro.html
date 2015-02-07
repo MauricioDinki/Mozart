@@ -3,10 +3,9 @@
 {% block content %}
 <section id="section-general" ng-controller="formularioRegistroCtrl">
 	<div class="formulario">
-		<h2>Llena este formulario para ser parte de la comunidad mozArt</h2>
-		<form id="registro" name="registro" ng-submit="validar()" method="post" action="/" novalidate>
-			<div>
-				
+		<h2>Formulario de registro</h2>
+		<form id="registro" name="registro" ng-submit="validar()" novalidate>
+				<a href="/cuentas">Conoce más sobre los tipos de cuenta</a>
 				<div class="un-cuadro s-mzfield">
 					<label for="tipo" class="etiqueta-input">Tipo</label>
 					<select id="tipo" class="cuadrotexto mz-field" name="tipo" required ng-model="tipo">
@@ -46,13 +45,13 @@
 
 				<div class="triple-cuadro iblock">
 					<label for="dia" class="etiqueta-input">Día</label>
-					<input id="dia" class="cuadrotexto mz-field" type="number" min="1" max="31" name="dia" required ng-model="dia" placeholder="Escribe el día" ng-change="validarFecha()"/>
+					<input id="dia" class="cuadrotexto mz-field" type="number" min="1" max="31" name="dia" required ng-model="dia" placeholder="Escribe el día" ng-change="validarFecha()" value="1"/>
 				</div>
 				<div class="triple-cuadro iblock">
 					<label for="mes" class="etiqueta-input">Mes</label>
 					<select id="mes" class="cuadrotexto mz-field" name="mes" ng-click="alert('holis');" required ng-model="mes" ng-change="validarFecha()">
 						<option value="" disabled default>Seleccionar</option>
-						<option value="01">Enero</option>
+						<option value="01" selected>Enero</option>
 						<option value="02">Febrero</option>
 						<option value="03">Marzo</option>
 						<option value="04">Abril</option>
@@ -68,13 +67,13 @@
 				</div>
 				<div class="triple-cuadro iblock">
 					<label for="year" class="etiqueta-input">Año</label>
-					<input id="year" class="cuadrotexto mz-field" type="number" name="year" min="{$this_year - 100$}" max="{$this_year - 18$}"  required ng-model="year" placeholder="Escribe el año" ng-change="validarFecha()"/>
-				</div><br/>
+					<input id="year" class="cuadrotexto mz-field" type="number" name="year" min="{$this_year - 100$}" max="{$this_year - 18$}"  required ng-model="year" placeholder="Escribe el año" ng-change="validarFecha()" value="1990"/>
+				</div>
 
 				<div class="aviso-error" ng-hide="fechaValida">La fecha que introduciste no es valida</div>
 				<div class="aviso-error" ng-hide="mayorEdad">Lo sentimos, debes ser mayor de edad para poder registrarte</div>
-			</div><br/>
-			<p><input type="checkbox" name="acepto" ng-model="acepto" required/>Acepto ser <a href="#" title="¿Por qué?">mayor de edad</a>, además de haber leído y estar de acuerdo con las <a href="#">Políticas de uso</a> de mozArt.</p>
+				
+			<p><input type="checkbox" name="acepto" ng-model="acepto" required/>Acepto ser <a href="#" title="¿Por qué?">mayor de edad</a>, además de haber leído y estar de acuerdo con las <a href="#">Políticas, terminos y condiciones</a> de mozArt.</p>
 			<button type="submit" class="boton boton-verde" name="Enviar" ng-disabled="!validar()">Registrarse</button>
 		</form>
 	</div>
