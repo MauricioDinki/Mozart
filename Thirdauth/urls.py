@@ -6,7 +6,7 @@ from .views import LoginView,RegisterView,SocialNetworkSettingsView
 urlpatterns = patterns('',
 	url(r'^login/$', LoginView.as_view(), name='login'),
 	url(r'^logout/$', 'Thirdauth.views.LogoutView', name='logout'),
-	url(r'^registrarse/$', RegisterView.as_view(), name='register'),
-	url(r'^configuracion/cuentas/$', SocialNetworkSettingsView.as_view(), name='settings_accounts'),
-	url(r'^configuracion/cuentas/(?P<provider>.*)/(?P<account_id>.*)/eliminar$', 'Thirdauth.views.deleteSocialAccountView', name='delete_account'),
+	url(r'^signup/$', RegisterView.as_view(), name='signup'),
+	url(r'^settings/social/$', SocialNetworkSettingsView.as_view(), name='settings_social'),
+	url(r'^settings/account/(?P<provider>.*)/(?P<account_id>.*)/delete$', 'Thirdauth.views.deleteSocialAccountView', name='settings_social_delete'),
 )
