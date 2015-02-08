@@ -1,15 +1,15 @@
 # -*- encoding: utf-8 -*-
 
 from .forms import UserInformationForm,ChangePasswordForm
-from django.core.urlresolvers import reverse
 from django.shortcuts import render,redirect,render_to_response
 from django.views.generic import FormView
 from django.template import RequestContext
 from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth import logout
 from Thirdauth.mixins import AuthRedirectMixin,LoginRequiredMixin
+from .mixins import RequestFormMixin
 
-class InformationFormView(LoginRequiredMixin,FormView):
+class InformationFormView(LoginRequiredMixin,RequestFormMixin,FormView):
 	template_name = 'settings-account.html'
 	form_class = UserInformationForm
 	success_url =  reverse_lazy('settings_account')
@@ -18,11 +18,6 @@ class InformationFormView(LoginRequiredMixin,FormView):
 		form.save()
 		ctx = {'updated':'Perfil Actualizado','form':form}
 		return render_to_response(self.template_name, ctx, context_instance = RequestContext(self.request))
-
-	def get_form_kwargs(self):
-		kwargs = super( InformationFormView,self).get_form_kwargs()
-		kwargs['request'] = self.request
-		return kwargs
 
 	def get_initial(self):
 		initial = {
@@ -41,15 +36,10 @@ class InformationFormView(LoginRequiredMixin,FormView):
 		}
 		return initial
 
-class ChangePasswordView(LoginRequiredMixin,FormView):
+class ChangePasswordView(LoginRequiredMixin,RequestFormMixin,FormView):
 	template_name = 'settings-password.html'
 	form_class = ChangePasswordForm
 	success_url = reverse_lazy('index')
-
-	def get_form_kwargs(self):
-		kwargs = super( ChangePasswordView,self).get_form_kwargs()
-		kwargs['request'] = self.request
-		return kwargs
 
 	def form_valid(self,form):
 		form.save()

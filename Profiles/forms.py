@@ -32,7 +32,11 @@ class UserInformationForm(forms.Form):
 	)
 	
 	profile_picture = forms.ImageField(
-		error_messages=default_error_messages,
+		error_messages={
+			'invalid_image':('Selecciona un archivo de imagen valido'),
+			'required':default_error_messages['required'],
+
+		},
 		required=False,
 		widget=forms.FileInput(attrs = {'class':'form-control'}),
 	)
@@ -55,14 +59,20 @@ class UserInformationForm(forms.Form):
 	)
 
 	personal_homepage = forms.URLField(
-		error_messages=default_error_messages,
+		error_messages={
+            'invalid':('Ingresa una url valida'),
+            'required': default_error_messages['required']
+        },
 		required=False,
 		max_length=30,
 		widget=forms.URLInput(attrs={'class':'form-control','placeholder':'Pagina Personal',})
 	)
 
 	phone_number = forms.IntegerField(
-		error_messages=default_error_messages,
+		error_messages={
+			'invalid':('Ingresa un numero valido'),
+			'required':default_error_messages['required']
+		},
 		required=False,
 		widget=forms.NumberInput(attrs={'class':'form-control','placeholder':'Numero Telefonico',})
 	)
@@ -209,18 +219,24 @@ class UserInformationForm(forms.Form):
 
 class ChangePasswordForm(forms.Form):
 	old_password = forms.CharField(
+		error_messages=default_error_messages,
 		required=True,
 		# min_length=8,
+		widget=forms.PasswordInput(attrs={'class':'form-control','placeholder':'Contraseña Actual'}),
 	)
 
 	new_password_1 = forms.CharField(
+		error_messages=default_error_messages,
 		required=True,
 		# min_length=8,
+		widget=forms.PasswordInput(attrs={'class':'form-control','placeholder':'Nueva Contraseña'}),
 	)
 
 	new_password_2 = forms.CharField(
+		error_messages=default_error_messages,
 		required=True,
 		# min_length=8,
+		widget=forms.PasswordInput(attrs={'class':'form-control','placeholder':'Confirmar Contraseña'}),
 	)
 
 	def __init__(self, *args, **kwargs):
