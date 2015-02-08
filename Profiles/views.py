@@ -1,15 +1,16 @@
 # -*- encoding: utf-8 -*-
 
-from .forms import UserInformationForm
+from .forms import UserInformationForm,ChangePasswordForm
 from django.core.urlresolvers import reverse
 from django.shortcuts import render,redirect,render_to_response
 from django.views.generic import FormView
 from django.template import RequestContext
+from django.core.urlresolvers import reverse_lazy
 
 class InformationFormView(FormView):
-	template_name = 'account-settings.html'
+	template_name = 'settings-account.html'
 	form_class = UserInformationForm
-	success_url = '/configuracion/informacion'
+	success_url =  reverse_lazy('settings_account')
 
 	def form_valid(self,form):
 		form.save()
@@ -37,5 +38,10 @@ class InformationFormView(FormView):
 			'zip_code':self.request.user.adress.zip_code,
 		}
 		return initial
+
+class ChangePasswordView(FormView):
+	template_name = 'settings-password.html'
+	form_class = ChangePasswordForm
+	success_url = reverse_lazy('settings_password')
 
 

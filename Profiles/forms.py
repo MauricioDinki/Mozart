@@ -10,6 +10,13 @@ from Thirdauth.validations import *
 
 class UserInformationForm(forms.Form):
 
+	username = forms.CharField(
+		error_messages=default_error_messages,
+		max_length=30,
+		required=False,
+		widget=forms.TextInput(attrs = {'class':'form-control col-xs-4','placeholder':'Username'})
+	)
+
 	first_name = forms.CharField(
 		error_messages=default_error_messages,
 		max_length=30,
@@ -184,7 +191,10 @@ class UserInformationForm(forms.Form):
 
 		user_to_change.mozart_user.nationality = nationality
 		user_to_change.mozart_user.description = description
-		user_to_change.mozart_user.profile_picture = self.request.FILES['profile_picture']
+
+		if self.request.FILES.get('profile_picture',False):
+			user_to_change.mozart_user.profile_picture = self.request.FILES['profile_picture']
+
 		user_to_change.mozart_user.save()
 		
 		user_to_change.contact.personal_homepage = personal_homepage
@@ -196,3 +206,29 @@ class UserInformationForm(forms.Form):
 		user_to_change.adress.zip_code = zip_code
 		user_to_change.adress.neighborhood = neighborhood
 		user_to_change.adress.save()
+
+class ChangePasswordForm(forms.Form):
+	old_password = forms.CharField(
+		required=True,
+		min_length=8,
+	)
+
+	new_password_1 = forms.CharField(
+		required=True,
+		min_length=8,
+	)
+
+	new_password_2 = forms.CharField(
+		required=True,
+		min_length=8,
+	)
+
+	def __init__(self, *args, **kwargs):
+		self.request = kwargs.pop('request', None)
+		self.user_cache = None
+		super(ChangePasswordForm, self).__init__(*args, **kwargs)
+
+
+
+
+    
