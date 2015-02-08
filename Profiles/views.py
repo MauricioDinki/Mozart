@@ -44,4 +44,9 @@ class ChangePasswordView(FormView):
 	form_class = ChangePasswordForm
 	success_url = reverse_lazy('settings_password')
 
+	def form_valid():
+		form.save()
+		ctx = {'updated_password':'Contraseña Actualizada','form':form}
+		return render_to_response(self.template_name, ctx, context_instance = RequestContext(self.request))
+
 
