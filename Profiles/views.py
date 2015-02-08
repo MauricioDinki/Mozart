@@ -6,8 +6,10 @@ from django.shortcuts import render,redirect,render_to_response
 from django.views.generic import FormView
 from django.template import RequestContext
 from django.core.urlresolvers import reverse_lazy
+from django.contrib.auth import logout
+from Thirdauth.mixins import AuthRedirectMixin,LoginRequiredMixin
 
-class InformationFormView(FormView):
+class InformationFormView(LoginRequiredMixin,FormView):
 	template_name = 'settings-account.html'
 	form_class = UserInformationForm
 	success_url =  reverse_lazy('settings_account')
@@ -39,14 +41,18 @@ class InformationFormView(FormView):
 		}
 		return initial
 
-class ChangePasswordView(FormView):
+class ChangePasswordView(LoginRequiredMixin,FormView):
 	template_name = 'settings-password.html'
 	form_class = ChangePasswordForm
-	success_url = reverse_lazy('settings_password')
+	success_url = reverse_lazy('index')
 
-	def form_valid():
+	def get_form_kwargs(self):
+		kwargs = super( ChangePasswordView,self).get_form_kwargs()
+		kwargs['request'] = self.request
+		return kwargs
+
+	def form_valid(self,form):
 		form.save()
-		ctx = {'updated_password':'Contraseña Actualizada','form':form}
-		return render_to_response(self.template_name, ctx, context_instance = RequestContext(self.request))
-
+		logout(self.request)
+		return super(ChangePasswordView,self).form_valid(form)
 
