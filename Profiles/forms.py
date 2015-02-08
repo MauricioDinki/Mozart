@@ -210,23 +210,55 @@ class UserInformationForm(forms.Form):
 class ChangePasswordForm(forms.Form):
 	old_password = forms.CharField(
 		required=True,
-		min_length=8,
+		# min_length=8,
 	)
 
 	new_password_1 = forms.CharField(
 		required=True,
-		min_length=8,
+		# min_length=8,
 	)
 
 	new_password_2 = forms.CharField(
 		required=True,
-		min_length=8,
+		# min_length=8,
 	)
 
 	def __init__(self, *args, **kwargs):
 		self.request = kwargs.pop('request', None)
 		self.user_cache = None
 		super(ChangePasswordForm, self).__init__(*args, **kwargs)
+
+
+	def clean_old_password(self):
+		old_password = self.cleaned_data.get('old_password')
+		validate_null(old_password)
+		return old_password
+
+	def clean_new_password_1(self):
+		new_password_1 = self.cleaned_data.get('new_password_1')
+		validate_null(new_password_1)
+		return new_password_1
+
+	def clean_new_password_2(self):
+		new_password_1 = self.cleaned_data.get('new_password_1')
+		new_password_2 = self.cleaned_data.get("new_password_2")
+		validate_password(new_password_1,new_password_2)
+		return new_password_1 and new_password_2
+
+	def clean(self):
+		password = self.cleaned_data.get('old_password')
+		username = self.request.user.username
+		self.user_cache = authenticate(username=username, password=password)
+		if self.user_cache is None:
+		    raise forms.ValidationError(custom_error_messages['incorrect_password'],)
+		else:
+			return self.cleaned_data
+	
+	def save(self):
+		user_to_change = self.request.user
+		new_password = self.cleaned_data.get('new_password_2')
+		user_to_change.set_password(new_password)
+		user_to_change.save()
 
 
 
