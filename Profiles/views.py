@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
 
 from .forms import UserInformationForm,ChangePasswordForm
-from django.core.urlresolvers import reverse
 from django.shortcuts import render,redirect,render_to_response
 from django.views.generic import FormView
 from django.template import RequestContext
