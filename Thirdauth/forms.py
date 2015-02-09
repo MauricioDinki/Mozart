@@ -2,24 +2,25 @@
 
 from .validations import *
 from django import forms
+from djangular.forms import NgModelFormMixin, NgFormValidationMixin
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from Profiles.models import days,months,type_of_users,sexuality,Mozart_User,Date_of_Birth
 
-class LoginForm(forms.Form):
+class LoginForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
+    scope_prefix='login'
+    form_name='loginform'
 
-    username = forms.CharField(
-        error_messages=default_error_messages,
-        max_length=30,
+    email = forms.EmailField(
         required=True,
-        widget=forms.TextInput(attrs={'class' : 'form-control', 'placeholder':'Username'}),
+        widget=forms.EmailInput(attrs={'class':'cuadrotexto mz-field', 'placeholder':'Escribe tu email'}),
     )
 
     password = forms.CharField(
-        error_messages=default_error_messages,
-        max_length=30,
+        min_length=6,
+        max_length=40,
         required=True,
-        widget=forms.PasswordInput(attrs={'class' : 'form-control', 'placeholder':'Password'}),
+        widget=forms.PasswordInput(attrs={'class' : 'cuadrotexto mz-field', 'placeholder':'Escribe tu contraseña'}),
     )
 
     def __init__(self, *args, **kwargs):

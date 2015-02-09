@@ -4,23 +4,24 @@
 <section id="section-general">
 	<div class="formulario">
 		<h2>Inicia sesión con tu correo electrónico</h2>
-		<form id="login" name="login" ng-submit="validar()" novalidate>
+		<form id="id_loginform" name="{{form.form_name}}" novalidate>
+			{% csrf_token %}
 				<div class="un-cuadro s-mzfield">
-					<label for="email" class="etiqueta-input">Email</label>
-					<input id="email" type="email" class="cuadrotexto mz-field" name="email" placeholder="Escribe tu email" required ng-model="email"/>
+					<label for="id_email" class="etiqueta-input">Email</label>
+					{{form.email}}
 				</div>
 				<div class="un-cuadro s-mzfield">
-					<label for="password" class="etiqueta-input">Password</label>
-					<input id="password" type="password" class="cuadrotexto mz-field" name="password" placeholder="Escribe tu contraseña" ng-minlength="6" ng-maxlength="40" ng-model="password" required /><br/>
+					<label for="id_password" class="etiqueta-input">Password</label>
+					{{form.password}}<br/>
 					<a href="/forget" title="Da clic para recuperar tu contraseña">Olvide mi contraseña</a>
 				</div>
-			<button type="submit" class="boton boton-verde" name="Enviar" ng-disabled="login.$invalid">Iniciar sesión</button>
+			<button type="submit" class="boton boton-verde" name="Enviar" ng-disabled="loginform.$invalid">Iniciar sesión</button>
 		</form>
 		<h2>O desde alguna de tus redes sociales vinculadas</h2>
 		<div class="vincula">
-			<a class="iconos icono-facebook" href="#">Iniciar sesión con Facebook</a>
-			<a class="iconos icono-twitter" href="#">Iniciar sesión con Twitter</a>
-			<a class="iconos icono-google" href="#">Iniciar sesión con Google</a>
+			<a class="iconos icono-facebook" href="{% url 'social:begin' 'facebook' %}">Iniciar sesión con Facebook</a>
+			<a class="iconos icono-twitter" href="{% url 'social:begin' 'twitter' %}">Iniciar sesión con Twitter</a>
+			<a class="iconos icono-google" href="{% url 'social:begin' 'google-oauth2' %}">Iniciar sesión con Google</a>
 		</div>
 	</div>
 </section>
