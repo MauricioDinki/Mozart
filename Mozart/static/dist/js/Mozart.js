@@ -133,6 +133,46 @@ app.directive('mzField', function() {
     	});
     }
   };
+});
+app.directive('mzMenu', function(){
+  return {
+    restrict: 'A',
+    scope: {
+      filterId : '@imgId'
+    },
+    link: function(scope, elem, attrs, ctrl){
+      scope.visible = false;
+      scope.posicion1 = {
+        'right' : '-305px'
+      };
+      scope.posicion2 = {
+        'right' : '0'
+      };
+      scope.posicionDerecha = scope.posicion1;
+      scope.mostrarMenu= function(){
+        if(scope.visible == true){
+          scope.posicionDerecha = scope.posicion1;
+          scope.visible = false;
+        }
+        else{
+          scope.posicionDerecha = scope.posicion2
+          scope.visible = true;
+        }
+      };
+    }
+  }
+});
+app.directive('mzMenuDiv', function(){
+  return {
+    restrict: 'C',
+    require: '^mzMenu',
+    scope: false,
+    replace: true,
+    transclude: true,
+    template: '<div ng-style="posicionDerecha" off-click="mostrarMenu()"' +
+                'off-click-filter="#{$filterId$}" off-click-if="visible" ng-transclude>' +
+                '</div>'
+  }
 });'use strict';
 
 /**
@@ -329,12 +369,12 @@ app.controller('formularioRegistroCtrl', ['$scope', function($scope){
 }]);
 /**
  * @ngdoc function
- * @name mozArtApp.controller:menuDerechoCtrl
+ * @name mozArtApp.controller:menuCtrl
  * @description
- * # menuDerechoCtrl
+ * # menuCtrl
  * Controller of the mozArtApp
  */
-app.controller('menuDerechoCtrl', ['$scope', function($scope){
+app.controller('menuCtrl', ['$scope', function($scope){
   $scope.visible = false;
   $scope.posicion1 = {
     'right' : '-305px'
@@ -350,36 +390,6 @@ app.controller('menuDerechoCtrl', ['$scope', function($scope){
     }
     else{
       $scope.posicionDerecha = $scope.posicion2
-      $scope.visible = true;
-    }
-  };
-}]);
-'use strict';
-
-/**
- * @ngdoc function
- * @name mozArtApp.controller:menuIzquierdoCtrl
- * @description
- * # menuIzquierdoCtrl
- * Controller of the mozArtApp
- */
-
-app.controller('menuIzquierdoCtrl', ['$scope', function($scope){
-  $scope.visible = false;
-  $scope.posicion1 = {
-    'left' : '-305px'
-  };
-  $scope.posicion2 = {
-    'left' : '0'
-  };
-  $scope.posicionIzquierda = $scope.posicion1;
-  $scope.mostrarMenu= function(){
-    if($scope.visible == true){
-      $scope.posicionIzquierda = $scope.posicion1;
-      $scope.visible = false;
-    }
-    else{
-      $scope.posicionIzquierda = $scope.posicion2
       $scope.visible = true;
     }
   };

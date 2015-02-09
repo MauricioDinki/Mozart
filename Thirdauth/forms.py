@@ -11,9 +11,11 @@ class LoginForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
     scope_prefix='login'
     form_name='loginform'
 
-    email = forms.EmailField(
+    username = forms.CharField(
+        min_length=5,
+        max_length=20,
         required=True,
-        widget=forms.EmailInput(attrs={'class':'cuadrotexto mz-field', 'placeholder':'Escribe tu email'}),
+        widget=forms.TextInput(attrs={'class':'cuadrotexto mz-field', 'placeholder':'Escribe tu nickname'}),
     )
 
     password = forms.CharField(
@@ -49,7 +51,9 @@ class LoginForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
                 raise forms.ValidationError(custom_error_messages['inactive'])
         return self.cleaned_data
 
-class RegisterForm(forms.Form):
+class RegisterForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
+    scope_prefix='register'
+    form_name='registerform'
 
     day_of_birth = forms.ChoiceField(
         error_messages={

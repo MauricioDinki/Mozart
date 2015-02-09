@@ -217,13 +217,12 @@ body
 
 #cuadro-busqueda
 	position absolute
-	left 250px
+	left 220px
 	right 90px
 
 	.contenedor
 		margin 0 auto
 		position relative
-		width 82%
 
 		button
 			font-size 28px
@@ -383,7 +382,7 @@ header
 
 	#mozart-logo
 		float left
-		margin 6px 0 0 80px
+		margin 6px 0 0 50px
 
 		img
 			height 25px
@@ -542,13 +541,16 @@ h4
 		margin-top 2px
 		padding 3px
 
-#menu-mozart
-	float left
+.menu-bloques
+	display block
+	height auto
+	margin 0
+	padding 0
+	position relative
+	text-align left
 
-	div
-		transition left 0.2s
-
-.menu-superior
+#menu-usuario
+	float right
 	margin 0
 	padding 0
 
@@ -564,18 +566,8 @@ h4
 		overflow auto !important
 		padding 0
 		width 300px
-
-.menu-bloques
-	display block
-	height auto
-	margin 0
-	padding 0
-	position relative
-	text-align left
-
-#menu-usuario
-	float right
-
+		transition right 0.2s
+			
 	figure
 		display inline-block
 		margin 0
@@ -593,12 +585,12 @@ h4
 
 			&:hover
 				border 1px solid azul_sitio
-
-	div
-		transition right 0.2s
-
-		ul
-			margin-bottom 50px
+				
+	hr
+		background azul_sitio
+		border none
+		height 2px
+		margin 0
 
 .opcion-menu
 	background #ededed
@@ -936,11 +928,8 @@ textarea
 			position relative
 
 	#cuadro-busqueda
-		left 50px
+		left 0px
 		right 80px
-
-		div
-			width 100%
 
 	#informacion, #configuraciones
 		width 64%
@@ -948,7 +937,7 @@ textarea
 		.bloque
 			width 100%
 
-	header #mozart-logo
+	header #mozart-logo img
 		display none
 
 	#section-general .formulario
