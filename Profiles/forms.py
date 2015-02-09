@@ -13,7 +13,7 @@ class UserInformationForm(forms.Form):
 	username = forms.CharField(
 		error_messages=default_error_messages,
 		max_length=30,
-		required=False,
+		required=True,
 		widget=forms.TextInput(attrs = {'class':'form-control col-xs-4','placeholder':'Username'})
 	)
 
@@ -115,7 +115,24 @@ class UserInformationForm(forms.Form):
 	def __init__(self, *args, **kwargs):
 		self.request = kwargs.pop('request', None)
 		self.user_cache = None
+		self.same_username = False
 		super(UserInformationForm, self).__init__(*args, **kwargs)
+
+
+	def clean_username(self):
+		username = self.cleaned_data.get('username')
+		lower_username = username.lower()
+		validate_null(username)
+		if lower_username == self.request.user.username.lower():
+			self.same_username = True
+			return username
+		else:
+			self.same_username = False
+			try:
+				user = User.objects.get(username = username)
+			except User.DoesNotExist:
+				return username
+			raise forms.ValidationError(custom_error_messages['user_exist'],)
 
 	def clean_first_name(self):
 		first_name = self.cleaned_data.get('first_name')
@@ -182,6 +199,7 @@ class UserInformationForm(forms.Form):
 			return self.cleaned_data
 
 	def save(self):
+		username = self.cleaned_data.get('username')
 		first_name = self.cleaned_data.get('first_name')
 		last_name = self.cleaned_data.get('last_name')
 		nationality = self.cleaned_data.get('nationality')
@@ -192,9 +210,14 @@ class UserInformationForm(forms.Form):
 		city = self.cleaned_data.get('city')
 		zip_code = self.cleaned_data.get('zip_code')
 		neighborhood = self.cleaned_data.get('neighborhood')
+		same_username = self.same_username
 
 		user_to_change =  self.request.user
 
+		if not same_username:
+			user_to_change.username = username
+			print "Se cambio el username"
+			
 		user_to_change.first_name = first_name
 		user_to_change.last_name = last_name
 		user_to_change.save()
@@ -216,6 +239,7 @@ class UserInformationForm(forms.Form):
 		user_to_change.adress.zip_code = zip_code
 		user_to_change.adress.neighborhood = neighborhood
 		user_to_change.adress.save()
+
 
 class ChangePasswordForm(forms.Form):
 	old_password = forms.CharField(
