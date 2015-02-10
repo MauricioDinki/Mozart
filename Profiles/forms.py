@@ -4,8 +4,7 @@ from .models import Mozart_User
 from django import forms
 from django.contrib.auth import authenticate
 from django_countries import countries
-from Profiles.models import days,months,type_of_users,sexuality,Mozart_User,Date_of_Birth
-from Thirdauth.forms import RegisterForm
+from Profiles.models import Mozart_User
 from Thirdauth.validations import *
 
 class UserInformationForm(forms.Form):
