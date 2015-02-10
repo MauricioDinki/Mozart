@@ -1,10 +1,11 @@
 # -*- encoding: utf-8 -*-
 
-from .views import WorkListView, WorkDetailView, HomeView
+from .views import WorkListView, WorkDetailView, HomeView,UploadWorkView
 from django.conf.urls import patterns, url,include
 
 urlpatterns = patterns('',
 	url(r'^$', HomeView.as_view(), name='index',),
+	url(r'^create/work$', UploadWorkView.as_view(), name='create_work'),
 	url(r'^explore/$', WorkListView.as_view(), name='work_list'),
 	url(r'^explore/(?P<category>[\w\-]+)/$', WorkListView.as_view(), name='work_list_category'),
 	url(r'^(?P<username>[\w\-]+)/works/$', WorkListView.as_view(), name='work_user_list'),

@@ -10,7 +10,7 @@ def archive_url(self,filename):
 def cover_url(self,filename):
 	return str('covers/%s/%s')%(self.user.username,filename)
 
-categorias = (
+category = (
 	('dibujo-pintura','Dibujo/Pintura'),
 	('fotografia-filme','Fotografia/Filme'),
 	('teatro-literatura','Teatro/Literatura'),
@@ -23,7 +23,7 @@ categorias = (
 class Work(models.Model):
 	user = models.ForeignKey(User)
 	title = models.CharField(blank=False,null=False, max_length=50,unique=True)
-	category = models.CharField(blank=False,null=False, max_length=50,choices=categorias)
+	category = models.CharField(blank=False,null=False, max_length=50,choices=category)
 	date = models.DateField(blank=False,null=False,auto_now_add=True)
 	cover = ImageField(null=False,blank=False,upload_to=cover_url)
 	archive = models.FileField(blank=True,null=True,upload_to=archive_url)

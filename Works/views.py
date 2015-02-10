@@ -3,8 +3,16 @@
 from .models import Work
 from django.http import JsonResponse
 from django.shortcuts import render,get_list_or_404,redirect
-from django.views.generic import ListView,DetailView,TemplateView
+from django.views.generic import ListView,DetailView,TemplateView,FormView
 from Thirdauth.mixins import AuthRedirectMixin
+from .forms import UploadWorkForm
+
+class HomeView(AuthRedirectMixin,TemplateView):
+    template_name = "index.html"
+
+class UploadWorkView(FormView):
+	template_name = 'work-form.html'
+	form_class = UploadWorkForm
 
 class WorkListView(TemplateView):
     template_name = "explore.html"
@@ -26,7 +34,5 @@ class WorkDetailView(DetailView):
 		}]
 		return JsonResponse(data,safe=False)
 
-# Vista Para el Home
 
-class HomeView(AuthRedirectMixin,TemplateView):
-    template_name = "index.html"
+
