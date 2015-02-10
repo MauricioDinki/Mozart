@@ -4,11 +4,17 @@ from .models import Mozart_User
 from django import forms
 from django.contrib.auth import authenticate
 from django_countries import countries
-from Profiles.models import days,months,type_of_users,sexuality,Mozart_User,Date_of_Birth
-from Thirdauth.forms import RegisterForm
+from Profiles.models import Mozart_User
 from Thirdauth.validations import *
 
 class UserInformationForm(forms.Form):
+
+	username = forms.CharField(
+		error_messages=default_error_messages,
+		max_length=30,
+		required=True,
+		widget=forms.TextInput(attrs = {'class':'form-control col-xs-4','placeholder':'Username'})
+	)
 
 	first_name = forms.CharField(
 		error_messages=default_error_messages,
@@ -24,6 +30,16 @@ class UserInformationForm(forms.Form):
 		widget=forms.TextInput(attrs = {'class':'form-control','placeholder':'Apellido(s)'})
 	)
 	
+	profile_picture = forms.ImageField(
+		error_messages={
+			'invalid_image':('Selecciona un archivo de imagen valido'),
+			'required':default_error_messages['required'],
+
+		},
+		required=False,
+		widget=forms.FileInput(attrs = {'class':'form-control'}),
+	)
+
 	nationality = forms.ChoiceField(
 		choices=countries,
 		error_messages={
@@ -42,14 +58,20 @@ class UserInformationForm(forms.Form):
 	)
 
 	personal_homepage = forms.URLField(
-		error_messages=default_error_messages,
+		error_messages={
+            'invalid':('Ingresa una url valida'),
+            'required': default_error_messages['required']
+        },
 		required=False,
 		max_length=30,
 		widget=forms.URLInput(attrs={'class':'form-control','placeholder':'Pagina Personal',})
 	)
 
 	phone_number = forms.IntegerField(
-		error_messages=default_error_messages,
+		error_messages={
+			'invalid':('Ingresa un numero valido'),
+			'required':default_error_messages['required']
+		},
 		required=False,
 		widget=forms.NumberInput(attrs={'class':'form-control','placeholder':'Numero Telefonico',})
 	)
@@ -92,7 +114,24 @@ class UserInformationForm(forms.Form):
 	def __init__(self, *args, **kwargs):
 		self.request = kwargs.pop('request', None)
 		self.user_cache = None
+		self.same_username = False
 		super(UserInformationForm, self).__init__(*args, **kwargs)
+
+
+	def clean_username(self):
+		username = self.cleaned_data.get('username')
+		lower_username = username.lower()
+		validate_null(username)
+		if lower_username == self.request.user.username.lower():
+			self.same_username = True
+			return username
+		else:
+			self.same_username = False
+			try:
+				user = User.objects.get(username = username)
+			except User.DoesNotExist:
+				return username
+			raise forms.ValidationError(custom_error_messages['user_exist'],)
 
 	def clean_first_name(self):
 		first_name = self.cleaned_data.get('first_name')
@@ -159,6 +198,7 @@ class UserInformationForm(forms.Form):
 			return self.cleaned_data
 
 	def save(self):
+		username = self.cleaned_data.get('username')
 		first_name = self.cleaned_data.get('first_name')
 		last_name = self.cleaned_data.get('last_name')
 		nationality = self.cleaned_data.get('nationality')
@@ -169,15 +209,24 @@ class UserInformationForm(forms.Form):
 		city = self.cleaned_data.get('city')
 		zip_code = self.cleaned_data.get('zip_code')
 		neighborhood = self.cleaned_data.get('neighborhood')
+		same_username = self.same_username
 
 		user_to_change =  self.request.user
 
+		if not same_username:
+			user_to_change.username = username
+			print "Se cambio el username"
+			
 		user_to_change.first_name = first_name
 		user_to_change.last_name = last_name
 		user_to_change.save()
 
 		user_to_change.mozart_user.nationality = nationality
 		user_to_change.mozart_user.description = description
+
+		if self.request.FILES.get('profile_picture',False):
+			user_to_change.mozart_user.profile_picture = self.request.FILES['profile_picture']
+
 		user_to_change.mozart_user.save()
 		
 		user_to_change.contact.personal_homepage = personal_homepage
@@ -190,3 +239,67 @@ class UserInformationForm(forms.Form):
 		user_to_change.adress.neighborhood = neighborhood
 		user_to_change.adress.save()
 
+
+class ChangePasswordForm(forms.Form):
+	old_password = forms.CharField(
+		error_messages=default_error_messages,
+		required=True,
+		# min_length=8,
+		widget=forms.PasswordInput(attrs={'class':'form-control','placeholder':'Contraseña Actual'}),
+	)
+
+	new_password_1 = forms.CharField(
+		error_messages=default_error_messages,
+		required=True,
+		# min_length=8,
+		widget=forms.PasswordInput(attrs={'class':'form-control','placeholder':'Nueva Contraseña'}),
+	)
+
+	new_password_2 = forms.CharField(
+		error_messages=default_error_messages,
+		required=True,
+		# min_length=8,
+		widget=forms.PasswordInput(attrs={'class':'form-control','placeholder':'Confirmar Contraseña'}),
+	)
+
+	def __init__(self, *args, **kwargs):
+		self.request = kwargs.pop('request', None)
+		self.user_cache = None
+		super(ChangePasswordForm, self).__init__(*args, **kwargs)
+
+
+	def clean_old_password(self):
+		old_password = self.cleaned_data.get('old_password')
+		validate_null(old_password)
+		return old_password
+
+	def clean_new_password_1(self):
+		new_password_1 = self.cleaned_data.get('new_password_1')
+		validate_null(new_password_1)
+		return new_password_1
+
+	def clean_new_password_2(self):
+		new_password_1 = self.cleaned_data.get('new_password_1')
+		new_password_2 = self.cleaned_data.get("new_password_2")
+		validate_password(new_password_1,new_password_2)
+		return new_password_1 and new_password_2
+
+	def clean(self):
+		password = self.cleaned_data.get('old_password')
+		username = self.request.user.username
+		self.user_cache = authenticate(username=username, password=password)
+		if self.user_cache is None:
+		    raise forms.ValidationError(custom_error_messages['incorrect_password'],)
+		else:
+			return self.cleaned_data
+	
+	def save(self):
+		user_to_change = self.request.user
+		new_password = self.cleaned_data.get('new_password_2')
+		user_to_change.set_password(new_password)
+		user_to_change.save()
+
+
+
+
+    

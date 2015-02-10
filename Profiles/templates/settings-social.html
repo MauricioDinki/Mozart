@@ -37,7 +37,7 @@
 					{% endif %}
 				</div>
 				<div class="col-md-2">
-					<a class="btn btn-danger"href=" {% url 'delete_account' cuenta.provider cuenta.id %} ">Eliminar</a>
+					<a class="btn btn-danger"href=" {% url 'settings_social_delete' cuenta.provider cuenta.id %} ">Eliminar</a>
 				</div>
 			</div>
 		{% endfor %}
