@@ -1,11 +1,11 @@
 /**
  * @ngdoc function
- * @name mozArtApp.controller:menuDerechoCtrl
+ * @name mozArtApp.controller:menuCtrl
  * @description
- * # menuDerechoCtrl
+ * # menuCtrl
  * Controller of the mozArtApp
  */
-app.controller('menuDerechoCtrl', ['$scope', function($scope){
+app.controller('menuCtrl', ['$scope', function($scope){
   $scope.visible = false;
   $scope.posicion1 = {
     'right' : '-305px'

@@ -4,6 +4,7 @@ Works/migrations/
 Thirdauth/migrations/
 Profiles/migrations/
 entorno/
-Mozart/media
-Mozart/static/bower_components
+Mozart/media/
+Mozart/static/dist/bower_components/
+Mozart/static/node_modules/
 staticfiles/

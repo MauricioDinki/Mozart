@@ -3,7 +3,6 @@
 }
 a {
   color: #2474e0;
-  cursor: hand;
   cursor: pointer;
   text-decoration: none;
 }
@@ -124,11 +123,13 @@ a {
 body {
   background: #ededed;
   font-family: Lato;
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
 }
 .boton {
   border: none;
   cursor: pointer;
-  cursor: hand;
   color: #fff;
   font-weight: bold;
 }
@@ -165,7 +166,6 @@ body {
 }
 .boton-azul * {
   cursor: pointer;
-  cursor: hand;
 }
 .boton-azul input[type="file"] {
   height: 100%;
@@ -219,13 +219,12 @@ body {
 }
 #cuadro-busqueda {
   position: absolute;
-  left: 250px;
+  left: 220px;
   right: 90px;
 }
 #cuadro-busqueda .contenedor {
   margin: 0 auto;
   position: relative;
-  width: 82%;
 }
 #cuadro-busqueda .contenedor button {
   font-size: 28px;
@@ -385,7 +384,7 @@ header {
 }
 header #mozart-logo {
   float: left;
-  margin: 6px 0 0 80px;
+  margin: 6px 0 0 50px;
 }
 header #mozart-logo img {
   height: 25px;
@@ -548,17 +547,20 @@ h4 {
   margin-top: 2px;
   padding: 3px;
 }
-#menu-mozart {
-  float: left;
+.menu-bloques {
+  display: block;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  text-align: left;
 }
-#menu-mozart div {
-  transition: left 0.2s;
-}
-.menu-superior {
+#menu-usuario {
+  float: right;
   margin: 0;
   padding: 0;
 }
-.menu-superior div {
+#menu-usuario div {
   border-color: #2474e0;
   border-style: solid;
   border-width: 3px 0 0 0;
@@ -570,17 +572,7 @@ h4 {
   overflow: auto !important;
   padding: 0;
   width: 300px;
-}
-.menu-bloques {
-  display: block;
-  height: auto;
-  margin: 0;
-  padding: 0;
-  position: relative;
-  text-align: left;
-}
-#menu-usuario {
-  float: right;
+  transition: right 0.2s;
 }
 #menu-usuario figure {
   display: inline-block;
@@ -589,7 +581,6 @@ h4 {
 #menu-usuario figure img {
   border: 1px solid #ffa500;
   cursor: pointer;
-  cursor: hand;
   display: inline-block;
   height: 33px;
   margin: 2px 2px 0 0;
@@ -600,11 +591,11 @@ h4 {
 #menu-usuario figure img:hover {
   border: 1px solid #2474e0;
 }
-#menu-usuario div {
-  transition: right 0.2s;
-}
-#menu-usuario div ul {
-  margin-bottom: 50px;
+#menu-usuario hr {
+  background: #2474e0;
+  border: none;
+  height: 2px;
+  margin: 0;
 }
 .opcion-menu {
   background: #ededed;
@@ -957,11 +948,8 @@ textarea {
     position: relative;
   }
   #cuadro-busqueda {
-    left: 50px;
+    left: 0px;
     right: 80px;
-  }
-  #cuadro-busqueda div {
-    width: 100%;
   }
   #informacion,
   #configuraciones {
@@ -971,7 +959,7 @@ textarea {
   #configuraciones .bloque {
     width: 100%;
   }
-  header #mozart-logo {
+  header #mozart-logo img {
     display: none;
   }
   #section-general .formulario {
