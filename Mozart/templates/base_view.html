@@ -11,7 +11,7 @@
   <body ng-app="mozArtApp">
     <header>
       <figure id="mozart-logo" ng-click="ocultarMenus()">
-        <a href="/explorar"><img src="{% static "img/logo.png" %}" alt="mozArt"></a>
+        <a href="/explore"><img src="{% static "img/logo.png" %}" alt="mozArt"></a>
       </figure>
       <form id="cuadro-busqueda" ng-click="ocultarMenus()">
       <div class="contenedor">
@@ -30,7 +30,7 @@
       </figure>
       <div ng-style="posicionDerecha" off-click="mostrarMenu()" off-click-filter="#botonMenuDerecho" off-click-if="visible">
         <ul class="menu-bloques" ng-click="mostrarMenu()">
-          <li class="opcion-menu"><a class="iconos icono-explorar" href="/explorar">Explorar obras</a></li>
+          <li class="opcion-menu"><a class="iconos icono-explorar" href="/explore">Explorar obras</a></li>
           <li class="opcion-menu"><a href="/promotores" class="iconos icono-promotores">Promotores</a></li>
           <li class="opcion-menu"><a href="/recorrido" class="iconos icono-recorrido">Recorrido por mozArt</a></li>
           <hr/>
@@ -42,7 +42,7 @@
           <li class="opcion-menu"><a href="/logout" class="iconos icono-salir">Cerrar sesión</a></li>
           {% else %}
           <li class="opcion-menu"><a href="/login" class="iconos icono-login">Iniciar sesión</a></li>
-          <li class="opcion-menu"><a href="/registrarse" class="iconos icono-registro">Unirse a mozArt</a></li>
+          <li class="opcion-menu"><a href="/signup" class="iconos icono-registro">Unirse a mozArt</a></li>
           {% endif %}
           <hr/>
           <li class="opcion-menu"><a href="/aleatorio/obra" class="iconos icono-aleatorio">Obra aleatoria</a></li>

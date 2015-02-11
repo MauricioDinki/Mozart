@@ -5,6 +5,7 @@ from django import forms
 from djangular.forms import NgModelFormMixin, NgFormValidationMixin
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
+from datetime import date
 from Profiles.models import days,months,type_of_users,sexuality,Mozart_User,Date_of_Birth
 
 class LoginForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
@@ -52,8 +53,9 @@ class LoginForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
         return self.cleaned_data
 
 class RegisterForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
-    scope_prefix='register'
-    form_name='registerform'
+    scope_prefix='signup'
+    form_name='signupform'
+    this_year=date.today().year
 
     day_of_birth = forms.ChoiceField(
         error_messages={
@@ -62,7 +64,8 @@ class RegisterForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
         },
         required=True,
         choices=days,
-        widget=forms.Select(attrs={'class' : 'form-control',}),
+        initial='1',
+        widget=forms.Select(attrs={'class' : 'cuadrotexto mz-field', 'ng-change': 'validarFecha()'}),
     )
 
     email = forms.EmailField(
@@ -70,9 +73,8 @@ class RegisterForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
             'invalid':('Ingresa una cuenta de correo valida'),
             'required': default_error_messages['required']
         },
-        max_length=30,
         required=True,
-        widget=forms.EmailInput(attrs={'class' : 'form-control', 'placeholder':'Email'}),
+        widget=forms.EmailInput(attrs={'class' : 'cuadrotexto mz-field', 'placeholder':'Escribe tu email'}),
 
     )
 
@@ -83,21 +85,24 @@ class RegisterForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
         },
         required=True,
         choices=months,
-        widget=forms.Select(attrs={'class' : 'form-control',}),
+        initial='Enero',
+        widget=forms.Select(attrs={'class' : 'cuadrotexto mz-field', 'ng-change': 'validarFecha()'}),
     )
 
     password_1 = forms.CharField(
         error_messages=default_error_messages,
-        max_length=20,
+        min_length=8,
+        max_length=40,
         required=True,
-        widget=forms.PasswordInput(attrs={'class' : 'form-control','placeholder':'Password'}),
+        widget=forms.PasswordInput(attrs={'class' : 'cuadrotexto mz-field','placeholder':'Elije una contraseña'}),
     )
 
     password_2 = forms.CharField(
         error_messages=default_error_messages,
-        max_length=20,
+        min_length=8,
+        max_length=40,
         required=True,
-        widget=forms.PasswordInput(attrs={'class' : 'form-control','placeholder':'Confirmar Password'}),
+        widget=forms.PasswordInput(attrs={'class' : 'cuadrotexto mz-field','placeholder':'Vuelve a escribir tu contraseña', 'comparar':'signup.password_1'}),
     )
 
     type_of_user = forms.ChoiceField(
@@ -107,22 +112,23 @@ class RegisterForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
         },
         required=True,
         choices=type_of_users,
-        widget=forms.Select(attrs={'class' : 'form-control',}),
+        widget=forms.Select(attrs={'class' : 'cuadrotexto mz-field'}),
     )
 
     username = forms.CharField(
-        error_messages=default_error_messages,
+        error_messages=default_error_messages, 
+        min_length=5,
         max_length=20,
         required=True,
-        widget=forms.TextInput(attrs={'class' : 'form-control', 'placeholder':'Username'}),
+        widget=forms.TextInput(attrs={'class':'cuadrotexto mz-field', 'placeholder':'Escribe tu nickname'}),
     )
 
     year_of_birth = forms.IntegerField(
         error_messages=default_error_messages,
         required=True,
-        max_value=2015,
-        min_value=1905,
-        widget=forms.NumberInput(attrs={'class' : 'form-control', 'placeholder':'Año'}),
+        max_value=this_year - 18,
+        min_value=this_year - 100,
+        widget=forms.NumberInput(attrs={'class' : 'cuadrotexto mz-field', 'placeholder':'Año', 'ng-change':'validarFecha()', 'value': this_year - 25}),
     )
 
     def __init__(self, *args, **kwargs):

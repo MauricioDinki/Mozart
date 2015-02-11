@@ -62,9 +62,9 @@ sexuality = (
 	('Femenino', 'Femenino'),)
 
 type_of_users = (
-	('','Selecciona un tipo de usuario'),
-	('Promotor','Promotor'),
+	('','Seleccionar tipo de cuenta'),
 	('Artista','Artista'),
+	('Promotor','Promotor'),
 )
 
 def profile_picture_url(self,filename):
