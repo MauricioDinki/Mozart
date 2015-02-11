@@ -35,8 +35,10 @@
           <li class="opcion-menu"><a href="/recorrido" class="iconos icono-recorrido">Recorrido por mozArt</a></li>
           <hr/>
           {% if user.is_authenticated %}
+          {% if user.mozart_user.user_type == 'Artista' %}
           <li class="opcion-menu"><a  href="/crear" class="iconos icono-cargar">Crear obra</a>
           </li>
+          {% endif %}
           <li class="opcion-menu"><a href="/artista/0" class="iconos icono-perfil">Ver mi Perfil</a></li>
           <li class="opcion-menu"><a href="/panel/informacion" class="iconos icono-panel">Panel de usuario</a></li>
           <li class="opcion-menu"><a href="/logout" class="iconos icono-salir">Cerrar sesión</a></li>
