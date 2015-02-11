@@ -133,46 +133,6 @@ app.directive('mzField', function() {
     	});
     }
   };
-});
-app.directive('mzMenu', function(){
-  return {
-    restrict: 'A',
-    scope: {
-      filterId : '@imgId'
-    },
-    link: function(scope, elem, attrs, ctrl){
-      scope.visible = false;
-      scope.posicion1 = {
-        'right' : '-305px'
-      };
-      scope.posicion2 = {
-        'right' : '0'
-      };
-      scope.posicionDerecha = scope.posicion1;
-      scope.mostrarMenu= function(){
-        if(scope.visible == true){
-          scope.posicionDerecha = scope.posicion1;
-          scope.visible = false;
-        }
-        else{
-          scope.posicionDerecha = scope.posicion2
-          scope.visible = true;
-        }
-      };
-    }
-  }
-});
-app.directive('mzMenuDiv', function(){
-  return {
-    restrict: 'C',
-    require: '^mzMenu',
-    scope: false,
-    replace: true,
-    transclude: true,
-    template: '<div ng-style="posicionDerecha" off-click="mostrarMenu()"' +
-                'off-click-filter="#{$filterId$}" off-click-if="visible" ng-transclude>' +
-                '</div>'
-  }
 });'use strict';
 
 /**
