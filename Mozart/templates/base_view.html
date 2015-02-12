@@ -24,7 +24,9 @@
       </div>
     </form>
     <div id="menu-usuario" ng-controller="menuCtrl">
+      {% if user.is_authenticated %}
       <a class="cantidad" title="0 notificaciones" href="/panel/notificaciones"> 0 </a>
+      {% endif %}
       <figure id="botonMenuDerecho" ng-click="mostrarMenu()">
         <img class="redondo" src="{% static "img/default.png" %}"/>
       </figure>
