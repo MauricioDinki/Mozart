@@ -18,21 +18,21 @@ class WorkListView(TemplateView):
     template_name = "explore.html"
     model = Work
 
-class WorkDetailView(DetailView):
+# class WorkDetailView(DetailView):
 
-	model = Work
+# 	model = Work
 
-	def get(self, request, *args, **kwargs):
-		self.object = self.get_object()
-		data = [{
-			'user': self.object.user.username,
-			'title':self.object.title,
-			'category':self.object.category,
-			'date':self.object.date,
-			'cover':self.object.cover.url,
-			'archive':self.object.archive.url,
-		}]
-		return JsonResponse(data,safe=False)
+# 	def get(self, request, *args, **kwargs):
+# 		self.object = self.get_object()
+# 		data = [{
+# 			'user': self.object.user.username,
+# 			'title':self.object.title,
+# 			'category':self.object.category,
+# 			'date':self.object.date,
+# 			'cover':self.object.cover.url,
+# 			'archive':self.object.archive.url,
+# 		}]
+# 		return JsonResponse(data,safe=False)
 
 
 
