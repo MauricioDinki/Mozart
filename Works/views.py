@@ -11,7 +11,7 @@ class HomeView(AuthRedirectMixin,TemplateView):
     template_name = "index.html"
 
 class UploadWorkView(FormView):
-	template_name = 'work-form.html'
+	template_name = 'subirobra.html'
 	form_class = UploadWorkForm
 
 class WorkListView(TemplateView):

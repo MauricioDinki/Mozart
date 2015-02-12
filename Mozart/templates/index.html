@@ -1,8 +1,7 @@
 {% extends 'base_view.html' %}
 {% block title %}Bienvenido a mozArt{% endblock %}
 {% load static from staticfiles %}
-{% block content %}
-    <section id="bienvenida">
+{% block content %}<section id="bienvenida">
       <article class="recuadro">
         <img src="{% static "img/fondo1.jpg" %}"/>
         <div>
@@ -54,5 +53,4 @@
         </div>
       </article>
       <p>Todo esto, a unos cuantos clics de distancia.</p>
-    </section>
-{% endblock %}
+    </section>{% endblock %}

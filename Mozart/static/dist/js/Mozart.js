@@ -8,7 +8,7 @@
  *
  * Main module of the application.
  */
-var app = angular.module('mozArtApp', ['ngTagsInput', 'angularFileUpload', 'ng.django.forms']);
+var app = angular.module('mozArtApp', ['ng.django.forms']);
 
 app.config(['$interpolateProvider', '$httpProvider', function($interpolateProvider, $httpProvider){
   $interpolateProvider.startSymbol('{$');
@@ -17,6 +17,7 @@ app.config(['$interpolateProvider', '$httpProvider', function($interpolateProvid
 }]);
 app.directive('fileUpload', [function () {
 	return {
+    restrict: 'A',
 		scope: {
 			fileBind : '='
 		},
@@ -270,61 +271,17 @@ app.controller('errorCtrl', ['$scope', '$routeParams', 'peticionObras', function
  * Controller of the mozArtApp
  */
 //Aun falta agregar la peticion ajax para mostrar barra de progreso
-app.controller('formularioRegistroCtrl', ['$scope', function($scope){
+app.controller('formularioRegistroCtrl', ['$scope', 'validateAge', function($scope, validateAge){
   $scope.acepto = false;
   $scope.fechaValida = true;
-  $scope.mayorEdad = true;
-  $scope.nicknameValido = true;
-  $scope.nicknamePrueba = 'holi crayholi';
-  $scope.emailValido = true;
-  $scope.emailPrueba = 'aaa@aaa.com';
-  $scope.fecha_actual = new Date();
-  $scope.this_year = parseInt($scope.fecha_actual.getYear()) + 1900;
+  $scope.mensaje = true;
+  var month = 1;
   $scope.validarFecha = function(){
-    var date = new Date($scope.year,$scope.mes, '0');
-    var this_month = parseInt($scope.fecha_actual.getMonth() + 1);
-    var this_day = parseInt($scope.fecha_actual.getDate());
-    var resta_fechas = $scope.this_year - $scope.year;
-    if(($scope.dia-0)>(date.getDate()-0)){
-      $scope.fechaValida = false;
-    }
-    else{
-      $scope.fechaValida = true;
-    }
-    if(this_month < $scope.mes){
-      resta_fechas--;
-    }
-    if(($scope.mes == this_month) && (this_day < $scope.dia)){
-      resta_fechas--;
-    }
-    if(resta_fechas > 1900){
-      resta_fechas -= 1900;
-    }
-    if(resta_fechas >= 18){
-      $scope.mayorEdad = true;
-    }
-    else{
-      $scope.mayorEdad = false;
-    }
-  };
-  $scope.verificarNickname = function(){
-    if($scope.nickname == $scope.nicknamePrueba){
-      $scope.nicknameValido = false;
-    }
-    else{
-      $scope.nicknameValido = true;
-    }
-  };
-  $scope.verificarEmail = function(){
-    if($scope.email == $scope.emailPrueba){
-      $scope.emailValido = false;
-    }
-    else{
-      $scope.emailValido = true;
-    }
+    $scope.mensaje = validateAge.validDate($scope.signup.day_of_birth, $scope.signup.month_of_birth, $scope.signup.year_of_birth);
+    $scope.fechaValida = ($scope.mensaje === 'Ok');
   };
   $scope.validar = function(){
-    return !(!$scope.fechaValida || !$scope.mayorEdad || !$scope.emailValido || !$scope.nicknameValido || $scope.registro.$invalid);
+    return !(!$scope.fechaValida || $scope.signupform.$invalid);
   };
 }]);
 /**
@@ -418,8 +375,7 @@ app.controller('loginCtrl', ['$scope', function($scope){
  * Controller of the mozArtApp
  */
 
-//Aun falta agregar la peticion ajax para mostrar barra de progreso
-app.controller('subirObraCtrl', ['$scope', function($scope){
+app.controller('subirObraCtrl', ['$scope', 'validateFile', function($scope, validateFile){
   $scope.maxeti = 30;
   $scope.archivo = {
     name: ''
@@ -427,56 +383,51 @@ app.controller('subirObraCtrl', ['$scope', function($scope){
   $scope.portada = {
     name: ''
   };
-  $scope.formatoArchivo = '';
-  $scope.formatoPortada = '';
-  $scope.archivoImagen = true;
-  $scope.archivoValido = false;
-  $scope.portadaValida = false;
 
-  $scope.$on('archivoPrincipal', function (event, args) {
+  var archivoImagen = true;
+  var archivoValido = false;
+  var portadaValida = false;
+
+  $scope.mostrarTexto1 = function(){
+    return $scope.archivo.name != '';
+  };
+  $scope.mostrarTexto2 = function(){
+    return $scope.portada.name != '';
+  };
+  $scope.mostrarMensaje1 = function(){
+    return !(archivoValido || $scope.archivo.name == '');
+  };
+  $scope.mostrarMensaje2 = function(){
+    return !(portadaValida || $scope.portada.name == '');
+  };
+  $scope.mostrarBoton2 = function(){
+    return !(archivoImagen || !archivoValido);
+  };
+
+  $scope.$on('archive', function (event, args) {
     $scope.$apply(function () {
       $scope.archivo = args.file;
-      divisiones = $scope.archivo.name.split('.');
-      $scope.formatoArchivo = divisiones[divisiones.length - 1];
-      $scope.archivoValido = $scope.verificarFormato();
+      var formato = validateFile.getExtension($scope.archivo);
+      archivoImagen = validateFile.isAnImage(formato);
+      if(archivoImagen){
+        archivoValido = true;
+        portadaValida = true;
+      }
+      else{
+        archivoValido = validateFile.validateFormat(formato);
+        portadaValida = false;
+      }
     });
   });
-  $scope.$on('archivoPortada', function (event, args) {
+  $scope.$on('cover', function (event, args) {
     $scope.$apply(function () {
       $scope.portada = args.file;
-      divisiones = $scope.portada.name.split('.');
-      $scope.formatoPortada = divisiones[divisiones.length - 1];
-      $scope.portadaValida = $scope.verificarImagen($scope.formatoPortada);
+      var formato = validateFile.getExtension($scope.portada);
+      portadaValida = validateFile.isAnImage(formato);
     });
   });
-  $scope.verificarFormato = function(){
-    otrosFormatos = ['pdf', 'mp3', 'aac', 'wma', 'mp4', 'mpeg', 'avi', '3gp'];
-    $scope.archivoImagen = $scope.verificarImagen($scope.formatoArchivo);
-    if($scope.archivoImagen == true){
-      $scope.portadaValida = true;
-      return true;
-    }
-    else{
-      $scope.portadaValida = $scope.verificarImagen($scope.formatoPortada);
-      for(i = 0; i < otrosFormatos.length; i++){
-        if($scope.formatoArchivo == otrosFormatos[i]){
-          return true;
-        }
-      }
-    }
-    return false;
-  };
-  $scope.verificarImagen = function(formato){
-    formatosImagen = ['png', 'gif', 'jpg', 'jpeg', 'bmp', 'tiff'];
-    for(i = 0; i < formatosImagen.length; i++){
-      if(formato == formatosImagen[i]){
-        return true;
-      }
-    }
-    return false;
-  };
   $scope.validar = function(){
-    return !(!$scope.archivoValido || !$scope.portadaValida || $scope.subirobra.$invalid);
+    return !(!archivoValido || !portadaValida || $scope.workform.title.$invalid || $scope.workform.description.$invalid || $scope.workform.category.$invalid);
   };
 }]);
 'use strict';
@@ -527,3 +478,129 @@ app.service('peticionPromotores', ['$http',  function($http){
     });
   };
 }]);
+'use strict';
+
+/**
+ * @ngdoc function
+ * @name mozArtApp.service:validateFile
+ * @description
+ * # validateFile
+ * Service of the mozArtApp
+ */
+
+app.service('validateFile', function(){
+  this.getExtension = function(fileObject){
+    var divisions = fileObject.name.split('.');
+    var fileExtension = divisions[divisions.length -1];
+    return fileExtension;
+  };
+  this.validateFormat = function(fileExtension){
+    var validFormats = ['pdf', 'mp3', 'aac', 'wma', 'mp4', 'mpeg', 'avi', '3gp'];
+    for(var i = 0; i < validFormats.length; i++){
+      if(fileExtension == validFormats[i]){
+        return true;
+      }
+    }
+    return false;
+  };
+  this.isAnImage = function(fileExtension){
+    var imageFormats = ['png', 'gif', 'jpg', 'jpeg', 'bmp', 'tiff'];
+    for(var i = 0; i < imageFormats.length; i++){
+      if(fileExtension == imageFormats[i]){
+        return true;
+      }
+    }
+    return false;
+  };
+});'use strict';
+
+/**
+ * @ngdoc function
+ * @name mozArtApp.service:validateAge
+ * @description
+ * # validateAge
+ * Service of the mozArtApp
+ */
+
+app.service('validateAge', function(){
+  this.current_date = new Date();
+  this.current_year = parseInt(this.current_date.getYear()) + 1900;
+  this.current_month = parseInt(this.current_date.getMonth()) + 1;
+  this.current_day = parseInt(this.current_date.getDate());
+  this.validDate = function(day, monthName, year){
+    var month;
+    if(isNaN(monthName)){
+      month = this.getMonthNumber(monthName);
+    }
+    else{
+      month = monthName;
+    }
+    var newDate = new Date(year, month, '0');
+    if(!((day-0) > (newDate.getDate()-0))){
+      return this.validAge(day, month, year);
+    }
+    else{
+      return 'La fecha que introduciste no es valida.';
+    }
+  };
+  this.validAge = function(day, month, year){
+    var datesDifference = this.current_year - year;
+    if(this.current_month < month){
+      datesDifference--;
+    }
+    if((month === this.current_month) && (this.current_day < day)){
+      datesDifference--;
+    }
+    if(datesDifference > 1900){
+      datesDifference -= 1900;
+    }
+    if(datesDifference >= 18){
+      return 'Ok';
+    }
+    else{
+      return 'Lo sentimos, debes ser mayor de edad';
+    }
+  }
+  this.getMonthNumber = function(monthName){
+    if(monthName === 'Enero'){
+      return 1;
+    }
+    else if(monthName === 'Febrero'){
+      return 2;
+    }
+    else if(monthName === 'Marzo'){
+      return 3;
+    }
+    else if(monthName === 'Abril'){
+      return 4;
+    }
+    else if(monthName === 'Mayo'){
+      return 5;
+    }
+    else if(monthName === 'Junio'){
+      return 6;
+    }
+    else if(monthName === 'Julio'){
+      return 7;
+    }
+    else if(monthName === 'Agosto'){
+      return 8;
+    }
+    else if(monthName === 'Septiembre'){
+      return 9;
+    }
+    else if(monthName === 'Octubre'){
+      return 10;
+    }
+    else if(monthName === 'Noviembre'){
+      return 11;
+    }
+    else if(monthName === 'Diciembre'){
+      return 1;
+    }
+    else{
+      return 0;
+    }
+  };
+});
+

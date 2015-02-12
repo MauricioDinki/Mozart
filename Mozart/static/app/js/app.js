@@ -8,7 +8,7 @@
  *
  * Main module of the application.
  */
-var app = angular.module('mozArtApp', ['ngTagsInput', 'angularFileUpload', 'ng.django.forms']);
+var app = angular.module('mozArtApp', ['ng.django.forms']);
 
 app.config(['$interpolateProvider', '$httpProvider', function($interpolateProvider, $httpProvider){
   $interpolateProvider.startSymbol('{$');

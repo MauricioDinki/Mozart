@@ -137,6 +137,7 @@ body
 .boton[disabled="disabled"]
 	background #ddd
 	color #aaa
+	cursor default
 
 .boton-busqueda
 	background none
@@ -255,11 +256,6 @@ body
 				display block
 				overflow hidden
 				padding 3px
-.caja
-	height 150px
-	line-height 21px
-	padding 10px
-	resize none
 
 .cantidad
 	background azul_sitio
@@ -778,7 +774,11 @@ a.autor-obra, .autor-obra a, a.titulo-obra
 textarea
 	min-height 140px
 	resize none
-
+	
+textarea.un-cuadro
+	margin 0 auto
+	width 63%
+	
 .thumbnail-obra
 	 //Esta parte se va a editar
 	background-position center !important
@@ -942,8 +942,11 @@ textarea
 
 	#section-general .formulario
 		width 90%
+	
+	textarea.un-cuadro
+		width 88%
 
-	.un-cuadro, .doble-cuadro, .triple-cuadro
+	div.un-cuadro, div.doble-cuadro, div.triple-cuadro
 		display block
 		width 98%
 

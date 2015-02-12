@@ -11,6 +11,7 @@ def cover_url(self,filename):
 	return str('covers/%s/%s')%(self.user.username,filename)
 
 category = (
+	('','Selecciona la categoría'),
 	('dibujo-pintura','Dibujo/Pintura'),
 	('fotografia-filme','Fotografia/Filme'),
 	('teatro-literatura','Teatro/Literatura'),
