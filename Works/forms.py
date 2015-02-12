@@ -24,11 +24,11 @@ class UploadWorkForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
 		widget=forms.Select(attrs={'class':'cuadrotexto mz-field'}),
 	)
 	archive = forms.FileField(
-		required=False,
+		required=True,
 		widget=forms.FileInput(attrs={'file-upload':'', 'file-bind':'\'archive\''}),
 	)
 	cover = forms.ImageField(
-		required=False,
+		required=True,
 		widget=forms.FileInput(attrs={'file-upload':'', 'file-bind':'\'cover\'', 'accept':'image/*'}),
 	)
 

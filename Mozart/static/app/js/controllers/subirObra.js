@@ -60,6 +60,6 @@ app.controller('subirObraCtrl', ['$scope', 'validateFile', function($scope, vali
     });
   });
   $scope.validar = function(){
-    return !(!archivoValido || !portadaValida || $scope.workform.$invalid);
+    return !(!archivoValido || !portadaValida || $scope.workform.title.$invalid || $scope.workform.description.$invalid || $scope.workform.category.$invalid);
   };
 }]);
