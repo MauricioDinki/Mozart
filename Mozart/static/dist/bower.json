@@ -17,6 +17,7 @@
     "jquery": "~2.1.1",
     "underscore": "~1.7.0",
     "ng-tags-input": "~2.1.1",
-    "ng-file-upload": "~3.0.1"
+    "ng-file-upload": "~3.0.1",
+    "bootstrap": "~3.3.2"
   }
 }
