@@ -12,7 +12,7 @@ app.service('validateFile', function(){
   this.getExtension = function(fileObject){
     var divisions = fileObject.name.split('.');
     var fileExtension = divisions[divisions.length -1];
-    return fileExtension;
+    return fileExtension.toLowerCase();
   };
   this.validateFormat = function(fileExtension){
     var validFormats = ['pdf', 'mp3', 'aac', 'wma', 'mp4', 'mpeg', 'avi', '3gp'];
