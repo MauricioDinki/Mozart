@@ -3,12 +3,12 @@
 from .models import Mozart_User
 from django import forms
 from django.contrib.auth import authenticate
+from djangular.forms import NgModelFormMixin, NgFormValidationMixin
 from django_countries import countries
 from Profiles.models import Mozart_User
 from Thirdauth.validations import *
 
-class UserInformationForm(forms.Form):
-
+class UserInformationForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
 	username = forms.CharField(
 		error_messages=default_error_messages,
 		max_length=30,
@@ -240,26 +240,32 @@ class UserInformationForm(forms.Form):
 		user_to_change.adress.save()
 
 
-class ChangePasswordForm(forms.Form):
+class ChangePasswordForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
+	scope_prefix='changePassword'
+	form_name='passwordform'
+
 	old_password = forms.CharField(
 		error_messages=default_error_messages,
 		required=True,
-		# min_length=8,
-		widget=forms.PasswordInput(attrs={'class':'form-control','placeholder':'Contraseña Actual'}),
+        min_length=6,
+        max_length=40,
+		widget=forms.PasswordInput(attrs={'class':'cuadrotexto mz-field','placeholder':'Escribe tu contraseña actual'}),
 	)
 
 	new_password_1 = forms.CharField(
 		error_messages=default_error_messages,
 		required=True,
-		# min_length=8,
-		widget=forms.PasswordInput(attrs={'class':'form-control','placeholder':'Nueva Contraseña'}),
+        min_length=6,
+        max_length=40,
+		widget=forms.PasswordInput(attrs={'class':'cuadrotexto mz-field','placeholder':'Escribe tu nueva contraseña'}),
 	)
 
 	new_password_2 = forms.CharField(
 		error_messages=default_error_messages,
 		required=True,
-		# min_length=8,
-		widget=forms.PasswordInput(attrs={'class':'form-control','placeholder':'Confirmar Contraseña'}),
+        min_length=6,
+        max_length=40,
+		widget=forms.PasswordInput(attrs={'class':'cuadrotexto mz-field','placeholder':'Vuelve a escribir tu nueva contraseña', 'comparar':'changePassword.new_password_1'}),
 	)
 
 	def __init__(self, *args, **kwargs):
