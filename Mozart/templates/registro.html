@@ -1,6 +1,6 @@
 {% extends 'base_view.html' %}
-{% block title %}Registro - mozArt{% endblock %}{% block content %}
-    <section id="section-general" ng-controller="formularioRegistroCtrl">
+{% block title %}Registro - mozArt{% endblock %}
+{% block content %}<section id="section-general" ng-controller="formularioRegistroCtrl">
       <div class="formulario">
         <h2>Formulario de registro</h2>
         <form action="" method="post" id="id_signupform" name="{{form.form_name}}" novalidate>
@@ -45,5 +45,4 @@
           <button type="submit" class="boton boton-verde" name="Enviar" ng-disabled="!validar()">Registrarse</button>
         </form>
       </div>
-    </section>
-{% endblock %}
+    </section>{% endblock %}

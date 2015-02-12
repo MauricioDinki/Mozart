@@ -1,49 +1,45 @@
-{% extends 'base_view.html' %}
-{% block title %}Registro - mozArt{% endblock %}{% block content %}
-    <section id="section-general" ng-controller="formularioRegistroCtrl">
+{% extends 'base_view.html'%}
+{% block title %}Crear Obra - mozArt{% endblock %}
+{% block content %}<section id="section-general" ng-controller="subirObraCtrl">
       <div class="formulario">
-        <h2>Formulario de registro</h2>
-        <form action="" method="post" id="id_signupform" name="{{form.form_name}}" novalidate>
+        <h2>Crear obra</h2>
+        <form action="" method="post" enctype="multipart/form-data" id="id_workform" name="{{form.form_name}}" novalidate>
           {% csrf_token %}
-          <a href="/cuentas">Conoce más sobre los tipos de cuenta</a>
           <div class="un-cuadro s-mzfield">
-            <label for="id_type_of_user" class="etiqueta-input">Tipo</label>
-            {{form.type_of_user}}
+            <label for="id_title" class="etiqueta-input">Título</label>
+            {{form.title}}
           </div>
+            <label for="id_description">Descripción de la obra</label><br/>
+            {{form.description}}
           <div class="un-cuadro s-mzfield">
-            <label for="id_email" class="etiqueta-input">Email</label>
-            {{form.email}}
+            <label for="id_category" class="etiqueta-input">Categoría</label>
+            {{form.category}}
           </div>
-          <div class="un-cuadro s-mzfield">
-            <label for="id_username" class="etiqueta-input">Nickname</label>
-            {{form.username}}
+          <div class="boton boton-azul">
+            <span>Seleccionar archivo</span>
+            {{form.archive}}
+          </div><br/>
+          <div ng-show="mostrarTexto1()">
+            <strong>Archivo seleccionado: </strong>
+            <span ng-bind="archivo.name"></span>
           </div>
-          <div class="un-cuadro s-mzfield">
-            <label for="id_password_1" class="etiqueta-input">Password</label>
-            {{form.password_1}}
+          <div class="aviso-error" ng-show="mostrarMensaje1()">
+            El archivo que seleccionaste no es soportado por mozArt.
           </div>
-          <div class="un-cuadro s-mzfield">
-            <label for="id_password_2" class="etiqueta-input">Verificación</label>
-            {{form.password_2}}
+          <div ng-show="mostrarBoton2()">
+            <div class="boton boton-azul">
+              <span>Seleccionar portada</span>
+              {{form.cover}}
+            </div>
+            <div ng-show="mostrarTexto2()">
+              <strong>Imagen de portada seleccionada: </strong>
+              <span ng-bind="portada.name"></span>
+            </div>
+            <div class="aviso-error" ng-show="mostrarMensaje2()">
+              El archivo que seleccionaste no es un archivo de imagen valido.
+            </div>
           </div>
-          <div class="aviso-error" ng-show="signupform.password_2.$error.noIguales && signupform.password_2.$dirty">La contraseña no coincide.</div>
-          Fecha de nacimiento<br/>
-          <div class="triple-cuadro iblock">
-            <label for="id_day_of_birth" class="etiqueta-input">Día</label>
-            {{form.day_of_birth}}
-          </div>
-          <div class="triple-cuadro iblock">
-            <label for="id_month_of_birth" class="etiqueta-input">Mes</label>
-            {{form.month_of_birth}}
-          </div>
-          <div class="triple-cuadro iblock">
-            <label for="id_year_of_birth" class="etiqueta-input">Año</label>
-            {{form.year_of_birth}}
-          </div>
-          <div class="aviso-error" ng-hide="fechaValida">{$mensaje$}</div>
-          <p><input type="checkbox" name="acepto" ng-model="acepto" required/>Acepto ser <a href="#" title="¿Por qué?">mayor de edad</a>, además de haber leído y estar de acuerdo con las <a href="#">Políticas, terminos y condiciones</a> de mozArt.</p>
-          <button type="submit" class="boton boton-verde" name="Enviar" ng-disabled="!validar()">Registrarse</button>
+          <button class="boton boton-verde" type="submit" ng-disabled="!validar()" name="Subir obra">Subir obra</button>
         </form>
       </div>
-    </section>
-{% endblock %}
+    </section>{% endblock %}

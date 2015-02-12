@@ -1,6 +1,6 @@
 {% extends 'base_view.html' %}
-{% block title %}Login - mozArt{% endblock %}{% block content %}
-    <section id="section-general">
+{% block title %}Login - mozArt{% endblock %}
+{% block content %}<section id="section-general">
       <div class="formulario">
         <h2>Inicia sesión con tu correo electrónico</h2>
         <form action="" method="post" id="id_loginform" name="{{form.form_name}}" novalidate>
@@ -23,6 +23,5 @@
           <a class="iconos icono-google" href="{% url 'social:begin' 'google-oauth2' %}">Iniciar sesión con Google</a>
         </div>
       </div>
-    </section>
-{% endblock %}
+    </section>{% endblock %}
   

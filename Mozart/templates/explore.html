@@ -1,7 +1,6 @@
 {% extends 'base_view.html' %}
 {% block title %}Explorar - mozArt{% endblock %}
-{% block content %}
-  	<nav id="barra-categorias">
+{% block content %}<nav id="barra-categorias">
     	<ul class="categorias">
         <li><a href="/explorar/" class="iconos icono-todas" title="Todas las categorías"></a></li>
         <li><a href="/explorar/dyp" class="iconos icono-dyp" title="Dibujo y pintura"></a</li>
@@ -23,5 +22,4 @@
         <span class="autor-obra">por <a ng-href=" {$ obra.url $} " ng-bind="obra.slug"></a></span> el <span class="fecha-obra" ng-bind="obra.date"></span>
       </article><br/>
       <button class="boton boton-verde cargar-mas" ng-click="cargar(cantidad)">Cargar más obras</button>
-    </section>
-{% endblock %}
+    </section>{% endblock %}

@@ -1,5 +1,6 @@
 app.directive('fileUpload', [function () {
 	return {
+    restrict: 'A',
 		scope: {
 			fileBind : '='
 		},

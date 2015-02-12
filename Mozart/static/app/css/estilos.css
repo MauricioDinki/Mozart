@@ -140,6 +140,7 @@ body {
 .boton[disabled="disabled"] {
   background: #ddd;
   color: #aaa;
+  cursor: default;
 }
 .boton-busqueda {
   background: none;
@@ -257,12 +258,6 @@ body {
   display: block;
   overflow: hidden;
   padding: 3px;
-}
-.caja {
-  height: 150px;
-  line-height: 21px;
-  padding: 10px;
-  resize: none;
 }
 .cantidad {
   background: #2474e0;
@@ -798,6 +793,10 @@ textarea {
   min-height: 140px;
   resize: none;
 }
+textarea.un-cuadro {
+  margin: 0 auto;
+  width: 63%;
+}
 .thumbnail-obra {
   background-position: center !important;
   background-repeat: no-repeat !important;
@@ -965,9 +964,12 @@ textarea {
   #section-general .formulario {
     width: 90%;
   }
-  .un-cuadro,
-  .doble-cuadro,
-  .triple-cuadro {
+  textarea.un-cuadro {
+    width: 88%;
+  }
+  div.un-cuadro,
+  div.doble-cuadro,
+  div.triple-cuadro {
     display: block;
     width: 98%;
   }
