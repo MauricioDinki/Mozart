@@ -21,13 +21,19 @@ module.exports = function(grunt) {
         dest: 'dist/js/<%= pkg.name %>.js'  
       }
     },
+    bower_concat: {
+      all: {
+        dest: 'dist/js/bower.js'
+      }
+    },
     uglify: {
       options: {
         banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n' 
       },
       dist: {
         files: {
-          'dist/js/<%= pkg.name %>.min.js': ['<%= concat.basic.dest %>']
+          'dist/js/<%= pkg.name %>.min.js': ['<%= concat.basic.dest %>'],
+          'dist/js/bower.min.js': ['<%= bower_concat.all.dest %>']
         }
       }
     },
@@ -66,10 +72,11 @@ module.exports = function(grunt) {
     }
   });
   grunt.loadNpmTasks('grunt-contrib-stylus');
+  grunt.loadNpmTasks('grunt-bower-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.registerTask('default', ['stylus', 'concat','uglify', 'cssmin','copy']);
+  grunt.registerTask('default', ['stylus', 'concat','bower_concat','uglify', 'cssmin','copy']);
   grunt.registerTask('onlyConcat', ['concat']);
 };
