@@ -6,11 +6,12 @@ from django.shortcuts import render,get_list_or_404,redirect
 from django.views.generic import ListView,DetailView,TemplateView,FormView
 from Thirdauth.mixins import AuthRedirectMixin
 from .forms import UploadWorkForm
+from Profiles.mixins import RequestFormMixin
 
 class HomeView(AuthRedirectMixin,TemplateView):
     template_name = "index.html"
 
-class UploadWorkView(FormView):
+class UploadWorkView(RequestFormMixin,FormView):
 	template_name = 'subirobra.html'
 	form_class = UploadWorkForm
 

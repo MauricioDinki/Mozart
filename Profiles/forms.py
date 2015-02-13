@@ -120,7 +120,6 @@ class UserInformationForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
 		self.same_username = False
 		super(UserInformationForm, self).__init__(*args, **kwargs)
 
-
 	def clean_username(self):
 		username = self.cleaned_data.get('username')
 		lower_username = username.lower()

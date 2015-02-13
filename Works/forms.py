@@ -28,7 +28,15 @@ class UploadWorkForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
 		widget=forms.FileInput(attrs={'file-upload':'', 'file-bind':'\'archive\''}),
 	)
 	cover = forms.ImageField(
-		required=True,
+		required=False,
 		widget=forms.FileInput(attrs={'file-upload':'', 'file-bind':'\'cover\'', 'accept':'image/*'}),
 	)
+
+	def __init__(self, *args, **kwargs):
+		self.request = kwargs.pop('request', None)
+		super(UploadWorkForm, self).__init__(*args, **kwargs)
+
+	def clean(self):
+		print self.request.FILES['archive']
+		print self.request.FILES['cover']
 
