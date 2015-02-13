@@ -14,33 +14,35 @@ class UserInformationForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
 
 	username = forms.CharField(
 		error_messages=default_error_messages,
-		max_length=30,
-		required=True,
-		widget=forms.TextInput(attrs = {'class':'cuadrotexto mz-field','placeholder':'Username'})
-	)
+        min_length=5,
+        max_length=20,
+        required=True,
+        widget=forms.TextInput(attrs={'class':'cuadrotexto mz-field', 'placeholder':'Elije un nuevo nickname'}),
+    )
 
 	first_name = forms.CharField(
 		error_messages=default_error_messages,
-		max_length=30,
+		min_length=2,
+		max_length=100,
 		required=False,
-		widget=forms.TextInput(attrs = {'class':'form-control col-xs-4','placeholder':'Nombre(s)'})
+		widget=forms.TextInput(attrs = {'class':'cuadrotexto mz-field','placeholder':'Escribe tu(s) nombre(s)'})
 	)
 
 	last_name = forms.CharField(
 		error_messages=default_error_messages,
-		max_length=30,
+		min_length=2,
+		max_length=100,
 		required=False,
-		widget=forms.TextInput(attrs = {'class':'form-control','placeholder':'Apellido(s)'})
+		widget=forms.TextInput(attrs = {'class':'cuadrotexto mz-field', 'placeholder':'Escribe tu(s) apellido(s)'})
 	)
 	
 	profile_picture = forms.ImageField(
 		error_messages={
 			'invalid_image':('Selecciona un archivo de imagen valido'),
 			'required':default_error_messages['required'],
-
 		},
 		required=False,
-		widget=forms.FileInput(attrs = {'class':'form-control'}),
+		widget=forms.FileInput(attrs = {'accept':'image/*', 'file-upload':'', 'file-bind':'\'profilePicture\''}),
 	)
 
 	nationality = forms.ChoiceField(
@@ -50,14 +52,14 @@ class UserInformationForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
             'required': default_error_messages['required']
         },
 		required=False,
-		widget=forms.Select(attrs = {'class':'form-control',})
+		widget=forms.Select(attrs = {'class':'cuadrotexto mz-field',})
 	)
 
 	description = forms.CharField(
 		error_messages=default_error_messages,
 		max_length=200,
 		required=False,
-		widget=forms.Textarea(attrs = {'class':'form-control','placeholder':'Cuentanos Sobre ti'})
+		widget=forms.Textarea(attrs = {'class':'cuadrotexto un-cuadro','placeholder':'Cuentanos Sobre ti'})
 	)
 
 	personal_homepage = forms.URLField(
@@ -67,7 +69,7 @@ class UserInformationForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
         },
 		required=False,
 		max_length=30,
-		widget=forms.URLInput(attrs={'class':'form-control','placeholder':'Pagina Personal',})
+		widget=forms.URLInput(attrs={'class':'cuadrotexto mz-field', 'placeholder':'Tu página personal',})
 	)
 
 	phone_number = forms.IntegerField(
@@ -76,42 +78,46 @@ class UserInformationForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
 			'required':default_error_messages['required']
 		},
 		required=False,
-		widget=forms.NumberInput(attrs={'class':'form-control','placeholder':'Numero Telefonico',})
+		widget=forms.NumberInput(attrs={'class':'cuadrotexto mz-field', 'placeholder':'Escribe tu numero telefonico',})
 	)
 
 	adress = forms.CharField(
 		error_messages=default_error_messages,
 		max_length=30,
 		required=False,
-		widget=forms.TextInput(attrs = {'class':'form-control','placeholder':'Direccion'})
+		widget=forms.TextInput(attrs = {'class':'cuadrotexto mz-field', 'placeholder':'Escribe tu dirección'})
 	)
 
 	city = forms.CharField(
 		error_messages=default_error_messages,
-		max_length=30,
+		min_length=2,
+		max_length=200,
 		required=False,
-		widget=forms.TextInput(attrs = {'class':'form-control','placeholder':'Ciudad'})
+		widget=forms.TextInput(attrs = {'class':'cuadrotexto mz-field', 'placeholder':'Escribe el nombre de tu ciudad'})
 	)
 
 	zip_code = forms.CharField(
 		error_messages=default_error_messages,
-		max_length=30,
+		min_length=5,
+		max_length=8,
 		required=False,
-		widget=forms.TextInput(attrs = {'class':'form-control','placeholder':'Codigo Postal'})
+		widget=forms.TextInput(attrs = {'class':'cuadrotexto mz-field', 'placeholder':'Escribe tu código postal'})
 	)
 
 	neighborhood = forms.CharField(
 		error_messages=default_error_messages,
-		max_length=30,
+		min_length=4,
+		max_length=200,
 		required=False,
-		widget=forms.TextInput(attrs = {'class':'form-control','placeholder':'Vecindario'})
+		widget=forms.TextInput(attrs = {'class':'cuadrotexto mz-field', 'placeholder':'Escribe el nombre de tu vecindario'})
 	)
 
 	password = forms.CharField(
 	    error_messages=default_error_messages,
-	    max_length=20,
-	    required=False,
-	    widget=forms.PasswordInput(attrs={'class':'form-control','placeholder':'Password'}),
+        min_length=6,
+        max_length=40,
+	    required=True,
+	    widget=forms.PasswordInput(attrs={'class':'cuadrotexto mz-field', 'placeholder':'Escribe tu contraseña'}),
 	)
 
 	def __init__(self, *args, **kwargs):

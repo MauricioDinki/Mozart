@@ -3,17 +3,18 @@
   <div id="contenedor-principal">
     <div id="barra-lateral">
       <ul class="menu-bloques">
-        <li class="opcion-menu "><a class="iconos icono-informacion activo" href="/settings/account">Editar información</a></li>
-        <li class="opcion-menu "><a class="iconos icono-panel" href="/settings/password">Configurar cuenta</a></li>
-        <li class="opcion-menu "><a class="iconos icono-panel" href="/settings/social">Cuentas vinculadas</a></li>
-        <li class="opcion-menu "><a class="iconos icono-notificaciones" href="/settings/notifications">Notificaciones</a></li>
-        <li class="opcion-menu "><a class="iconos icono-mensajes" href="/settings/messages">Mensajes privados</a></li>
+        <li class="opcion-menu"><a class="iconos icono-informacion activo" href="/settings/account">Editar información</a></li>
+        <li class="opcion-menu"><a class="iconos icono-panel" href="/settings/password">Configurar cuenta</a></li>
+        <li class="opcion-menu"><a class="iconos icono-panel" href="/settings/social">Cuentas vinculadas</a></li>
+        <li class="opcion-menu"><a class="iconos icono-reportar" href="/settings/remove">Eliminar cuenta</a></li>
+        <li class="opcion-menu"><a class="iconos icono-notificaciones" href="/settings/notifications">Notificaciones</a></li>
+        <li class="opcion-menu"><a class="iconos icono-mensajes" href="/settings/messages">Mensajes privados</a></li>
         <li class="opcion-menu "><a class="iconos icono-estadisticas" href="/settings/stadistics">Mis estadísticas</a></li>
-        <li class="opcion-menu "><a class="iconos icono-listas" href="/settings/lists">Gestionar listas</a></li>
-        <li class="opcion-menu "><a class="iconos icono-obras" href="/settings/works">Mis obras</a></li>
-        <li class="opcion-menu "><a class="iconos icono-carpetas" href="/settings/folders">Gestionar carpetas</a></li>
-        <li class="opcion-menu "><a class="iconos icono-boletines" href="/settings/bulletins">Gestionar boletínes</a></li>
-        <li class="opcion-menu "><a class="iconos icono-eventos" href="/settings/events">Gestionar eventos</a></li>
+        <li class="opcion-menu"><a class="iconos icono-listas" href="/settings/lists">Gestionar listas</a></li>{% if user.mozart_user.user_type == 'Artista' %}
+        <li class="opcion-menu"><a class="iconos icono-obras" href="/settings/works">Mis obras</a></li>
+        <li class="opcion-menu"><a class="iconos icono-carpetas" href="/settings/folders">Gestionar carpetas</a></li>
+        <li class="opcion-menu"><a class="iconos icono-boletines" href="/settings/bulletins">Gestionar boletínes</a></li>{% else %}
+        <li class="opcion-menu"><a class="iconos icono-eventos" href="/settings/events">Gestionar eventos</a></li>{% endif %}
       </ul>
     </div>
     <div id="configuraciones">

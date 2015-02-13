@@ -360,6 +360,10 @@ footer ul {
   margin: 0 0 0 -40px;
   width: auto;
 }
+form {
+  line-height: 30px;
+  text-align: center;
+}
 form .ng-invalid.ng-dirty {
   border-color: #f00;
 }
@@ -539,8 +543,26 @@ h4 {
   background: #fff;
   display: block;
   font-family: Montserrat;
+  height: 40px;
+  line-height: 40px;
   margin-top: 2px;
-  padding: 3px;
+  position: relative;
+}
+.lista-vinculadas li:before {
+  left: 5px;
+  position: absolute;
+}
+.lista-vinculadas li .boton {
+  height: 30px;
+  line-height: 20px;
+  right: 5px;
+  position: absolute;
+  top: 5px;
+}
+.lista-vinculadas li .link-social {
+  left: 40px;
+  position: absolute;
+  right: 80px;
 }
 .menu-bloques {
   display: block;
@@ -749,10 +771,6 @@ a.titulo-obra:hover {
   position: relative;
   width: 750px;
 }
-#section-general .formulario form {
-  line-height: 30px;
-  text-align: center;
-}
 .s-mzfield {
   margin: 0 auto;
   margin-top: 5px;
@@ -960,6 +978,9 @@ textarea.un-cuadro {
   }
   header #mozart-logo img {
     display: none;
+  }
+  .link-social {
+    font-size: 13px;
   }
   #section-general .formulario {
     width: 90%;

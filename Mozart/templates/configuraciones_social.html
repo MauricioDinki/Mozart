@@ -1,0 +1,31 @@
+{% extends 'configuraciones.html' %}
+{% block title %}Cuentas vinculadas - mozArt{% endblock %}
+{% block section %}<h1>Vinculación de redes sociales</h1>
+        <fieldset style="width:100%">
+          <legend>Cuentas vinculadas</legend>
+          <ul class="lista-vinculadas"> {% for cuenta in cuentas %}{% if cuenta.provider = 'facebook' %}
+            <li class="iconos icono-facebook">
+              <div class="link-social">
+                <a target="_blank" href="{{cuenta.social_network_facebook_url.facebook}}">{% elif  cuenta.provider = 'twitter' %}
+            <li class="iconos icono-twitter">
+              <div class="link-social">
+                <a class= target="_blank"href="{{cuenta.social_network_twitter_url.twitter}}">{% elif cuenta.provider = 'google-oauth2' %}
+            <li class="iconos icono-google">
+              <div class="link-social">
+                <a target="_blank" href="{{cuenta.social_network_google_url.google}}">{% endif %}{% if cuenta.provider = 'twitter' %}
+            @{{cuenta.extendusersocialauth.username_identificator}}{% else %}
+            {{cuenta.extendusersocialauth.username_identificator}}{% endif %}
+                </a>
+              </div>   
+              <a class="boton boton-rojo" href=" {% url 'settings_social_delete' cuenta.provider cuenta.id %} ">Quitar</a>
+            </li>{% empty %}
+            <li>Por el momento no tienes ninguna cuenta vinculada.</li>{% endfor %}
+          </ul>
+          Una vez que vincules tus redes sociales con mozArt, podrás iniciar sesión con cualquiera de ellas.<br/>
+        </fieldset><br/><br/>
+        <h2>Vincular otra cuenta</h2>
+        <div class="vincula">
+          <a class="iconos icono-facebook" href="{% url 'social:begin' 'facebook' %}">Vincular Facebook</a>
+          <a class="iconos icono-twitter" href="{% url 'social:begin' 'twitter' %}">Vincular Twitter</a>
+          <a class="iconos icono-google" href="{% url 'social:begin' 'google-oauth2' %}">Vincular Google</a>
+        </div>{% endblock %}
