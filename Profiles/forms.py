@@ -9,11 +9,14 @@ from Profiles.models import Mozart_User
 from Thirdauth.validations import *
 
 class UserInformationForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
+	scope_prefix='information'
+	form_name='informationform'
+
 	username = forms.CharField(
 		error_messages=default_error_messages,
 		max_length=30,
 		required=True,
-		widget=forms.TextInput(attrs = {'class':'form-control col-xs-4','placeholder':'Username'})
+		widget=forms.TextInput(attrs = {'class':'cuadrotexto mz-field','placeholder':'Username'})
 	)
 
 	first_name = forms.CharField(

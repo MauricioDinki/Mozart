@@ -23,7 +23,10 @@ module.exports = function(grunt) {
     },
     bower_concat: {
       all: {
-        dest: 'dist/js/bower.js'
+        dest: 'dist/js/bower.js',
+        dependencies: {
+          'underscore': 'jquery'
+        }
       }
     },
     uglify: {

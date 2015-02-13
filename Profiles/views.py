@@ -23,7 +23,7 @@ class ChangePasswordView(LoginRequiredMixin,RequestFormMixin,FormView):
 		return super(ChangePasswordView,self).form_valid(form)
 
 class InformationFormView(LoginRequiredMixin,RequestFormMixin,FormView):
-	template_name = 'configuraciones.html'
+	template_name = 'settings-account.html'
 	form_class = UserInformationForm
 	success_url =  reverse_lazy('settings_account')
 
