@@ -359,6 +359,9 @@ footer
 		width auto
 
 form
+	line-height 30px
+	text-align center
+	
 	.ng-invalid.ng-dirty
 		border-color red
 
@@ -534,8 +537,26 @@ h4
 		background white
 		display block
 		font-family Montserrat
+		height 40px
+		line-height 40px
 		margin-top 2px
-		padding 3px
+		position relative
+		
+		&:before
+			left 5px
+			position absolute
+		
+		.boton
+			height 30px
+			line-height 20px
+			right 5px
+			position absolute
+			top 5px
+			
+		.link-social
+			left 40px
+			position absolute
+			right 80px
 
 .menu-bloques
 	display block
@@ -731,10 +752,6 @@ a.autor-obra, .autor-obra a, a.titulo-obra
 		padding 20px
 		position relative
 		width 750px
-
-		form
-			line-height 30px
-			text-align center
 
 .s-mzfield
 	margin 0 auto
@@ -939,6 +956,9 @@ textarea.un-cuadro
 
 	header #mozart-logo img
 		display none
+		
+	.link-social
+		font-size 13px
 
 	#section-general .formulario
 		width 90%

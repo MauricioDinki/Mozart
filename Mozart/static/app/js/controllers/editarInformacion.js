@@ -9,10 +9,10 @@
  */
 
 //Aun falta agregar la peticion ajax para mostrar barra de progreso
-app.controller('editarInformacionCtrl', ['$scope', function($scope){
-  $scope.videoValido = true;
-  $scope.portadaValida = true;
-  $scope.imagenValida = true;
+app.controller('editarInformacionCtrl', ['$scope', 'validateFile', function($scope, validateFile){
+  var videoValido = true;
+  var portadaValida = true;
+  var imagenValida = true;
   $scope.video = {
     name: ''
   };
@@ -22,46 +22,34 @@ app.controller('editarInformacionCtrl', ['$scope', function($scope){
   $scope.imagen = {
     name: ''
   };
-  $scope.$on('archivoVideo', function (event, args) {
-    $scope.$apply(function () { //add the file object to the scope's files collection
-      $scope.video = args.file;
-      divisiones = $scope.video.name.split('.');
-      $scope.formatoVideo = divisiones[divisiones.length - 1];
-      $scope.videoValido = $scope.verificarVideo($scope.formatoVideo);
-    });
-  });
-  $scope.$on('archivoPortada', function (event, args) {
-    $scope.$apply(function () { //add the file object to the scope's files collection
-      $scope.portada = args.file;
-      divisiones = $scope.portada.name.split('.');
-      $scope.formatoPortada = divisiones[divisiones.length - 1];
-      $scope.portadaValida = $scope.verificarImagen($scope.formatoPortada);
-    });
-  });
-  $scope.$on('archivoImagen', function (event, args) {
-    $scope.$apply(function () { //add the file object to the scope's files collection
-      $scope.imagen = args.file;
-      divisiones = $scope.imagen.name.split('.');
-      $scope.formatoImagen = divisiones[divisiones.length - 1];
-      $scope.imagenValida = $scope.verificarImagen($scope.formatoImagen);
-    });
-  });
-  $scope.verificarVideo = function(formato){
-    formatosVideo = ['mp4', 'mpeg', 'avi', '3gp'];
-    for(i = 0; i < formatosVideo.length; i++){
-      if(formato == formatosVideo[i]){
-        return true;
-      }
-    }
-    return false;
+  $scope.mostrarTexto = function(){
+    return $scope.imagen.name != '';
   };
-  $scope.verificarImagen = function(formato){
-    formatosImagen = ['png', 'gif', 'jpg', 'jpeg', 'bmp', 'tiff'];
-    for(i = 0; i < formatosImagen.length; i++){
-      if(formato == formatosImagen[i]){
-        return true;
-      }
-    }
-    return false;
+  $scope.mostrarMensaje = function(){
+    return !(imagenValida || $scope.imagen.name == '');
+  };
+  $scope.$on('videoFile', function (event, args) {
+    $scope.$apply(function () { 
+      $scope.video = args.file;
+      var formato = validateFile.getExtension($scope.video);
+      videoValido = validateFile.isAnImage(formato);
+    });
+  });
+  $scope.$on('coverFile', function (event, args) {
+    $scope.$apply(function () { 
+      $scope.portada = args.file;
+      var formato = validateFile.getExtension($scope.portada);
+      portadaValida = validateFile.isAnImage(formato);
+    });
+  });
+  $scope.$on('profilePicture', function (event, args) {
+    $scope.$apply(function () { 
+      $scope.imagen = args.file;
+      var formato = validateFile.getExtension($scope.imagen);
+      imagenValida = validateFile.isAnImage(formato);
+    });
+  });
+  $scope.validar = function(){
+    return !(!imagenValida || !videoValido || !portadaValida || $scope.informationform.$invalid);
   };
 }]);

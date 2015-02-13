@@ -23,7 +23,7 @@ class ChangePasswordView(LoginRequiredMixin,RequestFormMixin,FormView):
 		return super(ChangePasswordView,self).form_valid(form)
 
 class InformationFormView(LoginRequiredMixin,RequestFormMixin,FormView):
-	template_name = 'settings-account.html'
+	template_name = 'configuraciones_informacion.html'
 	form_class = UserInformationForm
 	success_url =  reverse_lazy('settings_account')
 
@@ -51,7 +51,7 @@ class InformationFormView(LoginRequiredMixin,RequestFormMixin,FormView):
 
 
 class SocialNetworkSettingsView(LoginRequiredMixin,View):
-	template_name = 'settings-social.html'
+	template_name = 'configuraciones_social.html'
 	def get(self, request, *args, **kwargs):
 		cuentas = UserSocialAuth.objects.filter(user__username = request.user.username)
 		ctx = {'cuentas':cuentas}
