@@ -32,4 +32,13 @@ app.service('validateFile', function(){
     }
     return false;
   };
+  this.isAVideo = function(fileExtension){
+    videoFormats = ['mp4', 'mpeg', 'avi', '3gp'];
+    for(var i = 0; i < videoFormats.length; i++){
+      if(fileExtension == videoFormats[i]){
+        return true;
+      }
+    }
+    return false;
+  };
 });
