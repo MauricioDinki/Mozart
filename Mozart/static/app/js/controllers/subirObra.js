@@ -8,13 +8,13 @@
  * Controller of the mozArtApp
  */
 
-app.controller('subirObraCtrl', ['$scope', 'validateFile', function($scope, validateFile){
+app.controller('subirObraCtrl', ['$scope', 'fileService', function($scope, fileService){
   $scope.maxeti = 30;
   $scope.archivo = {
-    name: ''
+    name:''
   };
   $scope.portada = {
-    name: ''
+    name:''
   };
 
   var archivoImagen = true;
@@ -40,14 +40,14 @@ app.controller('subirObraCtrl', ['$scope', 'validateFile', function($scope, vali
   $scope.$on('archive', function (event, args) {
     $scope.$apply(function () {
       $scope.archivo = args.file;
-      var formato = validateFile.getExtension($scope.archivo);
-      archivoImagen = validateFile.isAnImage(formato);
+      var formato = fileService.getExtension($scope.archivo);
+      archivoImagen = fileService.isAnImage(formato);
       if(archivoImagen){
         archivoValido = true;
         portadaValida = true;
       }
       else{
-        archivoValido = validateFile.validateFormat(formato);
+        archivoValido = fileService.validateFormat(formato);
         portadaValida = false;
       }
     });
@@ -55,8 +55,8 @@ app.controller('subirObraCtrl', ['$scope', 'validateFile', function($scope, vali
   $scope.$on('cover', function (event, args) {
     $scope.$apply(function () {
       $scope.portada = args.file;
-      var formato = validateFile.getExtension($scope.portada);
-      portadaValida = validateFile.isAnImage(formato);
+      var formato = fileService.getExtension($scope.portada);
+      portadaValida = fileService.isAnImage(formato);
     });
   });
   $scope.validar = function(){

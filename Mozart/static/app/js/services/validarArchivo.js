@@ -8,9 +8,9 @@
  * Service of the mozArtApp
  */
 
-app.service('validateFile', function(){
-  this.getExtension = function(fileObject){
-    var divisions = fileObject.name.split('.');
+app.service('fileService', function(){
+  this.getExtension = function(file){
+    var divisions = file.name.split('.');
     var fileExtension = divisions[divisions.length -1];
     return fileExtension.toLowerCase();
   };
@@ -40,5 +40,9 @@ app.service('validateFile', function(){
       }
     }
     return false;
+  };
+  this.getFileSize = function(file){
+    var fileSize = file.size/1024;
+    return fileSize.toFixed(1);
   };
 });

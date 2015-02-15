@@ -2,7 +2,7 @@ app.directive('fileUpload', [function () {
 	return {
     restrict: 'A',
 		scope: {
-			fileBind : '='
+			fileBind : '@'
 		},
 		link: function (scope, el, attrs) {
 			el.bind('change', function (event) {

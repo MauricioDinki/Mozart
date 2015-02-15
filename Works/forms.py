@@ -25,10 +25,10 @@ class UploadWorkForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
 	)
 	archive = forms.FileField(
 		required=True,
-		widget=forms.FileInput(attrs={'file-upload':'', 'file-bind':'\'archive\''}),
+		widget=forms.FileInput(attrs={'file-upload':'', 'file-bind':'archive'}),
 	)
 	cover = forms.ImageField(
-		required=True,
-		widget=forms.FileInput(attrs={'file-upload':'', 'file-bind':'\'cover\'', 'accept':'image/*'}),
+		required=False,
+		widget=forms.FileInput(attrs={'file-upload':'', 'file-bind':'cover', 'accept':'image/*'}),
 	)
 
