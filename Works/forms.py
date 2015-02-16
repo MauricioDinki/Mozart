@@ -34,14 +34,6 @@ class UploadWorkForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
 		required=True,
 		widget=forms.FileInput(attrs={'file-upload':'', 'file-bind':'\'archive\''}),
 	)
-	# cover = forms.ImageField(
-	# 	error_messages={
-	# 		'invalid_image':('Selecciona un archivo de imagen valido'),
-	# 		'required':default_error_messages['required'],
-	# 	},
-	# 	required=False,
-	# 	widget=forms.FileInput(attrs={'file-upload':'', 'file-bind':'\'cover\'', 'accept':'image/*'}),
-	# )
 
 	def __init__(self, *args, **kwargs):
 		self.request = kwargs.pop('request', None)
@@ -67,6 +59,7 @@ class UploadWorkForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
 		description = self.cleaned_data.get('description')
 		category = self.cleaned_data.get('category')
 		archive = self.cleaned_data.get('archive')
+		
 		newWork = Work(user = self.request.user,title = title, description = description, category = category , archive = archive)
 		newWork.cover = newWork.archive
 		newWork.slug = slugify(newWork.title)
