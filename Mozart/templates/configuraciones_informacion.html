@@ -5,28 +5,8 @@
 {% block section %}<h1>Editar información</h1>
   <form action="" method="post" id="id_informationform" name="{{form.form_name}}" enctype="multipart/form-data" ng-controller="editarInformacionCtrl">
   {% csrf_token %}
-        <!--<fieldset style="width:100%">
-          <legend>Video de presentacion</legend>
-          <input class="cuadrotexto un-cuadro" name="titulovideo" type="text" placeholder="Título del vídeo" ng-model="titulovideo"/><br/>
-          <div class="boton boton-azul">
-            <span>Cambiar video</span>
-            <input type="file" name="video" accept="video/*" file-upload file-bind="'archivoVideo'"/>
-          </div>
-          <div ng-show="video.name != ''"><strong>Archivo seleccionado: </strong> <span ng-bind="video.name"></span></div>
-          <div class="aviso-error" ng-hide="videoValido">El archivo que seleccionaste no es un archivo de video soportado por mozArt.</div>
-          <img src="static/img/fondo1.jpg" width="100%" />
-          <div class="boton boton-azul">
-            <span>Cambiar portada</span>
-            <input type="file" name="video" accept="image/*" file-upload file-bind="'archivoPortada'"/>
-          </div>
-          <div ng-show="portada.name != ''"><strong>Archivo de portada seleccionado: </strong> <span ng-bind="portada.name"></span></div>
-          <div class="aviso-error" ng-hide="portadaValida">La portada que seleccionaste no es un archivo de imagen soportado por mozArt.</div>
-        </fieldset>-->
         <fieldset style="width:100%">
           <legend>Editar datos</legend>
-          <h4>Fecha de nacimiento</h4>
-          <span>20/11/1980 </span>
-          <input type="checkbox" name="mostrarFecha" ng-model="mostrarFecha">Mostrar en mi perfil
           <div class="un-cuadro s-mzfield">
             <label for="id_username" class="etiqueta-input">Nickname</label>
               {{form.username}}

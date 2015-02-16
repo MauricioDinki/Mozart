@@ -126,7 +126,6 @@ class UserInformationForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
 		self.same_username = False
 		super(UserInformationForm, self).__init__(*args, **kwargs)
 
-
 	def clean_username(self):
 		username = self.cleaned_data.get('username')
 		lower_username = username.lower()
@@ -224,7 +223,6 @@ class UserInformationForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
 
 		if not same_username:
 			user_to_change.username = username
-			print "Se cambio el username"
 			
 		user_to_change.first_name = first_name
 		user_to_change.last_name = last_name

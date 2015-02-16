@@ -1,18 +1,28 @@
 # -*- encoding: utf-8 -*-
 
+from .forms import UploadWorkForm
 from .models import Work
+from django.core.urlresolvers import reverse_lazy
 from django.http import JsonResponse
 from django.shortcuts import render,get_list_or_404,redirect
 from django.views.generic import ListView,DetailView,TemplateView,FormView
+from Profiles.mixins import RequestFormMixin
 from Thirdauth.mixins import AuthRedirectMixin
-from .forms import UploadWorkForm
 
 class HomeView(AuthRedirectMixin,TemplateView):
     template_name = "index.html"
 
-class UploadWorkView(FormView):
+class UploadWorkView(RequestFormMixin,FormView):
 	template_name = 'subirobra.html'
 	form_class = UploadWorkForm
+	success_url =  reverse_lazy('create_work')
+
+
+	def form_valid(self,form):
+		form.save()
+		# ctx = {'uploaded':'Obra subia Correctamente','form':form}
+		# return render_to_response(self.template_name, ctx, context_instance = RequestContext(self.request))
+		return super(UploadWorkView,self).form_valid(form)
 
 class WorkListView(TemplateView):
     template_name = "explore.html"

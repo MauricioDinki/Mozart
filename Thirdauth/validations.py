@@ -2,17 +2,19 @@
 
 from django import forms
 from django.contrib.auth.models import User
+from Works.models import Work
 
 custom_error_messages = {
-    'invalid_login': ('Usuario o password incorrectos'),
-    'inactive': ('Su cuenta fue inhabilitada'),
-    'null_field' : ('Este campo es requerido'),
     'blank_field': ('El campo esta en blanco'),
+    'email_exist':('Ese email ya esta asociado una cuenta'),
+    'inactive': ('Su cuenta fue inhabilitada'),
+    'incorrect_password':('La Contraseña introducida es incorrecta'),
+    'invalid_login': ('Usuario o password incorrectos'),
+    'null_field' : ('Este campo es requerido'),
     'null_option':('Debes seleccionar una opcion'),
     'password_mismatch':('Las contraseñas no coinciden'),
     'user_exist':('Ese usuario ya esta ocupado'),
-    'email_exist':('Ese email ya esta asociado una cuenta'),
-    'incorrect_password':('La Contraseña introducida es incorrecta'),
+    'work_exist':('Ese titulo ya esta ocupado'),
 }
 
 default_error_messages = {
@@ -44,6 +46,18 @@ def validate_username(data):
 		except User.DoesNotExist:
 			return data
 	raise forms.ValidationError(custom_error_messages['user_exist'],)
+
+def validate_title(data):
+	if len(str(data)) == 0:
+		raise forms.ValidationError(custom_error_messages['null_field'],)
+	elif str(data).isspace():
+		raise forms.ValidationError(custom_error_messages['blank_field'],)
+	elif data:
+		try:
+			title = Work.objects.get(title = data)
+		except Work.DoesNotExist:
+			return data
+	raise forms.ValidationError(custom_error_messages['work_exist'],)
 
 def validate_email(data):
 	if len(str(data)) == 0:
