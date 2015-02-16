@@ -223,7 +223,6 @@ class UserInformationForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
 
 		if not same_username:
 			user_to_change.username = username
-			print "Se cambio el username"
 			
 		user_to_change.first_name = first_name
 		user_to_change.last_name = last_name
