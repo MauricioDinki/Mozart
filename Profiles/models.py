@@ -153,7 +153,7 @@ class Adress(models.Model):
 	user = models.OneToOneField(User)
 	adress = models.CharField(blank=True,null=True, max_length=50)
 	city = models.CharField(blank=True,null=True, max_length=50)
-	zip_code = models.IntegerField(blank=True,null=True,max_length=10)
+	zip_code = models.CharField(blank=True,null=True,max_length=10)
 	neighborhood = models.CharField(blank=True,null=True, max_length=50)
 
 	class Meta:
