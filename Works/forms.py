@@ -64,6 +64,7 @@ class UploadWorkForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
 		description = self.cleaned_data.get('description')
 		category = self.cleaned_data.get('category')
 		archive = self.cleaned_data.get('archive')
+		
 		newWork = Work(user = self.request.user,title = title, description = description, category = category , archive = archive)
 		newWork.cover = newWork.archive
 		newWork.slug = slugify(newWork.title)
