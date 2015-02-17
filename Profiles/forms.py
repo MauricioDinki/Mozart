@@ -42,7 +42,7 @@ class UserInformationForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
 			'required':default_error_messages['required'],
 		},
 		required=False,
-		widget=forms.FileInput(attrs = {'accept':'image/*', 'file-upload':'', 'file-bind':'\'profilePicture\''}),
+		widget=forms.FileInput(attrs = {'accept':'image/*', 'file-upload':'', 'file-bind':'profilePicture'}),
 	)
 
 	nationality = forms.ChoiceField(

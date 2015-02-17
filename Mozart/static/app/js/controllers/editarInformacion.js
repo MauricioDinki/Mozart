@@ -9,7 +9,7 @@
  */
 
 //Aun falta agregar la peticion ajax para mostrar barra de progreso
-app.controller('editarInformacionCtrl', ['$scope', 'fileService', function($scope, validateFile){
+app.controller('editarInformacionCtrl', ['$scope', 'fileService', function($scope, fileService){
   var videoValido = true;
   var portadaValida = true;
   var imagenValida = true;
