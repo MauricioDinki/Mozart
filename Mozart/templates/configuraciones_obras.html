@@ -1,6 +1,6 @@
 {% extends 'configuraciones.html' %}
 {% block title %}Mis obras - mozArt{% endblock %}
-{% block section %}<div ng-controller="cargarObrasCtrl">
+{% block section %}<div ng-init="categoria='all';autor='{{username}}';modo='recents'"><div ng-controller="cargarObrasCtrl">
 <h2>Mis obras</h2><article class="publicacion" ng-repeat="obra in obras">
         <div class="thumbnail-obra" style="background:url('{$obra.cover$}');">
           <span class="formato" ng-bind="obra.slug"></span>
@@ -21,4 +21,5 @@
       </article>
       <br/>
       <button class="boton boton-verde" ng-click="cargar(cantidad)">Cargar más obras</button>
+    </div></div>
     {% endblock %}

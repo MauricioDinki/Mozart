@@ -29,9 +29,9 @@ app.controller('cargarObrasCtrl', ['$scope','peticionObras', function($scope, pe
       function(data, status) {
         alert('Ha fallado la petición. Estado HTTP:' + status);
       },
-      'recientes',
+      $scope.modo,
       $scope.categoria,
-      'todos',
+      $scope.autor,
       nuevaCantidad
     );
   };
