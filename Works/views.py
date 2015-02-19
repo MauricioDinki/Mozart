@@ -10,8 +10,6 @@ from django.views.generic import ListView,DetailView,TemplateView,FormView,Updat
 from Profiles.mixins import RequestFormMixin
 from Thirdauth.mixins import AuthRedirectMixin, LoginRequiredMixin
 
-class UserWorkListView(TemplateView):
-	template_name = 'configuraciones_obras.html'
 
 class EditWorkView(LoginRequiredMixin,UpdateView):
 	form_class = EditWorkForm
@@ -40,7 +38,7 @@ class UploadWorkView(RequestFormMixin,FormView):
 		return super(UploadWorkView,self).form_valid(form)
 
 class WorkListView(TemplateView):
-    template_name = "test.html"
+    template_name = "explore.html"
 
     def get_context_data(self, **kwargs):
         if 'view' not in kwargs:
@@ -51,6 +49,15 @@ class WorkListView(TemplateView):
             else:
             	kwargs['category'] = 'all'
         return kwargs
+
+class WorkListUserView(TemplateView):
+	template_name = 'configuraciones_obras.html'
+
+	def get_context_data(self, **kwargs):
+		if 'view' not in kwargs:
+		    kwargs['view'] = self
+		    kwargs['username'] = self.request.user.username
+		return kwargs
 
 @login_required(login_url='login')
 def DeleteWorkView(request,slug):
