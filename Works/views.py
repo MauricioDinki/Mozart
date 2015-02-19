@@ -40,7 +40,7 @@ class UploadWorkView(RequestFormMixin,FormView):
 		return super(UploadWorkView,self).form_valid(form)
 
 class WorkListView(TemplateView):
-    template_name = "test.html"
+    template_name = "explore.html"
 
     def get_context_data(self, **kwargs):
         if 'view' not in kwargs:

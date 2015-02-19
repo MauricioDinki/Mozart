@@ -9,13 +9,22 @@
  */
 
 //Falta opcion de mostrar mensajes
-app.controller('cargarObrasCtrl', ['$scope', /*'$routeParams', */'peticionObras', function($scope,/*$routeParams,*/ peticionObras){
-  $scope.cantidad = 5;
-  $scope.categoria = 'a'/*$routeParams.categoria*/;
+app.controller('cargarObrasCtrl', ['$scope','peticionObras', function($scope, peticionObras){
+  $scope.cantidad = 20;
+  $scope.mostrarMensaje = false;
   $scope.cargar = function(nuevaCantidad){
     peticionObras.get(
       function(obras) {
         $scope.obras = obras;
+        var size = angular.fromJson($scope.obras).length;
+        if(size < $scope.cantidad){
+          $scope.mostrarMensaje = true;
+          $scope.cantidad = size + 20;
+        }
+        else{
+          $scope.mostrarMensaje = false;
+          $scope.cantidad += 20;
+        }
       },
       function(data, status) {
         alert('Ha fallado la petición. Estado HTTP:' + status);
@@ -25,8 +34,6 @@ app.controller('cargarObrasCtrl', ['$scope', /*'$routeParams', */'peticionObras'
       'todos',
       nuevaCantidad
     );
-    $scope.cantidad += 4;
   };
   $scope.cargar($scope.cantidad);
-  $scope.prueba = 'http://www.google.com';
 }]);
