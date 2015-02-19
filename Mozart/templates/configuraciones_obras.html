@@ -8,35 +8,8 @@
         <span class="iconos icono-{$obra.category$}"></span><a class="titulo-obra" ng-href="{$obra.url$}" ng-bind="obra.title"></a><br/>
         Creada el <span class="fecha-obra" ng-bind="obra.date"></span><br/>
         <div style="display: inline-block" ng-controller="modalCtrl">
-          <button style="margin: 0 auto" class="boton boton-azul" type="button" ng-click="toggleModal()">Editar</button>
-          <modal-dialog show="modalShown" titulo-ventana="Editar obra">
-            <div  class="ventana-modal-contenido" >
-              <form id="subirobra" name="subirobra" ng-submit="validar()" novalidate>
-                <div class="un-cuadro s-mzfield">
-                  <label for="id_title" class="etiqueta-input">Título</label>
-                  {{form.title}}
-                </div>
-                <input class="cuadrotexto un-cuadro" type="text" name="titulo" ng-model="obra.nombre" placeholder="Escribe un título para la obra" required ng-minlength="4" ng-maxlength="40"/><br/>
-                <label for="descripcion">Descripción de la obra</label><br/>
-                <textarea class="cuadrotexto un-cuadro caja" name="descripción"ng-model="descripcion" required ng-minlength="1" ng-maxlength="1000"></textarea><br/>
-                <select class="cuadrotexto un-cuadro" name="categoria" ng-model="categoria" required>
-                  <option value="" default disabled>Selecciona una categoría</option>
-                  <option value="dyp">Dibujo y pintura</option>
-                  <option value="fyf">Fotografía y filme</option>
-                  <option value="tyl">Teatro y literatura</option>
-                  <option value="myb">Música y baile</option>
-                  <option value="eyc">Escultura y cerámica</option>
-                  <option value="ad">Arte digital</option>
-                  <option value="otros">Otros</option>
-                </select><br/>
-              </form>
-            </div>
-            <button type="button" class="boton boton-verde">Listo</button>
-            <button type="button" class="boton boton-rojo" ng-click="toggleModal()">Cancelar</button>
-          </modal-dialog>
-        </div>
-        <div style="display: inline-block" ng-controller="modalCtrl">
-          <button style="margin: 0 auto" class="boton boton-rojo" type="button" ng-click="toggleModal()">Eliminar</button>
+          <a ng-href="/settings/works/{$obra.slug$}">Editar</a>
+          <a style="color: red" ng-click="toggleModal()">Eliminar</a>
           <modal-dialog show="modalShown" titulo-ventana="¿Seguro de que quieres eliminar esta obra?">
             <div  class="ventana-modal-contenido" >
               Una vez que elimines la obra, se borrará de la base de datos de mozArt y no podrás recuperarla. No hay marcha atrás.

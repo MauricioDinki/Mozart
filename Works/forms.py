@@ -4,10 +4,15 @@ from djangular.forms import NgModelFormMixin, NgFormValidationMixin
 from Thirdauth.forms import default_error_messages
 from Thirdauth.validations import validate_null,validate_title
 
-class EditWorkForm(forms.ModelForm):
-    class Meta:
-        model = Work
-        fields = ['title','description','category']   
+class EditWorkForm(NgFormValidationMixin, NgModelFormMixin, forms.ModelForm):
+	scope_prefix='work'
+	form_name='editworkform'
+	class Meta:
+		model = Work
+		fields = ['title','description','category']
+        widgets = {
+            'title': forms.Textarea(attrs={'class':'cuadrotexto mz-field', 'placeholder':'Escribe un titulo para la obra'}),
+        }
     
 class UploadWorkForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
 	scope_prefix='work'

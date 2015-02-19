@@ -9,8 +9,11 @@ from django.views.generic import ListView,DetailView,TemplateView,FormView,Updat
 from Profiles.mixins import RequestFormMixin
 from Thirdauth.mixins import AuthRedirectMixin, LoginRequiredMixin
 
+class UserWorkListView(TemplateView):
+	template_name = 'configuraciones_obras.html'
+
 class EditWorkView(LoginRequiredMixin,UpdateView):
-	template_name = 'edit-work-form.html'
+	template_name = 'configuraciones_editarobra.html'
 	form_class = EditWorkForm
 	success_url =  reverse_lazy('work_list')
 	model = Work

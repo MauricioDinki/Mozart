@@ -1,0 +1,8 @@
+{% extends 'configuraciones.html' %}
+{% block title %}Editar obra - mozArt{% endblock %}
+{% block section %}<form action="" method="post" id="id_informationform" ng-controller="editarInformacionCtrl">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button>Enviar</button>
+  </form>
+    {% endblock %}
