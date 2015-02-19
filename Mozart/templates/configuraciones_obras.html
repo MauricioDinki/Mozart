@@ -1,10 +1,10 @@
 {% extends 'configuraciones.html' %}
 {% block title %}Mis obras - mozArt{% endblock %}
-{% block section %}<div ng-controller="cargarObrasCtrl"><article class="publicacion" ng-repeat="obra in obras">
+{% block section %}<div ng-controller="cargarObrasCtrl">
+<h2>Mis obras</h2><article class="publicacion" ng-repeat="obra in obras">
         <div class="thumbnail-obra" style="background:url('{$obra.cover$}');">
           <span class="formato" ng-bind="obra.slug"></span>
         </div>
-        <a ng-href=" {$ obra.url $} "><img class="redondo thumbnail-usuario-p" ng-src=" {$ obra.cover $} "/></a>
         <span class="iconos icono-{$obra.category$}"></span><a class="titulo-obra" ng-href="{$obra.url$}" ng-bind="obra.title"></a><br/>
         Creada el <span class="fecha-obra" ng-bind="obra.date"></span><br/>
         <div style="display: inline-block" ng-controller="modalCtrl">
