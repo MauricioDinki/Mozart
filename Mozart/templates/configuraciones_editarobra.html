@@ -1,8 +1,24 @@
 {% extends 'configuraciones.html' %}
 {% block title %}Editar obra - mozArt{% endblock %}
-{% block section %}<form action="" method="post" id="id_informationform" ng-controller="editarInformacionCtrl">
-    {% csrf_token %}
-    {{form.as_p}}
-    <button>Enviar</button>
-  </form>
+{% block section %}<h2>Editar obra</h2>
+        {% if form.non_field_errors %}
+    {% ifnotequal form.non_field_errors.as_text|cut:"* " "$message" %}
+    <div class="aviso-error">
+      {{form.non_field_errors.as_text|cut:"$message"|cut:"* "}}
+    </div>
+  {% endifnotequal %}
+{% endif %}<form action="" method="post" id="id_editworkform" name="{{form.form_name}}" novalidate ng-controller="editarObraCtrl">
+          {% csrf_token %}
+          <div class="un-cuadro s-mzfield">
+            <label for="id_title" class="etiqueta-input">Título</label>
+            {{form.title}}
+          </div>
+            <label for="id_description">Descripción de la obra</label><br/>
+            {{form.description}}
+          <div class="un-cuadro s-mzfield">
+            <label for="id_category" class="etiqueta-input">Categoría</label>
+            {{form.category}}
+          </div>
+          <button class="boton boton-verde" type="submit" ng-disabled="!validar()" name="Subir obra">Editar obra</button>
+        </form>
     {% endblock %}

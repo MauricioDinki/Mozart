@@ -3,15 +3,18 @@ from django import forms
 from djangular.forms import NgModelFormMixin, NgFormValidationMixin
 from Thirdauth.forms import default_error_messages
 from Thirdauth.validations import validate_null,validate_title
+from django.utils.translation import ugettext_lazy as _
 
-class EditWorkForm(NgFormValidationMixin, NgModelFormMixin, forms.ModelForm):
+class EditWorkForm(NgModelFormMixin, NgFormValidationMixin, forms.ModelForm):
 	scope_prefix='work'
 	form_name='editworkform'
 	class Meta:
 		model = Work
 		fields = ['title','description','category']
-        widgets = {
-            'title': forms.Textarea(attrs={'class':'cuadrotexto mz-field', 'placeholder':'Escribe un titulo para la obra'}),
+		widgets = {
+        	'title' : forms.TextInput(attrs={'class':'cuadrotexto mz-field', 'placeholder':'Escribe un titulo para la obra'}),
+        	'description' : forms.Textarea(attrs={'class':'cuadrotexto un-cuadro'}),
+        	'category' : forms.Select(attrs={'class': 'cuadrotexto mz-field'}),
         }
     
 class UploadWorkForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
