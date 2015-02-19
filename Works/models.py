@@ -3,6 +3,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 from sorl.thumbnail import ImageField
+from django.utils.text import slugify
 
 def archive_url(self,filename):
 	return str('files/%s/%s')%(self.user.username,filename)
@@ -34,6 +35,10 @@ class Work(models.Model):
 	class Meta:
 		verbose_name = "Work"
 		verbose_name_plural = "Works"
+
+	def save(self, *args, **kwargs):
+		self.slug = slugify(self.title)
+		super(Work, self).save(*args, **kwargs)
 
 	def __unicode__(self):
 		return self.title
