@@ -1,5 +1,6 @@
 <!doctype html>
 <html class="no-js">{% load static from staticfiles %}
+{% load thumbnail %}
   <head>
     <meta charset="utf-8">
     <title>{% block title %}{% endblock %}</title>
@@ -24,8 +25,14 @@
         </div>
       </form>
     <div id="menu-usuario" ng-controller="menuCtrl">
-      <figure id="botonMenuDerecho" ng-click="mostrarMenu()">
-        <img class="redondo" src="{% static "img/default.png" %}"/>
+      <figure id="botonMenuDerecho" ng-click="mostrarMenu()" title="Mostrar/Ocultar menú">
+        {% if user.is_authenticated %}
+        {% thumbnail user.mozart_user.profile_picture "33x33" crop="center" as im %}
+            <img class="redondo" src="{{ im.url }}"/><br/>
+        {% endthumbnail %}
+        {% else %}
+            <img class="redondo" src="{% static "img/default.png" %}"/>
+        {% endif %}
       </figure>
       <div ng-style="posicionDerecha" off-click="mostrarMenu()" off-click-filter="#botonMenuDerecho" off-click-if="visible">
         <ul class="menu-bloques" ng-click="mostrarMenu()">

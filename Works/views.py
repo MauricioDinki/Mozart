@@ -28,11 +28,6 @@ class EditWorkView(LoginRequiredMixin,UpdateView):
 class HomeView(AuthRedirectMixin,TemplateView):
     template_name = "index.html"
 
-class EditWorksView(RequestFormMixin,FormView):
-	template_name = 'configuraciones_obras.html'
-	form_class = UploadWorkForm
-	success_url =  reverse_lazy('edit_works')
-
 class UploadWorkView(RequestFormMixin,FormView):
 	form_class = UploadWorkForm
 	success_url =  reverse_lazy('create_work')

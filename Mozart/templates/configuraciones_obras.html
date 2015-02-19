@@ -14,8 +14,8 @@
             <div  class="ventana-modal-contenido" >
               Una vez que elimines la obra, se borrará de la base de datos de mozArt y no podrás recuperarla. No hay marcha atrás.
             </div>
-            <button type="button" class="boton boton-rojo">Si</button>
-            <button type="button" class="boton boton-azul" ng-click="toggleModal()">No</button>
+            <a class="boton boton-rojo" ng-href="/delete/work/{$obra.slug$}">Si</a>
+            <a style="display: inline" class="boton boton-azul" ng-click="toggleModal()">No</a>
           </modal-dialog>
         </div>
       </article>
