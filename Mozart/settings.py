@@ -135,5 +135,3 @@ SOCIAL_AUTH_PIPELINE = (
 # Login Urls
 LOGIN_REDIRECT_URL = 'work_list'
 LOGIN_URL = 'login'
-
-

@@ -5,6 +5,14 @@ from djangular.forms import NgModelFormMixin, NgFormValidationMixin
 from Thirdauth.forms import default_error_messages
 from Thirdauth.validations import validate_null,validate_title
 
+class EditWorkForm(forms.ModelForm):
+    class Meta:
+        model = Work
+        fields = ['title','description','category']
+
+    # def save(self):
+    # 	super(EditWorkForm, self).save()    
+    
 class UploadWorkForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
 	scope_prefix='work'
 	form_name='workform'
