@@ -100,6 +100,7 @@ a {
   width: 40%;
 }
 #bienvenida .recuadro div a {
+  background: -webkit-linear-gradient(#ffa500, #ff7800);
   background: linear-gradient(#ffa500, #ff7800);
   border-radius: 5px;
   box-shadow: 0px 0px 5px #000;
@@ -109,6 +110,7 @@ a {
   padding: 10px 15px;
 }
 #bienvenida .recuadro div a:hover {
+  background: -webkit-linear-gradient(#4fadfd, #2474e0);
   background: linear-gradient(#4fadfd, #2474e0);
   color: #fff;
 }
@@ -157,6 +159,7 @@ body {
   content: "\e601";
 }
 .boton-azul {
+  background: -webkit-linear-gradient(#488fef, #2474e0);
   background: linear-gradient(#488fef, #2474e0);
   border-radius: 4px;
   display: inline-block;
@@ -182,6 +185,7 @@ body {
   height: 100%;
 }
 .boton-azul:active {
+  background: -webkit-linear-gradient(#2474e0, #488fef);
   background: linear-gradient(#2474e0, #488fef);
   border-color: #2474e0;
   border-width: 2px;
@@ -192,17 +196,20 @@ body {
   vertical-align: top;
 }
 .boton-rojo {
+  background: -webkit-linear-gradient(#f00, #d02f2f);
   background: linear-gradient(#f00, #d02f2f);
   border-radius: 4px;
   height: 40px;
   padding: 5px 20px;
 }
 .boton-rojo:active {
+  background: -webkit-linear-gradient(#d02f2f, #f00);
   background: linear-gradient(#d02f2f, #f00);
   border-color: #f00;
   border-width: 2px;
 }
 .boton-verde {
+  background: -webkit-linear-gradient(#00a600, #008000);
   background: linear-gradient(#00a600, #008000);
   border-radius: 4px;
   display: inline-block;
@@ -212,6 +219,7 @@ body {
   position: relative;
 }
 .boton-verde:active {
+  background: -webkit-linear-gradient(#008000, #00a600);
   background: linear-gradient(#008000, #00a600);
   border-width: 2px;
 }
@@ -246,7 +254,8 @@ body {
   position: absolute;
   top: 37px;
   width: 100%;
-  transition: visibility 0.2s;
+  -webkit-transition: visibility 0.2s;
+          transition: visibility 0.2s;
 }
 #cuadro-busqueda .contenedor ul .resultado {
   background: #ededed;
@@ -305,7 +314,8 @@ body {
   height: 40px;
   padding: 0 10px;
   position: relative;
-  transition: background 0.2s, border-color 0.2s, width 0.2s;
+  -webkit-transition: background 0.2s, border-color 0.2s, width 0.2s;
+          transition: background 0.2s, border-color 0.2s, width 0.2s;
   vertical-align: middle;
 }
 .cuadrotexto:focus {
@@ -322,6 +332,7 @@ body {
   display: block;
 }
 .etiqueta-input {
+  background: -webkit-linear-gradient(#4fadfd, #2474e0);
   background: linear-gradient(#4fadfd, #2474e0);
   border: #2474e0 1px solid;
   border-radius: 2px 0px 0px 2px;
@@ -332,11 +343,13 @@ body {
   height: 40px;
   margin: 0 -5px 0 0;
   padding: 5px 10px;
-  transition: padding 0.2s, width 0.2s;
+  -webkit-transition: padding 0.2s, width 0.2s;
+          transition: padding 0.2s, width 0.2s;
   vertical-align: middle;
 }
 .fade-show-setup {
-  transition: opacity 0.2s;
+  -webkit-transition: opacity 0.2s;
+          transition: opacity 0.2s;
   opacity: 0;
 }
 .fade-show-start {
@@ -408,7 +421,8 @@ header #mozart-logo img {
   width: 69%;
 }
 .iconos {
-  transition: color 0.2s;
+  -webkit-transition: color 0.2s;
+          transition: color 0.2s;
 }
 .iconos:before {
   font-family: mozArt;
@@ -595,7 +609,8 @@ h4 {
   overflow: auto !important;
   padding: 0;
   width: 300px;
-  transition: right 0.2s;
+  -webkit-transition: right 0.2s;
+          transition: right 0.2s;
 }
 #menu-usuario figure {
   display: inline-block;
@@ -837,7 +852,8 @@ textarea.un-cuadro {
   background: #000;
   display: block;
   opacity: 0;
-  transition: opacity 0.2s;
+  -webkit-transition: opacity 0.2s;
+          transition: opacity 0.2s;
 }
 .thumbnail-obra:hover .formato {
   opacity: 0.6;
@@ -861,7 +877,8 @@ textarea.un-cuadro {
   opacity: 0;
   overflow: auto !important;
   padding: 15px 10px;
-  transition: opacity 0.2s;
+  -webkit-transition: opacity 0.2s;
+          transition: opacity 0.2s;
   width: 100%;
 }
 .thumbnail-promotor:hover .descripcion-promotor {

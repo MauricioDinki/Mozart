@@ -1,8 +1,12 @@
 {% extends 'configuraciones.html'%}
 {% block title %}Editar información - mozArt{% endblock %}
-
 {% load thumbnail %}
 {% block section %}<h1>Editar información</h1>
+{% if form.non_field_errors %}
+    <div class="aviso-error">
+      {{form.non_field_errors.as_text|cut:"*"}}
+    </div>
+  {% endif %}
   <form action="" method="post" id="id_informationform" name="{{form.form_name}}" enctype="multipart/form-data" ng-controller="editarInformacionCtrl">
   {% csrf_token %}
         <fieldset style="width:100%">
@@ -19,10 +23,10 @@
             <label for="id_last_name" class="etiqueta-input">Apellido(s)</label>
               {{form.last_name}}
           </div>
-          {% thumbnail user.mozart_user.profile_picture "300x173" crop="center" as im %}
-            <img src="{{ im.url }}" width="200px">
-        {% endthumbnail %}
           <h4>Imagen de perfil</h4>
+          {% thumbnail user.mozart_user.profile_picture "250x250" crop="center" as im %}
+            <img src="{{ im.url }}" width="200px"/><br/>
+        {% endthumbnail %}
           <div class="boton boton-azul">
             <span>Cambiar imagen</span>
             {{form.profile_picture}}

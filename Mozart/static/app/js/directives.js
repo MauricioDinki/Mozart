@@ -1,3 +1,5 @@
+'use strict';
+
 app.directive('fileUpload', [function () {
 	return {
     restrict: 'A',

@@ -17,7 +17,7 @@
             {{cuenta.extendusersocialauth.username_identificator}}{% endif %}
                 </a>
               </div>   
-              <a class="boton boton-rojo" href=" {% url 'settings_social_delete' cuenta.provider cuenta.id %} ">Quitar</a>
+              <a class="boton boton-rojo" href=" {% url 'settings_social_delete' cuenta.provider cuenta.id %} " title="Eliminar cuenta">x</a>
             </li>{% empty %}
             <li>Por el momento no tienes ninguna cuenta vinculada.</li>{% endfor %}
           </ul>

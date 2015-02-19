@@ -224,6 +224,7 @@ body
 	.contenedor
 		margin 0 auto
 		position relative
+		text-align left
 
 		button
 			font-size 28px
@@ -271,6 +272,11 @@ body
 	display inline-block
 	height 50px
 	width 55px
+
+#contenido
+	display block
+	margin 0
+	padding 0
 
 #configuraciones
 	background white
@@ -537,7 +543,7 @@ h4
 		background white
 		display block
 		font-family Montserrat
-		height 40px
+		min-height 40px
 		line-height 40px
 		margin-top 2px
 		position relative
@@ -554,9 +560,9 @@ h4
 			top 5px
 			
 		.link-social
-			left 40px
-			position absolute
-			right 80px
+			margin-left 40px
+			position relative
+			margin-right 80px
 
 .menu-bloques
 	display block
@@ -687,7 +693,7 @@ h4
 	video
 		width 100%
 
- .publicacion
+.publicacion
 	background white
 	border #888 solid 1px
 	color  gris_oscuro
@@ -983,7 +989,7 @@ textarea.un-cuadro
 
 @media screen and (max-width:430px)
 	#obras-principal
-		padding 10px
+		padding 5px 0
 
 	.publicacion
 		width 300px
