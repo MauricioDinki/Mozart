@@ -7,6 +7,7 @@ from django.conf.urls import patterns, url,include
 urlpatterns = patterns('',
 	url(r'^$', HomeView.as_view(), name='index',),
 	url(r'^create/work/$', UploadWorkView.as_view(), name='create_work'),
+	url(r'^delete/work/(?P<slug>.*)/$','Works.views.DeleteWorkView', name='delete_work'),
 	url(r'^explore/$', WorkListView.as_view(), name='work_list'),
 	url(r'^settings/works/$', UserWorkListView.as_view(), name='user_work_list'),
 	url(r'^settings/works/(?P<slug>.*)/$', EditWorkView.as_view(), name='edit_work'),
