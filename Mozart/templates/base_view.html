@@ -1,5 +1,6 @@
 <!doctype html>
 <html class="no-js">{% load static from staticfiles %}
+{% load thumbnail %}
   <head>
     <meta charset="utf-8">
     <title>{% block title %}{% endblock %}</title>
@@ -14,25 +15,28 @@
         <a href="/explore"><img src="{% static "img/logo.png" %}" alt="mozArt"></a>
       </figure>
       <form id="cuadro-busqueda" ng-click="ocultarMenus()">
-      <div class="contenedor">
-        <input type="search" name="busqueda" class="cuadrotexto" placeholder="Buscar obras, artistas y promotores" ng-model="texto" autocomplete="off"/>
-        <button type="submit" class="iconos boton-busqueda"></button>
-        <ul ng-show="texto.length > 0" ng-animate="fadeIn">
-          <li class="copia-texto">Resultados para <b ng-bind="texto"></b></li>
-          <li class="resultado">No hay resultados</li>
-        </ul>
-      </div>
-    </form>
-    <div id="menu-usuario" ng-controller="menuCtrl">{% if user.is_authenticated %}
-      <a class="cantidad" title="0 notificaciones" href="/panel/notificaciones"> 0 </a>{% endif %}
-      <figure id="botonMenuDerecho" ng-click="mostrarMenu()">
-        <img class="redondo" src="{% static "img/default.png" %}"/>
+        <div class="contenedor">
+          <input type="search" name="busqueda" class="cuadrotexto" placeholder="Buscar obras, artistas y promotores" ng-model="texto" autocomplete="off"/>
+          <button type="submit" class="iconos boton-busqueda"></button>
+          <ul ng-show="texto.length > 0" ng-animate="fadeIn">
+            <li class="copia-texto">Resultados para <b ng-bind="texto"></b></li>
+            <li class="resultado">No hay resultados</li>
+          </ul>
+        </div>
+      </form>
+    <div id="menu-usuario" ng-controller="menuCtrl">
+      <figure id="botonMenuDerecho" ng-click="mostrarMenu()" title="Mostrar/Ocultar menú">
+        {% if user.is_authenticated %}
+        {% thumbnail user.mozart_user.profile_picture "33x33" crop="center" as im %}
+            <img class="redondo" src="{{ im.url }}"/><br/>
+        {% endthumbnail %}
+        {% else %}
+            <img class="redondo" src="{% static "img/default.png" %}"/>
+        {% endif %}
       </figure>
       <div ng-style="posicionDerecha" off-click="mostrarMenu()" off-click-filter="#botonMenuDerecho" off-click-if="visible">
         <ul class="menu-bloques" ng-click="mostrarMenu()">
           <li class="opcion-menu"><a class="iconos icono-explorar" href="/explore">Explorar obras</a></li>
-          <li class="opcion-menu"><a href="/promoters" class="iconos icono-promotores">Promotores</a></li>
-          <li class="opcion-menu"><a href="/tour" class="iconos icono-recorrido">Recorrido por mozArt</a></li>
           <hr/>{% if user.is_authenticated %}{% if user.mozart_user.user_type == 'Artista' %}
           <li class="opcion-menu"><a  href="/create/work" class="iconos icono-cargar">Crear obra</a>
           </li>{% endif %}
@@ -41,9 +45,6 @@
           <li class="opcion-menu"><a href="/logout" class="iconos icono-salir">Cerrar sesión</a></li>{% else %}
           <li class="opcion-menu"><a href="/login" class="iconos icono-login">Iniciar sesión</a></li>
           <li class="opcion-menu"><a href="/signup" class="iconos icono-registro">Unirse a mozArt</a></li>{% endif %}
-          <hr/>
-          <li class="opcion-menu"><a href="/aleatorio/obra" class="iconos icono-aleatorio">Obra aleatoria</a></li>
-          <li class="opcion-menu"><a href="/aleatorio/usuario" class="iconos icono-aleatorio">Usuario aleatorio</a></li>
         </ul>
         <footer>
           <a href="#" ng-click="mostrarMenu()"><span>Donaciones</span></a>

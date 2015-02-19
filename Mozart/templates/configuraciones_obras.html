@@ -1,0 +1,24 @@
+{% extends 'configuraciones.html' %}
+{% block title %}Mis obras - mozArt{% endblock %}
+{% block section %}<div ng-controller="cargarObrasCtrl"><article class="publicacion" ng-repeat="obra in obras">
+        <div class="thumbnail-obra" style="background:url('{$obra.cover$}');">
+          <span class="formato" ng-bind="obra.slug"></span>
+        </div>
+        <a ng-href=" {$ obra.url $} "><img class="redondo thumbnail-usuario-p" ng-src=" {$ obra.cover $} "/></a>
+        <span class="iconos icono-{$obra.category$}"></span><a class="titulo-obra" ng-href="{$obra.url$}" ng-bind="obra.title"></a><br/>
+        Creada el <span class="fecha-obra" ng-bind="obra.date"></span><br/>
+        <div style="display: inline-block" ng-controller="modalCtrl">
+          <a ng-href="/settings/works/{$obra.slug$}">Editar</a>
+          <a style="color: red" ng-click="toggleModal()">Eliminar</a>
+          <modal-dialog show="modalShown" titulo-ventana="¿Seguro de que quieres eliminar esta obra?">
+            <div  class="ventana-modal-contenido" >
+              Una vez que elimines la obra, se borrará de la base de datos de mozArt y no podrás recuperarla. No hay marcha atrás.
+            </div>
+            <a class="boton boton-rojo" ng-href="/delete/work/{$obra.slug$}">Si</a>
+            <a style="display: inline" class="boton boton-azul" ng-click="toggleModal()">No</a>
+          </modal-dialog>
+        </div>
+      </article>
+      <br/>
+      <button class="boton boton-verde" ng-click="cargar(cantidad)">Cargar más obras</button>
+    {% endblock %}

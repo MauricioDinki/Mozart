@@ -12,6 +12,13 @@ module.exports = function(grunt) {
         }
       }
     },
+    autoprefixer: {
+      dist: {
+        files: {
+          'app/css/estilos-WAP.css': 'app/css/estilos.css'
+        }
+      }
+    },
     concat: {   
       options: {
         separator: ''  
@@ -43,7 +50,7 @@ module.exports = function(grunt) {
     cssmin: {
       target: {
         files: {
-          'dist/css/styles.min.css': ['app/css/fuentes.css', 'app/css/estilos.css', 'app.css/normalize.css']
+          'dist/css/styles.min.css': ['app/css/fuentes.css', 'app/css/estilos-WAP.css']
         }
       }
     },
@@ -74,12 +81,13 @@ module.exports = function(grunt) {
       }
     }
   });
-  grunt.loadNpmTasks('grunt-contrib-stylus');
+  grunt.loadNpmTasks('grunt-contrib-stylus'); 
   grunt.loadNpmTasks('grunt-bower-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.registerTask('default', ['stylus', 'concat','bower_concat','uglify', 'cssmin','copy']);
+  grunt.loadNpmTasks('grunt-autoprefixer');
+  grunt.registerTask('default', ['stylus', 'autoprefixer', 'concat','bower_concat','uglify', 'cssmin','copy']);
   grunt.registerTask('onlyConcat', ['concat']);
 };

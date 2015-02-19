@@ -1,8 +1,10 @@
+'use strict';
+
 app.directive('fileUpload', [function () {
 	return {
     restrict: 'A',
 		scope: {
-			fileBind : '='
+			fileBind : '@'
 		},
 		link: function (scope, el, attrs) {
 			el.bind('change', function (event) {
@@ -77,7 +79,12 @@ app.directive('modalDialog', function() {
 				scope.show = false;
 			};
 		},
-		templateUrl: 'scripts/directives/ventanaModal.html'
+		template: '<div class="ventana-modal-sombra" ng-show="show">
+  <div class="ventana-modal-contenedor">
+    <h2 ng-bind="tituloVentana"></h2>
+    <div ng-transclude></div>
+  </div>
+</div>'
 	};
 });
 app.directive('comparar', function() {

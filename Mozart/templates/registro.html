@@ -3,6 +3,13 @@
 {% block content %}<section id="section-general" ng-controller="formularioRegistroCtrl">
       <div class="formulario">
         <h2>Formulario de registro</h2>
+        {% if form.non_field_errors %}
+    {% ifnotequal form.non_field_errors.as_text|cut:"* " "$message" %}
+    <div class="aviso-error">
+      {{form.non_field_errors.as_text|cut:"$message"|cut:"* "}}
+    </div>
+  {% endifnotequal %}
+{% endif %}
         <form action="" method="post" id="id_signupform" name="{{form.form_name}}" novalidate>
           {% csrf_token %}
           <a href="/cuentas">Conoce más sobre los tipos de cuenta</a>

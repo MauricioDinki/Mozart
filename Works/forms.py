@@ -3,11 +3,19 @@ from django import forms
 from djangular.forms import NgModelFormMixin, NgFormValidationMixin
 from Thirdauth.forms import default_error_messages
 from Thirdauth.validations import validate_null,validate_title
+from django.utils.translation import ugettext_lazy as _
 
-class EditWorkForm(forms.ModelForm):
-    class Meta:
-        model = Work
-        fields = ['title','description','category']   
+class EditWorkForm(NgModelFormMixin, NgFormValidationMixin, forms.ModelForm):
+	scope_prefix='work'
+	form_name='editworkform'
+	class Meta:
+		model = Work
+		fields = ['title','description','category']
+		widgets = {
+        	'title' : forms.TextInput(attrs={'class':'cuadrotexto mz-field', 'placeholder':'Escribe un titulo para la obra'}),
+        	'description' : forms.Textarea(attrs={'class':'cuadrotexto un-cuadro'}),
+        	'category' : forms.Select(attrs={'class': 'cuadrotexto mz-field'}),
+        }
     
 class UploadWorkForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
 	scope_prefix='work'
@@ -36,7 +44,12 @@ class UploadWorkForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
 			'required':default_error_messages['required'],
 		},
 		required=True,
-		widget=forms.FileInput(attrs={'file-upload':'', 'file-bind':'\'archive\''}),
+		widget=forms.FileInput(attrs={'file-upload':'', 'file-bind':'archive'}),
+	)
+
+	cover = forms.ImageField(
+		required=False,
+		widget=forms.FileInput(attrs={'file-upload':'', 'file-bind':'cover', 'accept':'image/*'}),
 	)
 
 	def __init__(self, *args, **kwargs):

@@ -1,32 +1,18 @@
 {% extends 'configuraciones.html'%}
 {% block title %}Editar información - mozArt{% endblock %}
-
 {% load thumbnail %}
 {% block section %}<h1>Editar información</h1>
+{% if form.non_field_errors %}
+    {% ifnotequal form.non_field_errors.as_text|cut:"* " "$message" %}
+    <div class="aviso-error">
+      {{form.non_field_errors.as_text|cut:"$message"|cut:"* "}}
+    </div>
+  {% endifnotequal %}
+{% endif %}
   <form action="" method="post" id="id_informationform" name="{{form.form_name}}" enctype="multipart/form-data" ng-controller="editarInformacionCtrl">
   {% csrf_token %}
-        <!--<fieldset style="width:100%">
-          <legend>Video de presentacion</legend>
-          <input class="cuadrotexto un-cuadro" name="titulovideo" type="text" placeholder="Título del vídeo" ng-model="titulovideo"/><br/>
-          <div class="boton boton-azul">
-            <span>Cambiar video</span>
-            <input type="file" name="video" accept="video/*" file-upload file-bind="'archivoVideo'"/>
-          </div>
-          <div ng-show="video.name != ''"><strong>Archivo seleccionado: </strong> <span ng-bind="video.name"></span></div>
-          <div class="aviso-error" ng-hide="videoValido">El archivo que seleccionaste no es un archivo de video soportado por mozArt.</div>
-          <img src="static/img/fondo1.jpg" width="100%" />
-          <div class="boton boton-azul">
-            <span>Cambiar portada</span>
-            <input type="file" name="video" accept="image/*" file-upload file-bind="'archivoPortada'"/>
-          </div>
-          <div ng-show="portada.name != ''"><strong>Archivo de portada seleccionado: </strong> <span ng-bind="portada.name"></span></div>
-          <div class="aviso-error" ng-hide="portadaValida">La portada que seleccionaste no es un archivo de imagen soportado por mozArt.</div>
-        </fieldset>-->
         <fieldset style="width:100%">
           <legend>Editar datos</legend>
-          <h4>Fecha de nacimiento</h4>
-          <span>20/11/1980 </span>
-          <input type="checkbox" name="mostrarFecha" ng-model="mostrarFecha">Mostrar en mi perfil
           <div class="un-cuadro s-mzfield">
             <label for="id_username" class="etiqueta-input">Nickname</label>
               {{form.username}}
@@ -39,10 +25,10 @@
             <label for="id_last_name" class="etiqueta-input">Apellido(s)</label>
               {{form.last_name}}
           </div>
-          {% thumbnail user.mozart_user.profile_picture "300x173" crop="center" as im %}
-            <img src="{{ im.url }}" width="200px">
-        {% endthumbnail %}
           <h4>Imagen de perfil</h4>
+          {% thumbnail user.mozart_user.profile_picture "250x250" crop="center" as im %}
+            <img src="{{ im.url }}" width="200px"/><br/>
+        {% endthumbnail %}
           <div class="boton boton-azul">
             <span>Cambiar imagen</span>
             {{form.profile_picture}}

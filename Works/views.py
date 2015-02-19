@@ -10,13 +10,16 @@ from django.views.generic import ListView,DetailView,TemplateView,FormView,Updat
 from Profiles.mixins import RequestFormMixin
 from Thirdauth.mixins import AuthRedirectMixin, LoginRequiredMixin
 
+class UserWorkListView(TemplateView):
+	template_name = 'configuraciones_obras.html'
+
 class EditWorkView(LoginRequiredMixin,UpdateView):
 	form_class = EditWorkForm
 	model = Work
 	slug_field = 'slug'
 	slug_url_kwarg = 'slug'
 	success_url =  reverse_lazy('work_list')
-	template_name = 'edit-work-form.html'
+	template_name = 'configuraciones_editarobra.html'
 
 	def get_object(self):
 		obj = get_object_or_404(self.model, user = self.request.user, slug = self.kwargs.get(self.slug_url_kwarg, None))
