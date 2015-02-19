@@ -27,9 +27,8 @@ class HomeView(AuthRedirectMixin,TemplateView):
 
 class UploadWorkView(RequestFormMixin,FormView):
 	form_class = UploadWorkForm
-	success_url =  reverse_lazy('create_work')
+	success_url =  reverse_lazy('work_list')
 	template_name = 'subirobra.html'
-
 
 	def form_valid(self,form):
 		form.save()
@@ -38,30 +37,20 @@ class UploadWorkView(RequestFormMixin,FormView):
 		return super(UploadWorkView,self).form_valid(form)
 
 class WorkListView(TemplateView):
-    model = Work
-    template_name = "explore.html"
+    template_name = "test.html"
 
-# class WorkDetailView(DetailView):
-
-# 	model = Work
-
-# 	def get(self, request, *args, **kwargs):
-# 		self.object = self.get_object()
-# 		data = [{
-# 			'user': self.object.user.username,
-# 			'title':self.object.title,
-# 			'category':self.object.category,
-# 			'date':self.object.date,
-# 			'cover':self.object.cover.url,
-# 			'archive':self.object.archive.url,
-# 		}]
-# 		return JsonResponse(data,safe=False)
+    def get_context_data(self, **kwargs):
+        if 'view' not in kwargs:
+            kwargs['view'] = self
+            if self.kwargs.get('category'):
+            	error = get_object_or_404(Work,category = self.kwargs.get('category'))
+            	kwargs['category'] = self.kwargs.get('category')
+            else:
+            	kwargs['category'] = 'all'
+        return kwargs
 
 @login_required(login_url='login')
 def DeleteWorkView(request,slug):
 	account_to_delete = get_object_or_404(Work,user = request.user, slug = slug)
 	account_to_delete.delete()
 	return redirect(reverse_lazy('work_list'))
-
-
-

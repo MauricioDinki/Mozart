@@ -67,4 +67,3 @@ class UploadWorkForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
 		newWork = Work(user = self.request.user,title = title, description = description, category = category , archive = archive)
 		newWork.cover = newWork.archive
 		newWork.save()
-		
