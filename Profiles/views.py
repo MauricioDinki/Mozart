@@ -47,8 +47,8 @@ class InformationFormView(LoginRequiredMixin,RequestFormMixin,FormView):
 			'username' : self.request.user.username,
 			'zip_code':self.request.user.adress.zip_code,
 		}
+			
 		return initial
-
 
 class SocialNetworkSettingsView(LoginRequiredMixin,View):
 	template_name = 'configuraciones_social.html'

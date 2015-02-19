@@ -15,3 +15,12 @@ class LoginRequiredMixin(object):
 	@method_decorator(login_required(login_url='login'))
 	def dispatch(self, request, *args, **kwargs):
 	    return super(LoginRequiredMixin, self).dispatch(request, *args, **kwargs)
+
+# class LoginRequiredMixinUpdate(object):
+# 	@method_decorator(login_required(login_url='login'))
+# 	def dispatch(self, request, *args, **kwargs):
+# 	    if request.method.lower() in self.http_method_names:
+# 	        handler = getattr(self, request.method.lower(), self.http_method_not_allowed)
+# 	    else:
+# 	        handler = self.http_method_not_allowed
+# 	    return handler(request, *args, **kwargs)

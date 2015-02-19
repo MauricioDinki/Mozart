@@ -1,13 +1,25 @@
 # -*- encoding: utf-8 -*-
 
-from .forms import UploadWorkForm
+from .forms import UploadWorkForm,EditWorkForm
 from .models import Work
 from django.core.urlresolvers import reverse_lazy
 from django.http import JsonResponse
 from django.shortcuts import render,get_list_or_404,redirect
-from django.views.generic import ListView,DetailView,TemplateView,FormView
+from django.views.generic import ListView,DetailView,TemplateView,FormView,UpdateView
 from Profiles.mixins import RequestFormMixin
-from Thirdauth.mixins import AuthRedirectMixin
+from Thirdauth.mixins import AuthRedirectMixin, LoginRequiredMixin
+
+class EditWorkView(LoginRequiredMixin,UpdateView):
+	template_name = 'edit-work-form.html'
+	form_class = EditWorkForm
+	success_url =  reverse_lazy('work_list')
+	model = Work
+	slug_url_kwarg = 'slug'
+	slug_field = 'slug'
+
+	def get_object(self):
+		obj = self.model.objects.get(user = self.request.user, slug = self.kwargs.get(self.slug_url_kwarg, None))
+		return obj
 
 class HomeView(AuthRedirectMixin,TemplateView):
     template_name = "index.html"
