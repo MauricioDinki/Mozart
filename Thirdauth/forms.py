@@ -187,7 +187,8 @@ class RegisterForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
 
         user = User.objects.create_user(username,email,password)
 
-        newExtendedUser = Mozart_User(user=user,user_type=type_of_user)
+        newExtendedUser = Mozart_User(user=user,user_type=type_of_user,)
+        newExtendedUser.nationality = 'MX'
         newExtendedUser.save()
 
         newUserAge = Date_of_Birth(user=user,day=day_of_birth,month=month_of_birth,year=year_of_birth)
