@@ -3,10 +3,12 @@
 {% load thumbnail %}
 {% block section %}<h1>Editar información</h1>
 {% if form.non_field_errors %}
+    {% ifnotequal form.non_field_errors.as_text|cut:"* " "$message" %}
     <div class="aviso-error">
-      {{form.non_field_errors.as_text|cut:"*"}}
+      {{form.non_field_errors.as_text|cut:"$message"|cut:"* "}}
     </div>
-  {% endif %}
+  {% endifnotequal %}
+{% endif %}
   <form action="" method="post" id="id_informationform" name="{{form.form_name}}" enctype="multipart/form-data" ng-controller="editarInformacionCtrl">
   {% csrf_token %}
         <fieldset style="width:100%">

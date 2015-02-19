@@ -911,12 +911,6 @@ textarea.un-cuadro {
   position: relative;
   width: 450px;
 }
-.ventana-modal-contenedor input,
-.ventana-modal-contenedor textarea,
-.ventana-modal-contenedor select,
-.ventana-modal-contenedor tags-input {
-  width: 100%;
-}
 .ventana-modal-contenedor input[type="radio"] {
   width: auto;
 }

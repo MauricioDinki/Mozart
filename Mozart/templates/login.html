@@ -3,6 +3,13 @@
 {% block content %}<section id="section-general">
       <div class="formulario">
         <h2>Inicia sesión con tu correo electrónico</h2>
+        {% if form.non_field_errors %}
+    {% ifnotequal form.non_field_errors.as_text|cut:"* " "$message" %}
+    <div class="aviso-error">
+      {{form.non_field_errors.as_text|cut:"$message"|cut:"* "}}
+    </div>
+  {% endifnotequal %}
+{% endif %}
         <form action="" method="post" id="id_loginform" name="{{form.form_name}}" novalidate>
           {% csrf_token %}
           <div class="un-cuadro s-mzfield">
