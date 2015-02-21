@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 
-from .views import WorkListView, HomeView, UploadWorkView, WorkListUserView, EditWorkView
+from .views import WorkListView, HomeView, UploadWorkView, WorkListUserView, EditWorkView, WorkUserView
 from django.conf.urls import patterns, url,include
 
 urlpatterns = patterns('',
@@ -11,4 +11,5 @@ urlpatterns = patterns('',
 	url(r'^explore/(?P<category>.*)/$', WorkListView.as_view(), name='work_list_category'),
 	url(r'^settings/works/$', WorkListUserView.as_view(), name='settings_works'),
 	url(r'^settings/works/(?P<slug>.*)/$', EditWorkView.as_view(), name='edit_work'),
+	url(r'^(?P<username>.*)/works/(?P<slug>.*)/$', WorkUserView.as_view(), name='work_user_detail'),
 )
