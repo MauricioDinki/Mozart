@@ -5,6 +5,19 @@ from .serializers import WorkSerializer
 from rest_framework import viewsets
 
 class WorkViewSet(viewsets.ModelViewSet):
-	model = Work
-	queryset = Work.objects.all()
 	serializer_class = WorkSerializer 
+	queryset = Work.objects.all()
+
+	def get_queryset(self):
+		category = self.request.query_params.get('category',None)
+		author = self.request.query_params.get('author',None)
+		paginate = self.request.query_params.get('paginate',None)
+		if category is not None:
+			queryset = self.queryset.filter(category = category)
+		elif author is not None:
+			queryset = self.queryset.filter(user__username = author)
+		elif paginate is not None:
+			queryset = Work.objects.all()[:paginate]
+		else:
+			queryset = self.queryset
+		return queryset
