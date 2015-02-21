@@ -9,9 +9,14 @@ from django.shortcuts import render,get_list_or_404,redirect,get_object_or_404
 from django.views.generic import ListView,DetailView,TemplateView,FormView,UpdateView,DeleteView
 from Profiles.mixins import RequestFormMixin
 from Thirdauth.mixins import AuthRedirectMixin, LoginRequiredMixin
+from .mixins import WorkUserListMixin
 
 
-class EditWorkView(LoginRequiredMixin,UpdateView):
+class HomeView(AuthRedirectMixin,TemplateView):
+    template_name = "index.html"
+
+
+class WorkEditView(LoginRequiredMixin,UpdateView):
 	form_class = EditWorkForm
 	model = Work
 	slug_field = 'slug'
@@ -23,19 +28,6 @@ class EditWorkView(LoginRequiredMixin,UpdateView):
 		obj = get_object_or_404(self.model, user = self.request.user, slug = self.kwargs.get(self.slug_url_kwarg, None))
 		return obj
 
-class HomeView(AuthRedirectMixin,TemplateView):
-    template_name = "index.html"
-
-class UploadWorkView(RequestFormMixin,FormView):
-	form_class = UploadWorkForm
-	success_url =  reverse_lazy('work_list')
-	template_name = 'subirobra.html'
-
-	def form_valid(self,form):
-		form.save()
-		# ctx = {'uploaded':'Obra subia Correctamente','form':form}
-		# return render_to_response(self.template_name, ctx, context_instance = RequestContext(self.request))
-		return super(UploadWorkView,self).form_valid(form)
 
 class WorkListView(TemplateView):
     template_name = "explore.html"
@@ -50,24 +42,48 @@ class WorkListView(TemplateView):
             	kwargs['category'] = 'all'
         return kwargs
 
-class WorkUserView(TemplateView):
-	template_name = 'test.html'
 
-	def get_context_data(self, **kwargs):
-		if 'view' not in kwargs:
-		    kwargs['view'] = self
-		    kwargs['username'] = self.request.user.username
-		    kwargs['Work-slug'] = self.kwargs.get('slug')
-		return kwargs
-
-class WorkListUserView(TemplateView):
+class WorkSettingsView(WorkUserListMixin,TemplateView):
 	template_name = 'configuraciones_obras.html'
 
+	# def get_context_data(self, **kwargs):
+	# 	if 'view' not in kwargs:
+	# 	    kwargs['view'] = self
+	# 	    kwargs['username'] = self.request.user.username
+	# 	return kwargs
+
+
+class WorkUploadView(RequestFormMixin,FormView):
+	form_class = UploadWorkForm
+	success_url =  reverse_lazy('work_list')
+	template_name = 'subirobra.html'
+
+	def form_valid(self,form):
+		form.save()
+		# ctx = {'uploaded':'Obra subia Correctamente','form':form}
+		# return render_to_response(self.template_name, ctx, context_instance = RequestContext(self.request))
+		return super(UploadWorkView,self).form_valid(form)
+
+class WorkUserView(WorkUserListMixin,TemplateView):
+	template_name = 'template para la vista de la lista de obras de un usuario'
+
+	# def get_context_data(self, **kwargs):
+	# 	if 'view' not in kwargs:
+	# 	    kwargs['view'] = self
+	# 	    kwargs['username'] = self.request.user.username
+	# 	return kwargs
+
+
+class WorkUserDetailView(TemplateView):
+	template_name = 'template para la vista de detalle de las obras'
 	def get_context_data(self, **kwargs):
 		if 'view' not in kwargs:
 		    kwargs['view'] = self
-		    kwargs['username'] = self.request.user.username
+		    kwargs['username'] = self.kwargs.get('username')
+		    kwargs['slug'] = self.kwargs.get('slug')
+		    error = get_object_or_404(Work,user__username = self.kwargs.get('username'), slug = self.kwargs.get('slug'))
 		return kwargs
+
 
 @login_required(login_url='login')
 def DeleteWorkView(request,slug):

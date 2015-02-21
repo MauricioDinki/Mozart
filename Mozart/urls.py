@@ -12,16 +12,14 @@ router.register(r'mozart_user',MozartUserViewSet)
 router.register(r'user_contact',ContactViewSet)
 router.register(r'user_dateofbirth',DateBirthViewSet)
 router.register(r'users',UserViewSet)
-
-# Works Module
-router.register(r'works',WorkViewSet)
+router.register(r'worksets',WorkViewSet)
 
 
 urlpatterns = patterns('',
-	url('', include('social.apps.django_app.urls', namespace='social')),
-    url('', include('Works.urls')),
-    url('', include('Thirdauth.urls')),
-    url('', include('Profiles.urls')),
+    url(r'', include('Works.urls')),
+    url(r'', include('Thirdauth.urls')),
+    url(r'', include('Profiles.urls')),
+    url(r'', include('social.apps.django_app.urls', namespace='social')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^api-oauth/', include('rest_framework.urls',namespace='rest_framework')),
     url(r'^api/', include(router.urls)),
