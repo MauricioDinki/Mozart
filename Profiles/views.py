@@ -4,11 +4,12 @@ from .forms import UserInformationForm,ChangePasswordForm
 from .mixins import RequestFormMixin
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse_lazy
 from django.http import HttpResponseRedirect
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response,get_object_or_404
 from django.template import RequestContext
-from django.views.generic import FormView,View
+from django.views.generic import FormView,TemplateView
 from social.apps.django_app.default.models import UserSocialAuth
 from Thirdauth.mixins import LoginRequiredMixin
 
@@ -50,16 +51,28 @@ class ProfileSettingsView(LoginRequiredMixin,RequestFormMixin,FormView):
 			
 		return initial
 
-class SocialNetworkSettingsView(LoginRequiredMixin,View):
+class ProfileView(TemplateView):
+	template_name = 'template para la vista del perfil de usuario'
+
+	def get_context_data(self, **kwargs):
+		if 'view' not in kwargs:
+		    kwargs['view'] = self
+		    kwargs['username'] = self.kwargs.get('username')
+		    error = get_object_or_404(User,username__iexact = self.kwargs.get('username'))
+		return kwargs
+
+class SocialNetworkSettingsView(LoginRequiredMixin,TemplateView):
 	template_name = 'configuraciones_social.html'
-	def get(self, request, *args, **kwargs):
-		cuentas = UserSocialAuth.objects.filter(user__username = request.user.username)
-		ctx = {'cuentas':cuentas}
-		return render_to_response(self.template_name, ctx, context_instance = RequestContext(request))
+
+	def get_context_data(self, **kwargs):
+		if 'view' not in kwargs:
+		    kwargs['view'] = self
+		    kwargs['cuentas'] = UserSocialAuth.objects.filter(user__username = self.request.user.username)
+		return kwargs
 
 
 @login_required(login_url='login')
-def deleteSocialAccountView(request,provider,account_id):
+def SocialNetworkDeleteView(request,provider,account_id):
 	account_to_delete = UserSocialAuth.objects.get(user__username = request.user.username, provider = provider, id = account_id )
 	account_to_delete.delete()
 	return HttpResponseRedirect(reverse_lazy('settings_social'))
