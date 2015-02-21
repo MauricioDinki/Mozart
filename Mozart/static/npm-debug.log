@@ -1,0 +1,93 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node', '/usr/local/bin/npm', 'install' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.36
+4 warn package.json Mozart@0.0.0 No description
+5 warn package.json Mozart@0.0.0 No repository field.
+6 warn package.json Mozart@0.0.0 No README data
+7 verbose readDependencies using package.json deps
+8 verbose install where, deps [ '/home/mauricio/Proyectos/Mozart/Mozart/static',
+8 verbose install   [ 'grunt-bower-concat',
+8 verbose install     'grunt',
+8 verbose install     'grunt-contrib-concat',
+8 verbose install     'grunt-contrib-copy',
+8 verbose install     'grunt-contrib-cssmin',
+8 verbose install     'grunt-contrib-stylus',
+8 verbose install     'grunt-contrib-uglify' ] ]
+9 info preinstall Mozart@0.0.0
+10 verbose readDependencies using package.json deps
+11 verbose already installed skipping grunt-bower-concat@^0.4.0 /home/mauricio/Proyectos/Mozart/Mozart/static
+12 verbose already installed skipping grunt@~0.4.1 /home/mauricio/Proyectos/Mozart/Mozart/static
+13 verbose already installed skipping grunt-contrib-concat@^0.5.0 /home/mauricio/Proyectos/Mozart/Mozart/static
+14 verbose already installed skipping grunt-contrib-copy@^0.7.0 /home/mauricio/Proyectos/Mozart/Mozart/static
+15 verbose already installed skipping grunt-contrib-cssmin@^0.11.0 /home/mauricio/Proyectos/Mozart/Mozart/static
+16 verbose already installed skipping grunt-contrib-stylus@^0.20.0 /home/mauricio/Proyectos/Mozart/Mozart/static
+17 verbose already installed skipping grunt-contrib-uglify@^0.7.0 /home/mauricio/Proyectos/Mozart/Mozart/static
+18 silly resolved []
+19 info build /home/mauricio/Proyectos/Mozart/Mozart/static
+20 verbose linkStuff [ false, false, false, '/home/mauricio/Proyectos/Mozart/Mozart' ]
+21 info linkStuff Mozart@0.0.0
+22 verbose linkBins Mozart@0.0.0
+23 verbose linkMans Mozart@0.0.0
+24 verbose rebuildBundles Mozart@0.0.0
+25 verbose rebuildBundles [ '.bin',
+25 verbose rebuildBundles   'grunt',
+25 verbose rebuildBundles   'grunt-autoprefixer',
+25 verbose rebuildBundles   'grunt-bower-concat',
+25 verbose rebuildBundles   'grunt-contrib-concat',
+25 verbose rebuildBundles   'grunt-contrib-copy',
+25 verbose rebuildBundles   'grunt-contrib-cssmin',
+25 verbose rebuildBundles   'grunt-contrib-stylus',
+25 verbose rebuildBundles   'grunt-contrib-uglify',
+25 verbose rebuildBundles   'grunt-jasmine-runner' ]
+26 verbose rebuild bundle /home/mauricio/Proyectos/Mozart/Mozart/static/node_modules/grunt-autoprefixer
+27 info build /home/mauricio/Proyectos/Mozart/Mozart/static/node_modules/grunt-autoprefixer
+28 info preinstall grunt-autoprefixer@2.2.0
+29 verbose linkStuff [ false,
+29 verbose linkStuff   false,
+29 verbose linkStuff   false,
+29 verbose linkStuff   '/home/mauricio/Proyectos/Mozart/Mozart/static/node_modules' ]
+30 info linkStuff grunt-autoprefixer@2.2.0
+31 verbose linkBins grunt-autoprefixer@2.2.0
+32 verbose linkMans grunt-autoprefixer@2.2.0
+33 verbose rebuildBundles grunt-autoprefixer@2.2.0
+34 verbose rebuildBundles [ 'autoprefixer-core', 'chalk', 'diff' ]
+35 info install grunt-autoprefixer@2.2.0
+36 info postinstall grunt-autoprefixer@2.2.0
+37 verbose rebuild bundle /home/mauricio/Proyectos/Mozart/Mozart/static/node_modules/grunt-jasmine-runner
+38 info build /home/mauricio/Proyectos/Mozart/Mozart/static/node_modules/grunt-jasmine-runner
+39 info preinstall grunt-jasmine-runner@0.6.0
+40 verbose linkStuff [ false,
+40 verbose linkStuff   false,
+40 verbose linkStuff   false,
+40 verbose linkStuff   '/home/mauricio/Proyectos/Mozart/Mozart/static/node_modules' ]
+41 info linkStuff grunt-jasmine-runner@0.6.0
+42 verbose linkBins grunt-jasmine-runner@0.6.0
+43 verbose link bins [ { 'grunt-jasmine-runner': 'bin/grunt-jasmine-runner' },
+43 verbose link bins   '/home/mauricio/Proyectos/Mozart/Mozart/static/node_modules/.bin',
+43 verbose link bins   false ]
+44 verbose linkMans grunt-jasmine-runner@0.6.0
+45 verbose rebuildBundles grunt-jasmine-runner@0.6.0
+46 verbose rebuildBundles [ '.bin',
+46 verbose rebuildBundles   'connect',
+46 verbose rebuildBundles   'eventemitter2',
+46 verbose rebuildBundles   'grunt',
+46 verbose rebuildBundles   'open',
+46 verbose rebuildBundles   'semver',
+46 verbose rebuildBundles   'temporary' ]
+47 error Error: EACCES, unlink '/home/mauricio/Proyectos/Mozart/Mozart/static/node_modules/.bin/grunt-jasmine-runner'
+47 error  { [Error: EACCES, unlink '/home/mauricio/Proyectos/Mozart/Mozart/static/node_modules/.bin/grunt-jasmine-runner']
+47 error   errno: 3,
+47 error   code: 'EACCES',
+47 error   path: '/home/mauricio/Proyectos/Mozart/Mozart/static/node_modules/.bin/grunt-jasmine-runner' }
+48 error Please try running this command again as root/Administrator.
+49 error System Linux 3.13.0-45-generic
+50 error command "/usr/local/bin/node" "/usr/local/bin/npm" "install"
+51 error cwd /home/mauricio/Proyectos/Mozart/Mozart/static
+52 error node -v v0.10.36
+53 error npm -v 1.4.28
+54 error path /home/mauricio/Proyectos/Mozart/Mozart/static/node_modules/.bin/grunt-jasmine-runner
+55 error code EACCES
+56 error errno 3
+57 error stack Error: EACCES, unlink '/home/mauricio/Proyectos/Mozart/Mozart/static/node_modules/.bin/grunt-jasmine-runner'
+58 verbose exit [ 3, true ]
