@@ -40,8 +40,8 @@ class WorkListView(TemplateView):
             	kwargs['category'] = self.kwargs.get('category')
             else:
             	kwargs['category'] = 'all'
-        return kwargs
-
+    	return kwargs
+    	
 
 class WorkSettingsView(WorkUserListMixin,TemplateView):
 	template_name = 'configuraciones_obras.html'
@@ -86,7 +86,7 @@ class WorkUserDetailView(TemplateView):
 
 
 @login_required(login_url='login')
-def DeleteWorkView(request,slug):
+def WorkDeleteView(request,slug):
 	account_to_delete = get_object_or_404(Work,user = request.user, slug = slug)
 	account_to_delete.delete()
 	return redirect(reverse_lazy('work_list'))
