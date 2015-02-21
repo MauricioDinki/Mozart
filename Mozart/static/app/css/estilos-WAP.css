@@ -431,7 +431,7 @@ header #mozart-logo img {
   font-size: 35px;
   vertical-align: middle;
 }
-.icono-ad:before {
+.icono-arte_digital:before {
   content: "\e616";
 }
 .icono-aleatorio:before {
@@ -450,8 +450,7 @@ header #mozart-logo img {
   color: #333;
   content: "\e619";
 }
-.icono-dibujo-pintura:before,
-.icono-dyp:before {
+.icono-dibujo-pintura:before {
   content: "\e60e";
 }
 .icono-error:before {
@@ -468,14 +467,14 @@ header #mozart-logo img {
 .icono-explorar:before {
   content: "\e604";
 }
-.icono-eyc:before {
+.icono-escultura-ceramica:before {
   content: "\e615";
 }
 .icono-facebook:before {
   color: #4862a3;
   content: "\e612";
 }
-.icono-fyf:before {
+.icono-fotografia-filme:before {
   content: "\e60f";
 }
 .icono-google:before {
@@ -506,7 +505,7 @@ header #mozart-logo img {
 .icono-menu:hover {
   color: #2474e0;
 }
-.icono-myb:before {
+.icono-musica-baile:before {
   content: "\e611";
 }
 .icono-notificaciones:before {
@@ -552,7 +551,7 @@ header #mozart-logo img {
   color: #55acee;
   content: "\e613";
 }
-.icono-tyl:before {
+.icono-teatro-literatura:before {
   content: "\e610";
 }
 h4 {

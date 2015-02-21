@@ -26,12 +26,12 @@
       </form>
     <div id="menu-usuario" ng-controller="menuCtrl">
       <figure id="botonMenuDerecho" ng-click="mostrarMenu()" title="Mostrar/Ocultar menú">
-        {% if user.is_authenticated %}
-        {% thumbnail user.mozart_user.profile_picture "33x33" crop="center" as im %}
-            <img class="redondo" src="{{ im.url }}"/><br/>
-        {% endthumbnail %}
-        {% else %}
+        {% if not user.is_authenticated or not user.mozart_user.profile_picture %}
             <img class="redondo" src="{% static "img/default.png" %}"/>
+        {% else %}
+          {% thumbnail user.mozart_user.profile_picture "33x33" crop="center" as im %}
+            <img class="redondo" src="{{ im.url }}"/>
+          {% endthumbnail %}
         {% endif %}
       </figure>
       <div ng-style="posicionDerecha" off-click="mostrarMenu()" off-click-filter="#botonMenuDerecho" off-click-if="visible">

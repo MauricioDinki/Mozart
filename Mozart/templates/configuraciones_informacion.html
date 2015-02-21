@@ -1,6 +1,7 @@
 {% extends 'configuraciones.html'%}
 {% block title %}Editar información - mozArt{% endblock %}
 {% load thumbnail %}
+{% load static %}
 {% block section %}<h1>Editar información</h1>
 {% if form.non_field_errors %}
     {% ifnotequal form.non_field_errors.as_text|cut:"* " "$message" %}
@@ -26,9 +27,13 @@
               {{form.last_name}}
           </div>
           <h4>Imagen de perfil</h4>
-          {% thumbnail user.mozart_user.profile_picture "250x250" crop="center" as im %}
-            <img src="{{ im.url }}" width="200px"/><br/>
-        {% endthumbnail %}
+          {% if not user.mozart_user.profile_picture %}
+            <img src="{% static "img/default.png" %}" width="250px"/><br/>
+          {% else %}
+            {% thumbnail user.mozart_user.profile_picture "250x250" crop="center" as im %}
+            <img src="{{ im.url }}"/><br/>
+            {% endthumbnail %}
+          {% endif %}
           <div class="boton boton-azul">
             <span>Cambiar imagen</span>
             {{form.profile_picture}}
