@@ -1,4 +1,4 @@
-class WorkListUserMixin(object):
+class WorkUserListMixin(object):
 	def get_context_data(self, **kwargs):
 		if 'view' not in kwargs:
 		    kwargs['view'] = self

@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
 
 from .forms import UploadWorkForm,EditWorkForm
-from .mixins import WorkListUserMixin
 from .models import Work
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse_lazy
@@ -10,10 +9,12 @@ from django.shortcuts import render,get_list_or_404,redirect,get_object_or_404
 from django.views.generic import ListView,DetailView,TemplateView,FormView,UpdateView,DeleteView
 from Profiles.mixins import RequestFormMixin
 from Thirdauth.mixins import AuthRedirectMixin, LoginRequiredMixin
+from .mixins import WorkUserListMixin
 
 
 class HomeView(AuthRedirectMixin,TemplateView):
     template_name = "index.html"
+
 
 class WorkEditView(LoginRequiredMixin,UpdateView):
 	form_class = EditWorkForm
@@ -26,7 +27,7 @@ class WorkEditView(LoginRequiredMixin,UpdateView):
 	def get_object(self):
 		obj = get_object_or_404(self.model, user = self.request.user, slug = self.kwargs.get(self.slug_url_kwarg, None))
 		return obj
-	
+
 
 class WorkListView(TemplateView):
     template_name = "explore.html"
@@ -40,6 +41,16 @@ class WorkListView(TemplateView):
             else:
             	kwargs['category'] = 'all'
     	return kwargs
+    	
+
+class WorkSettingsView(WorkUserListMixin,TemplateView):
+	template_name = 'configuraciones_obras.html'
+
+	# def get_context_data(self, **kwargs):
+	# 	if 'view' not in kwargs:
+	# 	    kwargs['view'] = self
+	# 	    kwargs['username'] = self.request.user.username
+	# 	return kwargs
 
 
 class WorkUploadView(RequestFormMixin,FormView):
@@ -53,10 +64,18 @@ class WorkUploadView(RequestFormMixin,FormView):
 		# return render_to_response(self.template_name, ctx, context_instance = RequestContext(self.request))
 		return super(UploadWorkView,self).form_valid(form)
 
+class WorkUserView(WorkUserListMixin,TemplateView):
+	template_name = 'template para la vista de la lista de obras de un usuario'
+
+	# def get_context_data(self, **kwargs):
+	# 	if 'view' not in kwargs:
+	# 	    kwargs['view'] = self
+	# 	    kwargs['username'] = self.request.user.username
+	# 	return kwargs
+
 
 class WorkUserDetailView(TemplateView):
-	template_name = 'test.html'
-
+	template_name = 'template para la vista de detalle de las obras'
 	def get_context_data(self, **kwargs):
 		if 'view' not in kwargs:
 		    kwargs['view'] = self
@@ -65,11 +84,6 @@ class WorkUserDetailView(TemplateView):
 		    error = get_object_or_404(Work,user__username = self.kwargs.get('username'), slug = self.kwargs.get('slug'))
 		return kwargs
 
-class WorkSettingsView(WorkListUserMixin,TemplateView):
-	template_name = 'configuraciones_obras.html'
-
-class WorkUserView(WorkListUserMixin,TemplateView):
-	template_name = 'test.html'
 
 @login_required(login_url='login')
 def WorkDeleteView(request,slug):
