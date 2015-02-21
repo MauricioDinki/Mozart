@@ -18,8 +18,8 @@ router.register(r'works',WorkViewSet)
 
 
 urlpatterns = patterns('',
-	url('', include('social.apps.django_app.urls', namespace='social')),
     url('', include('Works.urls')),
+    url('', include('social.apps.django_app.urls', namespace='social')),
     url('', include('Thirdauth.urls')),
     url('', include('Profiles.urls')),
     url(r'^admin/', include(admin.site.urls)),
