@@ -89,6 +89,8 @@ class Mozart_User(models.Model):
 		verbose_name = "Mozart User"
 		verbose_name_plural = "Mozart Users"
 
+	def get_nationality(self):
+		return self.nationality.name
 	
 class Contact(models.Model):
 	user = models.OneToOneField(User)
