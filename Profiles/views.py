@@ -56,14 +56,14 @@ class ProfileView(TemplateView):
 
 	def get_context_data(self, **kwargs):
 		if 'view' not in kwargs:
-		    kwargs['view'] = self
-		    kwargs['username'] = self.kwargs.get('username')
-		    error = get_object_or_404(User,username__iexact = self.kwargs.get('username'))
-		    if self.kwargs.get('category'):
-            	error = get_list_or_404(Work,category = self.kwargs.get('category'))
-            	kwargs['category'] = self.kwargs.get('category')
-            else:
-            	kwargs['category'] = 'all'
+			kwargs['view'] = self
+			kwargs['username'] = self.kwargs.get('username')
+			error = get_object_or_404(User,username__iexact = self.kwargs.get('username'))
+			if self.kwargs.get('category'):
+				error = get_list_or_404(Work,category = self.kwargs.get('category'))
+				kwargs['category'] = self.kwargs.get('category')
+		else:
+			kwargs['category'] = 'all'
 		return kwargs
 
 class SocialNetworkSettingsView(LoginRequiredMixin,TemplateView):
