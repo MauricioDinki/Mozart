@@ -36,7 +36,7 @@ class WorkListView(TemplateView):
         if 'view' not in kwargs:
             kwargs['view'] = self
             if self.kwargs.get('category'):
-            	error = get_object_or_404(Work,category = self.kwargs.get('category'))
+            	error = get_list_or_404(Work,category = self.kwargs.get('category'))
             	kwargs['category'] = self.kwargs.get('category')
             else:
             	kwargs['category'] = 'all'
@@ -62,7 +62,7 @@ class WorkUploadView(RequestFormMixin,FormView):
 		form.save()
 		# ctx = {'uploaded':'Obra subia Correctamente','form':form}
 		# return render_to_response(self.template_name, ctx, context_instance = RequestContext(self.request))
-		return super(UploadWorkView,self).form_valid(form)
+		return super(WorkUploadView,self).form_valid(form)
 
 class WorkUserView(TemplateView):
 	template_name = 'template para la vista de la lista de obras de un usuario'
@@ -71,7 +71,7 @@ class WorkUserView(TemplateView):
 		if 'view' not in kwargs:
 		    kwargs['view'] = self
 		    kwargs['username'] = self.kwargs.get('username')
-		    error = get_object_or_404(User,username__iexact = self.kwargs.get('username'))
+		    error = get_list_or_404(User,username__iexact = self.kwargs.get('username'))
 		return kwargs
 
 
