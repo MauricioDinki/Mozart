@@ -16,8 +16,8 @@ router.register(r'worksets',WorkViewSet)
 
 
 urlpatterns = patterns('',
-    url(r'^api-oauth/', include('rest_framework.urls',namespace='rest_framework')),
     url(r'^api/', include(router.urls)),
+    url(r'^api-oauth/', include('rest_framework.urls',namespace='rest_framework')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'', include('social.apps.django_app.urls', namespace='social')),
     url(r'', include('Works.urls')),

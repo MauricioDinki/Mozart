@@ -15,6 +15,7 @@ class DateBirthSerializer(serializers.HyperlinkedModelSerializer):
 class MozartUserSerializer(serializers.HyperlinkedModelSerializer):
 	class Meta:
 		model = Mozart_User
+		exclude = ['nationality']
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
 	class Meta:

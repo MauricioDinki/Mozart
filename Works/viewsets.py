@@ -5,7 +5,7 @@ from .serializers import WorkSerializer
 from rest_framework import viewsets
 
 class WorkViewSet(viewsets.ModelViewSet):
-	serializer_class = WorkSerializer 
+	serializer_class = WorkSerializer
 	queryset = Work.objects.all()
 
 	def get_queryset(self):
