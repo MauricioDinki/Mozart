@@ -1,6 +1,6 @@
 {% extends 'perfil.html' %}
 {% block section %}
-<div ng-init="categoria='all';autor='{{username}}';modo='recents'">
+<div ng-init="categoria='{{category}}';autor='{{username}}';modo='recents'">
 	{$categoria + autor + modo$}
 <section id="informacion" ng-controller="cargarObrasCtrl">
 <article class="publicacion" ng-repeat="obra in obras">
