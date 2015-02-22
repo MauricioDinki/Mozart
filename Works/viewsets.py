@@ -15,7 +15,8 @@ class WorkViewSet(viewsets.ModelViewSet):
 		if category is not None:
 			if category == 'all':
 				queryset = Work.objects.all()[:paginate]
-			queryset = self.queryset.filter(category = category)[:paginate]
+			else:
+				queryset = self.queryset.filter(category = category)[:paginate]
 		elif author is not None:
 			queryset = self.queryset.filter(user__username = author)[:paginate]
 		elif paginate is not None:
