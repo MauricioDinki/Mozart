@@ -65,7 +65,7 @@ class WorkUploadView(RequestFormMixin,FormView):
 		return super(WorkUploadView,self).form_valid(form)
 
 class WorkUserView(TemplateView):
-	template_name = 'template para la vista de la lista de obras de un usuario'
+	template_name = 'perfil_obras.html'
 
 	def get_context_data(self, **kwargs):
 		if 'view' not in kwargs:

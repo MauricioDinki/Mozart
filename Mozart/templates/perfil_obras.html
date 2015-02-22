@@ -1,0 +1,20 @@
+{% extends 'perfil.html' %}
+{% block section %}
+<div ng-init="categoria='all';autor='{{username}}';modo='recents'">
+	{$categoria + autor + modo$}
+<section id="informacion" ng-controller="cargarObrasCtrl">
+<article class="publicacion" ng-repeat="obra in obras">
+        <div class="thumbnail-obra" style="background:url('{$obra.cover$}');">
+          <span class="formato" ng-bind="obra.slug"></span>
+        </div>
+        <a ng-href=" {$ obra.url $} "><img class="redondo thumbnail-usuario-p" ng-src=" {$ obra.cover $} "/></a>
+        <span class="iconos icono-{$obra.category$}"></span><a class="titulo-obra" ng-href="{$obra.url$}" ng-bind="obra.title"></a><br/>
+        <span class="autor-obra">por <a ng-href=" {$ obra.url $} " ng-bind="obra.slug"></a></span> el <span class="fecha-obra" ng-bind="obra.date"></span>
+      </article><br/>
+      <div class="aviso-error" ng-show="mostrarMensaje">
+        No existen obras suficientes para cubir la petición. Intenta refrescar la página.
+      </div>
+      <button class="boton boton-verde cargar-mas" ng-click="cargar(cantidad)">Cargar más obras</button>
+		</section>
+	</div>
+{% endblock %}

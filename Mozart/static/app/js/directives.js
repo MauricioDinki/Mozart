@@ -79,12 +79,12 @@ app.directive('modalDialog', function() {
 				scope.show = false;
 			};
 		},
-		template: '<div class="ventana-modal-sombra" ng-show="show">
-  <div class="ventana-modal-contenedor">
-    <h2 ng-bind="tituloVentana"></h2>
-    <div ng-transclude></div>
-  </div>
-</div>'
+		template: '<div class="ventana-modal-sombra" ng-show="show">'+
+  '<div class="ventana-modal-contenedor">'+
+    '<h2 ng-bind="tituloVentana"></h2>'+
+    '<div ng-transclude></div>'+
+  '</div>'+
+'</div>'
 	};
 });
 app.directive('comparar', function() {

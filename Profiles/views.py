@@ -52,7 +52,7 @@ class ProfileSettingsView(LoginRequiredMixin,RequestFormMixin,FormView):
 		return initial
 
 class ProfileView(TemplateView):
-	template_name = 'template para la vista del perfil de usuario'
+	template_name = 'perfil_informacion.html'
 
 	def get_context_data(self, **kwargs):
 		if 'view' not in kwargs:
