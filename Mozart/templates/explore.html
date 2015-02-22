@@ -13,7 +13,7 @@
         <li><a href="/explore/otros" class="iconos icono-otros" title="Otros"></a></li>
       </ul>
     </nav>
-    <div ng-init="categoria='{{category}}';autor='all';modo='recents'"><section id="obras-principal" ng-controller="cargarObrasCtrl" >
+    <div ng-init="categoria='{{category}}';autor='all'"><section id="obras-principal" ng-controller="cargarObrasCtrl" >
       <article class="publicacion" ng-repeat="obra in obras">
         <div class="thumbnail-obra" style="background:url('{$obra.cover$}');">
           <span class="formato" ng-bind="obra.slug"></span>

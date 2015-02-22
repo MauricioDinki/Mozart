@@ -1,7 +1,6 @@
 {% extends 'perfil.html' %}
 {% block section %}
-<div ng-init="categoria='{{category}}';autor='{{username}}';modo='recents'">
-	{$categoria + autor + modo$}
+<div ng-init="categoria='{{category}}';autor='{{username}}'">
 <section id="informacion" ng-controller="cargarObrasCtrl">
 <article class="publicacion" ng-repeat="obra in obras">
         <div class="thumbnail-obra" style="background:url('{$obra.cover$}');">

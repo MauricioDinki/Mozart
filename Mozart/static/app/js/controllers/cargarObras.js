@@ -9,11 +9,11 @@
  */
 
 //Falta opcion de mostrar mensajes
-app.controller('cargarObrasCtrl', ['$scope','peticionObras', function($scope, peticionObras){
+app.controller('cargarObrasCtrl', ['$scope','recentWorks', function($scope, recentWorks){
   $scope.cantidad = 20;
   $scope.mostrarMensaje = false;
   $scope.cargar = function(nuevaCantidad){
-    peticionObras.get(
+    recentWorks.get(
       function(obras) {
         $scope.obras = obras;
         var size = angular.fromJson($scope.obras).length;
@@ -29,7 +29,6 @@ app.controller('cargarObrasCtrl', ['$scope','peticionObras', function($scope, pe
       function(data, status) {
         alert('Ha fallado la petición. Estado HTTP:' + status);
       },
-      $scope.modo,
       $scope.categoria,
       $scope.autor,
       nuevaCantidad
