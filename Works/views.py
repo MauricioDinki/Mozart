@@ -81,7 +81,7 @@ class WorkUserView(TemplateView):
 
 
 class WorkUserDetailView(TemplateView):
-	template_name = 'obra.html'
+	template_name = 'test.html'
 	def get_context_data(self, **kwargs):
 		if 'view' not in kwargs:
 		    kwargs['view'] = self

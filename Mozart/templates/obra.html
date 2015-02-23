@@ -1,0 +1,16 @@
+{% extends 'base_view.html' %}
+{% block title %}Obra - mozArt{% endblock %}
+{% block content %}
+<section id="section-general">
+	<div id="section-obra">
+		<video id="contenido-obra" src="static/video.mp4" poster="static/img/fondo1.jpg" controls="true">Video no disponible.</video>
+		<a href="#/artista/0"><img class="redondo thumbnail-usuario-p" src="static/img//foto1.jpg"/> </a><span class="iconos icono-dyp"></span><span class="titulo-obra">Nombre de la obra</span><br/>
+			Creada por <a class="autor-obra" href="#/artista/0">Autor</a> el <span class="fecha-obra">00/00/0000</span><br/>
+
+			<p>Descripción de la obra, con máximo de 1000 caracteres.</p>
+			<div ng-controller="etiquetasObra">
+				<a class="etiqueta-obra" ng-repeat="etiqueta in etiquetas" ng-bind="etiqueta.nombre" ng-src="{$etiqueta.link$}"></a>
+			</div>
+	</div>
+</section>
+{% endblock %}
