@@ -1,5 +1,6 @@
 {% extends 'base_view.html' %}
 {% load thumbnail %}
+{% load static %}
 {% block title %}Explorar - mozArt{% endblock %}
 {% block content %}<nav id="barra-categorias">
     	<ul class="categorias">
@@ -14,16 +15,15 @@
       </ul>
     </nav>
     <div ng-init="categoria='{{category}}';autor='all'"><section id="obras-principal" ng-controller="cargarObrasCtrl" >
-      <article class="publicacion" ng-repeat="obra in obras">
+      <article class="publicacion" ng-repeat="obra in obras|orderBy:-'$index'" ng-init="usuario = obra.user">
         <div class="thumbnail-obra" style="background:url('{$obra.cover$}');">
-          <span class="formato" ng-bind="obra.slug"></span>
         </div>
-        <a ng-href=" {$ obra.url $} "><img class="redondo thumbnail-usuario-p" ng-src=" {$ obra.cover $} "/></a>
-        <span class="iconos icono-{$obra.category$}"></span><a class="titulo-obra" ng-href="{$obra.url$}" ng-bind="obra.title"></a><br/>
-        <span class="autor-obra">por <a ng-href=" {$ obra.url $} " ng-bind="obra.slug"></a></span> el <span class="fecha-obra" ng-bind="obra.date"></span>
+        <a ng-href="/{$ obra.user $}" ng-controller="imagenPerfilCtrl"><img class="redondo thumbnail-usuario-p" ng-src=" {$ imagen $} " title="Ver perfil de {$usuario$}"/></a>
+        <span class="iconos icono-{$obra.category$}"></span><a class="titulo-obra" ng-href="/work/{$obra.slug$}" ng-bind="obra.title"></a><br/>
+        <span class="autor-obra">por <a ng-href="/{$ obra.user $}" ng-bind="obra.user"></a></span> el <span class="fecha-obra" ng-bind="obra.date"></span>
       </article><br/>
       <div class="aviso-error" ng-show="mostrarMensaje">
         No existen obras suficientes para cubir la petición. Intenta refrescar la página.
       </div>
-      <button class="boton boton-verde cargar-mas" ng-click="cargar(cantidad)">Cargar más obras</button>
+      <button class="boton boton-verde cargar-mas" ng-click="cargar()">Cargar más obras</button>
     </section></div>{% endblock %}

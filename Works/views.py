@@ -21,7 +21,7 @@ class WorkEditView(LoginRequiredMixin,UpdateView):
 	model = Work
 	slug_field = 'slug'
 	slug_url_kwarg = 'slug'
-	success_url =  reverse_lazy('work_list')
+	success_url =  reverse_lazy('settings_works')
 	template_name = 'configuraciones_editarobra.html'
 
 	def get_object(self):

@@ -13,17 +13,15 @@
         <li><a href="/{{username}}/works/otros" class="iconos icono-otros" title="Otros"></a></li>
       </ul>
 </nav>
-<div id="obras-principal">
-	<div id="contenedor-principal">
+<div id="obras-principal"  ng-init="usuario='{{username}}'">
+	<div id="contenedor-principal" ng-controller="mozartUserInformationCtrl">
 		<div id="barra-lateral">
-			<figure id="avatar-perfil">
-				<img src="static/img/default.png" />
+			<figure id="avatar-perfil" >
+				<img id="avatar-usuario" ng-src="{$imagen$}"/>
 			</figure>
-			<h2>
-				{{username}}
+			<h2 ng-bind="usuario">
 			</h2>
-			<p>
-				Descripción.
+			<p ng-bind="descripcion">
 			</p>
 			<ul class="menu-bloques">
 				<li class="opcion-menu "><a class="iconos icono-tarjeta" href="/{{username}}/">Mi tarjeta</a></li>

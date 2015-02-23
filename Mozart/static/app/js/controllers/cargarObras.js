@@ -8,11 +8,10 @@
  * Controller of the mozArtApp
  */
 
-//Falta opcion de mostrar mensajes
 app.controller('cargarObrasCtrl', ['$scope','recentWorks', function($scope, recentWorks){
   $scope.cantidad = 20;
   $scope.mostrarMensaje = false;
-  $scope.cargar = function(nuevaCantidad){
+  $scope.cargar = function(){
     recentWorks.get(
       function(obras) {
         $scope.obras = obras;
@@ -31,8 +30,8 @@ app.controller('cargarObrasCtrl', ['$scope','recentWorks', function($scope, rece
       },
       $scope.categoria,
       $scope.autor,
-      nuevaCantidad
+      $scope.cantidad
     );
   };
-  $scope.cargar($scope.cantidad);
+  $scope.cargar();
 }]);

@@ -2,9 +2,9 @@
 
 /**
  * @ngdoc function
- * @name mozArtApp.service:getRecentWorks
+ * @name mozArtApp.service:recentWorks
  * @description
- * #getRecentWorks
+ * #recentWorks
  * Service of the mozArtApp
  */
 

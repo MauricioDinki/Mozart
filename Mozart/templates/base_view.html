@@ -30,7 +30,7 @@
             <img class="redondo" src="{% static "img/default.png" %}"/>
         {% else %}
           {% thumbnail user.mozart_user.profile_picture "33x33" crop="center" as im %}
-            <img class="redondo" src="{{ im.url }}"/>
+            <img class="redondo" src="{{ user.mozart_user.profile_picture.url }}"/>
           {% endthumbnail %}
         {% endif %}
       </figure>
@@ -40,7 +40,7 @@
           <hr/>{% if user.is_authenticated %}{% if user.mozart_user.user_type == 'Artista' %}
           <li class="opcion-menu"><a  href="/create/work" class="iconos icono-cargar">Crear obra</a>
           </li>{% endif %}
-          <li class="opcion-menu"><a href="/artista/0" class="iconos icono-perfil">Ver mi Perfil</a></li>
+          <li class="opcion-menu"><a href="/{{ user.username }}" class="iconos icono-perfil">Ver mi Perfil</a></li>
           <li class="opcion-menu"><a href="/settings/account" class="iconos icono-panel">Panel de usuario</a></li>
           <li class="opcion-menu"><a href="/logout" class="iconos icono-salir">Cerrar sesión</a></li>{% else %}
           <li class="opcion-menu"><a href="/login" class="iconos icono-login">Iniciar sesión</a></li>
