@@ -2,7 +2,7 @@ from django.conf.urls import patterns,include,url
 from django.contrib import admin
 from django.conf import settings
 from rest_framework import routers
-from Profiles.viewsets import UserViewSet,MozartUserViewSet,ContactViewSet,DateBirthViewSet
+from Profiles.viewsets import UserViewSet,MozartUserViewSet,ContactViewSet,DateBirthViewSet,AdressViewSet
 from Works.viewsets import WorkViewSet
 
 router = routers.DefaultRouter()
@@ -13,6 +13,7 @@ router.register(r'user_contact',ContactViewSet)
 router.register(r'user_dateofbirth',DateBirthViewSet)
 router.register(r'users',UserViewSet)
 router.register(r'worksets',WorkViewSet)
+router.register(r'adress',AdressViewSet)
 
 
 urlpatterns = patterns('',

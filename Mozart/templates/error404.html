@@ -1,9 +1,23 @@
-{% extends 'base_view.html' %}
-{% block title %}Error 404 - mozArt{% endblock %}
-{% block content %}<section id="section-general">
+<!doctype html>
+<html class="no-js">{% load static from staticfiles %}
+  <head>
+    <meta charset="utf-8">
+    <title>Error 404 - mozArt</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="{% static "css/styles.min.css" %}">
+    <link rel="icon" href="{% static "favicon.ico" %}">
+  </head>
+  <body>
+  <main id="contenido">
+    <section id="section-general">
 	<span class="iconos icono-error"></span>
 	<p style="color: #555; font-size: 25px">
-		No logramos encontrar lo que sea que estes buscando, disculpanos.
+		No logramos encontrar lo que sea que estes buscando, disculpanos.<br/>
+		Att. El equipo <img src="{% static "img/logo.png" %}" alt="mozArt" width="100px"><br/><br/>
+		<a href="/">Ir a la página principal</a>
 	</p>
 </section>
-{% endblock %}
+  </main>
+  </body>
+</html>
