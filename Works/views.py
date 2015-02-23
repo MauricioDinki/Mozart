@@ -80,15 +80,19 @@ class WorkUserView(TemplateView):
 			return kwargs
 
 
-class WorkUserDetailView(TemplateView):
-	template_name = 'obra.html'
-	def get_context_data(self, **kwargs):
-		if 'view' not in kwargs:
-		    kwargs['view'] = self
-		    kwargs['username'] = self.kwargs.get('username')
-		    kwargs['slug'] = self.kwargs.get('slug')
-		    error = get_object_or_404(Work,user__username = self.kwargs.get('username'), slug = self.kwargs.get('slug'))
-		return kwargs
+class WorkUserDetailView(DetailView):
+	template_name = 'test.html'
+	model = Work
+	slug_field = 'slug'
+	slug_url_kwarg = 'slug'
+
+	# def get_context_data(self, **kwargs):
+	# 	if 'view' not in kwargs:
+	# 	    kwargs['view'] = self
+	# 	    kwargs['username'] = self.kwargs.get('username')
+	# 	    kwargs['slug'] = self.kwargs.get('slug')
+	# 	    error = get_object_or_404(Work,user__username = self.kwargs.get('username'), slug = self.kwargs.get('slug'))
+	# 	return kwargs
 
 
 @login_required(login_url='login')
