@@ -6,7 +6,7 @@ from rest_framework import viewsets
 
 class WorkViewSet(viewsets.ModelViewSet):
 	serializer_class = WorkSerializer
-	queryset = Work.objects.all()
+	queryset = Work.objects.all().order_by('date').reverse()
 
 	def get_queryset(self):
 		category = self.request.query_params.get('category',None)
@@ -14,7 +14,7 @@ class WorkViewSet(viewsets.ModelViewSet):
 		paginate = self.request.query_params.get('paginate',None)
 		if category == 'all' or category is None:
 			if author == 'all' or author is None:
-				queryset = Work.objects.all()[:paginate]
+				queryset = self.queryset[:paginate]
 			else:
 				queryset = self.queryset.filter(user__username = author)[:paginate]
 		elif author == 'all' or author is None:
