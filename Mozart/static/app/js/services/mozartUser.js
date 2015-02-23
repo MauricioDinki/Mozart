@@ -66,3 +66,17 @@ app.service('dateOfBirth', ['$http',  function($http){
     });
   };
 }]);
+app.service('adress', ['$http',  function($http){
+  this.get=function(fnOK,fnError, user) {
+    $http({
+      method: 'GET',
+      url: 'http://mozart.com:8000/api/adress/?username=' + user
+    })
+    .success(function(data, status, headers, config) {
+      fnOK(data);
+    })
+    .error(function(data, status, headers, config) {
+      fnError(data,status);
+    });
+  };
+}]);

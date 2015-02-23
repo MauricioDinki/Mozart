@@ -8,7 +8,7 @@
  * Controller of the mozArtApp
  */
 
-app.controller('mozartUserInformationCtrl', ['$scope','mozartUser', 'user','contact','dateOfBirth', function($scope, mozartUser, user,contact,dateOfBirth){
+app.controller('mozartUserInformationCtrl', ['$scope','mozartUser', 'user','contact','dateOfBirth', 'adress', function($scope, mozartUser, user, contact, dateOfBirth, adress){
   $scope.cargar = function(){
     mozartUser.get(
       function(usuario) {
@@ -74,6 +74,22 @@ app.controller('mozartUserInformationCtrl', ['$scope','mozartUser', 'user','cont
     dateOfBirth.get(
       function(usuario) {
         $scope.fechanacimiento = usuario[0].day + ' de ' + usuario[0].month + ' de ' + usuario[0].year;
+      },
+      function(data, status) {
+        alert('Ha fallado la petición. Estado HTTP:' + status);
+      },
+      $scope.usuario
+    );
+    adress.get(
+      function(usuario) {
+        console.log(usuario[0]);
+        $scope.domicilio = usuario[0].adress + ', ' + usuario[0].neighborhood + ', ' + usuario[0].city + ', ' + usuario[0].zip_code;
+        if(usuario[0].adress == '' && usuario[0].city == '' && usuario[0].zip_code == '' && usuario[0].neighborhood == ''){
+          $scope.domicilio = 'No disponible.';
+        }
+        else if(usuario[0].adress == '' || usuario[0].city == '' || usuario[0].zip_code == '' || usuario[0].neighborhood == ''){
+          $scope.domicilio += ' (Domicilio incompleto)';
+        }
       },
       function(data, status) {
         alert('Ha fallado la petición. Estado HTTP:' + status);
