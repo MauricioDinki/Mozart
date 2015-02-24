@@ -11,6 +11,7 @@ urlpatterns = patterns('',
 	url(r'^explore/(?P<category>.*)/$', WorkListView.as_view(), name='work_list_category'),
 	url(r'^settings/works/$', WorkSettingsView.as_view(), name='settings_works'),
 	url(r'^settings/works/(?P<slug>.*)/$', WorkEditView.as_view(), name='edit_work'),
+	url(r'^(?P<username>.*)/works/category/(?P<category>.*)/$', WorkUserView.as_view(), name='work_user_list_category'),
 	url(r'^(?P<username>.*)/works/(?P<slug>.*)/$', WorkUserDetailView.as_view(), name='work_user_detail'),
-	url(r'^(?P<username>.*)/works/$', WorkUserView.as_view(), name='work_user_detail'),
+	url(r'^(?P<username>.*)/works/$', WorkUserView.as_view(), name='work_user_list'),
 )
