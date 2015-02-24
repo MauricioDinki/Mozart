@@ -9,7 +9,7 @@
  */
 
 app.controller('cargarObrasCtrl', ['$scope','recentWorks', function($scope, recentWorks){
-  $scope.cantidad = 8;
+  $scope.cantidad = 6;
   $scope.mostrarMensaje = false;
   $scope.cargar = function(){
     recentWorks.get(
@@ -17,17 +17,17 @@ app.controller('cargarObrasCtrl', ['$scope','recentWorks', function($scope, rece
         $scope.obras = obras;
         var size = angular.fromJson($scope.obras).length;
         if(size < $scope.cantidad){
-          if($scope.cantidad == 8){
+          if($scope.cantidad == 6){
             $scope.mostrarMensaje = false;
           }
           else{
             $scope.mostrarMensaje = true;
           }
-          $scope.cantidad = size + 8;
+          $scope.cantidad = size + 6;
         }
         else{
           $scope.mostrarMensaje = false;
-          $scope.cantidad += 8;
+          $scope.cantidad += 6;
         }
       },
       function(data, status) {
