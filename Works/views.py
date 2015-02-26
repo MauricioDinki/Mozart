@@ -43,7 +43,7 @@ class WorkListView(TemplateView):
     	return kwargs
     	
 
-class WorkSettingsView(TemplateView):
+class WorkSettingsView(LoginRequiredMixin,TemplateView):
 	template_name = 'configuraciones_obras.html'
 
 	def get_context_data(self, **kwargs):
@@ -53,7 +53,7 @@ class WorkSettingsView(TemplateView):
 		return kwargs
 
 
-class WorkUploadView(RequestFormMixin,FormView):
+class WorkUploadView(LoginRequiredMixin,RequestFormMixin,FormView):
 	form_class = UploadWorkForm
 	success_url =  reverse_lazy('work_list')
 	template_name = 'subirobra.html'
