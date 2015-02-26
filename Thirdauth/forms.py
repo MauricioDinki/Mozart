@@ -52,6 +52,7 @@ class LoginForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
                 raise forms.ValidationError(custom_error_messages['inactive'])
         return self.cleaned_data
 
+# class RegisterForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
 class RegisterForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
     scope_prefix='signup'
     form_name='signupform'

@@ -37,7 +37,7 @@ class Work(models.Model):
 		verbose_name_plural = "Works"
 
 	def save(self, *args, **kwargs):
-		self.slug = slugify(self.title)
+		# self.slug = slugify(self.title)
 		super(Work, self).save(*args, **kwargs)
 
 	def __unicode__(self):
