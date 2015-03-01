@@ -11,50 +11,6 @@ a
 	cursor pointer
 	text-decoration none
 
-.aviso-error
-	color red
-	margin-right 30px
-	text-align right
-
-#barra-categorias, #barra-promotores
-	background azul_claro
-	position fixed
-	text-align center
-	top 35px
-	width 100%
-	z-index 1
-
-	.iconos
-		color azul_claro
-		display inline-block
-		font-size 32px
-
-		&:hover
-			color orange
-
-	.letras li
-		display inline-block
-		font-family Montserrat
-		margin-top 6px
-
-		a
-			color white
-			font-size 25px
-			line-height 35px
-			padding 10px
-
-			&:hover
-				color naranja_oscuro
-
-	ul
-		min-height 50px
-		margin-bottom 0
-		margin-top 0
-		overflow-x auto !important
-		overflow-y hidden !important
-		width 100%
-		white-space nowrap
-
 body
 	background #ededed
 	font-family Lato
@@ -62,149 +18,23 @@ body
 	margin 0
 	padding 0
 
-.cantidad
-	background azul_sitio
-	border-radius 3px
-	color white
-	display inline-block
-	font-weight 700
-	margin-right 10px
-	padding 5px 8px
-	vertical-align middle
-
-.categorias li
-	display inline-block
-	height 50px
-	width 55px
-
-#contenido
-	display block
-	margin 0
-	padding 0
-
-#configuraciones
-	background white
-	padding 20px
-
-	fieldset
-		background #eee
-		border 2px solid #ddd
-		border-radius 2px
-		display inline-block
-		vertical-align top
-
-		legend
-			color azul_sitio
-			font-weight 700
-#cuadro-busqueda
+#boton-menu
+	background #555
+	cursor pointer
+	left 3px
 	position absolute
-	left 220px
-	right 90px
-
-	.contenedor
-		margin 0 auto
-		position relative
-		text-align left
-
-		button
-			font-size 28px
-
-		.cuadrotexto
-			float left
-			height 35px
-			padding-right 35px
-			width 100%
-
-		ul
-			background white
-			border 1px solid #ccc
-			font-weight lighter
-			margin 0
-			padding 1px
-			position absolute
-			top 37px
-			width 100%
-			transition visibility 0.2s
-
-			.resultado
-				background #ededed
-				color gris_oscuro
-				display block
-				padding 5px
-				margin-top 1px
-
-			.copia-texto
-				display block
-				overflow hidden
-				padding 3px
-		
-		.cuadrotexto.ng-invalid, .cuadrotexto.ng-valid
-			background #efefef
-			
-		.cuadrotexto.ng-invalid:focus, .cuadrotexto.ng-valid:focus
-			background white
-				
-.cuadrotexto
-	background #efefef
-	border none
-	color #999
-	font-size 17px
-	font-family "Lato"
-	font-weight bold
-	height 40px
-	padding 0 10px
-	position relative
-	transition background 0.2s, border-color 0.2s, width 0.2s
-	vertical-align middle
-
-	&:focus
-		background white
-		border-color azul_sitio
-		color #aaa
-		outline 0px
-		
-select.cuadrotexto option
-	background white
-	color gris_oscuro
-
-textarea.cuadrotexto
-	padding-top 8px
-	width 88%
-
-.doble-cuadro
-	width 35%;
-
-.error
-	color red
-	display block
-	
-.etiqueta-input
-	background azul_claro
-	box-sizing border-box !important
-	color white
-	display inline-block
-	font-weight 700
-	height 40px
-	margin 0 -5px 0 0
-	padding 5px 10px
-	transition padding 0.2s, width 0.2s
-	vertical-align middle
-
-.fade-show-setup
-	transition opacity 0.2s
-	opacity 0
-
-.fade-show-start
-	opacity 1
+	top 4px
 
 footer
 	background gris_oscuro
-	bottom 30px
+	bottom 0
 	color white
 	font-size 14px
 	padding 15px 0
-	position absolute
-	width 100%
+	position fixed
+	transition left 0.2s
+	width 320px
+	z-index 6
 
 	a
 		color azul_sitio
@@ -219,17 +49,6 @@ footer
 		display inline-block
 		margin 0 0 0 -40px
 		width auto
-
-form
-	line-height 30px
-	text-align center
-	
-	.ng-invalid.ng-dirty
-		background #FFBBBB
-
-	.ng-valid.ng-dirty
-		background #C0F9C0
-
 header
 	background white
 	font-size 14px
@@ -238,87 +57,23 @@ header
 	width 100%
 	top 0
 	z-index 2
+	
+	a.iconos
+		display inline-block
+		line-height 20px
+		vertical-align middle 
+		
+	.iconos:before
+		font-size 20px
 
 	#mozart-logo
-		float left
-		margin 10px 0 0 10px
-
-		img
-			height 18px
-
-header .iconos:before
-	font-size 20px
-header a.iconos
-	display inline-block
-	line-height 20px
-	vertical-align middle
-.iblock
-	display inline-block
-	margin-top 5px
-	vertical-align middle
-	
-	label
-		padding 5px
-		width 30%
-	select, input
-		width 69%
-
-h4
-	margin 0
-
-.lista-vinculadas
-	margin-right 40px
-
-	li
-		background white
-		display block
-		font-family Montserrat
-		min-height 40px
-		line-height 40px
-		margin-top 2px
-		position relative
-		
-		&:before
-			left 5px
-			position absolute
-		
-		.boton
-			height 30px
-			line-height 20px
-			right 5px
-			position absolute
-			top 5px
-			
-		.link-social
-			margin-left 40px
-			position relative
-			margin-right 80px
-
-.menu-bloques
-	display block
-	height auto
-	margin 0
-	padding 0
-	position relative
-	text-align left
-
-#boton-menu
-	background #555
-	cursor pointer
-	left 3px
-	position absolute
-	top 4px
-
-#menuprincipal.menuoculto
-	left -330px
-
-#menuprincipal.menuvisible
-	left 0
+		display none
 	
 #menuprincipal
 	background #ededed
-	box-shadow 4px 6px 6px gris_oscuro
+	box-shadow 4px 1px 6px gris_oscuro
 	height 100%
+	overflow auto !important
 	padding-top 20px
 	position fixed
 	text-align center
@@ -326,18 +81,8 @@ h4
 	transition left 0.2s
 	width 320px
 
-	div
-		border-color azul_sitio
-		border-style solid
-		border-width 3px 0 0 0
-		box-shadow 0px 3px 8px black
-		position fixed
-		background white
-		height 100%
-		margin 2px 0 0 0
-		overflow auto !important
-		padding 0
-		width 300px
+	ul
+		margin-bottom 200px
 		transition right 0.2s
 			
 	figure
@@ -364,321 +109,17 @@ h4
 		height 2px
 		margin 0
 
-.opcion-menu
-	background #ededed
-	display block
-	margin 1px 0
+#menuprincipal.menuoculto
+	left -330px
+	
+	footer
+		left -330px
 
-	a
-		color naranja_oscuro
-		display block
-		font-family "Lato"
-		font-size 18px
-		line-height 30px
-		padding 5px
-		vertical-align bottom
-
-		&:before
-			margin-right 8px
-
-	a.activo
-		color azul_sitio
-
-	&:hover a
-		color azul_sitio
-
-#obras-principal
-	height 150%
-	margin-top 90px
-	padding 20px
-	position relative
-	text-align center
-	width 100%
-
-#contenedor-principal
-	display inline-block
-	height auto
-	margin-bottom 15px
-	width 95%
-
-	h2
-		color gris_oscuro
-		font-family Montserrat
-		font-size 20px
-		margin 0 0 5px 0
-
-	p
-		color gris_oscuro
-		display inline-block
-		font-style italic
-		margin 0
-		text-align left
-
-#informacion, #configuraciones
-	display inline-block
-	vertical-align top
-	width 73%
-
-	.bloque
-		background white
-		border 1px solid azul_sitio
-		display inline-block
-		margin 5px
-		text-align left
-		vertical-align middle
-		width 47%
-
-		div
-			margin 15px
-
-		h4
-			width 100%
-
-		span
-			display inline-block
-			overflow auto
-			width 100%
-
-	video
-		width 100%
-
-.publicacion
-	background white
-	border #888 solid 1px
-	color  gris_oscuro
-	display inline-block
-	font-size 18px
-	height auto
-	margin 6px 4px
-	padding-bottom 5px
-	text-align left
-	vertical-align middle
-	width 360px
-
-.autor-obra, .fecha-obra
-	font-size 15px
-
-a.autor-obra, .autor-obra a, .fecha-obra
-	font-weight bold
-
- .titulo-obra
-	font-size 18px
-	font-weight bold
-	margin-left 3px
-	margin-right: 5px
-
-a.autor-obra, .autor-obra a, a.titulo-obra
-	color orange
-
-	&:hover
-		color naranja_oscuro
-
-.thumbnail-usuario-p
-	float left
-	height 50px
-	margin-left 5px
-	width 50px
-
+#menuprincipal.menuvisible
+	left 0
+	
+	footer
+		left 0
+	
 .redondo
 	border-radius 50%
-
-#section-obra
-	background white
-	display inline-block
-	padding 10px
-	text-align left
-	width 800px
-
-	#contenido-obra
-		height auto
-		margin-bottom 10px
-		width 100%
-
-#section-general
-	margin-top 40px
-	min-height 780px
-	padding-top 40px
-	position relative
-	text-align center
-
-	.formulario
-		background white
-		display inline-block
-		padding 20px
-		position relative
-		width 750px
-
-.s-mzfield
-	margin 0 auto
-	margin-top 5px
-	
-	input, select, tags-input
-		width 60%
-		
-	label
-		width 30%
-		
-
-.tarjeta-promotor
-	background white
-	border #888 solid 1px
-	color  gris_oscuro
-	display inline-block
-	font-size 30px
-	height auto
-	margin 6px 4px
-	padding-bottom 5px
-	text-align center
-	vertical-align middle
-	width 280px
-
-	a
-		color azul_sitio
-		font-weight 700
-
-	a:hover
-		color naranja_oscuro
-
-	.nombre-promotor
-		font-size 20px
-		line-height 0px
-
-textarea
-	min-height 140px
-	resize none
-	
-.thumbnail-obra
-	 //Esta parte se va a editar
-	background-position center !important
-	background-repeat no-repeat !important
-	background-size 100% auto !important
-	color white
-	font-size 45px
-	height 200px
-	line-height 200px
-	margin 0px 0 5px 0
-	text-align center
-	width 100%
-
-	.formato
-		background black
-		display block
-		opacity 0
-		transition opacity 0.2s
-
-	&:hover .formato
-		opacity 0.6
-
-.thumbnail-promotor
-	background-position center !important
-	background-repeat no-repeat !important
-	background-size 100% 100% !important
-	color white
-	height 280px
-	margin 0px 0 5px 0
-	text-align center
-	width 100%
-
-	.descripcion-promotor
-		background black
-		display block
-		font-size 20px
-		height 100%
-		margin 0
-		opacity 0
-		overflow auto !important
-		padding 15px 10px
-		transition opacity 0.2s
-		width 100%
-
-	&:hover .descripcion-promotor
-		opacity 0.8
-
-
-.triple-cuadro
-	width 30%
-
-.un-cuadro
-	width 70%
-
-.ventana-modal-sombra
-	background rgba(black, 0.7)
-	bottom 0
-	left 0
-	position fixed
-	right 0
-	text-align center
-	top 0
-	z-index 3
-
-.ventana-modal-contenedor
-	background white
-	border 1px solid #aaa
-	border-radius 5px
-	display inline-block
-	margin-top 120px
-	max-height 415px
-	padding 15px
-	position relative
-	width 450px
-
-	input[type="radio"]
-		width auto
-
-.ventana-modal-contenido
-	background #ededed
-	border 1px solid #aaa
-	border-radius 5px
-	display inline-block
-	max-height 290px
-	overflow-x hidden !important
-	overflow-y auto !important
-	padding 10px
-	position relative
-	text-align left
-	width 100%
-
-.texto-estadisticas
-	color #888
-	display block
-	font-family Montserrat
-	font-size 25px
-	margin-top 5px
-
-.titulo-azul
-	color azul_sitio
-	font-family Montserrat
-	font-size 40px
-
-.titulo-caja
-	background azul_sitio
-	color white
-	font-family "Montserrat"
-	margin 0
-	padding 10px
-	text-align center
-
-.vincula
-	a
-		border-radius 10px
-		color white
-		display inline-block
-		font-weight 700
-		line-height 30px
-		margin 5px
-		padding 5px
-	
-	.iconos:before
-		background white
-		border-radius 6px
-		font-size 30px
-		font-weight normal
-		
-	.icono-facebook
-		background #4862a3
-	
-	.icono-google
-		background #b43525
-	
-	.icono-twitter
-		background #55acee

@@ -8,11 +8,11 @@ module.exports = function(grunt) {
         },
         files: {
           'app/css/estilos.css': [
-                                  'app/styl/principal.styl', 
+                                  'app/styl/principal.styl',/* 
                                   'app/styl/botones.styl',
-                                  'app/styl/bienvenida.styl',
-                                  'app/styl/iconos.styl',
-                                  'app/styl/mediaqueries.styl'
+                                  'app/styl/bienvenida.styl',*/
+                                  'app/styl/iconos.styl'/*,
+                                  'app/styl/mediaqueries.styl'*/
                                  ],
           'app/css/fuentes.css': 'app/styl/fuentes.styl'
         }
