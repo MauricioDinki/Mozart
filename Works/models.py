@@ -27,7 +27,7 @@ class Work(models.Model):
 	title = models.CharField(blank=False,null=False, max_length=50,unique=True)
 	description = models.CharField(blank=False,null=False, max_length=200)
 	category = models.CharField(blank=False,null=False, max_length=50,choices=category)
-	date = models.DateField(blank=False,null=False,auto_now_add=True)
+	date = models.DateTimeField(blank=False,null=False,auto_now_add=True)
 	cover = ImageField(null=False,blank=False,upload_to=cover_url)
 	archive = models.FileField(blank=False,null=False,upload_to=archive_url)
 	slug = models.SlugField(max_length=50,unique=True)
@@ -37,7 +37,7 @@ class Work(models.Model):
 		verbose_name_plural = "Works"
 
 	def save(self, *args, **kwargs):
-		self.slug = slugify(self.title)
+		# self.slug = slugify(self.title)
 		super(Work, self).save(*args, **kwargs)
 
 	def __unicode__(self):

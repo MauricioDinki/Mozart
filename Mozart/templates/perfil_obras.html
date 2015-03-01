@@ -7,7 +7,7 @@
         </div>
         <a ng-href="/{$ obra.user $}" ng-controller="imagenPerfilCtrl"><img class="redondo thumbnail-usuario-p" ng-src=" {$ imagen $} " title="Ver perfil de {$usuario$}"/></a>
         <span class="iconos icono-{$obra.category$}"></span><a class="titulo-obra" ng-href="/{$usuario$}/works/{$obra.slug$}" ng-bind="obra.title"></a><br/>
-        <span class="autor-obra">por {$ obra.user $}</span> el <span class="fecha-obra" ng-bind="obra.date"></span>
+        <span class="autor-obra">por {$ obra.user $}</span> el <span class="fecha-obra" ng-bind="obra.date.split('T')[0]"></span>
       </article><br/>
       <div class="aviso-error" ng-show="mostrarMensaje">
         No existen obras suficientes para cubir la petición. Intenta refrescar la página.
