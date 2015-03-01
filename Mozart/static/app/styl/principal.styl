@@ -55,162 +55,12 @@ a
 		width 100%
 		white-space nowrap
 
-#bienvenida
-	font-size 60px
-	margin-top 40px
-	overflow hidden !important
-	position relative
-	text-align center
-	width 100%
-
-	.recuadro
-		background #dedede
-		min-height 570px
-		overflow hidden !important
-		position relative
-		text-align left
-		width 100%
-
-		div
-			padding 100px 60px
-			position relative
-			width 40%
-
-			a
-				background linear-gradient(orange,naranja_oscuro)
-				border-radius 5px
-				box-shadow 0px 0px 5px black
-				color black
-				display inline-block
-				font-size 25px
-				padding 10px 15px
-
-				&:hover
-					background linear-gradient(azul_claro, azul_sitio)
-					color white
-			p
-				font-size 25px
-
-		img
-			height auto
-			position absolute
-			width 100%
-
-
 body
 	background #ededed
 	font-family Lato
 	font-size 16px
 	margin 0
 	padding 0
-
-.boton
-	border none
-	cursor pointer
-	color white
-	font-weight bold
-	font-size 15px
-	line-height 30px
-
-	&:active, &:visited
-		outline 0px
-
-.boton[disabled="disabled"]
-	background #ddd
-	color #aaa
-	cursor default
-
-.boton-busqueda
-	background none
-	border none
-	color orange
-	padding  4px 8px
-	position absolute
-	right 0
-
-	&:active
-		border none
-
-	&:before
-		content  "\e601"
-
-.boton-azul
-	background azul_claro
-	border-radius 4px
-	display inline-block
-	height 40px
-	margin 20px 0
-	padding  6px 20px
-	position relative
-
-	*
-		cursor pointer
-
-
-	input[type="file"]
-		height 100%
-		left 0
-		opacity 0
-		position absolute
-		top 0
-		width 100%
-		z-index 0
-
-	span
-		display inline-block
-		height 100%
-
-	&:active
-		background azul_sitio
-
-.boton-busqueda.iconos:before
-	font-size 28px
-	margin-top 30px
-	vertical-align top
-
-.boton-rojo
-	background linear-gradient(red, #d02f2f)
-	border-radius 4px
-	height 40px
-	padding  5px 20px
-
-	&:active
-		background linear-gradient(#d02f2f, red)
-		border-color red
-		border-width 2px
-
-.boton-cargarmas
-	background #aaa
-	border-radius 4px
-	border none
-	cursor pointer
-	color white
-	display inline-block
-	font-weight bold
-	font-size 15px
-	line-height 30px
-	padding 5px 20px
-
-	&:active
-		background linear-gradient(#d02f2f, red)
-		border-color red
-		border-width 2px
-
-
-.boton-verde
-	background #28AB28
-	border-radius 4px
-	display inline-block
-	height 40px
-	margin 10px 0
-	padding  6px 20px
-	position relative
-
-	&:active
-		background #00a600
-
-.boton-verde.cargar-mas
-	margin 20px 0
 
 .cantidad
 	background azul_sitio
@@ -349,11 +199,11 @@ textarea.cuadrotexto
 
 footer
 	background gris_oscuro
+	bottom 30px
 	color white
 	font-size 14px
 	padding 15px 0
-	position relative
-	text-align center
+	position absolute
 	width 100%
 
 	a
@@ -413,136 +263,6 @@ header a.iconos
 	select, input
 		width 69%
 
-.iconos
-	transition color 0.2s
-
-	&:before
-		font-family mozArt
-		font-size 35px
-		vertical-align middle
-.icono-arte_digital:before
-	content "\e616"
-
-.icono-aleatorio:before
-	content "\e605"
-
-.icono-boletines:before
-	content "\e622"
-
-.icono-cargar:before
-	content  "\e60a"
-
-.icono-carpetas:before
-	content "\e619"
-
-.icono-compartir:before
-	color gris_oscuro
-	content "\e619"
-
-.icono-dibujo-pintura:before
-	content "\e60e"
-
-.icono-error:before
-	color azul_sitio
-	content "\e60c"
-	font-size 300px
-
-.icono-estadisticas:before
-	content "\e61f"
-
-.icono-eventos:before
-	content "\e623"
-
-.icono-explorar:before
-	content "\e604"
-
-.icono-escultura-ceramica:before
-	content "\e615"
-
-.icono-facebook:before
-	color #4862a3
-	content "\e612"
-
-.icono-fotografia-filme:before
-	content "\e60f"
-
-.icono-google:before
-	color #b43525
-	content "\e614"
-
-.icono-informacion:before
-	content "\e61d"
-
-.icono-listas:before
-	content "\e620"
-
-.icono-login:before
-	content  "\e607"
-
-.icono-mensajes:before
-	content "\e61b"
-
-.icono-menu
-	color orange
-
-	&:before
-		content "\e600"
-		cursor pointer
-		display inline-block
-		vertical-align top
-
-	&:hover
-		color azul_sitio
-
-.icono-musica-baile:before
-	content "\e611"
-
-.icono-notificaciones:before
-	content "\e61e"
-
-.icono-obras:before
-	content "\e621"
-
-.icono-otros:before
-	content "\e617"
-
-.icono-panel:before
-	content  "\e609"
-
-.icono-perfil:before
-	content  "\e608"
-
-.icono-promotores:before
-	content  "\e603"
-
-.icono-recorrido:before
-	content  "\e602"
-
-.icono-registro:before
-	content  "\e606"
-
-.icono-reportar:before
-	content "\e61c"
-
-.icono-salir:before
-	content  "\e60b"
-
-.icono-suscripcion:before
-	content "\e61a"
-
-.icono-tarjeta:before
-	content "\e618"
-
-.icono-todas:before
-	content "\e60d"
-
-.icono-twitter:before
-	color #55acee
-	content "\e613"
-
-.icono-teatro-literatura:before
-	content "\e610"
-
 h4
 	margin 0
 
@@ -585,19 +305,24 @@ h4
 #boton-menu
 	background #555
 	cursor pointer
+	left 3px
+	position absolute
+	top 4px
 
 #menuprincipal.menuoculto
-	left -320px
+	left -330px
 
 #menuprincipal.menuvisible
 	left 0
 	
 #menuprincipal
-	background azul_claro
-	box-shadow 3px 3px 5px black
+	background #ededed
+	box-shadow 4px 6px 6px gris_oscuro
 	height 100%
+	padding-top 20px
 	position fixed
-	top 40px
+	text-align center
+	top 35px
 	transition left 0.2s
 	width 320px
 
@@ -957,61 +682,3 @@ textarea
 	
 	.icono-twitter
 		background #55acee
-
-@media screen and (max-width:800px)
-	#barra-lateral
-		width 35%
-
-	#bienvenida .recuadro
-		div
-			width 100%
-		img
-			position relative
-
-	#cuadro-busqueda
-		left 0px
-		right 80px
-
-	#informacion, #configuraciones
-		width 64%
-
-		.bloque
-			width 100%
-
-	header #mozart-logo img
-		display none
-		
-	.link-social
-		font-size 13px
-
-	#section-general .formulario
-		width 90%
-	
-	textarea.un-cuadro
-		width 88%
-
-	div.un-cuadro, div.doble-cuadro, div.triple-cuadro
-		display block
-		width 98%
-
-@media screen and (max-width:530px)
-	#barra-lateral
-		max-width 300px
-		width 90%
-		
-	.etiqueta-input
-		font-size 12px
-		
-	#informacion, #configuraciones
-		width 100%
-
-@media screen and (max-width:430px)
-	#obras-principal
-		padding 5px 0
-
-	.publicacion
-		width 300px
-
-		.thumbnail
-			line-height 166px
-			height 166px
