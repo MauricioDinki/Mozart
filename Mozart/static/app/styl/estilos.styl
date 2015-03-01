@@ -1,7 +1,7 @@
 azul_sitio = #2474e0
 naranja_oscuro = #ff7800
 gris_oscuro = #333
-azul_claro = #4fadfd
+azul_claro = #3D92DA
 
 *
 	box-sizing border-box !important
@@ -21,19 +21,15 @@ a
 		width 100%
 
 .aviso-error
-	background #E43131
-	border-radius 5px
-	color white
-	margin 0 auto
-	margin-top 8px
-	padding 8px
-	width 75%
+	color red
+	margin-right 30px
+	text-align right
 
 #barra-categorias, #barra-promotores
-	background azul_sitio
+	background azul_claro
 	position fixed
 	text-align center
-	top 40px
+	top 35px
 	width 100%
 	z-index 1
 
@@ -157,7 +153,7 @@ body
 		content  "\e601"
 
 .boton-azul
-	background linear-gradient(#488fef, azul_sitio)
+	background azul_claro
 	border-radius 4px
 	display inline-block
 	height 40px
@@ -183,9 +179,7 @@ body
 		height 100%
 
 	&:active
-		background linear-gradient(azul_sitio, #488fef)
-		border-color azul_sitio
-		border-width 2px
+		background azul_sitio
 
 .boton-busqueda.iconos:before
 	font-size 28px
@@ -203,8 +197,26 @@ body
 		border-color red
 		border-width 2px
 
+.boton-cargarmas
+	background #aaa
+	border-radius 4px
+	border none
+	cursor pointer
+	color white
+	display inline-block
+	font-weight bold
+	font-size 15px
+	line-height 30px
+	padding 5px 20px
+
+	&:active
+		background linear-gradient(#d02f2f, red)
+		border-color red
+		border-width 2px
+
+
 .boton-verde
-	background linear-gradient(#00a600, green)
+	background #28AB28
 	border-radius 4px
 	display inline-block
 	height 40px
@@ -213,53 +225,10 @@ body
 	position relative
 
 	&:active
-		background linear-gradient(green, #00a600)
-		border-width 2px
+		background #00a600
 
 .boton-verde.cargar-mas
 	margin 20px 0
-
-#cuadro-busqueda
-	position absolute
-	left 220px
-	right 90px
-
-	.contenedor
-		margin 0 auto
-		position relative
-		text-align left
-
-		button
-			font-size 28px
-
-		.cuadrotexto
-			float left
-			height 37px
-			padding-right 35px
-			width 100%
-
-		ul
-			background white
-			border 1px solid #ccc
-			font-weight lighter
-			margin 0
-			padding 1px
-			position absolute
-			top 37px
-			width 100%
-			transition visibility 0.2s
-
-			.resultado
-				background #ededed
-				color gris_oscuro
-				display block
-				padding 5px
-				margin-top 1px
-
-			.copia-texto
-				display block
-				overflow hidden
-				padding 3px
 
 .cantidad
 	background azul_sitio
@@ -295,14 +264,61 @@ body
 		legend
 			color azul_sitio
 			font-weight 700
+#cuadro-busqueda
+	float right
+	margin-right 90px
+	width 350px
 
+	.contenedor
+		margin 0 auto
+		position relative
+		text-align left
+
+		button
+			font-size 28px
+
+		.cuadrotexto
+			float left
+			height 35px
+			padding-right 35px
+			width 100%
+
+		ul
+			background white
+			border 1px solid #ccc
+			font-weight lighter
+			margin 0
+			padding 1px
+			position absolute
+			top 37px
+			width 100%
+			transition visibility 0.2s
+
+			.resultado
+				background #ededed
+				color gris_oscuro
+				display block
+				padding 5px
+				margin-top 1px
+
+			.copia-texto
+				display block
+				overflow hidden
+				padding 3px
+		
+		.cuadrotexto.ng-invalid, .cuadrotexto.ng-valid
+			background #efefef
+			
+		.cuadrotexto.ng-invalid:focus, .cuadrotexto.ng-valid:focus
+			background white
+				
 .cuadrotexto
-	background #fafafa
-	border 1px solid #ccc
-	color #888
+	background #efefef
+	border none
+	color #999
 	font-size 17px
 	font-family "Lato"
-	font-weight lighter
+	font-weight bold
 	height 40px
 	padding 0 10px
 	position relative
@@ -312,8 +328,16 @@ body
 	&:focus
 		background white
 		border-color azul_sitio
-		color gris_oscuro
+		color #aaa
 		outline 0px
+		
+select.cuadrotexto option
+	background white
+	color gris_oscuro
+
+textarea.cuadrotexto
+	padding-top 8px
+	width 88%
 
 .doble-cuadro
 	width 35%;
@@ -323,9 +347,7 @@ body
 	display block
 	
 .etiqueta-input
-	background linear-gradient(azul_claro, azul_sitio)
-	border azul_sitio 1px solid
-	border-radius 2px 0px 0px 2px
+	background azul_claro
 	box-sizing border-box !important
 	color white
 	display inline-block
@@ -347,7 +369,6 @@ footer
 	background gris_oscuro
 	color white
 	font-size 14px
-	margin-bottom 35px
 	padding 15px 0
 	position relative
 	text-align center
@@ -372,17 +393,15 @@ form
 	text-align center
 	
 	.ng-invalid.ng-dirty
-		border-color red
+		background #FFBBBB
 
 	.ng-valid.ng-dirty
-		border-color green
+		background #C0F9C0
 
 header
 	background white
-	border-color azul_sitio
-	border-style solid
-	border-width 0 0 3px 0
-	height 40px
+	font-size 14px
+	height 35px
 	position fixed
 	width 100%
 	top 0
@@ -390,11 +409,17 @@ header
 
 	#mozart-logo
 		float left
-		margin 6px 0 0 50px
+		margin 10px 0 0 10px
 
 		img
-			height 25px
+			height 18px
 
+header .iconos:before
+	font-size 20px
+header a.iconos
+	display inline-block
+	line-height 20px
+	vertical-align middle
 .iblock
 	display inline-block
 	margin-top 5px
@@ -800,10 +825,6 @@ a.autor-obra, .autor-obra a, a.titulo-obra
 textarea
 	min-height 140px
 	resize none
-	
-textarea.un-cuadro
-	margin 0 auto
-	width 63%
 	
 .thumbnail-obra
 	 //Esta parte se va a editar

@@ -14,16 +14,6 @@
       <figure id="mozart-logo" ng-click="ocultarMenus()">
         <a href="/explore"><img src="{% static "img/logo.png" %}" alt="mozArt"></a>
       </figure>
-      <form id="cuadro-busqueda" ng-click="ocultarMenus()">
-        <div class="contenedor">
-          <input type="search" name="busqueda" class="cuadrotexto" placeholder="Buscar obras, artistas y promotores" ng-model="texto" autocomplete="off"/>
-          <button type="submit" class="iconos boton-busqueda"></button>
-          <ul ng-show="texto.length > 0" ng-animate="fadeIn">
-            <li class="copia-texto">Resultados para <b ng-bind="texto"></b></li>
-            <li class="resultado">No hay resultados</li>
-          </ul>
-        </div>
-      </form>
     <div id="menu-usuario" ng-controller="menuCtrl">
       <figure id="botonMenuDerecho" ng-click="mostrarMenu()" title="Mostrar/Ocultar menú">
         {% if not user.is_authenticated or not user.mozart_user.profile_picture %}
@@ -46,6 +36,23 @@
           <li class="opcion-menu"><a href="/login" class="iconos icono-login">Iniciar sesión</a></li>
           <li class="opcion-menu"><a href="/signup" class="iconos icono-registro">Unirse a mozArt</a></li>{% endif %}
         </ul>
+      </div>
+    </div>
+    <form id="cuadro-busqueda" ng-click="ocultarMenus()">
+        <div class="contenedor">
+          <input type="search" name="busqueda" class="cuadrotexto" placeholder="Buscar obras, artistas y promotores" ng-model="texto" autocomplete="off"/>
+          <button type="submit" class="iconos boton-busqueda"></button>
+          <ul ng-show="texto.length > 0" ng-animate="fadeIn">
+            <li class="copia-texto">Resultados para <b ng-bind="texto"></b></li>
+            <li class="resultado">No hay resultados</li>
+          </ul>
+        </div>
+      </form>
+  </header>
+  <main id="contenido">
+    {% block content %}{% endblock %}
+  </main>
+
         <footer>
           <a href="#" ng-click="mostrarMenu()"><span>Donaciones</span></a>
           <a href="#" ng-click="mostrarMenu()"><span>Acerca del sitio</span></a>
@@ -53,12 +60,6 @@
           <a href="#" ng-click="mostrarMenu()"><span>Dudas y sugerencias</span></a>
           <span>© 2014 mozArt. Desarrollado por <a href="#" ng-click="accionMenu(1)">zero</a></span>
         </footer>
-      </div>
-    </div>
-  </header>
-  <main id="contenido">
-    {% block content %}{% endblock %}
-  </main>
   <script src="{% static "js/bower.js" %}"></script>
   <script src="{% static "djangular/js/django-angular.min.js" %}" type="text/javascript"></script>
   <script src="{% static "js/Mozart.min.js" %}"></script>

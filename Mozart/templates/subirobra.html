@@ -15,12 +15,32 @@
           <div class="un-cuadro s-mzfield">
             <label for="id_title" class="etiqueta-input">Título</label>
             {{form.title}}
+            <div ng-show="workform.title.$error.required && workform.title.$dirty" class="aviso-error">
+                Este campo es obligatorio.
+            </div>
+            <div ng-show="workform.title.$error.minlength" class="aviso-error">
+                El título debe contener al menos 4 carácteres.
+            </div>
+            <div ng-show="workform.title.$error.maxlength" class="aviso-error">
+                El título debe contener a lo mucho 40 carácteres.
+            </div>
           </div>
-            <label for="id_description">Descripción de la obra</label><br/>
+          <div class="un-cuadro s-mzfield">
+            <label for="id_description">Descripción de la obra</label>
             {{form.description}}
+            <div ng-show="workform.description.$error.required && workform.description.$dirty" class="aviso-error">
+                Este campo es obligatorio.
+            </div>
+            <div ng-show="workform.description.$error.maxlength" class="aviso-error">
+                La descripción debe contener a lo mucho 1000 carácteres.
+            </div>
+          </div>
           <div class="un-cuadro s-mzfield">
             <label for="id_category" class="etiqueta-input">Categoría</label>
             {{form.category}}
+            <div ng-show="workform.category.$error.required && workform.category.$dirty" class="aviso-error">
+                Debes seleccionar una categoría.
+            </div>
           </div>
           <div class="boton boton-azul">
             <span>Seleccionar archivo</span>
