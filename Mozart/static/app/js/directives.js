@@ -70,7 +70,7 @@ app.directive('modalDialog', function() {
 		restrict: 'E',
 		scope: {
 			show: '=',
-			tituloVentana: '@'
+			modalTitle: '@'
 		},
 		replace: true,
 		transclude: true,
@@ -79,9 +79,9 @@ app.directive('modalDialog', function() {
 				scope.show = false;
 			};
 		},
-		template: '<div class="ventana-modal-sombra" ng-show="show">'+
-  '<div class="ventana-modal-contenedor">'+
-    '<h2 ng-bind="tituloVentana"></h2>'+
+		template: '<div class="modal-dialog-shadow" ng-show="show">'+
+  '<div class="modal-dialog-container">'+
+    '<h2 ng-bind="modalTitle"></h2><hr/>'+
     '<div ng-transclude></div>'+
   '</div>'+
 '</div>'
@@ -109,18 +109,26 @@ app.directive('comparar', function() {
 });
 app.directive('mzField', function() {
   return {
-  	restrict: 'C',
+  	restrict: 'A',
     link: function(scope, elem, attrs, ctrl) {
-    	var elemento = '#' + attrs.id;
-    	angular.element(elemento).focus(function(){
-        angular.element(elemento).prev('label').css('width', '0%'); 
-        angular.element(elemento).prev('label').css('padding', '5px 0');
-    		angular.element(elemento).css('width', '90%');
+    	var elemento = angular.element('#' + attrs.id);
+    	elemento.focus(function(){
+        elemento.parent().removeClass('initial-state'); 
+        elemento.parent().addClass('focus-state');  
+        elemento.next('label').removeClass('show-label');
+        elemento.next('label').addClass('hide-label');
+        elemento.removeClass('empty-initial-field'); 
+        elemento.addClass('zoom-field');
     	});
-    	angular.element(elemento).blur(function(){
-    		angular.element(elemento).prev('label').css('padding', '5px 10px');
-        angular.element(elemento).prev('label').css('width', '30%');
-        angular.element(elemento).css('width', '60%');
+    	elemento.blur(function(){
+        if(elemento.val()==''){
+          elemento.parent().removeClass('focus-state'); 
+          elemento.parent().addClass('initial-state'); 
+          elemento.next('label').removeClass('hide-label');
+          elemento.next('label').addClass('show-label');
+          elemento.removeClass('zoom-field');
+          elemento.addClass('empty-initial-field'); 
+        }
     	});
     }
   };

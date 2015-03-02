@@ -17,6 +17,7 @@
     "jquery": "~2.1.1",
     "underscore": "~1.7.0",
     "bootstrap": "~3.3.2",
-    "angular-mocks": "*"
+    "angular-mocks": "*",
+    "angular-touch": "~1.3.14"
   }
 }

@@ -16,14 +16,14 @@ class LoginForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
         min_length=5,
         max_length=20,
         required=True,
-        widget=forms.TextInput(attrs={'class':'mozart-field mz-field', 'placeholder':'Escribe tu nickname'}),
+        widget=forms.TextInput(attrs={'class':'mozart-field empty-initial-field', 'placeholder':'Escribe tu nickname', 'mz-field':''}),
     )
 
     password = forms.CharField(
         min_length=6,
         max_length=40,
         required=True,
-        widget=forms.PasswordInput(attrs={'class' : 'mozart-field mz-field', 'placeholder':'Escribe tu contraseña'}),
+        widget=forms.PasswordInput(attrs={'class' : 'mozart-field empty-initial-field', 'placeholder':'Escribe tu contraseña', 'mz-field':''}),
     )
 
     def __init__(self, *args, **kwargs):
