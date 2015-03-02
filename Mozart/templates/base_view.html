@@ -10,56 +10,58 @@
     <link rel="icon" href="{% static "favicon.ico" %}">
   </head>
   <body >
-    <header ng-controller="menuCtrl">
-      <div id="menuprincipal" off-click="mostrarMenu()" off-click-filter="#cuadro-busqueda" off-click-if="visible" ng-class="menuClass">
+    <nav id="mozart-navbar" ng-controller="menuCtrl">
+      <aside id="mozart-menu" off-click="showMenu()" off-click-filter="#cuadro-busqueda" off-click-if="visible" ng-class="menuClass">
+        <div>
         {% if not user.is_authenticated or not user.mozart_user.profile_picture %}
-          <img class="redondo" src="{% static "img/default.png" %}" width="200px"/>
+          <img class="circle" src="{% static "img/default.png" %}" width="200px"/>
           <h2>Invitado</h2>
         {% else %}
         {% thumbnail user.mozart_user.profile_picture "200x200" crop="center" as im %}
-          <img class="redondo" src="{{ im.url }}"/>
+          <img class="circle" src="{{ im.url }}"/>
           <h2>{{user.username}}</h2>
         {% endthumbnail %}
         {% endif %}
-        <ul>
-          <li><a class="iconos icono-explorar" href="/explore">Explorar obras</a></li>
-          <li><a class="iconos icono-promotores" href="/promoters">Promotores</a></li>
-          <li><a class="iconos icono-recorrido" href="/tour">Recorrido por mozArt</a></li>
-          <li><a class="iconos icono-aleatorio" href="/">Obra aleatoria</a></li>
-          <li><a class="iconos icono-aleatorio" href="/">Usuario aleatorio</a></li>
-          <hr/>{% if user.is_authenticated %}{% if user.mozart_user.user_type == 'Artista' %}
-          <li><a href="/create/work" class="iconos icono-cargar">Crear obra</a>
-          </li>{% endif %}
-          <li><a href="/{{ user.username }}" class="iconos icono-perfil">Ver mi Perfil</a></li>
-          <li><a href="/settings/account" class="iconos icono-panel">Panel de usuario</a></li>
-          <li><a href="/logout" class="iconos icono-salir">Cerrar sesión</a></li>{% else %}
-          <li><a href="/login" class="iconos icono-login">Iniciar sesión</a></li>
-          <li><a href="/signup" class="iconos icono-registro">Unirse a mozArt</a></li>{% endif %}
-        </ul>
-        <footer>
-          <a href="#" ng-click="mostrarMenu()"><span>Donaciones</span></a>
-          <a href="#" ng-click="mostrarMenu()"><span>Acerca del sitio</span></a>
-          <a href="#" ng-click="mostrarMenu()"><span>Políticas, terminos y condiciones</span></a>
-          <a href="#" ng-click="mostrarMenu()"><span>Dudas y sugerencias</span></a>
-          <span>© 2014 mozArt. Desarrollado por <a href="#" ng-click="accionMenu(1)">zero</a></span>
+          <hr/>
+          <ul>
+            <li><a class="icons explore-icon" href="/explore">Explorar obras</a></li>
+            <li><a class="icons promotors-icon" href="/promoters">Promotores</a></li>
+            <li><a class="icons tour-icon" href="/tour">Recorrido por mozArt</a></li>
+            <hr/>{% if user.is_authenticated %}{% if user.mozart_user.user_type == 'Artista' %}
+            <li><a href="/create/work" class="icons create-work-icon">Crear obra</a>
+            </li>{% endif %}
+            <li><a href="/{{ user.username }}" class="icons user-icon">Ver mi Perfil</a></li>
+            <li><a href="/settings/account" class="icons settings-icon">Panel de usuario</a></li>
+            <li><a href="/logout" class="icons logout-icon">Cerrar sesión</a></li>{% else %}
+            <li><a href="/login" class="icons login-icon">Iniciar sesión</a></li>
+            <li><a href="/signup" class="icons signup-icon">Unirse a mozArt</a></li>{% endif %}
+            <hr/>
+            <li><a class="icons random-icon" href="/">Obra aleatoria</a></li>
+            <li><a class="icons random-icon" href="/">Usuario aleatorio</a></li>
+          </ul>
+        </div>
+        <footer id="mozart-footer">
+          <a href="#"><span>Donaciones</span></a>
+          <a href="#"><span>Acerca del sitio</span></a>
+          <a href="#"><span>Políticas, terminos y condiciones</span></a>
+          <a href="#"><span>Dudas y sugerencias</span></a><br/>
+          <span>© 2014 mozArt. Desarrollado por <a href="#">zero</a></span>
         </footer>
-      </div>
-      <span id="boton-menu" class="iconos icono-menu" ng-click="mostrarMenu()">{$textoMenu$} menú</span>
-        <figure id="mozart-logo">
-          <a href="/explore"><img src="{% static "img/logo.png" %}" alt="mozArt"></a>
-        </figure>
-        <form id="cuadro-busqueda">
-          <div class="contenedor">
-            <input type="search" name="busqueda" class="cuadrotexto" placeholder="Buscar obras, artistas y promotores" ng-model="texto" autocomplete="off"/>
-            <button type="submit" class="iconos boton-busqueda"></button>
-            <ul ng-show="texto.length > 0" ng-animate="fadeIn">
-              <li class="copia-texto">Resultados para <b ng-bind="texto"></b></li>
-              <li class="resultado">No hay resultados</li>
-            </ul>
-          </div>
-        </form>
-    </header>
-    <main id="contenido">
+      </aside>
+      <a id="menu-button" class="icons menu-icon" ng-click="showMenu()"><span>{$buttonText$} menú</span></a>
+      <figure id="mozart-logo">
+        <a href="/explore"><img src="{% static "img/logo.png" %}" alt="mozArt"></a>
+      </figure>
+      <form id="search-form">
+        <input type="search" name="busqueda" class="search-input" placeholder="Buscar en mozArt" ng-model="searchingText" autocomplete="off"/>
+        <button type="submit" class="icons search-button"></button>
+        <ul ng-show="searchingText.length>0">
+          <li class="copia-texto">Resultados para <b ng-bind="searchingText"></b></li>
+          <li class="resultado">No hay resultados</li>
+        </ul>
+      </form>
+    </nav>
+    <main>
       {% block content %}{% endblock %}
     </main>
     <script src="{% static "js/bower.js" %}"></script>

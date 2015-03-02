@@ -7,21 +7,14 @@ module.exports = function(grunt) {
           compress: false
         },
         files: {
-          'app/css/estilos.css': [
-                                  'app/styl/principal.styl',/* 
-                                  'app/styl/botones.styl',
-                                  'app/styl/bienvenida.styl',*/
-                                  'app/styl/iconos.styl'/*,
-                                  'app/styl/mediaqueries.styl'*/
-                                 ],
-          'app/css/fuentes.css': 'app/styl/fuentes.styl'
+          'app/css/styles.css': 'app/styl/main.styl'
         }
       }
     },
     autoprefixer: {
       dist: {
         files: {
-          'app/css/estilos-WAP.css': 'app/css/estilos.css'
+          'app/css/styles-WAP.css': 'app/css/styles.css'
         }
       }
     },
@@ -56,7 +49,7 @@ module.exports = function(grunt) {
     cssmin: {
       target: {
         files: {
-          'dist/css/styles.min.css': ['app/css/fuentes.css', 'app/css/estilos-WAP.css']
+          'dist/css/styles.min.css': ['app/css/styles-WAP.css']
         }
       }
     },

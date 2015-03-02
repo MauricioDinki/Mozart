@@ -1,7 +1,7 @@
 {% extends 'base_view.html' %}
 {% block title %}Login - mozArt{% endblock %}
-{% block content %}<section id="section-general">
-      <div class="formulario">
+{% block content %}
+      <div class="mozart-form">
         <h2>Inicia sesión con tu correo electrónico</h2>
         {% if form.non_field_errors %}
     {% ifnotequal form.non_field_errors.as_text|cut:"* " "$message" %}
@@ -13,11 +13,11 @@
         <form action="" method="post" id="id_loginform" name="{{form.form_name}}" novalidate>
           {% csrf_token %}
           <div class="un-cuadro s-mzfield">
-            <label for="id_username" class="etiqueta-input">Nickname</label>
+            <label for="id_username" class="mozart-label">Nickname</label>
             {{form.username}}
           </div>
           <div class="un-cuadro s-mzfield">
-            <label for="id_password" class="etiqueta-input">Password</label>
+            <label for="id_password" class="mozart-label">Password</label>
             {{form.password}}<br/>
             <a href="/forget" title="Da clic para recuperar tu contraseña">Olvide mi contraseña</a>
           </div>
@@ -29,6 +29,5 @@
           <a class="iconos icono-twitter" href="{% url 'social:begin' 'twitter' %}">Iniciar sesión con Twitter</a>
           <a class="iconos icono-google" href="{% url 'social:begin' 'google-oauth2' %}">Iniciar sesión con Google</a>
         </div>
-      </div>
-    </section>{% endblock %}
+      </div>{% endblock %}
   

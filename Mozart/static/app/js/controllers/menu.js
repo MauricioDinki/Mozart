@@ -9,17 +9,17 @@
  */
 app.controller('menuCtrl', ['$scope', function($scope){
   $scope.visible = false;
-  $scope.textoMenu = 'Mostrar';
-  $scope.menuClass = 'menuoculto';
-  $scope.mostrarMenu= function(){
+  $scope.buttonText = 'Mostrar';
+  $scope.menuClass = 'hide-menu';
+  $scope.showMenu= function(){
     if($scope.visible == true){
-      $scope.menuClass = 'menuoculto';
-      $scope.textoMenu = 'Mostrar';
+      $scope.menuClass = 'hide-menu';
+      $scope.buttonText = 'Mostrar';
       $scope.visible = false;
     }
     else{
-      $scope.menuClass = 'menuvisible';
-      $scope.textoMenu = 'Ocultar';
+      $scope.menuClass = 'show-menu';
+      $scope.buttonText = 'Ocultar';
       $scope.visible = true;
     }
   };

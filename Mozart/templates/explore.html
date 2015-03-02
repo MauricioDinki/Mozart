@@ -2,28 +2,29 @@
 {% load thumbnail %}
 {% load static %}
 {% block title %}Explorar - mozArt{% endblock %}
-{% block content %}<nav id="barra-categorias">
-    	<ul class="categorias">
-        <li><a href="/explore/" class="iconos icono-todas" title="Todas las categorías"></a></li>
-        <li><a href="/explore/dibujo-pintura" class="iconos icono-dibujo-pintura" title="Dibujo y pintura"></a</li>
-        <li><a href="/explore/fotografia-filme" class="iconos icono-fotografia-filme" title="Fotografía y filme"></a></li>
-        <li><a href="/explore/teatro-literatura" class="iconos icono-teatro-literatura" title="Teatro y literatura"></a></li>
-        <li><a href="/explore/musica-baile" class="iconos icono-musica-baile" title="Música y baile"></a></li>
-        <li><a href="/explore/escultura-ceramica" class="iconos icono-escultura-ceramica" title="Escultura y cerámica"></a></li>
-        <li><a href="/explore/arte_digital" class="iconos icono-arte_digital" title="Arte digital"></a></li>
-        <li><a href="/explore/otros" class="iconos icono-otros" title="Otros"></a></li>
+{% block content %}<div id="blue-navbar" class="categories-navbar">
+    	<ul>
+        <li><a href="/explore/" class="icons todas-icon" title="Todas las categorías"></a></li>
+        <li><a href="/explore/dibujo-pintura" class="icons dibujo-pintura-icon" title="Dibujo y pintura"></a</li>
+        <li><a href="/explore/fotografia-filme" class="icons fotografia-filme-icon" title="Fotografía y filme"></a></li>
+        <li><a href="/explore/teatro-literatura" class="icons teatro-literatura-icon" title="Teatro y literatura"></a></li>
+        <li><a href="/explore/musica-baile" class="icons musica-baile-icon" title="Música y baile"></a></li>
+        <li><a href="/explore/escultura-ceramica" class="icons escultura-ceramica-icon" title="Escultura y cerámica"></a></li>
+        <li><a href="/explore/arte_digital" class="icons arte_digital-icon" title="Arte digital"></a></li>
+        <li><a href="/explore/otros" class="icons otros-icon" title="Otros"></a></li>
       </ul>
-    </nav>
-    <div ng-init="categoria='{{category}}';autor='all'"><section id="obras-principal" ng-controller="cargarObrasCtrl" >
-      <article class="publicacion" ng-repeat="obra in obras|orderBy:-'$index'" ng-init="usuario = obra.user">
-        <div class="thumbnail-obra" style="background:url('{$obra.cover$}');">
+    </div>
+    <div ng-init="categoria='{{category}}';autor='all'">
+      <section id="blue-navbar-section" ng-controller="cargarObrasCtrl" >
+        <article class="work-item" ng-repeat="obra in obras|orderBy:-'$index'" ng-init="usuario = obra.user">
+          <div class="work-thumbnail" style="background:url('{$obra.cover$}');">
+          </div>
+          <span class="icons {$obra.category$}-icon"></span><a class="work-title" ng-href="/{$usuario$}/works/{$obra.slug$}" ng-bind="obra.title"></a><br/>
+          <span class="icons user-icon work-author"><a ng-href="/{$ obra.user $}" ng-bind="obra.user"></a></span> el <span class="work-date" ng-bind="obra.date.split('T')[0]"></span>
+        </article><br/>
+        <div class="aviso-error" ng-show="mostrarMensaje">
+          No existen obras suficientes para cubir la petición. Intenta refrescar la página.
         </div>
-        <a ng-href="/{$ obra.user $}" ng-controller="imagenPerfilCtrl"><img class="redondo thumbnail-usuario-p" ng-src=" {$ imagen $} " title="Ver perfil de {$usuario$}"/></a>
-        <span class="iconos icono-{$obra.category$}"></span><a class="titulo-obra" ng-href="/{$usuario$}/works/{$obra.slug$}" ng-bind="obra.title"></a><br/>
-        <span class="autor-obra">por <a ng-href="/{$ obra.user $}" ng-bind="obra.user"></a></span> el <span class="fecha-obra" ng-bind="obra.date.split('T')[0]"></span>
-      </article><br/>
-      <div class="aviso-error" ng-show="mostrarMensaje">
-        No existen obras suficientes para cubir la petición. Intenta refrescar la página.
-      </div>
-      <span class="boton-cargarmas" ng-click="cargar()">Mostrar más obras</span>
-    </section></div>{% endblock %}
+        <span class="boton-cargarmas" ng-click="cargar()">Mostrar más obras</span>
+      </section>
+    </div>{% endblock %}
