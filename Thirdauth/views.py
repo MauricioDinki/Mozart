@@ -24,7 +24,7 @@ def LogoutView(request):
 	return redirect('index')
 
 class RegisterView(AuthRedirectMixin,FormView):
-	template_name = 'registro.html'
+	template_name = 'signup.html'
 	form_class = RegisterForm
 	success_url =  reverse_lazy('work_list')
 

@@ -66,7 +66,7 @@ class RegisterForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
         required=True,
         choices=days,
         initial='1',
-        widget=forms.Select(attrs={'class' : 'mozart-field mz-field', 'ng-change': 'validarFecha()'}),
+        widget=forms.Select(attrs={'class' : 'mozart-field active-field', 'ng-change': 'validateDate()', 'mz-field':''}),
     )
 
     email = forms.EmailField(
@@ -75,7 +75,7 @@ class RegisterForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
             'required': default_error_messages['required']
         },
         required=True,
-        widget=forms.EmailInput(attrs={'class' : 'mozart-field mz-field', 'placeholder':'Escribe tu email'}),
+        widget=forms.EmailInput(attrs={'class' : 'mozart-field empty-initial-field', 'placeholder':'Escribe tu email', 'mz-field':''}),
 
     )
 
@@ -87,7 +87,7 @@ class RegisterForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
         required=True,
         choices=months,
         initial='Enero',
-        widget=forms.Select(attrs={'class' : 'mozart-field mz-field', 'ng-change': 'validarFecha()'}),
+        widget=forms.Select(attrs={'class' : 'mozart-field active-field', 'ng-change': 'validateDate()', 'mz-field':''}),
     )
 
     password_1 = forms.CharField(
@@ -95,7 +95,7 @@ class RegisterForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
         min_length=8,
         max_length=40,
         required=True,
-        widget=forms.PasswordInput(attrs={'class' : 'mozart-field mz-field','placeholder':'Elije una contraseña'}),
+        widget=forms.PasswordInput(attrs={'class' : 'mozart-field empty-initial-field','placeholder':'Elije una contraseña', 'mz-field':''}),
     )
 
     password_2 = forms.CharField(
@@ -103,7 +103,7 @@ class RegisterForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
         min_length=8,
         max_length=40,
         required=True,
-        widget=forms.PasswordInput(attrs={'class' : 'mozart-field mz-field','placeholder':'Vuelve a escribir tu contraseña', 'comparar':'signup.password_1'}),
+        widget=forms.PasswordInput(attrs={'class' : 'mozart-field empty-initial-field','placeholder':'Vuelve a escribir tu contraseña', 'mz-match':'signup.password_1', 'mz-field':''}),
     )
 
     type_of_user = forms.ChoiceField(
@@ -113,7 +113,7 @@ class RegisterForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
         },
         required=True,
         choices=type_of_users,
-        widget=forms.Select(attrs={'class' : 'mozart-field mz-field'}),
+        widget=forms.Select(attrs={'class' : 'mozart-field active-field', 'mz-field':''}),
     )
 
     username = forms.CharField(
@@ -121,7 +121,7 @@ class RegisterForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
         min_length=5,
         max_length=20,
         required=True,
-        widget=forms.TextInput(attrs={'class':'mozart-field mz-field', 'placeholder':'Escribe tu nickname'}),
+        widget=forms.TextInput(attrs={'class':'mozart-field empty-initial-field', 'placeholder':'Escribe tu nickname', 'mz-field':''}),
     )
 
     year_of_birth = forms.IntegerField(
@@ -129,7 +129,7 @@ class RegisterForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
         required=True,
         max_value=this_year - 18,
         min_value=this_year - 100,
-        widget=forms.NumberInput(attrs={'class' : 'mozart-field mz-field', 'placeholder':'Año', 'ng-change':'validarFecha()', 'value': this_year - 25}),
+        widget=forms.NumberInput(attrs={'class' : 'mozart-field active-field', 'placeholder':'Año', 'ng-change':'validateDate()', 'value': this_year - 25, 'mz-field':''}),
     )
 
     def __init__(self, *args, **kwargs):

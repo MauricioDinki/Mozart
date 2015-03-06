@@ -1,6 +1,5 @@
-<!doctype html>
+{% load thumbnail %}<!doctype html>
 <html class="no-js" ng-app="mozArtApp">{% load static from staticfiles %}
-{% load thumbnail %}
   <head>
     <meta charset="utf-8">
     <title>{% block title %}{% endblock %}</title>
@@ -11,7 +10,7 @@
   </head>
   <body >
     <nav id="mozart-navbar" ng-controller="menuCtrl">
-      <aside id="mozart-menu" off-click="showMenu()" off-click-filter="#cuadro-busqueda" off-click-if="visible" ng-class="menuClass">
+      <aside id="mozart-menu" off-click="showMenu()" off-click-filter="'#menu-button'" off-click-if="visible" ng-class="menuClass">
         <div>
         {% if not user.is_authenticated or not user.mozart_user.profile_picture %}
           <img class="circle" src="{% static "img/default.png" %}" width="200px"/>

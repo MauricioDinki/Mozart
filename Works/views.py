@@ -13,8 +13,7 @@ from Thirdauth.mixins import AuthRedirectMixin, LoginRequiredMixin
 
 
 class HomeView(AuthRedirectMixin,TemplateView):
-    template_name = "index.html"
-
+    template_name = "welcome_view.html"
 
 class WorkEditView(LoginRequiredMixin,UpdateView):
 	form_class = EditWorkForm
