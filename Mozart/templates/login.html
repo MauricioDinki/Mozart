@@ -33,7 +33,7 @@
           <div class="mozart-field-container one-element">
             <label for="id_password" class="mozart-label initial-label">Password</label>
             {{form.password}}
-          </div><br/>
+          </div>
           
           <div class="form-error" ng-show="{{form.form_name}}.password.$error.required && {{form.form_name}}.password.$dirty">No puedes dejar este campo vacío.</div>
 
@@ -45,7 +45,7 @@
             La contraseña debe contener máximo 30 carácteres.
           </div>
           
-          <a href="/forget" title="Da clic para recuperar tu contraseña">Olvide mi contraseña</a><br/>
+          <a href="/forget" title="Da clic para recuperar tu contraseña">Olvidé mi contraseña</a><br/>
           <button type="submit" class="button submit-button" name="Enviar" ng-disabled="{{form.form_name}}.$invalid">Iniciar sesión</button>
         </form>
         <h2>O desde alguna de tus redes sociales vinculadas</h2>
