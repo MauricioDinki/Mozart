@@ -25,18 +25,18 @@ class UploadWorkForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
 		required=True,
 		min_length=4,
 		max_length=40,
-		widget=forms.TextInput(attrs={'class':'cuadrotexto mz-field', 'placeholder':'Mi obra se llama...'}),
+		widget=forms.TextInput(attrs={'class':'mozart-field empty-initial-field', 'placeholder':'Mi obra se llama...', 'mz-field':''}),
     )
 	description = forms.CharField(
 		required=True,
 		min_length=1,
 		max_length=1000,
-		widget=forms.Textarea(attrs={'class':'cuadrotexto', 'placeholder':'Y trata sobre...'}),
+		widget=forms.Textarea(attrs={'class':'mozart-field empty-initial-field', 'placeholder':'Y trata sobre...', 'mz-field':''}),
     )
 	category = forms.ChoiceField(
 		choices=category,
 		required=True,
-		widget=forms.Select(attrs={'class':'cuadrotexto mz-field'}),
+		widget=forms.Select(attrs={'class':'mozart-field empty-initial-field', 'mz-field':''}),
 	)
 	archive = forms.ImageField(
 		error_messages={

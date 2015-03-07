@@ -55,7 +55,7 @@ class WorkSettingsView(LoginRequiredMixin,TemplateView):
 class WorkUploadView(LoginRequiredMixin,RequestFormMixin,FormView):
 	form_class = UploadWorkForm
 	success_url =  reverse_lazy('work_list')
-	template_name = 'subirobra.html'
+	template_name = 'upload_work.html'
 
 	def form_valid(self,form):
 		form.save()

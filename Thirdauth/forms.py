@@ -113,7 +113,7 @@ class RegisterForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
         },
         required=True,
         choices=type_of_users,
-        widget=forms.Select(attrs={'class' : 'mozart-field active-field', 'mz-field':''}),
+        widget=forms.Select(attrs={'class' : 'mozart-field empty-initial-field', 'mz-field':''}),
     )
 
     username = forms.CharField(

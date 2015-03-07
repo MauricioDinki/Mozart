@@ -14,17 +14,17 @@
         <li><a href="/explore/otros" class="icons otros-icon" title="Otros"></a></li>
       </ul>
     </div>
-    <div ng-init="categoria='{{category}}';autor='all'">
-      <section id="blue-navbar-section" ng-controller="cargarObrasCtrl" >
-        <article class="work-item" ng-repeat="obra in obras|orderBy:-'$index'" ng-init="usuario = obra.user">
-          <div class="work-thumbnail" style="background:url('{$obra.cover$}');">
+    <div ng-init="worksCategory='{{category}}';worksAuthor='all'">
+      <section id="blue-navbar-section" ng-controller="loadWorksCtrl" >
+        <article class="work-item" ng-repeat="work in works|orderBy:-'$index'">
+          <div class="work-thumbnail" style="background:url('{$work.cover$}');">
           </div>
-          <span class="icons {$obra.category$}-icon"></span><a class="work-title" ng-href="/{$usuario$}/works/{$obra.slug$}" ng-bind="obra.title"></a><br/>
-          <span class="icons user-icon work-author"><a ng-href="/{$ obra.user $}" ng-bind="obra.user"></a></span> el <span class="work-date" ng-bind="obra.date.split('T')[0]"></span>
+          <span class="icons {$work.category$}-icon"></span><a class="work-title" ng-href="/{$work.user$}/works/{$work.slug$}" ng-bind="work.title"></a><br/>
+          <span class="icons user-icon work-author"><a ng-href="/{$ work.user $}" ng-bind="work.user"></a></span> el <span class="work-date" ng-bind="work.date.split('T')[0]"></span>
         </article><br/>
-        <div class="aviso-error" ng-show="mostrarMensaje">
+        <div class="load-more-error" ng-show="showMessage">
           No existen obras suficientes para cubir la petición. Intenta refrescar la página.
         </div>
-        <span class="boton-cargarmas" ng-click="cargar()">Mostrar más obras</span>
+        <span class="button load-more-button" ng-click="getWorks()">Mostrar más obras</span>
       </section>
     </div>{% endblock %}

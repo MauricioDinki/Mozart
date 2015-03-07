@@ -1,0 +1,112 @@
+{% extends 'base_view.html' %}
+{% block title %}Registro - mozArt{% endblock %}
+{% block content %}
+      <div class="mozart-form">
+        <h2>Formulario de registro</h2>
+        {% if form.non_field_errors %}
+         {% ifnotequal form.non_field_errors.as_text|cut:"* " "$message" %}
+        <div ng-controller="modalCtrl" ng-init="modalShown=true"> 
+          <mz-modal show="modalShown" modal-title="No se pudo realizar el registro.">
+            <div class="modal-dialog-content">{{form.non_field_errors.as_text|cut:"$message"|cut:"* "}}</div>
+            <a class="button okay-button" ng-click="toggleModal()">Entendido</a>
+          </mz-modal>
+        </div>
+          {% endifnotequal %}
+        {% endif %}
+        <form action="" method="post" id="id_signupform" name="{{form.form_name}}" novalidate ng-controller="signupFormCtrl">
+          {% csrf_token %} 
+          <a href="/cuentas">Conoce más sobre los tipos de cuenta</a>
+
+          <div class="mozart-field-container one-element initial-state">
+            <label for="id_type_of_user" class="mozart-label">Tipo</label>
+            {{form.type_of_user}}
+          </div>
+
+          <div class="mozart-field-container one-element initial-state">
+            <label for="id_email" class="mozart-label initial-label">Email</label>
+            {{form.email}}
+          </div>
+
+          <div class="form-error" ng-show="{{form.form_name}}.email.$error.required && {{form.form_name}}.email.$dirty">No puedes dejar este campo vacío.</div>
+
+          <div class="form-error" ng-show="{{form.form_name}}.$error.email">
+            Debes introducir una dirección de correo electrónico.
+          </div>
+
+          <div class="mozart-field-container one-element initial-state">
+            <label for="id_username" class="mozart-label initial-label">Nickname</label>
+            {{form.username}}
+          </div>
+
+          <div class="form-error" ng-show="{{form.form_name}}.username.$error.required && {{form.form_name}}.username.$dirty">No puedes dejar este campo vacío.</div>
+
+          <div class="form-error" ng-show="{{form.form_name}}.username.$error.minlength">
+            El username debe contener al menos 5 carácteres.
+          </div>
+
+          <div class="form-error" ng-show="{{form.form_name}}.username.$error.maxlength">
+            El username debe contener máximo 20 carácteres.
+          </div>
+          
+          <div class="mozart-field-container one-element initial-state">
+            <label for="id_password_1" class="mozart-label initial-label">Password</label>
+            {{form.password_1}}
+          </div>
+
+          <div class="form-error" ng-show="{{form.form_name}}.password_1.$error.required && {{form.form_name}}.password_1.$dirty">No puedes dejar este campo vacío.</div>
+
+          <div class="form-error" ng-show="{{form.form_name}}.password_1.$error.minlength">
+            La contraseña debe contener al menos 8 carácteres.
+          </div>
+
+          <div class="form-error" ng-show="{{form.form_name}}.password_1.$error.maxlength">
+            La contraseña debe contener máximo 30 carácteres.
+          </div>
+
+          <div class="mozart-field-container one-element initial-state">
+            <label for="id_password_2" class="mozart-label initial-label">Verificar password</label>
+            {{form.password_2}}
+          </div><br/>
+
+          <div class="form-error" ng-show="{{form.form_name}}.password_2.$error.required && {{form.form_name}}.password_2.$dirty">No puedes dejar este campo vacío.</div>
+
+          <div class="form-error" ng-show="{{form.form_name}}.password_2.$error.minlength">
+            La contraseña debe contener al menos 8 carácteres.
+          </div>
+
+          <div class="form-error" ng-show="{{form.form_name}}.password_2.$error.maxlength">
+            La contraseña debe contener máximo 30 carácteres.
+          </div>
+
+          <div class="form-error" ng-show="{{form.form_name}}.password_2.$error.match && {{form.form_name}}.password_2.$dirty">
+            La contraseña no coincide.
+          </div>
+
+          Fecha de nacimiento<br/>
+
+          <div class="mozart-field-container three-elements initial-state">
+            <label for="id_day_of_birth" class="mozart-label">Día</label>
+            {{form.day_of_birth}}
+          </div>
+
+          <div class="mozart-field-container three-elements initial-state">
+            <label for="id_month_of_birth" class="mozart-label">Mes</label>
+            {{form.month_of_birth}}
+          </div>
+
+          <div class="mozart-field-container three-elements initial-state">
+            <label for="id_year_of_birth" class="mozart-label">Año</label>
+            {{form.year_of_birth}}
+          </div>
+
+          <div class="form-error" ng-hide="validDate">
+            {$message$}
+          </div>
+
+          <p>
+            <input type="checkbox" name="agree" ng-model="agree" required/>Acepto ser <a href="#" title="¿Por qué?">mayor de edad</a>, además de haber leído y estar de acuerdo con las <a href="#">Políticas, terminos y condiciones</a> de mozArt.
+          </p>
+          
+          <button type="submit" class="button submit-button" name="submit" ng-disabled="!validate()">Registrarse</button>
+        </form>
+      </div>{% endblock %}
