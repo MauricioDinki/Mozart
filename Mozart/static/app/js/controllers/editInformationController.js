@@ -2,14 +2,13 @@
 
 /**
  * @ngdoc function
- * @name mozArtApp.controller:editarInformacionCtrl
+ * @name mozArtApp.controller:editInformationCtrl
  * @description
- * # editarInformacionCtrl
+ * # editInformationCtrl
  * Controller of the mozArtApp
  */
 
-//Aun falta agregar la peticion ajax para mostrar barra de progreso
-app.controller('editarInformacionCtrl', ['$scope', 'fileService', function($scope, fileService){
+app.controller('editInformationCtrl', ['$scope', 'fileProperties', function($scope, fileProperties){
   var videoValido = true;
   var portadaValida = true;
   var imagenValida = true;
@@ -31,22 +30,22 @@ app.controller('editarInformacionCtrl', ['$scope', 'fileService', function($scop
   $scope.$on('videoFile', function (event, args) {
     $scope.$apply(function () { 
       $scope.video = args.file;
-      var formato = fileService.getExtension($scope.video);
-      videoValido = fileService.isAnImage(formato);
+      var formato = fileProperties.getExtension($scope.video);
+      videoValido = fileProperties.isAnImage(formato);
     });
   });
   $scope.$on('coverFile', function (event, args) {
     $scope.$apply(function () { 
       $scope.portada = args.file;
-      var formato = fileService.getExtension($scope.portada);
-      portadaValida = fileService.isAnImage(formato);
+      var formato = fileProperties.getExtension($scope.portada);
+      portadaValida = fileProperties.isAnImage(formato);
     });
   });
   $scope.$on('profilePicture', function (event, args) {
     $scope.$apply(function () { 
       $scope.imagen = args.file;
-      var formato = fileService.getExtension($scope.imagen);
-      imagenValida = fileService.isAnImage(formato);
+      var formato = fileProperties.getExtension($scope.imagen);
+      imagenValida = fileProperties.isAnImage(formato);
     });
   });
   $scope.validar = function(){

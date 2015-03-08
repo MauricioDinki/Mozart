@@ -11,11 +11,14 @@
 app.controller('loadWorksCtrl', ['$scope','worksRequest', function($scope, worksRequest){
   $scope.worksPaginate = 6;
   $scope.showMessage = false;
+  $scope.works = {};
   $scope.getWorks = function(){
     worksRequest.recentWorks.get(
       function(works) {
-        $scope.works = works;
-        var size = angular.fromJson($scope.works).length;
+        var size = angular.fromJson(works).length;
+        if(size != $scope.works.length){
+          $scope.works = works;
+        }
         if(size < $scope.worksPaginate){
           if($scope.worksPaginate == 6){
             $scope.showMessage = false;

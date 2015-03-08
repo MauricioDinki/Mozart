@@ -90,7 +90,7 @@ main
 
 #mozart-logo
   display none
-  margin 0 0 0 160px
+  margin 0 0 0 140px
   padding 6px 0
   
   img
@@ -100,12 +100,12 @@ main
   background mozart-dark-gray
   box-shadow 4px 4px 6px mozart-dark-gray
   height 100%
+  margin-left 0px
   overflow auto !important
   padding-bottom 30px
   position fixed
   text-align center
   top 35px
-  transition left 0.2s
   width 320px
   
   div
@@ -142,18 +142,13 @@ main
   hr
     hr-mixin(mozart-light-blue)
 
-#mozart-menu.hide-menu
-  left -330px
-  
-  footer
-    left -330px
+#mozart-menu.ng-hide-add.ng-hide-add-active,
+#mozart-menu.ng-hide-remove.ng-hide-remove-active
+  transition margin-left 0.3s
 
-#mozart-menu.show-menu
-  left 0
-  
-  footer
-    left 0
-  
+#mozart-menu.ng-hide
+  margin-left -330px
+
 #mozart-navbar
   background white
   height 35px

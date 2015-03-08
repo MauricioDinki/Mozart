@@ -8,10 +8,10 @@
  * Controller of the mozArtApp
  */
 
-app.controller('errorCtrl', ['$scope', '$routeParams', 'peticionObras', function($scope, $routeParams, peticionObras){
+app.controller('errorCtrl', ['$scope', '$routeParams', 'worksRequest', function($scope, $routeParams, worksRequest){
   $scope.cantidad = 3;
   $scope.cargar = function(){
-    peticionObras.get(
+    worksRequest.randomWorks.get(
       function(obras) {
         $scope.obras = obras;
       },

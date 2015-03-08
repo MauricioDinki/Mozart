@@ -14,20 +14,19 @@ app.directive('mzField', [function(){
     scope: false,
     transclude: false,
     link: function(scope, elem, attrs){
-      var input = angular.element('#' + attrs.id);
-    	input.focus(function(){
-       	input.prev('label').removeClass('initial-label');
-       	input.prev('label').addClass('active-label');
-       	input.removeClass('empty-initial-field'); 
-       	input.addClass('active-field');
+    	elem.focus(function(){
+       	elem.prev('label').removeClass('initial-label');
+       	elem.prev('label').addClass('active-label');
+       	elem.removeClass('empty-initial-field'); 
+       	elem.addClass('active-field');
     	});
-    	input.blur(function(){
-       	if(input.val()==''){
-       	  input.removeClass('active-field');
-       	  input.addClass('empty-initial-field'); 
+    	elem.blur(function(){
+       	if(elem.val()==''){
+       	  elem.removeClass('active-field');
+       	  elem.addClass('empty-initial-field'); 
        	}
-       	input.prev('label').removeClass('active-label');
-       	input.prev('label').addClass('initial-label');
+       	elem.prev('label').removeClass('active-label');
+       	elem.prev('label').addClass('initial-label');
     	});
     }
   }
