@@ -3,8 +3,6 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django_countries.fields import CountryField
-from sorl.thumbnail import ImageField
-from django import forms
 from social.apps.django_app.default.models import UserSocialAuth
 
 days = (
@@ -78,9 +76,9 @@ class Mozart_User(models.Model):
 	description = models.CharField(blank=True,null=True, max_length=200,)
 	nationality = CountryField(blank=True,null=True, max_length=200,)
 	presentation_file = models.FileField(blank=True,null=True,upload_to=presentation_file_url)
-	profile_picture = ImageField(blank=True,null=True,upload_to=profile_picture_url)
+	profile_picture = models.ImageField(blank=True,null=True,upload_to=profile_picture_url)
 	sex = models.CharField(blank=True,null=True, max_length=50,choices=sexuality)
-	user_type = models.CharField(blank=True,null=True, max_length=50)
+	user_type = models.CharField(blank=True,null=True, max_length=50,choices=type_of_users)
 
 	def __unicode__(self):
 		return self.user.username

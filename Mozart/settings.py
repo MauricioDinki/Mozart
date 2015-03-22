@@ -5,7 +5,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 PROJECT_PATH = os.path.dirname(os.path.realpath(__file__))
 
-SECRET_KEY = os.environ.get("SECRET_KEY", None)
+SECRET_KEY = os.environ.get("MOZART_SECRET_KEY", None)
 
 DEBUG = True
 
@@ -69,15 +69,10 @@ ROOT_URLCONF = 'Mozart.urls'
 
 WSGI_APPLICATION = 'Mozart.wsgi.application'
 
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql', 
-        'NAME': os.environ.get("MOZART_DATABASE_NAME", None),
-        'USER': os.environ.get("MOZART_DATABASE_USER", None),
-        'PASSWORD': os.environ.get("MOZART_DATABASE_PASSWORD", None),
-        'HOST': os.environ.get("MOZART_DATABASE_HOST", None),
-        'PORT': os.environ.get("MOZART_DATABASE_PORT", None),
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
@@ -103,22 +98,25 @@ MEDIA_URL = '/media/'
 
 THUMBNAIL_DEBUG = True
 
+LOGIN_REDIRECT_URL = 'work_list'
+LOGIN_URL = 'login'
+
 # Suit Configuration
 SUIT_CONFIG = {
     'ADMIN_NAME': 'Mozart',
 }
 
 #Facebook Keys
-SOCIAL_AUTH_FACEBOOK_KEY = os.environ.get("SOCIAL_AUTH_FACEBOOK_KEY", None)
-SOCIAL_AUTH_FACEBOOK_SECRET = os.environ.get("SOCIAL_AUTH_FACEBOOK_SECRET", None)
+SOCIAL_AUTH_FACEBOOK_KEY = os.environ.get("MOZART_SOCIAL_AUTH_FACEBOOK_KEY", None)
+SOCIAL_AUTH_FACEBOOK_SECRET = os.environ.get("MOZART_SOCIAL_AUTH_FACEBOOK_SECRET", None)
 
 # Twitter Keys
-SOCIAL_AUTH_TWITTER_KEY = os.environ.get("SOCIAL_AUTH_TWITTER_KEY", None)
-SOCIAL_AUTH_TWITTER_SECRET = os.environ.get("SOCIAL_AUTH_TWITTER_SECRET", None)
+SOCIAL_AUTH_TWITTER_KEY = os.environ.get("MOZART_SOCIAL_AUTH_TWITTER_KEY", None)
+SOCIAL_AUTH_TWITTER_SECRET = os.environ.get("MOZART_SOCIAL_AUTH_TWITTER_SECRET", None)
 
 # Google Keys
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.environ.get("SOCIAL_AUTH_GOOGLE_OAUTH2_KEY", None)
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ.get("SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET", None)
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.environ.get("MOZART_SOCIAL_AUTH_GOOGLE_OAUTH2_KEY", None)
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ.get("MOZART_SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET", None)
 
 # Social Auth Pipeline
 SOCIAL_AUTH_PIPELINE = (    
@@ -131,7 +129,3 @@ SOCIAL_AUTH_PIPELINE = (
     'social.pipeline.social_auth.load_extra_data',
     'Thirdauth.pipeline.save_extra_params',
 )
-
-# Login Urls
-LOGIN_REDIRECT_URL = 'work_list'
-LOGIN_URL = 'login'

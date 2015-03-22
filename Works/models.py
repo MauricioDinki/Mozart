@@ -2,7 +2,6 @@
 
 from django.contrib.auth.models import User
 from django.db import models
-from sorl.thumbnail import ImageField
 from django.utils.text import slugify
 
 def archive_url(self,filename):
@@ -28,7 +27,7 @@ class Work(models.Model):
 	description = models.CharField(blank=False,null=False, max_length=200)
 	category = models.CharField(blank=False,null=False, max_length=50,choices=category)
 	date = models.DateTimeField(blank=False,null=False,auto_now_add=True)
-	cover = ImageField(null=False,blank=False,upload_to=cover_url)
+	cover = models.ImageField(null=False,blank=False,upload_to=cover_url)
 	archive = models.FileField(blank=False,null=False,upload_to=archive_url)
 	slug = models.SlugField(max_length=50,unique=True)
 
