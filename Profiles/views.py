@@ -6,8 +6,7 @@ from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse_lazy
-from django.http import HttpResponseRedirect
-from django.shortcuts import render_to_response,get_object_or_404
+from django.shortcuts import render_to_response,get_object_or_404,redirect
 from django.template import RequestContext
 from django.views.generic import FormView,TemplateView
 from social.apps.django_app.default.models import UserSocialAuth
@@ -75,5 +74,5 @@ class SocialNetworkSettingsView(LoginRequiredMixin,TemplateView):
 def SocialNetworkDeleteView(request,provider,account_id):
 	account_to_delete = UserSocialAuth.objects.get(user__username = request.user.username, provider = provider, id = account_id )
 	account_to_delete.delete()
-	return HttpResponseRedirect(reverse_lazy('settings_social'))
+	return redirect(reverse_lazy('index'))
 
