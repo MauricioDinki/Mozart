@@ -6,12 +6,16 @@ from django_countries import countries
 from djangular.forms import NgModelFormMixin, NgFormValidationMixin
 from Thirdauth.validations import *
 
-class ChangePasswordForm(forms.Form):
+class ChangePasswordForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
 	"""
 		Form for update the user password
 	"""
+	scope_prefix = 'changePassword'
+	form_name = 'passwordform'
 
 	old_password = forms.CharField(
+		max_length=40,
+		min_length=6,
 		widget = forms.PasswordInput(
 			attrs = {
 				'class':'cuadrotexto mz-field',
@@ -21,6 +25,8 @@ class ChangePasswordForm(forms.Form):
 	)
 
 	new_password_1 = forms.CharField(
+		max_length=40,
+		min_length=6,
 		widget = forms.PasswordInput(
 			attrs = {
 				'class':'cuadrotexto mz-field',
@@ -30,6 +36,8 @@ class ChangePasswordForm(forms.Form):
 	)
 
 	new_password_2 = forms.CharField(
+		max_length=40,
+		min_length=6,
 		widget = forms.PasswordInput(
 			attrs = {
 				'class':'cuadrotexto mz-field',
@@ -64,11 +72,16 @@ class ChangePasswordForm(forms.Form):
 		user_to_change.save()
 
 
-class UserInformationForm(forms.Form):
+class UserInformationForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
 	"""
 		Form for change user information
 	"""
+	scope_prefix='information'
+	form_name='informationform'
+
 	username = forms.CharField(
+		min_length=5,
+        max_length=20,
         required = True,
         widget = forms.TextInput(
         	attrs = {
@@ -79,6 +92,8 @@ class UserInformationForm(forms.Form):
     )
 
 	first_name = forms.CharField(
+		min_length=5,
+        max_length=20,
 		required = False,
 		widget = forms.TextInput(
 			attrs = {
@@ -89,6 +104,8 @@ class UserInformationForm(forms.Form):
 	)
 
 	last_name = forms.CharField(
+		min_length=5,
+        max_length=20,
 		required = False,
 		widget = forms.TextInput(
 			attrs = {
@@ -120,6 +137,8 @@ class UserInformationForm(forms.Form):
 	)
 
 	description = forms.CharField(
+		min_length=5,
+        max_length=200,
 		required = False,
 		widget = forms.Textarea(
 			attrs = {
@@ -130,6 +149,7 @@ class UserInformationForm(forms.Form):
 	)
 
 	personal_homepage = forms.URLField(
+        max_length=30,
 		required = False,
 		widget = forms.URLInput(
 			attrs = {
@@ -150,6 +170,7 @@ class UserInformationForm(forms.Form):
 	)
 
 	adress = forms.CharField(
+		max_length=30,
 		required = False,
 		widget = forms.TextInput(
 			attrs = {
@@ -160,6 +181,8 @@ class UserInformationForm(forms.Form):
 	)
 
 	city = forms.CharField(
+		min_length=5,
+        max_length=20,
 		required = False,
 		widget = forms.TextInput(
 			attrs = {
@@ -170,6 +193,8 @@ class UserInformationForm(forms.Form):
 	)
 
 	zip_code = forms.CharField(
+		min_length=5,
+        max_length=10,
 		required = False,
 		widget = forms.TextInput(
 			attrs = {
@@ -180,6 +205,8 @@ class UserInformationForm(forms.Form):
 	)
 
 	neighborhood = forms.CharField(
+		min_length=4,
+		max_length=200,
 		required=False,
 		widget=forms.TextInput(
 			attrs = {
@@ -190,6 +217,8 @@ class UserInformationForm(forms.Form):
 	)
 
 	password = forms.CharField(
+		min_length=6,
+        max_length=40,
 	    required = True,
 	    widget = forms.PasswordInput(
 	    	attrs = {
