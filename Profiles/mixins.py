@@ -6,6 +6,7 @@ class RequestFormMixin(object):
 		kwargs['request'] = self.request
 		return kwargs
 
+
 class FilterUsernameMixin(object):
 	def get_queryset(self):
 		username = self.request.query_params.get('username', None)

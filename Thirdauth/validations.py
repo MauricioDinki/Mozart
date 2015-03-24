@@ -34,19 +34,14 @@ def validate_blank(data):
 
 def validate_password_matching(data_1,data_2):
 	if data_1 != data_2:
-		raise forms.ValidationError('Dinki')
+		raise forms.ValidationError(custom_error_messages['password_mismatch'],)
 	return data_1 and data_2
 
 def validate_username(data):
-	if len(str(data)) == 0:
-		raise forms.ValidationError(custom_error_messages['null_field'],)
-	elif str(data).isspace():
-		raise forms.ValidationError(custom_error_messages['blank_field'],)
-	elif data:
-		try:
-			user = User.objects.get(username = data)
-		except User.DoesNotExist:
-			return data
+	try:
+		user = User.objects.get(username__iexact = data)
+	except User.DoesNotExist:
+		return data
 	raise forms.ValidationError(custom_error_messages['user_exist'],)
 
 def validate_title(data):
@@ -62,15 +57,10 @@ def validate_title(data):
 	raise forms.ValidationError(custom_error_messages['work_exist'],)
 
 def validate_email(data):
-	if len(str(data)) == 0:
-		raise forms.ValidationError(custom_error_messages['null_field'],)
-	elif str(data).isspace():
-		raise forms.ValidationError(custom_error_messages['blank_field'],)
-	elif data:
-		try:
-			user = User.objects.get(email = data)
-		except User.DoesNotExist:
-			return data
+	try:
+		user = User.objects.get(email__iexact = data)
+	except User.DoesNotExist:
+		return data
 	raise forms.ValidationError(custom_error_messages['email_exist'],)
 
 def validate_password(username, password):

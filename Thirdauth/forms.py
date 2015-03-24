@@ -1,49 +1,53 @@
 # -*- encoding: utf-8 -*-
 
 from .validations import *
+from datetime import date
 from django import forms
-from djangular.forms import NgModelFormMixin, NgFormValidationMixin
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
-from datetime import date
+from djangular.forms import NgModelFormMixin, NgFormValidationMixin
 from Profiles.models import days,months,type_of_users,sexuality,Mozart_User,Date_of_Birth,Adress,Contact
 
 class LoginForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
+    """
+        Form for login with username and password
+    """
     scope_prefix='login'
     form_name='loginform'
 
     username = forms.CharField(
-        min_length=5,
-        max_length=20,
-        required=True,
-        widget=forms.TextInput(attrs={'class':'cuadrotexto mz-field', 'placeholder':'Escribe tu nickname'}),
+        max_length = 20,
+        min_length = 5,
+        widget = forms.TextInput(
+            attrs = {
+                'class':'cuadrotexto mz-field',
+                'placeholder':'Escribe tu nickname',
+            }
+        ),
     )
 
     password = forms.CharField(
-        min_length=6,
-        max_length=40,
-        required=True,
-        widget=forms.PasswordInput(attrs={'class' : 'cuadrotexto mz-field', 'placeholder':'Escribe tu contraseña'}),
+        max_length = 40,
+        min_length = 6,
+        widget = forms.PasswordInput(
+            attrs = {
+                'class':'cuadrotexto mz-field',
+                'placeholder':'Escribe tu contraseña'
+            }
+        ),
     )
 
     def __init__(self, *args, **kwargs):
-        super(LoginForm, self).__init__(*args, **kwargs)
         self.user_cache = None
-
-    def clean_username(self):
-		username = self.cleaned_data.get('username')
-		validate_null(username)
-		return username
-
-    def clean_password(self):
-		password = self.cleaned_data.get('password')
-		validate_null(password)
-		return password
+        super(LoginForm, self).__init__(*args, **kwargs)
+        for field in self.fields:
+            self.fields[field].error_messages.update(default_error_messages)
+            self.fields[field].validators=[validate_blank]
+            self.fields[field].required=True
 
     def clean(self):
         username = self.cleaned_data.get('username')
         password = self.cleaned_data.get('password')
-
         if username and password:
             self.user_cache = authenticate(username=username, password=password)
             if self.user_cache is None:
@@ -52,130 +56,122 @@ class LoginForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
                 raise forms.ValidationError(custom_error_messages['inactive'])
         return self.cleaned_data
 
-# class RegisterForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
+
 class RegisterForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
+    """
+        Form for signup a new mozart user
+    """
     scope_prefix='signup'
     form_name='signupform'
     this_year=date.today().year
 
     day_of_birth = forms.ChoiceField(
-        error_messages={
-            'invalid_choice':('Selecciona una opcion valida'),
-            'required': default_error_messages['required']
-        },
-        required=True,
-        choices=days,
-        initial='1',
-        widget=forms.Select(attrs={'class' : 'cuadrotexto mz-field', 'ng-change': 'validarFecha()'}),
+        choices = days,
+        initial = '1',
+        widget = forms.Select(
+            attrs = {
+                'class':'cuadrotexto mz-field',
+                'ng-change': 'validarFecha()',
+            }
+        ),
     )
 
     email = forms.EmailField(
-        error_messages={
-            'invalid':('Ingresa una cuenta de correo valida'),
-            'required': default_error_messages['required']
-        },
-        required=True,
-        widget=forms.EmailInput(attrs={'class' : 'cuadrotexto mz-field', 'placeholder':'Escribe tu email'}),
-
+        widget = forms.EmailInput(
+            attrs = {
+                'class':'cuadrotexto mz-field',
+                'placeholder':'Escribe tu email',
+            }
+        ),
     )
 
     month_of_birth = forms.ChoiceField(
-        error_messages={
-            'invalid_choice':('Selecciona una opcion valida'),
-            'required': default_error_messages['required']
-        },
-        required=True,
-        choices=months,
-        initial='Enero',
-        widget=forms.Select(attrs={'class' : 'cuadrotexto mz-field', 'ng-change': 'validarFecha()'}),
+        choices = months,
+        initial = 'Enero',
+        widget = forms.Select(
+            attrs = {
+                'class':'cuadrotexto mz-field',
+                'ng-change': 'validarFecha()',
+            }
+        ),
     )
 
     password_1 = forms.CharField(
-        error_messages=default_error_messages,
-        min_length=8,
-        max_length=40,
-        required=True,
-        widget=forms.PasswordInput(attrs={'class' : 'cuadrotexto mz-field','placeholder':'Elije una contraseña'}),
+        max_length = 40,
+        min_length = 8,
+        widget = forms.PasswordInput(
+            attrs = {
+                'class':'cuadrotexto mz-field',
+                'placeholder':'Elije una contraseña'
+            }
+        ),
     )
 
     password_2 = forms.CharField(
-        error_messages=default_error_messages,
-        min_length=8,
-        max_length=40,
-        required=True,
-        widget=forms.PasswordInput(attrs={'class' : 'cuadrotexto mz-field','placeholder':'Vuelve a escribir tu contraseña', 'comparar':'signup.password_1'}),
+        max_length = 40,
+        min_length = 8,
+        widget = forms.PasswordInput(
+            attrs = {
+                'class':'cuadrotexto mz-field',
+                'placeholder':'Vuelve a escribir tu contraseña',
+                'comparar':'signup.password_1',
+            }
+        ),
     )
 
     type_of_user = forms.ChoiceField(
-        error_messages={
-            'invalid_choice':('Selecciona una opcion valida'),
-            'required': default_error_messages['required']
-        },
-        required=True,
-        choices=type_of_users,
-        widget=forms.Select(attrs={'class' : 'cuadrotexto mz-field'}),
+        choices = type_of_users,
+        widget = forms.Select(
+            attrs = {
+                'class':'cuadrotexto mz-field',
+            }
+        ),
     )
 
     username = forms.CharField(
-        error_messages=default_error_messages, 
-        min_length=5,
-        max_length=20,
-        required=True,
-        widget=forms.TextInput(attrs={'class':'cuadrotexto mz-field', 'placeholder':'Escribe tu nickname'}),
+        max_length = 20,
+        min_length = 5,
+        widget = forms.TextInput(
+            attrs = {
+                'class':'cuadrotexto mz-field',
+                'placeholder':'Escribe tu nickname'
+            }
+        ),
     )
 
     year_of_birth = forms.IntegerField(
-        error_messages=default_error_messages,
-        required=True,
-        max_value=this_year - 18,
-        min_value=this_year - 100,
-        widget=forms.NumberInput(attrs={'class' : 'cuadrotexto mz-field', 'placeholder':'Año', 'ng-change':'validarFecha()', 'value': this_year - 25}),
+        max_value = this_year - 18,
+        min_value = this_year - 100,
+        widget = forms.NumberInput(
+            attrs = {
+                'class':'cuadrotexto mz-field',
+                'placeholder':'Año',
+                'ng-change':'validarFecha()',
+                'value': this_year - 25
+            }
+        ),
     )
 
     def __init__(self, *args, **kwargs):
-        super(RegisterForm, self).__init__(*args, **kwargs)
         self.user_cache = None
-
-    def clean_day_of_birth(self):
-        day_of_birth = self.cleaned_data.get('day_of_birth')
-        validate_null(day_of_birth)
-        return day_of_birth
+        super(RegisterForm, self).__init__(*args, **kwargs)
+        for field in self.fields:
+            self.fields[field].error_messages.update(default_error_messages)
+            self.fields[field].validators=[validate_blank]
+            self.fields[field].required=True
 
     def clean_email(self):
         email = self.cleaned_data.get('email')
-        validate_email(email)
-        return email
-
-    def clean_month_of_birth(self):
-        month_of_birth = self.cleaned_data.get('month_of_birth')
-        validate_null(month_of_birth)
-        return month_of_birth
-
-    def clean_password_1(self):
-        password_1 = self.cleaned_data.get('password_1')
-        validate_null(password_1)
-        return password_1
+        return validate_email(email)
 
     def clean_password_2(self):
         password_1 = self.cleaned_data.get('password_1')
-        password_2 = self.cleaned_data.get("password_2")
-        validate_password(password_1,password_2)
-        return password_1 and password_2
-
-    def clean_type_of_user(self):
-        type_of_user = self.cleaned_data.get('type_of_user')
-        validate_null(type_of_user)
-        return type_of_user
+        password_2 = self.cleaned_data.get('password_2')
+        return validate_password_matching(password_1, password_2)
 
     def clean_username(self):
         username = self.cleaned_data.get('username')
-        validate_username(username)
-        return username
-
-    def clean_year_of_birth(self):
-        year_of_birth = self.cleaned_data.get('year_of_birth')
-        validate_null(year_of_birth)
-        return year_of_birth
+        return validate_username(username)
 
     def save(self):
         day_of_birth = self.cleaned_data.get('day_of_birth')
@@ -186,13 +182,13 @@ class RegisterForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
         username = self.cleaned_data.get('username')
         year_of_birth = self.cleaned_data.get('year_of_birth')
 
-        user = User.objects.create_user(username,email,password)
+        user = User.objects.create_user(username, email, password)
 
-        newExtendedUser = Mozart_User(user=user,user_type=type_of_user,)
+        newExtendedUser = Mozart_User(user = user, user_type = type_of_user)
         newExtendedUser.nationality = 'MX'
         newExtendedUser.save()
 
-        newUserAge = Date_of_Birth(user=user,day=day_of_birth,month=month_of_birth,year=year_of_birth)
+        newUserAge = Date_of_Birth(user = user, day = day_of_birth, month = month_of_birth, year = year_of_birth)
         newUserAge.save()
 
         newUserContact = Contact(user = user)
@@ -201,4 +197,4 @@ class RegisterForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
         newUserAdress = Adress(user = user)
         newUserAdress.save()
 
-        self.user_cache = authenticate(username=username, password=password)
+        self.user_cache = authenticate(username = username, password = password)

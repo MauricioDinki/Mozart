@@ -89,6 +89,7 @@ class Mozart_User(models.Model):
 
 	def get_nationality(self):
 		return self.nationality.name
+
 	
 class Contact(models.Model):
 	user = models.OneToOneField(User)
@@ -114,6 +115,7 @@ class Social_Network_Facebook_URL(models.Model):
 	def __unicode__(self):
 		return self.user.user.username
 
+
 class Social_Network_Twitter_URL(models.Model):
 	user = models.OneToOneField(UserSocialAuth)
 	twitter = models.URLField(blank=True,null=True, max_length=200)
@@ -125,6 +127,7 @@ class Social_Network_Twitter_URL(models.Model):
 	def __unicode__(self):
 		return self.user.user.username
 
+
 class Social_Network_Google_URL(models.Model):
 	user = models.OneToOneField(UserSocialAuth)
 	google = models.URLField(blank=True,null=True, max_length=200)
@@ -135,6 +138,7 @@ class Social_Network_Google_URL(models.Model):
 
 	def __unicode__(self):
 		return self.user.user.username
+
 
 class Date_of_Birth(models.Model):
 	user = models.OneToOneField(User)
@@ -148,6 +152,7 @@ class Date_of_Birth(models.Model):
 
 	def __unicode__(self):
 		return self.user.username
+
 
 class Adress(models.Model):
 	user = models.OneToOneField(User)

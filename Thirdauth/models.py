@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 
-from django.db import models
 from django.contrib.auth.models import User
+from django.db import models
 from social.apps.django_app.default.models import UserSocialAuth
 
 class ExtendUserSocialAuth(models.Model):

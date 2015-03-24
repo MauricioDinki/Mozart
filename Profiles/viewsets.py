@@ -10,6 +10,7 @@ class AdressViewSet(FilterUsernameMixin, viewsets.ModelViewSet):
 	queryset = Adress.objects.all()
 	serializer_class = AdressSerializer
 
+
 class ContactViewSet(FilterUsernameMixin, viewsets.ModelViewSet):
 	queryset = Contact.objects.all()
 	serializer_class = ContactSerializer

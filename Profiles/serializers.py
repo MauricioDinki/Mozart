@@ -9,6 +9,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 		model = User
 		fields = ('username','date_joined','first_name','last_name','email')
 
+
 class ContactSerializer(serializers.HyperlinkedModelSerializer):
 	user = serializers.SlugRelatedField(
         read_only=True,
@@ -17,6 +18,7 @@ class ContactSerializer(serializers.HyperlinkedModelSerializer):
 	class Meta:
 		model = Contact
 		exclude = ['url']
+
 
 class AdressSerializer(serializers.HyperlinkedModelSerializer):
 	user = serializers.SlugRelatedField(
@@ -27,6 +29,7 @@ class AdressSerializer(serializers.HyperlinkedModelSerializer):
 		model = Adress
 		exclude = ['url']
 
+
 class DateBirthSerializer(serializers.HyperlinkedModelSerializer):
 	user = serializers.SlugRelatedField(
         read_only=True,
@@ -35,6 +38,7 @@ class DateBirthSerializer(serializers.HyperlinkedModelSerializer):
 	class Meta:
 		model = Date_of_Birth
 		exclude = ['url']
+
 
 class MozartUserSerializer(serializers.HyperlinkedModelSerializer):
 	user = serializers.SlugRelatedField(
