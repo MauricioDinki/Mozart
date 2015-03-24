@@ -1,75 +1,65 @@
 from .models import category, Work
 from django import forms
 from djangular.forms import NgModelFormMixin, NgFormValidationMixin
-from Thirdauth.forms import default_error_messages
-from Thirdauth.validations import validate_blank,validate_title
-from django.utils.translation import ugettext_lazy as _
+from Thirdauth.validations import validate_blank, validate_title, default_error_messages
 
-class EditWorkForm(NgModelFormMixin, NgFormValidationMixin, forms.ModelForm):
-	scope_prefix='work'
-	form_name='editworkform'
-	class Meta:
-		model = Work
-		fields = ['title','description','category']
-		widgets = {
-        	'title' : forms.TextInput(attrs={'class':'cuadrotexto mz-field', 'placeholder':'Escribe un titulo para la obra'}),
-        	'description' : forms.Textarea(attrs={'class':'cuadrotexto un-cuadro'}),
-        	'category' : forms.Select(attrs={'class': 'cuadrotexto mz-field'}),
-        }
-    
-class UploadWorkForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
+class CreateWorkForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
+	"""
+		Form for create works
+	"""
 	scope_prefix='work'
 	form_name='workform'
 
 	title = forms.CharField(
-		required=True,
-		min_length=4,
-		max_length=40,
-		widget=forms.TextInput(attrs={'class':'cuadrotexto mz-field', 'placeholder':'Escribe un titulo para la obra'}),
+		max_length = 40,
+		min_length = 4,
+		widget = forms.TextInput(
+			attrs = {
+				'class':'cuadrotexto mz-field',
+				'placeholder':'Escribe un titulo para la obra',
+			}
+		),
     )
+
 	description = forms.CharField(
-		required=True,
-		min_length=1,
-		max_length=1000,
-		widget=forms.Textarea(attrs={'class':'cuadrotexto un-cuadro'}),
+		max_length = 1000,
+		min_length = 1,
+		widget = forms.Textarea(
+			attrs = {
+				'class':'cuadrotexto un-cuadro',
+			}
+		),
     )
+
 	category = forms.ChoiceField(
-		choices=category,
-		required=True,
-		widget=forms.Select(attrs={'class':'cuadrotexto mz-field'}),
-	)
-	archive = forms.ImageField(
-		error_messages={
-			'invalid_image':('Selecciona un archivo de imagen valido'),
-			'required':default_error_messages['required'],
-		},
-		required=True,
-		widget=forms.FileInput(attrs={'file-upload':'', 'file-bind':'archive'}),
+		choices = category,
+		widget = forms.Select(
+			attrs = {
+				'class':'cuadrotexto mz-field',
+			}
+		),
 	)
 
-	cover = forms.ImageField(
-		required=False,
-		widget=forms.FileInput(attrs={'file-upload':'', 'file-bind':'cover', 'accept':'image/*'}),
+	archive = forms.ImageField(
+		widget = forms.FileInput(
+			attrs = {
+				'file-upload':'',
+				'file-bind':'archive',
+			}
+		),
 	)
 
 	def __init__(self, *args, **kwargs):
 		self.request = kwargs.pop('request', None)
-		super(UploadWorkForm, self).__init__(*args, **kwargs)
+		super(CreateWorkForm, self).__init__(*args, **kwargs)
+		for field in self.fields:
+			self.fields[field].error_messages.update(default_error_messages)
+			self.fields[field].validators=[validate_blank]
+			self.fields[field].required=True
 
 	def clean_title(self):
 		title = self.cleaned_data.get('title')
-		validate_title(title)
-		return title
-
-	def clean_description(self):
-		description = self.cleaned_data.get('description')
-		validate_blank(description)
-		return description
-
-	def clean_category(self):
-		category = self.cleaned_data.get('category')
-		validate_blank('category')
-		return category
+		return validate_title(title)
 
 	def save(self):
 		title = self.cleaned_data.get('title')
@@ -80,3 +70,44 @@ class UploadWorkForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
 		newWork = Work(user = self.request.user,title = title, description = description, category = category , archive = archive)
 		newWork.cover = newWork.archive
 		newWork.save()
+
+class UpdateWorkForm(NgModelFormMixin, NgFormValidationMixin, forms.ModelForm):
+	"""
+		Form for update works
+	"""
+	scope_prefix='work'
+	form_name='editworkform'
+
+	class Meta:
+		model = Work
+		fields = ['title','description','category']
+		widgets = {
+        	'title':forms.TextInput(
+        		attrs = {
+        			'class':'cuadrotexto mz-field',
+        			'placeholder':'Escribe un titulo para la obra',
+    			}
+			),
+        	'description':forms.Textarea(
+        		attrs = {
+        			'class':'cuadrotexto un-cuadro',
+    			}
+			),
+        	'category':forms.Select(
+        		attrs = {
+        			'class':'cuadrotexto mz-field'
+    			}
+			),
+        }
+		error_messages = {
+			'title': {
+			    'unique': 'Ya hay una obra con ese titulo',
+			},
+		}
+
+	def __init__(self, *args, **kwargs):
+		super(UpdateWorkForm, self).__init__(*args, **kwargs)
+		for field in self.fields:
+			self.fields[field].error_messages.update(default_error_messages)
+			self.fields[field].validators=[validate_blank]
+    

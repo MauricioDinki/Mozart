@@ -24,7 +24,6 @@ default_error_messages = {
 	'max_length': _('Longitud maxima rebasada'),
 	'required': _('Este campo es requerido'),
     'blank': _('El campo esta en blanco'),
-    'required':  _('Este campo no puede estar vacio'),
 }
 
 def validate_blank(data):
@@ -45,15 +44,10 @@ def validate_username(data):
 	raise forms.ValidationError(custom_error_messages['user_exist'],)
 
 def validate_title(data):
-	if len(str(data)) == 0:
-		raise forms.ValidationError(custom_error_messages['null_field'],)
-	elif str(data).isspace():
-		raise forms.ValidationError(custom_error_messages['blank_field'],)
-	elif data:
-		try:
-			title = Work.objects.get(title = data)
-		except Work.DoesNotExist:
-			return data
+	try:
+		title = Work.objects.get(title__iexact = data)
+	except Work.DoesNotExist:
+		return data
 	raise forms.ValidationError(custom_error_messages['work_exist'],)
 
 def validate_email(data):
