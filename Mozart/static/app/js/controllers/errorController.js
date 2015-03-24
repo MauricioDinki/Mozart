@@ -8,8 +8,8 @@
  * Controller of the mozArtApp
  */
 
-app.controller('errorCtrl', ['$scope', '$routeParams', 'worksRequest', function($scope, $routeParams, worksRequest){
-  $scope.cantidad = 3;
+app.controller('errorCtrl', ['$scope', 'worksRequest', function($scope, worksRequest){
+  var cantidad = 3;
   $scope.cargar = function(){
     worksRequest.randomWorks.get(
       function(obras) {
@@ -21,7 +21,7 @@ app.controller('errorCtrl', ['$scope', '$routeParams', 'worksRequest', function(
       'aleatorio',
       'todas',
       'todos',
-      $scope.cantidad
+      cantidad
     );
   };
   $scope.cargar();
