@@ -2,7 +2,7 @@ from .models import category, Work
 from django import forms
 from djangular.forms import NgModelFormMixin, NgFormValidationMixin
 from Thirdauth.forms import default_error_messages
-from Thirdauth.validations import validate_null,validate_title
+from Thirdauth.validations import validate_blank,validate_title
 from django.utils.translation import ugettext_lazy as _
 
 class EditWorkForm(NgModelFormMixin, NgFormValidationMixin, forms.ModelForm):
@@ -63,12 +63,12 @@ class UploadWorkForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
 
 	def clean_description(self):
 		description = self.cleaned_data.get('description')
-		validate_null(description)
+		validate_blank(description)
 		return description
 
 	def clean_category(self):
 		category = self.cleaned_data.get('category')
-		validate_null('category')
+		validate_blank('category')
 		return category
 
 	def save(self):
