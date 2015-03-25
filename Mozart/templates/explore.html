@@ -17,7 +17,7 @@
 </div>
     <div ng-init="worksCategory='{{category}}';worksAuthor='all'">
       <section id="blue-navbar-section" ng-controller="loadWorksCtrl" >
-        <article class="work-item" ng-repeat="work in works|orderBy:-'$index'">
+        <article class="work-item" ng-repeat="work in works">
           <div class="work-thumbnail" style="background:url('{$work.cover$}');">
           </div>
           <span class="icons {$work.category$}-icon"></span><a class="work-title" ng-href="{% url 'works:work_user_list' username %}{$work.slug$}" ng-bind="work.title"></a><br/>
