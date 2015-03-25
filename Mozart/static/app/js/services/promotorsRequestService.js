@@ -9,7 +9,7 @@
  */
 
 app.service('promotorsRequest', ['$http',  function($http){
-  var apiBaseUrl = 'http://mozart.com:8000/api/promotors/';
+  var apiBaseUrl = '/api/promotors/';
   this.get=function(fnOK,fnError, nameFirstLetter, paginate) {
     $http({
       method: 'GET',

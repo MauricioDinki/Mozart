@@ -9,7 +9,7 @@
  */
 
 app.service('worksRequest', ['$http',  function($http){
-  var apiBaseUrl = 'http://mozart.com:8000/api/worksets/';
+  var apiBaseUrl = '/api/worksets/';
   this.recentWorks = { 
     get:function(fnOK,fnError, category, author, paginate) {
       $http({
