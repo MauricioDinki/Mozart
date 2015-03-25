@@ -1,20 +1,27 @@
 module.exports = function(grunt) {  
   grunt.initConfig({  
     pkg: grunt.file.readJSON('package.json'),  
-    stylus: {
-      compile: {
-        options: {
-          compress: false
-        },
-        files: {
-          'app/css/styles.css': 'app/styl/main.styl'
-        }
+    watch: {
+      styl: {
+        files: ['app/styl/*.styl'],
+        tasks: ['compileStylus']
+      },
+      js: {
+        files: ['app/js/app.js', 'app/js/*/*.js'],
+        tasks: ['compileJavascript']
       }
     },
-    autoprefixer: {
-      dist: {
+    stylus: {
+      options: {
+        use : [
+          function(){
+            return require('autoprefixer-stylus')('last 2 versions', 'ie 8');
+          }
+        ]
+      },
+      compile: {
         files: {
-          'app/css/styles-WAP.css': 'app/css/styles.css'
+          'dist/css/styles.min.css': 'app/styl/main.styl'
         }
       }
     },
@@ -43,13 +50,6 @@ module.exports = function(grunt) {
         files: {
           'dist/js/<%= pkg.name %>.min.js': ['<%= concat.basic.dest %>'],
           'dist/js/bower.min.js': ['<%= bower_concat.all.dest %>']
-        }
-      }
-    },
-    cssmin: {
-      target: {
-        files: {
-          'dist/css/styles.min.css': ['app/css/styles-WAP.css']
         }
       }
     },
@@ -84,9 +84,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-bower-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-autoprefixer');
-  grunt.registerTask('default', ['stylus', 'autoprefixer', 'concat','bower_concat','uglify', 'cssmin','copy']);
-  grunt.registerTask('onlyConcat', ['concat']);
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.registerTask('default', ['stylus', 'concat','bower_concat','uglify','copy', 'watch']);
+  grunt.registerTask('compileStylus', ['stylus']);
+  grunt.registerTask('compileJavascript', ['concat', 'uglify']);
 };

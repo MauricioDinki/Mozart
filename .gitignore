@@ -5,7 +5,6 @@ Thirdauth/migrations/
 Profiles/migrations/
 entorno/
 Mozart/media/
-Mozart/static/app/css/
 Mozart/static/dist/
 Mozart/static/bower_components/
 Mozart/static/node_modules/
