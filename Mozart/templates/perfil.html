@@ -1,18 +1,18 @@
 {% extends 'base_view.html' %}
 {% block title %}Perfil de {{username}} - mozArt{% endblock %}
 {% block content %}
-<nav id="barra-categorias">
-	<ul class="categorias">
-        <li><a href="/{{username}}/works/" class="iconos icono-todas" title="Todas las categorías"></a></li>
-        <li><a href="/{{username}}/works/category/dibujo-pintura" class="iconos icono-dibujo-pintura" title="Dibujo y pintura"></a</li>
-        <li><a href="/{{username}}/works/category/fotografia-filme" class="iconos icono-fotografia-filme" title="Fotografía y filme"></a></li>
-        <li><a href="/{{username}}/works/category/teatro-literatura" class="iconos icono-teatro-literatura" title="Teatro y literatura"></a></li>
-        <li><a href="/{{username}}/works/category/musica-baile" class="iconos icono-musica-baile" title="Música y baile"></a></li>
-        <li><a href="/{{username}}/works/category/escultura-ceramica" class="iconos icono-escultura-ceramica" title="Escultura y cerámica"></a></li>
-        <li><a href="/{{username}}/works/category/arte_digital" class="iconos icono-arte_digital" title="Arte digital"></a></li>
-        <li><a href="/{{username}}/works/category/otros" class="iconos icono-otros" title="Otros"></a></li>
-      </ul>
-</nav>
+<div id="blue-navbar" class="categories-navbar">
+    <ul>
+        <li><a href="{% url 'works:work_user_list' username %}" class="icons todas-icon" title="Todas las categorías"></a></li>
+        <li><a href="{% url 'works:work_user_list_category' username 'dibujo-pintura' %}" class="icons dibujo-pintura-icon" title="Dibujo y pintura"></a</li>
+        <li><a href="{% url 'works:work_user_list_category' username 'fotografia-filme' %}" class="icons fotografia-filme-icon" title="Fotografía y filme"></a></li>
+        <li><a href="{% url 'works:work_user_list_category' username 'teatro-literatura' %}" class="icons teatro-literatura-icon" title="Teatro y literatura"></a></li>
+        <li><a href="{% url 'works:work_user_list_category' username 'musica-baile' %}" class="icons musica-baile-icon" title="Música y baile"></a></li>
+        <li><a href="{% url 'works:work_user_list_category' username 'escultura-ceramica' %}" class="icons escultura-ceramica-icon" title="Escultura y cerámica"></a></li>
+        <li><a href="{% url 'works:work_user_list_category' username 'dibujo-pintura' %}" class="icons arte_digital-icon" title="Arte digital"></a></li>
+        <li><a href="{% url 'works:work_user_list_category' username 'otros' %}" class="icons otros-icon" title="Otros"></a></li>
+    </ul>
+</div>
 <div id="obras-principal"  ng-init="usuario='{{username}}'">
 	<div id="contenedor-principal" ng-controller="mozartUserInformationCtrl">
 		<div id="barra-lateral">

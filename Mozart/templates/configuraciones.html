@@ -3,11 +3,11 @@
   <div id="contenedor-principal">
     <div id="barra-lateral">
       <ul class="menu-bloques">
-        <li class="opcion-menu"><a class="iconos icono-informacion activo" href="/settings/account">Editar información</a></li>
-        <li class="opcion-menu"><a class="iconos icono-panel" href="/settings/password">Cambiar contraseña</a></li>
-        <li class="opcion-menu"><a class="iconos icono-panel" href="/settings/social">Cuentas vinculadas</a></li>
+        <li class="opcion-menu"><a class="iconos icono-informacion activo" href="{% url 'profiles:settings_account' %}">Editar información</a></li>
+        <li class="opcion-menu"><a class="iconos icono-panel" href="{% url 'profiles:settings_password' %}">Cambiar contraseña</a></li>
+        <li class="opcion-menu"><a class="iconos icono-panel" href="{% url 'profiles:settings_social' %}">Cuentas vinculadas</a></li>
         {% if user.mozart_user.user_type == 'Artista' %}
-        <li class="opcion-menu"><a class="iconos icono-obras" href="/settings/works">Mis obras</a></li>{% endif %}
+        <li class="opcion-menu"><a class="iconos icono-obras" href="{% url 'works:settings_works' %}">Mis obras</a></li>{% endif %}
       </ul>
     </div>
     <div id="configuraciones">

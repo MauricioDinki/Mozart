@@ -2,25 +2,26 @@
 {% load thumbnail %}
 {% load static %}
 {% block title %}Explorar - mozArt{% endblock %}
-{% block content %}<div id="blue-navbar" class="categories-navbar">
-    	<ul>
-        <li><a href="/explore/" class="icons todas-icon" title="Todas las categorías"></a></li>
-        <li><a href="/explore/dibujo-pintura" class="icons dibujo-pintura-icon" title="Dibujo y pintura"></a</li>
-        <li><a href="/explore/fotografia-filme" class="icons fotografia-filme-icon" title="Fotografía y filme"></a></li>
-        <li><a href="/explore/teatro-literatura" class="icons teatro-literatura-icon" title="Teatro y literatura"></a></li>
-        <li><a href="/explore/musica-baile" class="icons musica-baile-icon" title="Música y baile"></a></li>
-        <li><a href="/explore/escultura-ceramica" class="icons escultura-ceramica-icon" title="Escultura y cerámica"></a></li>
-        <li><a href="/explore/arte_digital" class="icons arte_digital-icon" title="Arte digital"></a></li>
-        <li><a href="/explore/otros" class="icons otros-icon" title="Otros"></a></li>
-      </ul>
-    </div>
+{% block content %}
+<div id="blue-navbar" class="categories-navbar">
+    <ul>
+        <li><a href="{% url 'works:work_list' %}" class="icons todas-icon" title="Todas las categorías"></a></li>
+        <li><a href="{% url 'works:work_list_category' 'dibujo-pintura' %}" class="icons dibujo-pintura-icon" title="Dibujo y pintura"></a</li>
+        <li><a href="{% url 'works:work_list_category' 'fotografia-filme' %}" class="icons fotografia-filme-icon" title="Fotografía y filme"></a></li>
+        <li><a href="{% url 'works:work_list_category' 'teatro-literatura' %}" class="icons teatro-literatura-icon" title="Teatro y literatura"></a></li>
+        <li><a href="{% url 'works:work_list_category' 'musica-baile' %}" class="icons musica-baile-icon" title="Música y baile"></a></li>
+        <li><a href="{% url 'works:work_list_category' 'escultura-ceramica' %}" class="icons escultura-ceramica-icon" title="Escultura y cerámica"></a></li>
+        <li><a href="{% url 'works:work_list_category' 'dibujo-pintura' %}" class="icons arte_digital-icon" title="Arte digital"></a></li>
+        <li><a href="{% url 'works:work_list_category' 'otros' %}" class="icons otros-icon" title="Otros"></a></li>
+    </ul>
+</div>
     <div ng-init="worksCategory='{{category}}';worksAuthor='all'">
       <section id="blue-navbar-section" ng-controller="loadWorksCtrl" >
         <article class="work-item" ng-repeat="work in works|orderBy:-'$index'">
           <div class="work-thumbnail" style="background:url('{$work.cover$}');">
           </div>
-          <span class="icons {$work.category$}-icon"></span><a class="work-title" ng-href="/{$work.user$}/works/{$work.slug$}" ng-bind="work.title"></a><br/>
-          <span class="icons user-icon work-author"><a ng-href="/{$ work.user $}" ng-bind="work.user"></a></span> el <span class="work-date" ng-bind="work.date.split('T')[0]"></span>
+          <span class="icons {$work.category$}-icon"></span><a class="work-title" ng-href="{% url 'works:work_user_list' username %}{$work.slug$}" ng-bind="work.title"></a><br/>
+          <span class="icons user-icon work-author"><a ng-href="/profiles/{$ work.user $}" ng-bind="work.user"></a></span> el <span class="work-date" ng-bind="work.date.split('T')[0]"></span>
         </article><br/>
         <div class="load-more-error" ng-show="showMessage">
           No existen obras suficientes para cubir la petición. Intenta refrescar la página.

@@ -27,9 +27,9 @@ urlpatterns = patterns('',
 )
 
 urlpatterns += patterns('',
-    url(r'', include('Works.urls')),
-    url(r'', include('Thirdauth.urls')),
-    url(r'', include('Profiles.urls')),
+    url(r'', include('Works.urls', namespace='works')),
+    url(r'', include('Thirdauth.urls', namespace='thirdauth')),
+    url(r'', include('Profiles.urls', namespace='profiles')),
 )
 
 

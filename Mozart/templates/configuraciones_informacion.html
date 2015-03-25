@@ -10,7 +10,7 @@
     </div>
   {% endifnotequal %}
 {% endif %}
-  <form action="" method="post" id="id_informationform" name="{{form.form_name}}" enctype="multipart/form-data" ng-controller="editarInformacionCtrl">
+  <form action="" method="post" id="id_informationform" name="{{form.form_name}}" enctype="multipart/form-data" ng-controller="editInformationCtrl">
   {% csrf_token %}
         <fieldset style="width:100%">
           <legend>Editar datos</legend>

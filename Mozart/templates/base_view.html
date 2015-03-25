@@ -26,17 +26,17 @@
         {% endif %}
           <hr/>
           <ul>
-            <li><a class="icons explore-icon" href="/explore">Explorar obras</a></li>
+            <li><a class="icons explore-icon" href="{% url 'works:work_list' %}">Explorar obras</a></li>
             <li><a class="icons promotors-icon" href="/promoters">Promotores</a></li>
             <li><a class="icons tour-icon" href="/tour">Recorrido por mozArt</a></li>
             <hr/>{% if user.is_authenticated %}{% if user.mozart_user.user_type == 'Artista' %}
-            <li><a href="/create/work" class="icons create-work-icon">Crear obra</a>
+            <li><a href="{% url 'works:create_work' %}" class="icons create-work-icon">Crear obra</a>
             </li>{% endif %}
-            <li><a href="/{{ user.username }}" class="icons user-icon">Ver mi Perfil</a></li>
-            <li><a href="/settings/account" class="icons settings-icon">Panel de usuario</a></li>
-            <li><a href="/logout" class="icons logout-icon">Cerrar sesión</a></li>{% else %}
-            <li><a href="/login" class="icons login-icon">Iniciar sesión</a></li>
-            <li><a href="/signup" class="icons signup-icon">Unirse a mozArt</a></li>{% endif %}
+            <li><a href="{% url 'profiles:user_profile'  user.username %}" class="icons user-icon">Ver mi Perfil</a></li>
+            <li><a href="{% url 'profiles:settings_account' %}" class="icons settings-icon">Panel de usuario</a></li>
+            <li><a href="{% url 'thirdauth:logout' %}" class="icons logout-icon">Cerrar sesión</a></li>{% else %}
+            <li><a href="{% url 'thirdauth:login' %}" class="icons login-icon">Iniciar sesión</a></li>
+            <li><a href="{% url 'thirdauth:signup' %}" class="icons signup-icon">Unirse a mozArt</a></li>{% endif %}
             <hr/>
             <li><a class="icons random-icon" href="/">Obra aleatoria</a></li>
             <li><a class="icons random-icon" href="/">Usuario aleatorio</a></li>
@@ -52,7 +52,7 @@
       </aside>
       <a id="menu-button" class="icons menu-icon" ng-click="visible=!visible"></a>
       <figure id="mozart-logo">
-        <a href="/explore"><img src="{% static "img/logo.png" %}" alt="mozArt"></a>
+        <a href="{% url 'works:work_list' %}"><img src="{% static "img/logo.png" %}" alt="mozArt"></a>
       </figure>
       <form id="search-form">
         <input type="search" name="busqueda" class="search-input" placeholder="Buscar en mozArt" ng-model="searchingText" autocomplete="off"/>

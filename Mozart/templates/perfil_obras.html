@@ -1,18 +1,17 @@
 {% extends 'perfil.html' %}
 {% block section %}
-<span ng-init="categoria='{{category}}';autor='{{username}}'">
-<section id="informacion" ng-controller="cargarObrasCtrl">
-      <article class="publicacion" ng-repeat="obra in obras|orderBy:-'$index'" ng-init="usuario = obra.user">
-        <div class="thumbnail-obra" style="background:url('{$obra.cover$}');">
-        </div>
-        <a ng-href="/{$ obra.user $}" ng-controller="imagenPerfilCtrl"><img class="redondo thumbnail-usuario-p" ng-src=" {$ imagen $} " title="Ver perfil de {$usuario$}"/></a>
-        <span class="iconos icono-{$obra.category$}"></span><a class="titulo-obra" ng-href="/{$usuario$}/works/{$obra.slug$}" ng-bind="obra.title"></a><br/>
-        <span class="autor-obra">por {$ obra.user $}</span> el <span class="fecha-obra" ng-bind="obra.date.split('T')[0]"></span>
+<span ng-init="worksCategory='{{category}}';worksAuthor='all'">
+<section id="informacion" ng-controller="loadWorksCtrl">
+      <article class="work-item" ng-repeat="work in works|orderBy:-'$index'">
+        <div class="work-thumbnail" style="background:url('{$work.cover$}');">
+          </div>
+        <span class="icons {$work.category$}-icon"></span><a class="work-title" ng-href="{% url 'works:work_user_list' username %}{$work.slug$}" ng-bind="work.title"></a><br/>
+        <span class="icons user-icon work-author"><a ng-href="/profiles/{$ work.user $}" ng-bind="work.user"></a></span> el <span class="work-date" ng-bind="work.date.split('T')[0]"></span>
       </article><br/>
-      <div class="aviso-error" ng-show="mostrarMensaje">
+      <div class="load-more-error" ng-show="showMessage">
         No existen obras suficientes para cubir la petición. Intenta refrescar la página.
       </div>
-      <button class="boton boton-verde cargar-mas" ng-click="cargar()">Cargar más obras</button>
-		</section>
-	</span>
+      <span class="button load-more-button" ng-click="getWorks()">Mostrar más obras</span>
+	</section>
+</span>
 {% endblock %}
