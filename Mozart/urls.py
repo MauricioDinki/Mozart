@@ -1,8 +1,10 @@
+# -*- encoding: utf-8 -*-
+
+from django.conf import settings
 from django.conf.urls import patterns,include,url
 from django.contrib import admin
-from django.conf import settings
-from rest_framework import routers
 from Profiles.viewsets import UserViewSet,MozartUserViewSet,ContactViewSet,DateBirthViewSet,AdressViewSet
+from rest_framework import routers
 from Works.viewsets import WorkViewSet
 
 router = routers.DefaultRouter()
@@ -17,16 +19,20 @@ router.register(r'adress',AdressViewSet)
 
 
 urlpatterns = patterns('',
-    url(r'^api/', include(router.urls)),
-    url(r'^api-oauth/', include('rest_framework.urls',namespace='rest_framework')),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^api-oauth/', include('rest_framework.urls',namespace='rest_framework')),
+	url(r'^api/', include(router.urls)),
     url(r'', include('social.apps.django_app.urls', namespace='social')),
+
+)
+
+urlpatterns += patterns('',
     url(r'', include('Works.urls')),
     url(r'', include('Thirdauth.urls')),
     url(r'', include('Profiles.urls')),
 )
 
-# if settings.DEBUG:
+
 urlpatterns += patterns('',
 	url(r'^media/(?P<path>.*)$','django.views.static.serve',{'document_root':settings.MEDIA_ROOT,},name = 'media'),
 )

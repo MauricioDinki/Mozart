@@ -69,15 +69,10 @@ ROOT_URLCONF = 'Mozart.urls'
 
 WSGI_APPLICATION = 'Mozart.wsgi.application'
 
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql', 
-        'NAME': os.environ.get("MOZART_DATABASE_NAME", None),
-        'USER': os.environ.get("MOZART_DATABASE_USER", None),
-        'PASSWORD': os.environ.get("MOZART_DATABASE_PASSWORD", None),
-        'HOST': os.environ.get("MOZART_DATABASE_HOST", None),
-        'PORT': os.environ.get("MOZART_DATABASE_PORT", None),
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
@@ -102,6 +97,9 @@ MEDIA_ROOT = os.path.join(PROJECT_PATH,'media')
 MEDIA_URL = '/media/'
 
 THUMBNAIL_DEBUG = True
+
+LOGIN_REDIRECT_URL = 'work_list'
+LOGIN_URL = 'login'
 
 # Suit Configuration
 SUIT_CONFIG = {
@@ -131,7 +129,3 @@ SOCIAL_AUTH_PIPELINE = (
     'social.pipeline.social_auth.load_extra_data',
     'Thirdauth.pipeline.save_extra_params',
 )
-
-# Login Urls
-LOGIN_REDIRECT_URL = 'work_list'
-LOGIN_URL = 'login'

@@ -16,10 +16,10 @@ class WorkTets(TestCase):
 	def test_adress(self):
 		test_adress = Adress.objects.create(
 			user = self.test_user, 
-			adress = "hola", 
-			city = "Hola mama", 
-			zip_code = 'hola mama', 
-			neighborhood = 'jajaja',
+			adress = "calle1", 
+			city = "pachuca", 
+			zip_code = '72384', 
+			neighborhood = 'neighood1',
 		)
 
 	def test_date_of_birth(self):
@@ -33,8 +33,8 @@ class WorkTets(TestCase):
 	def test_contact(self):
 		self.test_contact = Contact.objects.create(
 			user = self.test_user, 
-			personal_homepage = 'http://mauricio.me',
-			phone_number = 58855907,
+			personal_homepage = 'http://lizizari.com',
+			phone_number = 98564321,
 		)
 
 	def test_works(self):

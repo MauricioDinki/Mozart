@@ -6,8 +6,7 @@ from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse_lazy
-from django.http import HttpResponseRedirect
-from django.shortcuts import render_to_response,get_object_or_404
+from django.shortcuts import render_to_response,get_object_or_404,redirect
 from django.template import RequestContext
 from django.views.generic import FormView,TemplateView
 from social.apps.django_app.default.models import UserSocialAuth
@@ -22,6 +21,7 @@ class ChangePasswordView(LoginRequiredMixin,RequestFormMixin,FormView):
 		form.save()
 		logout(self.request)
 		return super(ChangePasswordView,self).form_valid(form)
+
 
 class ProfileSettingsView(LoginRequiredMixin,RequestFormMixin,FormView):
 	template_name = 'configuraciones_informacion.html'
@@ -51,6 +51,7 @@ class ProfileSettingsView(LoginRequiredMixin,RequestFormMixin,FormView):
 			
 		return initial
 
+
 class ProfileView(TemplateView):
 	template_name = 'perfil_informacion.html'
 
@@ -60,6 +61,7 @@ class ProfileView(TemplateView):
 			kwargs['username'] = self.kwargs.get('username')
 			error = get_object_or_404(User,username__iexact = self.kwargs.get('username'))
 			return kwargs
+
 
 class SocialNetworkSettingsView(LoginRequiredMixin,TemplateView):
 	template_name = 'configuraciones_social.html'
@@ -75,5 +77,4 @@ class SocialNetworkSettingsView(LoginRequiredMixin,TemplateView):
 def SocialNetworkDeleteView(request,provider,account_id):
 	account_to_delete = UserSocialAuth.objects.get(user__username = request.user.username, provider = provider, id = account_id )
 	account_to_delete.delete()
-	return HttpResponseRedirect(reverse_lazy('settings_social'))
-
+	return redirect(reverse_lazy('index'))

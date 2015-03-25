@@ -3,8 +3,6 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django_countries.fields import CountryField
-from sorl.thumbnail import ImageField
-from django import forms
 from social.apps.django_app.default.models import UserSocialAuth
 
 days = (
@@ -78,9 +76,9 @@ class Mozart_User(models.Model):
 	description = models.CharField(blank=True,null=True, max_length=200,)
 	nationality = CountryField(blank=True,null=True, max_length=200,)
 	presentation_file = models.FileField(blank=True,null=True,upload_to=presentation_file_url)
-	profile_picture = ImageField(blank=True,null=True,upload_to=profile_picture_url)
+	profile_picture = models.ImageField(blank=True,null=True,upload_to=profile_picture_url)
 	sex = models.CharField(blank=True,null=True, max_length=50,choices=sexuality)
-	user_type = models.CharField(blank=True,null=True, max_length=50)
+	user_type = models.CharField(blank=True,null=True, max_length=50,choices=type_of_users)
 
 	def __unicode__(self):
 		return self.user.username
@@ -91,6 +89,7 @@ class Mozart_User(models.Model):
 
 	def get_nationality(self):
 		return self.nationality.name
+
 	
 class Contact(models.Model):
 	user = models.OneToOneField(User)
@@ -116,6 +115,7 @@ class Social_Network_Facebook_URL(models.Model):
 	def __unicode__(self):
 		return self.user.user.username
 
+
 class Social_Network_Twitter_URL(models.Model):
 	user = models.OneToOneField(UserSocialAuth)
 	twitter = models.URLField(blank=True,null=True, max_length=200)
@@ -127,6 +127,7 @@ class Social_Network_Twitter_URL(models.Model):
 	def __unicode__(self):
 		return self.user.user.username
 
+
 class Social_Network_Google_URL(models.Model):
 	user = models.OneToOneField(UserSocialAuth)
 	google = models.URLField(blank=True,null=True, max_length=200)
@@ -137,6 +138,7 @@ class Social_Network_Google_URL(models.Model):
 
 	def __unicode__(self):
 		return self.user.user.username
+
 
 class Date_of_Birth(models.Model):
 	user = models.OneToOneField(User)
@@ -150,6 +152,7 @@ class Date_of_Birth(models.Model):
 
 	def __unicode__(self):
 		return self.user.username
+
 
 class Adress(models.Model):
 	user = models.OneToOneField(User)

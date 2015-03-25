@@ -1,59 +1,30 @@
 # -*- encoding: utf-8 -*-
 
+from .mixins import FilterUsernameMixin
 from .models import Mozart_User,Contact,Date_of_Birth,Adress
 from .serializers import UserSerializer,ContactSerializer,DateBirthSerializer,MozartUserSerializer,AdressSerializer
 from django.contrib.auth.models import User
 from rest_framework import viewsets
 
-
-class AdressViewSet(viewsets.ModelViewSet):
+class AdressViewSet(FilterUsernameMixin, viewsets.ModelViewSet):
 	queryset = Adress.objects.all()
 	serializer_class = AdressSerializer
-	def get_queryset(self):
-		username = self.request.query_params.get('username', None)
-		paginate = self.request.query_params.get('paginate')
-		if username is not None:
-			queryset = self.queryset.filter(user__username = username)[:paginate]
-		else:
-			queryset = self.queryset
-		return queryset
 
-class ContactViewSet(viewsets.ModelViewSet):
+
+class ContactViewSet(FilterUsernameMixin, viewsets.ModelViewSet):
 	queryset = Contact.objects.all()
 	serializer_class = ContactSerializer
-	def get_queryset(self):
-		username = self.request.query_params.get('username', None)
-		paginate = self.request.query_params.get('paginate')
-		if username is not None:
-			queryset = self.queryset.filter(user__username = username)[:paginate]
-		else:
-			queryset = self.queryset
-		return queryset
 
-class DateBirthViewSet(viewsets.ModelViewSet):
+
+class DateBirthViewSet(FilterUsernameMixin, viewsets.ModelViewSet):
 	queryset = Date_of_Birth.objects.all()
 	serializer_class = DateBirthSerializer
-	def get_queryset(self):
-		username = self.request.query_params.get('username', None)
-		paginate = self.request.query_params.get('paginate')
-		if username is not None:
-			queryset = self.queryset.filter(user__username = username)[:paginate]
-		else:
-			queryset = self.queryset
-		return queryset
 
-class MozartUserViewSet(viewsets.ModelViewSet):
+
+class MozartUserViewSet(FilterUsernameMixin, viewsets.ModelViewSet):
 	queryset = Mozart_User.objects.all()
 	serializer_class = MozartUserSerializer
 
-	def get_queryset(self):
-		username = self.request.query_params.get('username', None)
-		paginate = self.request.query_params.get('paginate')
-		if username is not None:
-			queryset = self.queryset.filter(user__username = username)[:paginate]
-		else:
-			queryset = self.queryset
-		return queryset
 
 class UserViewSet(viewsets.ModelViewSet):
 	queryset = User.objects.all()

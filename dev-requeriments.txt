@@ -1,0 +1,14 @@
+Django==1.7.6
+django-angular==0.7.9
+django-countries==3.2
+django-suit==0.2.12
+djangorestframework==3.1.0
+oauthlib==0.7.2
+Pillow==2.7.0
+PyJWT==0.4.1
+python-openid==2.2.5
+python-social-auth==0.2.2
+requests==2.6.0
+requests-oauthlib==0.4.2
+six==1.9.0
+sorl-thumbnail==11.12.1b0

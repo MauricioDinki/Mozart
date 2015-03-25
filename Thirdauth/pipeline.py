@@ -1,10 +1,10 @@
 from .models import ExtendUserSocialAuth
+from django.core.urlresolvers import reverse_lazy
 from django.http import Http404,HttpResponseRedirect
 from Profiles.models import Social_Network_Facebook_URL,Social_Network_Twitter_URL,Social_Network_Google_URL
 from social.backends.facebook import FacebookOAuth2
 from social.backends.google import GoogleOAuth2
 from social.backends.twitter import TwitterOAuth
-from django.core.urlresolvers import reverse_lazy
 
 
 def save_extra_params(backend, details, response, uid, user, *args, **kwargs):

@@ -6,12 +6,13 @@ class RequestFormMixin(object):
 		kwargs['request'] = self.request
 		return kwargs
 
+
 class FilterUsernameMixin(object):
 	def get_queryset(self):
-		author = self.request.query_params.get('author')
+		username = self.request.query_params.get('username', None)
 		paginate = self.request.query_params.get('paginate')
-		if author is not None:
-			queryset = self.queryset.filter(user__username = author)[:paginate]
+		if username is not None:
+			queryset = self.queryset.filter(user__username = username)[:paginate]
 		else:
 			queryset = self.queryset
 		return queryset

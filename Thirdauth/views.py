@@ -18,10 +18,6 @@ class LoginView(AuthRedirectMixin,FormView):
 		login(self.request,form.user_cache)
 		return super(LoginView,self).form_valid(form)
 
-@login_required(login_url='login')
-def LogoutView(request):
-	logout(request)
-	return redirect('index')
 
 class RegisterView(AuthRedirectMixin,FormView):
 	template_name = 'signup.html'
@@ -32,3 +28,9 @@ class RegisterView(AuthRedirectMixin,FormView):
 		form.save()
 		login(self.request,form.user_cache)
 		return super(RegisterView,self).form_valid(form)
+
+
+@login_required(login_url='login')
+def LogoutView(request):
+	logout(request)
+	return redirect('index')
