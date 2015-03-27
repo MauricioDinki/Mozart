@@ -22,7 +22,7 @@ class LoginForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
             attrs = {
                 'class':'mozart-field empty-initial-field',
                 'placeholder':'Escribe tu nickname',
-                'mz-filed':'',
+                'mz-field':'',
             }
         ),
     )
@@ -34,7 +34,7 @@ class LoginForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
             attrs = {
                 'class':'mozart-field empty-initial-field',
                 'placeholder':'Escribe tu contraseña',
-                'mz-filed':'',
+                'mz-field':'',
             }
         ),
     )
