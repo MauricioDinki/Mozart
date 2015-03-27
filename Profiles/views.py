@@ -15,7 +15,7 @@ from Thirdauth.mixins import LoginRequiredMixin
 class ChangePasswordView(LoginRequiredMixin,RequestFormMixin,FormView):
 	template_name = 'configuraciones_password.html'
 	form_class = ChangePasswordForm
-	success_url = reverse_lazy('index')
+	success_url = reverse_lazy('works:index')
 
 	def form_valid(self,form):
 		form.save()
@@ -26,7 +26,7 @@ class ChangePasswordView(LoginRequiredMixin,RequestFormMixin,FormView):
 class ProfileSettingsView(LoginRequiredMixin,RequestFormMixin,FormView):
 	template_name = 'configuraciones_informacion.html'
 	form_class = UserInformationForm
-	success_url =  reverse_lazy('settings_account')
+	success_url =  reverse_lazy('profiles:settings_account')
 
 	def form_valid(self,form):
 		form.save()
@@ -77,4 +77,4 @@ class SocialNetworkSettingsView(LoginRequiredMixin,TemplateView):
 def SocialNetworkDeleteView(request,provider,account_id):
 	account_to_delete = UserSocialAuth.objects.get(user__username = request.user.username, provider = provider, id = account_id )
 	account_to_delete.delete()
-	return redirect(reverse_lazy('index'))
+	return redirect(reverse_lazy('works:index'))

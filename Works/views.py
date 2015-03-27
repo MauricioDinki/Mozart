@@ -12,7 +12,7 @@ from Thirdauth.mixins import AuthRedirectMixin, LoginRequiredMixin
 
 class CreateWorkView(LoginRequiredMixin,RequestFormMixin,FormView):
 	form_class = CreateWorkForm
-	success_url =  reverse_lazy('work_list')
+	success_url =  reverse_lazy('works:work_list')
 	template_name = 'upload_work.html'
 
 	def form_valid(self,form):
@@ -56,7 +56,7 @@ class UpdateWorkView(LoginRequiredMixin,UpdateView):
 	model = Work
 	slug_field = 'slug'
 	slug_url_kwarg = 'slug'
-	success_url =  reverse_lazy('settings_works')
+	success_url =  reverse_lazy('works:settings_works')
 	template_name = 'configuraciones_editarobra.html'
 
 	def get_object(self):
@@ -82,4 +82,4 @@ class UserWorkView(TemplateView):
 def DeleteWorkView(request,slug):
 	account_to_delete = get_object_or_404(Work,user = request.user, slug = slug)
 	account_to_delete.delete()
-	return redirect(reverse_lazy('work_list'))
+	return redirect(reverse_lazy('works:work_list'))

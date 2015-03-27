@@ -12,7 +12,7 @@ from django.views.generic import FormView,View
 class LoginView(AuthRedirectMixin,FormView):
 	template_name = 'login.html'
 	form_class = LoginForm
-	success_url =  reverse_lazy('work_list')
+	success_url =  reverse_lazy('works:work_list')
 
 	def form_valid(self,form):
 		login(self.request,form.user_cache)
@@ -22,7 +22,7 @@ class LoginView(AuthRedirectMixin,FormView):
 class RegisterView(AuthRedirectMixin,FormView):
 	template_name = 'signup.html'
 	form_class = RegisterForm
-	success_url =  reverse_lazy('work_list')
+	success_url =  reverse_lazy('works:work_list')
 
 	def form_valid(self,form):
 		form.save()
@@ -33,4 +33,4 @@ class RegisterView(AuthRedirectMixin,FormView):
 @login_required(login_url='login')
 def LogoutView(request):
 	logout(request)
-	return redirect('index')
+	return redirect('works:index')
