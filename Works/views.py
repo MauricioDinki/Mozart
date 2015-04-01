@@ -43,7 +43,7 @@ class ListWorkView(TemplateView):
 
 
 class SettingsWorkView(LoginRequiredMixin,TemplateView):
-	template_name = 'configuraciones_obras.html'
+	template_name = 'settings_works.html'
 
 	def get_context_data(self, **kwargs):
 		if 'view' not in kwargs:

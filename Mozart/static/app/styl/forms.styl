@@ -6,39 +6,32 @@
 	text-align right
 
 .mozart-field
-	background white
 	border-color mozart-light-blue
 	border-style solid
 	border-width 0 0 3px 0
+	display block
 	input-fields()
+	margin-bottom 5px
 	transition border-color 0.2s, color 0.2s, height 0.2s, margin-top 0.2s
 	width 100%
 
 .mozart-field.ng-invalid.ng-dirty
 	border-color red
 	color #FF7373
-	height 40px
-	margin-top 23px
 	
 .mozart-field.ng-valid.ng-dirty
 	border-color green
 
 .mozart-field.empty-initial-field
 	height 0
-	margin-top 30px
 	
-.mozart-field.active-field, select.mozart-field.empty-initial-field
+.mozart-field.active-field, select.mozart-field.empty-initial-field, .mozart-field.ng-invalid.ng-dirty
 	height 40px
-	margin-top 23px
 	
 .mozart-field-container
 	display inline-block
 	height auto
-	margin-bottom 3px
-	min-height 40px
-	position relative
 	text-align left
-	transition height 0.2s
 	
 .mozart-form
 	background white
@@ -46,19 +39,20 @@
 	margin-top 80px
 	max-width 750px
 	padding 20px
-	text-align center
 	width 100%
 	
+.mozart-form, .settings-form
+	text-align center
+	
+	
 .mozart-label
-	background white
 	box-sizing border-box !important
-	display inline-block
+	display block
 	font-weight 700
-	height 33px
-	padding 5px 10px
-	position absolute
+	height 40px
+	padding 10px
 	top 0
-	transition color 0.2s
+	transition all 0.2s
 	width 100%
 
 .mozart-label.initial-label
@@ -68,11 +62,13 @@
 .mozart-label.active-label
 	color mozart-light-blue
 	cursor default
+	height 25px
+	padding 5px 10px
 
 select.mozart-field option
 	color mozart-dark-gray
 
-textarea.mozart-field
+textarea.mozart-field.active-field
 	padding-top 8px
 	resize none
 	

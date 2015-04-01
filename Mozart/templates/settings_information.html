@@ -1,4 +1,4 @@
-{% extends 'configuraciones.html'%}
+{% extends 'settings.html' %}
 {% block title %}Editar información - mozArt{% endblock %}
 {% load thumbnail %}
 {% load static %}
@@ -12,7 +12,7 @@
 {% endif %}
   <form action="" method="post" id="id_informationform" name="{{form.form_name}}" enctype="multipart/form-data" ng-controller="editInformationCtrl">
   {% csrf_token %}
-        <fieldset style="width:100%">
+        <fieldset>
           <legend>Editar datos</legend>
           <div class="un-cuadro s-mzfield">
             <label for="id_username" class="etiqueta-input">Nickname</label>
@@ -53,7 +53,7 @@
           {{form.description}}
           
         </fieldset>
-        <fieldset style="width:100%">
+        <fieldset>
           <legend>Contacto</legend>
           <div class="un-cuadro s-mzfield">
             <label for="id_personal_homepage" class="etiqueta-input">Sitio web</label>
@@ -64,7 +64,7 @@
               {{form.phone_number}}
           </div>
         </fieldset>
-        <fieldset style="width:100%">
+        <fieldset>
           <legend>Domicilio</legend>
           <div class="un-cuadro s-mzfield">
             <label for="id_adress" class="etiqueta-input">Dirección</label>

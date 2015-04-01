@@ -13,7 +13,7 @@ from social.apps.django_app.default.models import UserSocialAuth
 from Thirdauth.mixins import LoginRequiredMixin
 
 class ChangePasswordView(LoginRequiredMixin,RequestFormMixin,FormView):
-	template_name = 'configuraciones_password.html'
+	template_name = 'settings_password.html'
 	form_class = ChangePasswordForm
 	success_url = reverse_lazy('works:index')
 
@@ -24,7 +24,7 @@ class ChangePasswordView(LoginRequiredMixin,RequestFormMixin,FormView):
 
 
 class ProfileSettingsView(LoginRequiredMixin,RequestFormMixin,FormView):
-	template_name = 'configuraciones_informacion.html'
+	template_name = 'settings_information.html'
 	form_class = UserInformationForm
 	success_url =  reverse_lazy('profiles:settings_account')
 
@@ -53,7 +53,7 @@ class ProfileSettingsView(LoginRequiredMixin,RequestFormMixin,FormView):
 
 
 class ProfileView(TemplateView):
-	template_name = 'perfil_informacion.html'
+	template_name = 'profile_information.html'
 
 	def get_context_data(self, **kwargs):
 		if 'view' not in kwargs:
@@ -64,7 +64,7 @@ class ProfileView(TemplateView):
 
 
 class SocialNetworkSettingsView(LoginRequiredMixin,TemplateView):
-	template_name = 'configuraciones_social.html'
+	template_name = 'settings_social.html'
 
 	def get_context_data(self, **kwargs):
 		if 'view' not in kwargs:

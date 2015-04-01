@@ -120,8 +120,8 @@ class RegisterForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
             attrs = {
                 'class':'mozart-field empty-initial-field',
                 'placeholder':'Vuelve a escribir tu contraseña',
-                'comparar':'signup.password_1',
                 'mz-field':'',
+                'mz-match':'signup.password_1',
             }
         ),
     )

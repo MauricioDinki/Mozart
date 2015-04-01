@@ -18,9 +18,10 @@ class ChangePasswordForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
 		min_length=6,
 		widget = forms.PasswordInput(
 			attrs = {
-				'class':'cuadrotexto mz-field',
-				'placeholder':'Escribe tu contraseña actual'
-			}
+                'class':'mozart-field empty-initial-field',
+                'placeholder':'Escribe tu contraseña actual',
+                'mz-field':'',
+            }
 		),
 	)
 
@@ -29,8 +30,9 @@ class ChangePasswordForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
 		min_length=6,
 		widget = forms.PasswordInput(
 			attrs = {
-				'class':'cuadrotexto mz-field',
-				'placeholder':'Escribe tu nueva contraseña'
+				'class':'mozart-field empty-initial-field',
+                'placeholder':'Escribe tu nueva contraseña',
+				'mz-field':'',
 			}
 		),
 	)
@@ -40,10 +42,11 @@ class ChangePasswordForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
 		min_length=6,
 		widget = forms.PasswordInput(
 			attrs = {
-				'class':'cuadrotexto mz-field',
-				'placeholder':'Vuelve a escribir tu nueva contraseña', 
-				'comparar':'changePassword.new_password_1'
-			}
+				'class':'mozart-field empty-initial-field',
+                'placeholder':'Vuelve a escribir tu nueva contraseña',
+				'mz-field':'',
+                'mz-match':'changePassword.new_password_1',
+            }
 		),
 	)
 
