@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import get_list_or_404,redirect,get_object_or_404
-from django.views.generic import DetailView, TemplateView, FormView, UpdateView
+from django.views.generic import DetailView, TemplateView, FormView, UpdateView, View
 from Profiles.mixins import RequestFormMixin
 from Thirdauth.mixins import AuthRedirectMixin, LoginRequiredMixin
 
@@ -53,7 +53,7 @@ class SettingsWorkView(LoginRequiredMixin,TemplateView):
 		if 'view' not in kwargs:
 		    kwargs['view'] = self
 		    kwargs['username'] = self.request.user.username
-		return kwargs
+		return kwargs	
 
 
 class UpdateWorkView(LoginRequiredMixin,UpdateView):
