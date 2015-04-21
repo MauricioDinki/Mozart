@@ -7,7 +7,7 @@ module.exports = function(grunt) {
         tasks: ['compileStylus']
       },
       js: {
-        files: ['app/js/app.js', 'app/js/*/*.js'],
+        files: ['Gruntfile.js', 'app/js/app.js', 'app/js/*/*.js'],
         tasks: ['compileJavascript']
       }
     },
@@ -24,6 +24,9 @@ module.exports = function(grunt) {
           'dist/css/styles.min.css': 'app/styl/main.styl'
         }
       }
+    },
+    jshint: {
+      all: ['Gruntfile.js', 'app/js/app.js', 'app/js/*/*.js']
     },
     concat: {   
       options: {
@@ -86,7 +89,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.registerTask('default', ['stylus', 'concat','bower_concat','uglify','copy', 'watch']);
+  grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.registerTask('default', ['stylus', 'jshint', 'concat','bower_concat','uglify','copy', 'watch']);
   grunt.registerTask('compileStylus', ['stylus']);
-  grunt.registerTask('compileJavascript', ['concat', 'uglify']);
+  grunt.registerTask('compileJavascript', ['jshint', 'concat', 'uglify']);
 };

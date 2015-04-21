@@ -1,13 +1,19 @@
 {% extends 'base_view.html' %}
 {% block content %}
-    <div id="settings-menu">
-      <ul class="menu-list">
-        <li><a class="icons information-icon" href="{% url 'profiles:settings_account' %}">Editar información</a></li>
-        <li><a class="icons settings-icon" href="{% url 'profiles:settings_password' %}">Cambiar contraseña</a></li>
-        <li><a class="icons settings-icon" href="{% url 'profiles:settings_social' %}">Cuentas vinculadas</a></li>
-        {% if user.mozart_user.user_type == 'Artista' %}
-        <li><a class="icons works-icon" href="{% url 'works:settings_works' %}">Mis obras</a></li>{% endif %}
-      </ul>
+    <div id="settings-menu" ng-controller="modalCtrl">
+      <div class="menu-list">
+        {% block asdd %}{% endblock %}
+        <a style="font-weight:700;" ng-click="toggleModal()">+</a>
+      </div>
+      <mz-modal show="modalShown" modal-title="Configuraciones">
+        <ul class="menu-list modal-dialog-content">
+          <li><a class="icons information-icon" href="{% url 'profiles:settings_account' %}">Editar información</a></li>
+          <li><a class="icons settings-icon" href="{% url 'profiles:settings_password' %}">Cambiar contraseña</a></li>
+          <li><a class="icons settings-icon" href="{% url 'profiles:settings_social' %}">Cuentas vinculadas</a></li>
+          {% if user.mozart_user.user_type == 'Artista' %}
+          <li><a class="icons works-icon" href="{% url 'works:settings_works' %}">Mis obras</a></li>{% endif %}
+        </ul>
+      </mz-modal>
     </div>
     <div id="settings-content">
       {% block section %}{% endblock %}
