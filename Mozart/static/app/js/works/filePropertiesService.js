@@ -2,6 +2,7 @@
   'use strict';
 
   function filePropertiesService() {
+    /* jshint validthis:true */
     this.getExtension = function(file){
       var divisions = file.name.split('.');
       var fileExtension = divisions[divisions.length -1];

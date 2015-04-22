@@ -2,6 +2,7 @@
   'use strict';
 
   function promotorsRequestService($http) {
+    /* jshint validthis:true */
     var apiBaseUrl = '/api/promotors/';
     this.get=function(fnOK,fnError, nameFirstLetter, paginate) {
       $http({
@@ -17,7 +18,7 @@
     };
   }
 
-  promotorsRequestService.$inject =  ['$http'];
+  promotorsRequestService.$inject = ['$http'];
 
   angular.module('mozArtApp')
     .service('promotorsRequest', promotorsRequestService);

@@ -2,6 +2,7 @@
   'use strict';
 
   function validateDatesService() {
+    /* jshint validthis:true */
     this.current_date = new Date();
     this.current_year = parseInt(this.current_date.getYear()) + 1900;
     this.current_month = parseInt(this.current_date.getMonth()) + 1;
@@ -15,7 +16,7 @@
         month = monthName;
       }
       var newDate = new Date(year, month, '0');
-      if(!((day-0) > (newDate.getDate()-0))){
+      if((day-0) <= parseInt(newDate.getDate()-0)){
         return this.validAge(day, month, year);
       }
       else{

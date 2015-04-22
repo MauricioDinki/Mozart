@@ -16,12 +16,11 @@
   "regexp"   : true,
   "undef"    : true,
   "unused"   : true,
-  "validThis" : true,
   "strict"   : true,
   "trailing" : false,
   "smarttabs": true,
   "white"    : false,
-  "globals"   : {
+  "globals"  : {
     "$"                    : false,
     "angular"              : true,
     "browser"              : true,

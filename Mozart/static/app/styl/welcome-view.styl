@@ -1,41 +1,44 @@
+.last-article
+	background mozart-dark-gray
+	font-size 30px
+	padding 20px
+
 #welcome
-	font-size 60px
-	margin-top 35px
-	overflow hidden !important
-	position relative
+	background-attachment fixed
+	background-color white
+	background-position 50% 50% !important
+	background-repeat norepeat !important
+	background-size auto 100% !important
+	color white
+	font-size 18px
+	height 100%
+	overflow auto !important
+	position fixed
 	text-align center
+	top 0
+	transition background-image 0.5s
 	width 100%
 
-	.welcome-box
-		background #dedede
-		min-height 570px
-		overflow hidden !important
+.welcome-box
+	background linear-gradient(90deg, rgba(black, 0.8), rgba(white, 0))
+	height 100%
+	text-align justify
+	width 100%
+
+	div
+		padding 40% 30px
 		position relative
-		text-align left
-		width 100%
+		width 80%
 
-		div
-			padding 100px 60px
-			position relative
-			width 40%
+		h2
+			font-size 30px
 
-			a
-				background linear-gradient(orange,mozart-orange)
-				border-radius 5px
-				box-shadow 0px 0px 5px black
-				color black
-				display inline-block
-				font-size 25px
-				padding 10px 15px
+		a
+			background mozart-medium-blue
+			border-radius 3px
+			color white
+			display inline-block
+			padding 10px 15px
 
-				&:hover
-					background linear-gradient(azul_claro, azul_sitio)
-					color white
-			p
-				font-size 25px
-
-		img
-			height auto
-			position absolute
-			width 100%
-
+			&:hover
+				background mozart-light-blue

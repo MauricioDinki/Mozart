@@ -2,6 +2,7 @@
   'use strict';
 
   function userInformationService($http) {
+    /* jshint validthis:true */
     this.get = function(fnOK,fnError, user, information_to_get) {
       $http({
         method: 'GET',

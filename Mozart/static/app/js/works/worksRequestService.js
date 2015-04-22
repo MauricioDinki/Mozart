@@ -2,6 +2,7 @@
   'use strict';
 
   function worksRequestService($http) {
+    /* jshint validthis:true */
     var apiBaseUrl = '/api/worksets/';
     this.recentWorks = {
       get:function(fnOK,fnError, category, author, paginate) {

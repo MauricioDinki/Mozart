@@ -40,6 +40,6 @@
 
 	loadWorksController.$inject = ['$scope', '$window', 'worksRequest'];
 
-	app.module('mozArtApp')
+	angular.module('mozArtApp')
 		.controller('loadWorksCtrl', loadWorksController);
 })();

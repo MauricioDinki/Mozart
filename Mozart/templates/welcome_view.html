@@ -1,11 +1,10 @@
 {% extends 'base_view.html' %}
 {% block title %}Bienvenido a mozArt{% endblock %}
 {% load static from staticfiles %}
-{% block content %}<section id="welcome">
+{% block content %}<section mz-welcome base-dir="{{ STATIC_URL }}" id="welcome">
       <article class="welcome-box">
-        <img src="{% static "img/fondo1.jpg" %}"/>
         <div>
-          Explora
+          <h2>Explora</h2>
           <p>
             Da un paseo por mozArt y disfruta de la increíble variedad de obras de arte.
           </p>
@@ -13,9 +12,8 @@
         </div>
       </article>
       <article class="welcome-box">
-        <img src="{% static "img/fondo2.jpg" %}"/>
         <div>
-          Descubre
+          <h2>Descubre</h2>
           <p>
             Una nueva forma de compartir el arte. Uneté como artista y forma parte de la comunidad mozArt.
           </p>
@@ -23,9 +21,8 @@
         </div>
       </article>
       <article class="welcome-box">
-        <img src="{% static "img/fondo3.jpg" %}" />
         <div>
-          Comparte
+          <h2>Comparte</h2>
           <p>
             Todo el contenido en mozArt es libre de ser compartido en tus redes sociales favoritas.
           </p>
@@ -33,9 +30,8 @@
         </div>
       </article>
       <article class="welcome-box">
-        <img src="{% static "img/fondo4.jpg" %}" />
         <div>
-          Contacta
+          <h2>Contacta</h2>
           <p>
             Los artistas necesitan alguien que los ayude a alcanzar el éxito, ¿estás dispuesto a ser tu?
           </p>
@@ -43,14 +39,13 @@
         </div>
       </article>
       <article class="welcome-box">
-        <img src="{% static "img/fondo5.jpg" %}" />
         <div>
-          Colabora
+          <h2>Colabora</h2>
           <p>
             ¿Te gusta mozArt? Ayuda a que el proyecto crezca.
           </p>
           <a href="#">Realizar donación</a>
         </div>
       </article>
-      <p>Todo esto, a unos cuantos clics de distancia.</p>
+      <article class="last-article">Todo esto, a unos cuantos clics de distancia.</article>
     </section>{% endblock %}
