@@ -103,7 +103,7 @@ class RegisterForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
 
     password_1 = forms.CharField(
         max_length = 40,
-        min_length = 8,
+        min_length = 6,
         widget = forms.PasswordInput(
             attrs = {
                 'class':'mozart-field empty-initial-field',
@@ -115,7 +115,7 @@ class RegisterForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
 
     password_2 = forms.CharField(
         max_length = 40,
-        min_length = 8,
+        min_length = 6,
         widget = forms.PasswordInput(
             attrs = {
                 'class':'mozart-field empty-initial-field',

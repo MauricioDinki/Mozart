@@ -15,11 +15,17 @@
 	transition border-color 0.2s, color 0.2s, height 0.2s, margin-top 0.2s
 	width 100%
 
-.mozart-field.ng-invalid.ng-dirty
+.mozart-field.ng-invalid.ng-dirty,.mozart-label.invalid-state
 	border-color red
 	color #FF7373
 	
-.mozart-field.ng-valid.ng-dirty
+.mozart-label.invalid-state
+	color #FF7373 !important
+
+.mozart-label.valid-state
+	color green !important
+	
+.mozart-field.ng-valid.ng-dirty,.mozart-label.valid-state
 	border-color green
 
 .mozart-field.empty-initial-field
@@ -48,21 +54,24 @@
 	box-sizing border-box !important
 	display block
 	font-weight 700
-	height 40px
-	padding 10px
+	padding 5px 10px
 	top 0
 	transition all 0.2s
 	width 100%
 
-.mozart-label.initial-label
+.mozart-label.initial-label, .non-active-label
 	color mozart-dark-gray
 	cursor text
+	
+.mozart-label.active-label, .non-active-label
+	height 25px !important
+	
+.mozart-label.initial-label
+	height 40px
 	
 .mozart-label.active-label
 	color mozart-light-blue
 	cursor default
-	height 25px
-	padding 5px 10px
 
 select.mozart-field option
 	color mozart-dark-gray

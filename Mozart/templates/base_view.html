@@ -15,14 +15,18 @@
     <nav id="mozart-navbar" ng-init="visible=false">
       <aside id="mozart-menu" ng-show="visible" off-click="visible=!visible" off-click-filter="'#menu-button'" off-click-if="visible">
         <div>
-        {% if not user.is_authenticated or not user.mozart_user.profile_picture %}
+        {% if user.is_authenticated %}
+          {% if user.mozart_user.profile_picture %}
+            {% thumbnail user.mozart_user.profile_picture "200x200" crop="center" as im %}
+          <img class="circle" src="{{ im.url }}"/>
+            {% endthumbnail %}
+          {% else %}
+          <img class="circle" src="{% static "img/default.png" %}" width="200px"/>
+          {% endif %}
+          <h2>{{user.username}}</h2>
+        {% else %}
           <img class="circle" src="{% static "img/default.png" %}" width="200px"/>
           <h2>Invitado</h2>
-        {% else %}
-        {% thumbnail user.mozart_user.profile_picture "200x200" crop="center" as im %}
-          <img class="circle" src="{{ im.url }}"/>
-          <h2>{{user.username}}</h2>
-        {% endthumbnail %}
         {% endif %}
           <hr/>
           <ul>

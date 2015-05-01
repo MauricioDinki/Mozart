@@ -6,7 +6,7 @@
     var workFileIsValid = false;
     var workCoverIsValid = false;
 
-    function onArchiveFunction() {
+    function onArchiveFunction(args) {
       $scope.workFile = args.file;
       var fileFormat = fileProperties.getExtension($scope.workFile);
       workIsAnImage = fileProperties.isAnImage(fileFormat);
@@ -20,7 +20,7 @@
       }
     }
 
-    function onCoverFunction() {
+    function onCoverFunction(args) {
       $scope.workCover = args.file;
       var fileFormat = fileProperties.getExtension($scope.workCover);
       workCoverIsValid = fileProperties.isAnImage(fileFormat);
@@ -50,11 +50,15 @@
     };
 
     $scope.$on('archive', function (event, args) {
-      $scope.$apply(onArchiveFunction);
+      $scope.$apply(function() {
+        onArchiveFunction(args);
+      });
     });
 
     $scope.$on('cover', function (event, args) {
-      $scope.$apply(onCoverFunction);
+      $scope.$apply(function() {
+        onCoverFunction(args);
+      });
     });
 
     $scope.validate = function(){
