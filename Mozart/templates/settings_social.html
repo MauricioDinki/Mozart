@@ -17,14 +17,14 @@
             {{cuenta.extendusersocialauth.username_identificator}}{% endif %}
                 </a>
               </div> 
-              <span ng-controller="modalCtrl">
-                <a class="thin-button cancel-button" ng-click="toggleModal()">x</a>
-                <mz-modal show="modalShown" modal-title="¿Seguro de que quieres desvincular esta cuenta?">
+              <span ng-controller="toggleCtrl">
+                <a class="thin-button cancel-button" ng-click="toggle()">x</a>
+                <mz-modal show="isVisible" modal-title="¿Seguro de que quieres desvincular esta cuenta?">
                   <div  class="modal-dialog-content">
                     Ya no podrás iniciar sesión con ella, pero podrás revincularla en cualquier momento si así lo deseas.
                   </div>
                   <a class="button cancel-button" href="{% url 'profiles:settings_social_delete' cuenta.provider cuenta.id %}">Si</a>
-                  <a class="button okay-button" ng-click="toggleModal()">No</a>
+                  <a class="button okay-button" ng-click="toggle()">No</a>
                 </mz-modal>
               </span>
             </li>{% empty %}

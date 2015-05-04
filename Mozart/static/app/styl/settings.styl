@@ -1,30 +1,38 @@
 .menu-list 
-	// background white
-	// border-color mozart-light-blue
-	// border-style solid
-	// border-width 0 0 2px 0
 	display block
+	max-height 500px
+	overflow hidden
+	position relative
 	text-align left
+	transition max-height 0.3s !important
 	
-	li
-		display block
+.menu-list.ng-hide-add.ng-hide-add-active,
+.menu-list.ng-hide-remove.ng-hide-remove-active
+ 	transition max-height 0.3s !important
+ 	
+.menu-list.ng-hide
+ 	max-height 0 !important
+	
+.menu-option
+	display block
+	height auto
 		
-		a
-			color mozart-light-blue
-			display block
-			margin 0 auto
-			padding 5px
-			width 80%
+	a
+		color mozart-light-blue
+		display block
+		margin 0 auto
+		padding 5px
+		width 80%
 			
-			&:before
-				font-size 30px
+		&:before
+			font-size 30px
 				
-			&:hover, &:active
-				color mozart-medium-blue
+		&:hover, &:active
+			color mozart-medium-blue
 	
 #settings-content
 	background white
 	margin-top 0
 	
-#settings-menu *
-	vertical-align middle
+.settings-menu
+	transition height 0.3s

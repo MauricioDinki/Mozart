@@ -5,10 +5,10 @@
         <h2>Formulario de registro</h2>
         {% if form.non_field_errors %}
          {% ifnotequal form.non_field_errors.as_text|cut:"* " "$message" %}
-        <div ng-controller="modalCtrl" ng-init="modalShown=true"> 
-          <mz-modal show="modalShown" modal-title="No se pudo realizar el registro.">
+        <div ng-controller="toggleCtrl" ng-init="isVisible=true"> 
+          <mz-modal show="isVisible" modal-title="No se pudo realizar el registro.">
             <div class="modal-dialog-content">{{form.non_field_errors.as_text|cut:"$message"|cut:"* "}}</div>
-            <a class="button okay-button" ng-click="toggleModal()">Entendido</a>
+            <a class="button okay-button" ng-click="toggle()">Entendido</a>
           </mz-modal>
         </div>
           {% endifnotequal %}

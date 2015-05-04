@@ -10,6 +10,6 @@
 	appConfig.$inject = ['$interpolateProvider', '$httpProvider'];
 
 	angular
-		.module('mozArtApp', ['ng.django.forms', 'ngAnimate','offClick'])
+		.module('mozArtApp', ['ng.django.forms', 'ngAnimate','offClick', 'matchmedia-ng'])
 		.config(appConfig);
 })();
