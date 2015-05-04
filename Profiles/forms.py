@@ -88,32 +88,35 @@ class UserInformationForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
         required = True,
         widget = forms.TextInput(
         	attrs = {
-	        	'class':'cuadrotexto mz-field', 
+	        	'class':'mozart-field empty-initial-field', 
 	        	'placeholder':'Elije un nuevo nickname',
+	        	'mz-field': ''
         	}
     	),
     )
 
 	first_name = forms.CharField(
-		min_length=5,
-        max_length=20,
+		min_length=2,
+        max_length=50,
 		required = False,
 		widget = forms.TextInput(
 			attrs = {
-				'class':'cuadrotexto mz-field',
+				'class':'mozart-field empty-initial-field',
 				'placeholder':'Escribe tu(s) nombre(s)',
+				'mz-field': ''
 			}
 		),
 	)
 
 	last_name = forms.CharField(
-		min_length=5,
-        max_length=20,
+		min_length=2,
+        max_length=50,
 		required = False,
 		widget = forms.TextInput(
 			attrs = {
-				'class':'cuadrotexto mz-field',
+				'class':'mozart-field empty-initial-field',
 				'placeholder':'Escribe tu(s) apellido(s)',
+				'mz-field': ''
 			}
 		),
 	)
@@ -125,6 +128,7 @@ class UserInformationForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
 				'accept':'image/*',
 				'file-upload':'',
 				'file-bind':'profilePicture',
+				'mz-field': ''
 			}
 		),
 	)
@@ -134,63 +138,70 @@ class UserInformationForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
 		required = False,
 		widget = forms.Select(
 			attrs = {
-				'class':'cuadrotexto mz-field',
+				'class':'mozart-field empty-initial-field',
+				'mz-field': ''
 			}
 		),
 	)
 
 	description = forms.CharField(
-		min_length=5,
         max_length=200,
 		required = False,
 		widget = forms.Textarea(
 			attrs = {
-				'class':'cuadrotexto un-cuadro',
-				'placeholder':'Cuentanos Sobre ti'
+				'class':'mozart-field empty-initial-field',
+				'placeholder':'Cuentanos Sobre ti',
+				'mz-field': ''
 			}
 		),
 	)
 
 	personal_homepage = forms.URLField(
-        max_length=30,
 		required = False,
 		widget = forms.URLInput(
 			attrs = {
-				'class':'cuadrotexto mz-field', 
+				'class':'mozart-field empty-initial-field', 
 				'placeholder':'Tu página personal',
+				'mz-field': ''
 			}
 		),
 	)
 
 	phone_number = forms.IntegerField(
 		required = False,
+		max_value = 9999999999,
+		min_value = 0,
 		widget = forms.NumberInput(
 			attrs = {
-				'class':'cuadrotexto mz-field',
+				'class':'mozart-field empty-initial-field',
 				'placeholder':'Escribe tu numero telefonico',
+				'mz-field': ''
 			}
 		),
 	)
 
 	adress = forms.CharField(
-		max_length=30,
+		min_length=10,
+		max_length=100,
 		required = False,
 		widget = forms.TextInput(
 			attrs = {
-				'class':'cuadrotexto mz-field',
+				'class':'mozart-field empty-initial-field',
 				'placeholder':'Escribe tu dirección',
+				'mz-field': ''
 			}
 		),
 	)
 
 	city = forms.CharField(
 		min_length=5,
-        max_length=20,
+        max_length=30,
 		required = False,
 		widget = forms.TextInput(
 			attrs = {
-				'class':'cuadrotexto mz-field',
+				'class':'mozart-field empty-initial-field',
 				'placeholder':'Escribe el nombre de tu ciudad',
+				'mz-field': ''
 			}
 		),
 	)
@@ -201,8 +212,9 @@ class UserInformationForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
 		required = False,
 		widget = forms.TextInput(
 			attrs = {
-				'class':'cuadrotexto mz-field',
+				'class':'mozart-field empty-initial-field',
 				'placeholder':'Escribe tu código postal',
+				'mz-field': ''
 			}
 		),
 	)
@@ -213,8 +225,9 @@ class UserInformationForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
 		required=False,
 		widget=forms.TextInput(
 			attrs = {
-				'class':'cuadrotexto mz-field',
+				'class':'mozart-field empty-initial-field',
 				'placeholder':'Escribe el nombre de tu vecindario',
+				'mz-field': ''
 			}
 		),
 	)
@@ -225,8 +238,9 @@ class UserInformationForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
 	    required = True,
 	    widget = forms.PasswordInput(
 	    	attrs = {
-    			'class':'cuadrotexto mz-field',
-    			'placeholder':'Escribe tu contraseña'
+    			'class':'mozart-field empty-initial-field',
+    			'placeholder':'Escribe tu contraseña',
+    			'mz-field': ''
 			}
 		),
 	)

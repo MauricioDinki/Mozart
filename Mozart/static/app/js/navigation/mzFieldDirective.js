@@ -7,6 +7,12 @@
       scope: false,
       transclude: false,
       link: function(scope, elem, attrs){
+        if(elem.val() !== '') {
+          elem.prev('label').removeClass('initial-label');
+          elem.removeClass('empty-initial-field'); 
+          elem.prev('label').addClass('non-active-label');
+          elem.addClass('active-field');
+        }
         elem.focus(function(){
           if(elem.prev('label').hasClass('initial-label')) {
             elem.prev('label').removeClass('initial-label');
