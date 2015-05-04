@@ -2,9 +2,11 @@
 {% block title %}Editar información - mozArt{% endblock %}
 {% load thumbnail %}
 {% load static %}
+
 {% block icon-class %}information-icon{% endblock %}
-{% block option-name %}Editar informacion{% endblock %}
-{% block section %}<h1>Editar información</h1>
+{% block option-name %}Editar información{% endblock %}
+
+{% block section %}<h2>Editar información</h2>
 {% if form.non_field_errors %}
     {% ifnotequal form.non_field_errors.as_text|cut:"* " "$message" %}
     <div class="aviso-error">
