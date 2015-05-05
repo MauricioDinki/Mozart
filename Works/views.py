@@ -20,7 +20,7 @@ class CreateWorkView(LoginRequiredMixin,RequestFormMixin,FormView):
 		return super(CreateWorkView,self).form_valid(form)
 
 class DetailWorkView(DetailView):
-	template_name = 'obra.html'
+	template_name = 'work.html'
 	model = Work
 	slug_field = 'slug'
 	slug_url_kwarg = 'slug'

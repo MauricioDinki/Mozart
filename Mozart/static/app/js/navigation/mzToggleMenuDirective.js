@@ -3,12 +3,12 @@
 	
 	function toggleMenuDirective(matchmedia) {
 		return {
-	    restrict: 'E',
-	    transclude: true,
-	    scope: {
-	    	iconClassName: '@',
-	    	currentOptionText: '@'
-	    },
+		    restrict: 'E',
+		    transclude: true,
+		    scope: {
+		    	iconClassName: '@',
+		    	currentOptionText: '@'
+		    },
 			controller: function ($scope) {
 				$scope.originalIconClassName = $scope.iconClassName;
 				$scope.buttonText = '+';
