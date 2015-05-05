@@ -1,39 +1,52 @@
 div.menu-option
 	height 35px
+	
+	&:before
+		margin-right 10px
 
-.menu-list 
+ul.menu-list 
 	display block
 	height auto
 	overflow hidden
 	text-align left
-// 	transition max-height 0.3s !important
+// 	transition all 0.3s ease-out !important
 	
-// .menu-list.ng-hide-add.ng-hide-add-active,
-// .menu-list.ng-hide-remove.ng-hide-remove-active
-//  	transition max-height 0.3s !important
+// ul.menu-list.ng-hide-add.ng-hide-add-active,
+// ul.menu-list.ng-hide-remove.ng-hide-remove-active
+//  	transition all 0.3s ease-out !important
  	
-.menu-list.ng-hide
+ul.menu-list.ng-hide
  	height 0
+//  	transition all 0.3s ease-out !important
 	
 .menu-option
 	display block
 	
-.menu-option a
-	border-bottom white solid 1px 
+li.menu-option a
+	// border-bottom white solid 1px 
 	color white
 	display block
-	font-size 18px
-	margin 0 auto
+	font-size 16px
+	margin 10px
 	padding 5px
 	transition all 0.3s
+	// vertical-align middle
 	width 93%
 			
 	&:before
-		font-size 34px
+		background white
+		border-radius 50%
+		color mozart-light-blue
+		font-size 28px
+		font-weight normal
+		margin-right 10px
+		padding 7px
+		// vertical-align middle
 				
 	&:hover, &:active
 		border-bottom-color black
 		color black
+		font-weight 700
 		
 	
 #settings-content
@@ -44,9 +57,11 @@ div.menu-option
 .settings-menu
 	background mozart-light-blue
 	color white
+	height auto
 	margin 10px
 	padding 10px
-	
+	transition height 0.3s 
+
 .toggle-menu-button
 	background white
 	border-radius 50%

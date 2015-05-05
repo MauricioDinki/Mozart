@@ -6,7 +6,7 @@
 {% block icon-class %}information-icon{% endblock %}
 {% block option-name %}Editar información{% endblock %}
 
-{% block section %}<h2>Editar información</h2>
+{% block section %}
 {% if form.non_field_errors %}
     {% ifnotequal form.non_field_errors.as_text|cut:"* " "$message" %}
     <div class="aviso-error">

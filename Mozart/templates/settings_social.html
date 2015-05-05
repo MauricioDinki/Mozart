@@ -4,23 +4,23 @@
 {% block icon-class %}settings-icon{% endblock %}
 {% block option-name %}Cuentas vinculadas{% endblock %}
 
-{% block section %}<h1>Vinculación de redes sociales</h1>
-        <fieldset style="width:100%">
+{% block section %}
+        <fieldset class="one-element">
           <legend>Cuentas vinculadas</legend>
-          <ul class="lista-vinculadas"> {% for cuenta in cuentas %}{% if cuenta.provider = 'facebook' %}
-            <li class="iconos icono-facebook">
-              <div class="link-social">
+          <ul class="social-media-box"> {% for cuenta in cuentas %}{% if cuenta.provider = 'facebook' %}
+            <li class="icons facebook-icon social-link">
+              <span class="link-social">
                 <a target="_blank" href="{{cuenta.social_network_facebook_url.facebook}}">{% elif  cuenta.provider = 'twitter' %}
-            <li class="iconos icono-twitter">
-              <div class="link-social">
+            <li class="icons twitter-icon social-link">
+              <span class="link-social">
                 <a class= target="_blank"href="{{cuenta.social_network_twitter_url.twitter}}">{% elif cuenta.provider = 'google-oauth2' %}
-            <li class="iconos icono-google">
-              <div class="link-social">
+            <li class="icons google-icon social-link">
+              <span class="link-social">
                 <a target="_blank" href="{{cuenta.social_network_google_url.google}}">{% endif %}{% if cuenta.provider = 'twitter' %}
             @{{cuenta.extendusersocialauth.username_identificator}}{% else %}
             {{cuenta.extendusersocialauth.username_identificator}}{% endif %}
                 </a>
-              </div> 
+              </span> 
               <span ng-controller="toggleCtrl">
                 <a class="thin-button cancel-button" ng-click="toggle()">x</a>
                 <mz-modal show="isVisible" modal-title="¿Seguro de que quieres desvincular esta cuenta?">
@@ -37,8 +37,8 @@
           Una vez que vincules tus redes sociales con mozArt, podrás iniciar sesión con cualquiera de ellas.<br/>
         </fieldset><br/><br/>
         <h2>Vincular otra cuenta</h2>
-        <div class="vincula">
-          <a class="iconos icono-facebook" href="{% url 'social:begin' 'facebook' %}">Vincular Facebook</a>
-          <a class="iconos icono-twitter" href="{% url 'social:begin' 'twitter' %}">Vincular Twitter</a>
-          <a class="iconos icono-google" href="{% url 'social:begin' 'google-oauth2' %}">Vincular Google</a>
+        <div class="social-media-box">
+          <a class="social-link icons facebook-icon" href="{% url 'social:begin' 'facebook' %}">Vincular Facebook</a>
+          <a class="social-link icons twitter-icon" href="{% url 'social:begin' 'twitter' %}">Vincular Twitter</a>
+          <a class="social-link icons google-icon" href="{% url 'social:begin' 'google-oauth2' %}">Vincular Google</a>
         </div>Powered by Kiwi®{% endblock %} ®
