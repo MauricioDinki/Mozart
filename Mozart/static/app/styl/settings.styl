@@ -1,0 +1,75 @@
+div.menu-option
+	height 35px
+	
+	&:before
+		margin-right 10px
+
+ul.menu-list 
+	display block
+	height auto
+	overflow hidden
+	text-align left
+// 	transition all 0.3s ease-out !important
+	
+// ul.menu-list.ng-hide-add.ng-hide-add-active,
+// ul.menu-list.ng-hide-remove.ng-hide-remove-active
+//  	transition all 0.3s ease-out !important
+ 	
+ul.menu-list.ng-hide
+ 	height 0
+//  	transition all 0.3s ease-out !important
+	
+.menu-option
+	display block
+	
+li.menu-option a
+	// border-bottom white solid 1px 
+	color white
+	display block
+	font-size 16px
+	margin 10px
+	padding 5px
+	transition all 0.3s
+	// vertical-align middle
+	width 93%
+			
+	&:before
+		background white
+		border-radius 50%
+		color mozart-light-blue
+		font-size 28px
+		font-weight normal
+		margin-right 10px
+		padding 7px
+		// vertical-align middle
+				
+	&:hover, &:active
+		border-bottom-color black
+		color black
+		font-weight 700
+		
+	
+#settings-content
+	background white
+	margin-top 0
+	padding 20px
+	
+.settings-menu
+	background mozart-light-blue
+	color white
+	height auto
+	margin 10px
+	padding 10px
+	transition height 0.3s 
+
+.toggle-menu-button
+	background white
+	border-radius 50%
+	color mozart-light-blue !important
+	font-weight 700
+	font-size 26px !important
+	float right
+	height 35px !important
+	padding 0 !important
+	text-align center
+	width 35px !important

@@ -20,8 +20,9 @@ class LoginForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
         min_length = 5,
         widget = forms.TextInput(
             attrs = {
-                'class':'cuadrotexto mz-field',
+                'class':'mozart-field empty-initial-field',
                 'placeholder':'Escribe tu nickname',
+                'mz-field':'',
             }
         ),
     )
@@ -31,8 +32,9 @@ class LoginForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
         min_length = 6,
         widget = forms.PasswordInput(
             attrs = {
-                'class':'cuadrotexto mz-field',
-                'placeholder':'Escribe tu contraseña'
+                'class':'mozart-field empty-initial-field',
+                'placeholder':'Escribe tu contraseña',
+                'mz-field':'',
             }
         ),
     )
@@ -70,8 +72,9 @@ class RegisterForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
         initial = '1',
         widget = forms.Select(
             attrs = {
-                'class':'cuadrotexto mz-field',
+                'class':'mozart-field active-field',
                 'ng-change': 'validarFecha()',
+                'mz-field':'',
             }
         ),
     )
@@ -79,8 +82,9 @@ class RegisterForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
     email = forms.EmailField(
         widget = forms.EmailInput(
             attrs = {
-                'class':'cuadrotexto mz-field',
+                'class':'mozart-field empty-initial-field',
                 'placeholder':'Escribe tu email',
+                'mz-field':'',
             }
         ),
     )
@@ -90,31 +94,34 @@ class RegisterForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
         initial = 'Enero',
         widget = forms.Select(
             attrs = {
-                'class':'cuadrotexto mz-field',
+                'class':'mozart-field active-field',
                 'ng-change': 'validarFecha()',
+                'mz-field':'',
             }
         ),
     )
 
     password_1 = forms.CharField(
         max_length = 40,
-        min_length = 8,
+        min_length = 6,
         widget = forms.PasswordInput(
             attrs = {
-                'class':'cuadrotexto mz-field',
-                'placeholder':'Elije una contraseña'
+                'class':'mozart-field empty-initial-field',
+                'placeholder':'Elije una contraseña',
+                'mz-field':'',
             }
         ),
     )
 
     password_2 = forms.CharField(
         max_length = 40,
-        min_length = 8,
+        min_length = 6,
         widget = forms.PasswordInput(
             attrs = {
-                'class':'cuadrotexto mz-field',
+                'class':'mozart-field empty-initial-field',
                 'placeholder':'Vuelve a escribir tu contraseña',
-                'comparar':'signup.password_1',
+                'mz-field':'',
+                'mz-match':'signup.password_1',
             }
         ),
     )
@@ -123,7 +130,8 @@ class RegisterForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
         choices = type_of_users,
         widget = forms.Select(
             attrs = {
-                'class':'cuadrotexto mz-field',
+                'class':'mozart-field empty-initial-field',
+                'mz-field':'',
             }
         ),
     )
@@ -133,8 +141,9 @@ class RegisterForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
         min_length = 5,
         widget = forms.TextInput(
             attrs = {
-                'class':'cuadrotexto mz-field',
-                'placeholder':'Escribe tu nickname'
+                'class':'mozart-field empty-initial-field',
+                'placeholder':'Escribe tu nickname',
+                'mz-field':'',
             }
         ),
     )
@@ -144,10 +153,11 @@ class RegisterForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
         min_value = this_year - 100,
         widget = forms.NumberInput(
             attrs = {
-                'class':'cuadrotexto mz-field',
+                'class':'mozart-field active-field',
                 'placeholder':'Año',
                 'ng-change':'validarFecha()',
-                'value': this_year - 25
+                'value': this_year - 25,
+                'mz-field':'',
             }
         ),
     )

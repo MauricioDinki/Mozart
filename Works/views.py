@@ -10,16 +10,14 @@ from django.views.generic import DetailView, TemplateView, FormView, UpdateView,
 from Profiles.mixins import RequestFormMixin
 from Thirdauth.mixins import AuthRedirectMixin, LoginRequiredMixin
 
-
 class CreateWorkView(LoginRequiredMixin,RequestFormMixin,FormView):
 	form_class = CreateWorkForm
-	success_url =  reverse_lazy('work_list')
-	template_name = 'subirobra.html'
+	success_url =  reverse_lazy('works:work_list')
+	template_name = 'generic-form.html'
 
 	def form_valid(self,form):
 		form.save()
 		return super(CreateWorkView,self).form_valid(form)
-
 
 class DetailWorkView(DetailView):
 	template_name = 'obra.html'
@@ -27,10 +25,8 @@ class DetailWorkView(DetailView):
 	slug_field = 'slug'
 	slug_url_kwarg = 'slug'
 
-
 class HomeView(AuthRedirectMixin,TemplateView):
-    template_name = "index.html"
-
+    template_name = "welcome_view.html"
 
 class ListWorkView(TemplateView):
     template_name = "explore.html"
@@ -47,7 +43,7 @@ class ListWorkView(TemplateView):
 
 
 class SettingsWorkView(LoginRequiredMixin,TemplateView):
-	template_name = 'configuraciones_obras.html'
+	template_name = 'settings_works.html'
 
 	def get_context_data(self, **kwargs):
 		if 'view' not in kwargs:
@@ -55,13 +51,12 @@ class SettingsWorkView(LoginRequiredMixin,TemplateView):
 		    kwargs['username'] = self.request.user.username
 		return kwargs	
 
-
 class UpdateWorkView(LoginRequiredMixin,UpdateView):
 	form_class = UpdateWorkForm
 	model = Work
 	slug_field = 'slug'
 	slug_url_kwarg = 'slug'
-	success_url =  reverse_lazy('settings_works')
+	success_url =  reverse_lazy('works:settings_works')
 	template_name = 'configuraciones_editarobra.html'
 
 	def get_object(self):
@@ -87,4 +82,4 @@ class UserWorkView(TemplateView):
 def DeleteWorkView(request,slug):
 	account_to_delete = get_object_or_404(Work,user = request.user, slug = slug)
 	account_to_delete.delete()
-	return redirect(reverse_lazy('work_list'))
+	return redirect(reverse_lazy('works:work_list'))

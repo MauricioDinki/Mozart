@@ -1,0 +1,51 @@
+{% extends 'base_view.html' %}
+{% block title %}Bienvenido a mozArt{% endblock %}
+{% load static from staticfiles %}
+{% block content %}<section mz-welcome base-dir="{{ STATIC_URL }}" id="welcome">
+      <article class="welcome-box">
+        <div>
+          <h2>Explora</h2>
+          <p>
+            Da un paseo por mozArt y disfruta de la increíble variedad de obras de arte.
+          </p>
+          <a href="{% url 'works:work_list' %}">Entrar sin cuenta</a>
+        </div>
+      </article>
+      <article class="welcome-box">
+        <div>
+          <h2>Descubre</h2>
+          <p>
+            Una nueva forma de compartir el arte. Uneté como artista y forma parte de la comunidad mozArt.
+          </p>
+          <a href="#">Conoce la cuenta de artista</a>
+        </div>
+      </article>
+      <article class="welcome-box">
+        <div>
+          <h2>Comparte</h2>
+          <p>
+            Todo el contenido en mozArt es libre de ser compartido en tus redes sociales favoritas.
+          </p>
+          <a href="#">Leer acerca de las licencias</a>
+        </div>
+      </article>
+      <article class="welcome-box">
+        <div>
+          <h2>Contacta</h2>
+          <p>
+            Los artistas necesitan alguien que los ayude a alcanzar el éxito, ¿estás dispuesto a ser tu?
+          </p>
+          <a href="#">Conoce la cuenta de promotor</a>
+        </div>
+      </article>
+      <article class="welcome-box">
+        <div>
+          <h2>Colabora</h2>
+          <p>
+            ¿Te gusta mozArt? Ayuda a que el proyecto crezca.
+          </p>
+          <a href="#">Realizar donación</a>
+        </div>
+      </article>
+      <article class="last-article">Todo esto, a unos cuantos clics de distancia.</article>
+    </section>{% endblock %}

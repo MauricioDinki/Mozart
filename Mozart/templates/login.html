@@ -1,34 +1,58 @@
 {% extends 'base_view.html' %}
 {% block title %}Login - mozArt{% endblock %}
-{% block content %}<section id="section-general">
-      <div class="formulario">
-        <h2>Inicia sesión con tu correo electrónico</h2>
+{% block content %}
+      <div class="mozart-form">
+        <h2>Inicia sesión con tu nombre de usuario</h2>
         {% if form.non_field_errors %}
-    {% ifnotequal form.non_field_errors.as_text|cut:"* " "$message" %}
-    <div class="aviso-error">
-      {{form.non_field_errors.as_text|cut:"$message"|cut:"* "}}
-    </div>
-  {% endifnotequal %}
-{% endif %}
+         {% ifnotequal form.non_field_errors.as_text|cut:"* " "$message" %}
+        <div ng-controller="toggleCtrl" ng-init="isVisible=true"> 
+          <mz-modal show="isVisible" modal-title="No se pudo iniciar sesión">
+            <div class="modal-dialog-content">{{form.non_field_errors.as_text|cut:"$message"|cut:"* "}}</div>
+            <a class="button okay-button" ng-click="toggle()">Entendido</a>
+          </mz-modal>
+        </div>
+          {% endifnotequal %}
+        {% endif %}
         <form action="" method="post" id="id_loginform" name="{{form.form_name}}" novalidate>
           {% csrf_token %}
-          <div class="un-cuadro s-mzfield">
-            <label for="id_username" class="etiqueta-input">Nickname</label>
+          <div class="mozart-field-container one-element">
+            <label for="id_username" class="mozart-label initial-label">Nickname</label>
             {{form.username}}
           </div>
-          <div class="un-cuadro s-mzfield">
-            <label for="id_password" class="etiqueta-input">Password</label>
-            {{form.password}}<br/>
-            <a href="/forget" title="Da clic para recuperar tu contraseña">Olvide mi contraseña</a>
+
+          <div class="form-error" ng-show="{{form.form_name}}.username.$error.required && {{form.form_name}}.username.$dirty">No puedes dejar este campo vacío.</div>
+
+          <div class="form-error" ng-show="{{form.form_name}}.username.$error.minlength">
+            El username debe contener al menos 5 carácteres.
           </div>
-          <button type="submit" class="boton boton-verde" name="Enviar" ng-disabled="loginform.$invalid">Iniciar sesión</button>
+
+          <div class="form-error" ng-show="{{form.form_name}}.username.$error.maxlength">
+            El username debe contener máximo 20 carácteres.
+          </div>
+
+          <div class="mozart-field-container one-element">
+            <label for="id_password" class="mozart-label initial-label">Password</label>
+            {{form.password}}
+          </div>
+          
+          <div class="form-error" ng-show="{{form.form_name}}.password.$error.required && {{form.form_name}}.password.$dirty">No puedes dejar este campo vacío.</div>
+
+          <div class="form-error" ng-show="{{form.form_name}}.password.$error.minlength">
+            La contraseña debe contener al menos 6 carácteres.
+          </div>
+
+          <div class="form-error" ng-show="{{form.form_name}}.password.$error.maxlength">
+            La contraseña debe contener máximo 30 carácteres.
+          </div>
+          
+          <a href="/forget" title="Da clic para recuperar tu contraseña">Olvidé mi contraseña</a><br/>
+          <button type="submit" class="button submit-button" name="Enviar" ng-disabled="{{form.form_name}}.$invalid">Iniciar sesión</button>
         </form>
         <h2>O desde alguna de tus redes sociales vinculadas</h2>
-        <div class="vincula">
-          <a class="iconos icono-facebook" href="{% url 'social:begin' 'facebook' %}">Iniciar sesión con Facebook</a>
-          <a class="iconos icono-twitter" href="{% url 'social:begin' 'twitter' %}">Iniciar sesión con Twitter</a>
-          <a class="iconos icono-google" href="{% url 'social:begin' 'google-oauth2' %}">Iniciar sesión con Google</a>
+        <div class="social-media-box">
+          <a class="icons facebook-icon social-link" href="{% url 'social:begin' 'facebook' %}">Iniciar sesión con Facebook</a>
+          <a class="icons twitter-icon social-link" href="{% url 'social:begin' 'twitter' %}">Iniciar sesión con Twitter</a>
+          <a class="icons google-icon social-link" href="{% url 'social:begin' 'google-oauth2' %}">Iniciar sesión con Google</a>
         </div>
-      </div>
-    </section>{% endblock %}
+      </div>{% endblock %}
   

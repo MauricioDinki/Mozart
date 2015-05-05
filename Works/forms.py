@@ -1,32 +1,37 @@
+# -*- encoding: utf-8 -*-
+
 from .models import category, Work
 from django import forms
 from djangular.forms import NgModelFormMixin, NgFormValidationMixin
 from Thirdauth.validations import validate_blank, validate_title, default_error_messages
+from .validators import validate_image, validate_general_archive
 
-class CreateWorkForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
+class CreateWorkForm(forms.Form):
+# class CreateWorkForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
 	"""
 		Form for create works
 	"""
-	scope_prefix='work'
-	form_name='workform'
+	# scope_prefix='work'
+	# form_name='workform'
 
 	title = forms.CharField(
 		max_length = 40,
-		min_length = 4,
+		# min_length = 4,
 		widget = forms.TextInput(
 			attrs = {
-				'class':'cuadrotexto mz-field',
+				'class':'mozart-field empty-initial-field',
 				'placeholder':'Escribe un titulo para la obra',
+				'mz-field':'',
 			}
 		),
     )
 
-	description = forms.CharField(
-		max_length = 1000,
-		min_length = 1,
+	description = forms.CharField(max_length = 1000,
+		# min_length = 1,
 		widget = forms.Textarea(
 			attrs = {
-				'class':'cuadrotexto un-cuadro',
+				'class':'mozart-field empty-initial-field',
+				'mz-field':'',
 			}
 		),
     )
@@ -35,12 +40,14 @@ class CreateWorkForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
 		choices = category,
 		widget = forms.Select(
 			attrs = {
-				'class':'cuadrotexto mz-field',
+				'class':'mozart-field empty-initial-field',
+				'mz-field':'',
 			}
 		),
 	)
 
-	archive = forms.ImageField(
+	cover = forms.ImageField(
+		validators=[validate_image],
 		widget = forms.FileInput(
 			attrs = {
 				'file-upload':'',
@@ -49,13 +56,19 @@ class CreateWorkForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
 		),
 	)
 
+	archive = forms.FileField()
+
 	def __init__(self, *args, **kwargs):
 		self.request = kwargs.pop('request', None)
 		super(CreateWorkForm, self).__init__(*args, **kwargs)
 		for field in self.fields:
 			self.fields[field].error_messages.update(default_error_messages)
 			self.fields[field].validators=[validate_blank]
-			self.fields[field].required=True
+			if field == 'cover':
+				self.fields[field].validators = [validate_image]
+			if field == 'archive':
+				self.fields[field].validators = [validate_general_archive]
+			self.fields[field].required=False
 
 	def clean_title(self):
 		title = self.cleaned_data.get('title')
@@ -64,11 +77,19 @@ class CreateWorkForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
 	def save(self):
 		title = self.cleaned_data.get('title')
 		description = self.cleaned_data.get('description')
+		cover = self.cleaned_data.get('cover')
 		category = self.cleaned_data.get('category')
 		archive = self.cleaned_data.get('archive')
-		
-		newWork = Work(user = self.request.user,title = title, description = description, category = category , archive = archive)
-		newWork.cover = newWork.archive
+
+		newWork = Work(user = self.request.user, title = title, description = description, category = category , archive = archive)
+		if str(archive.content_type).startswith('image'):
+			newWork.cover = newWork.archive
+			newWork.work_type = 'image'
+		elif str(archive.content_type).startswith('audio'):
+			newWork.cover = cover
+			newWork.work_type = 'audio'
+		else:
+			newWork.cover = cover
 		newWork.save()
 
 class UpdateWorkForm(NgModelFormMixin, NgFormValidationMixin, forms.ModelForm):
@@ -84,18 +105,21 @@ class UpdateWorkForm(NgModelFormMixin, NgFormValidationMixin, forms.ModelForm):
 		widgets = {
         	'title':forms.TextInput(
         		attrs = {
-        			'class':'cuadrotexto mz-field',
+        			'class':'mozart-field empty-initial-field',
         			'placeholder':'Escribe un titulo para la obra',
+				'mz-field':'',
     			}
 			),
         	'description':forms.Textarea(
         		attrs = {
-        			'class':'cuadrotexto un-cuadro',
+        			'class':'mozart-field empty-initial-field',
+				'mz-field':'',
     			}
 			),
         	'category':forms.Select(
         		attrs = {
-        			'class':'cuadrotexto mz-field'
+        			'class':'mozart-field empty-initial-field',
+				'mz-field':'',
     			}
 			),
         }

@@ -1,0 +1,30 @@
+{% extends 'settings.html' %}
+{% block title %}Mis obras - mozArt{% endblock %}
+
+{% block icon-class %}works-icon{% endblock %}
+{% block option-name %}Mis obras{% endblock %}
+
+{% block section %}<div ng-init="worksCategory='all';worksAuthor='{{username}}'"><div ng-controller="loadWorksCtrl">
+<h2>Mis obras</h2><article class="work-item" ng-repeat="work in works">
+        <div class="work-thumbnail" style="background:url('{$work.cover$}');">
+        </div>
+        <span class="icons {$work.category$}-icon"></span><a ng-href="{% url 'works:work_user_list' username %}{$work.slug$}" ng-bind="work.title"></a><br/>
+        Creada el <span class="work-date" ng-bind="work.date.split('T')[0]"></span>
+        <div style="padding-right: 5px;text-align:right" ng-controller="toggleCtrl">
+          <a class="thin-button okay-button" ng-href="{% url 'works:settings_works' %}{$work.slug$}">Editar</a>
+          <a class="thin-button cancel-button" ng-click="toggle()">Eliminar</a>
+          <mz-modal show="isVisible" modal-title="¿Seguro de que quieres eliminar esta obra?">
+            <div class="modal-dialog-content">
+              Una vez que elimines la obra, se borrará de la base de datos de mozArt y no podrás recuperarla. No hay marcha atrás.
+            </div>
+            <a class="button cancel-button" ng-href="/delete/work/{$work.slug$}">Si</a>
+            <a class="button okay-button" ng-click="toggle()">No</a>
+          </mz-modal>
+        </div>
+      </article><br/>
+      <div class="form-error" ng-show="mostrarMensaje">
+        No existen obras suficientes para cubir la petición. Intenta refrescar la página.
+      </div>
+      <button class="button load-more-button" ng-click="cargar()">Cargar más obras</button>
+    </div></div>
+    {% endblock %}

@@ -4,10 +4,11 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.utils.decorators import method_decorator
 
+
 class AuthRedirectMixin(object):
 	def get(self, request, *args, **kwargs):
 		if request.user.is_authenticated():
-			return redirect('work_list')
+			return redirect('works:work_list')
 		else:
 		    return super(AuthRedirectMixin, self).get(self, request, *args, **kwargs)
 

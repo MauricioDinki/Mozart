@@ -98,12 +98,12 @@ MEDIA_URL = '/media/'
 
 THUMBNAIL_DEBUG = True
 
-LOGIN_REDIRECT_URL = 'work_list'
+LOGIN_REDIRECT_URL = 'works:work_list'
 LOGIN_URL = 'login'
 
 # Suit Configuration
 SUIT_CONFIG = {
-    'ADMIN_NAME': 'Mozart',
+    'ADMIN_NAME': 'Mozart: Artistic Plataform',
 }
 
 #Facebook Keys

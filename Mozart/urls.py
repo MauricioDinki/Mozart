@@ -20,16 +20,16 @@ router.register(r'adress',AdressViewSet)
 
 urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^api-oauth/', include('rest_framework.urls',namespace='rest_framework')),
+    url(r'^api-oauth/', include('rest_framework.urls',namespace = 'rest_framework')),
 	url(r'^api/', include(router.urls)),
-    url(r'', include('social.apps.django_app.urls', namespace='social')),
+    url(r'', include('social.apps.django_app.urls', namespace = 'social')),
 
 )
 
 urlpatterns += patterns('',
-    url(r'', include('Works.urls')),
-    url(r'', include('Thirdauth.urls')),
-    url(r'', include('Profiles.urls')),
+    url(r'', include('Works.urls', namespace = u'works')),
+    url(r'', include('Thirdauth.urls', namespace = u'thirdauth')),
+    url(r'', include('Profiles.urls', namespace = u'profiles')),
 )
 
 

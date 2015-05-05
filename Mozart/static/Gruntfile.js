@@ -1,30 +1,39 @@
 module.exports = function(grunt) {  
   grunt.initConfig({  
     pkg: grunt.file.readJSON('package.json'),  
+    watch: {
+      styl: {
+        files: ['app/styl/*.styl'],
+        tasks: ['compileStylus']
+      },
+      js: {
+        files: ['Gruntfile.js', 'app/js/app.js', 'app/js/*/*.js'],
+        tasks: ['compileJavascript']
+      }
+    },
     stylus: {
+      options: {
+        use : [
+          function(){
+            return require('autoprefixer-stylus')('last 2 versions', 'ie 8');
+          }
+        ]
+      },
       compile: {
-        options: {
-          compress: false
-        },
         files: {
-          'app/css/estilos.css': 'app/styl/estilos.styl',
-          'app/css/fuentes.css': 'app/styl/fuentes.styl'
+          'dist/css/styles.min.css': 'app/styl/main.styl'
         }
       }
     },
-    autoprefixer: {
-      dist: {
-        files: {
-          'app/css/estilos-WAP.css': 'app/css/estilos.css'
-        }
-      }
+    jshint: {
+      all: ['Gruntfile.js', 'app/js/app.js', 'app/js/*/*.js']
     },
     concat: {   
       options: {
         separator: ''  
       },
       basic: {
-        src: ['app/js/*.js', 'app/js/*/*.js'],  
+        src: ['app/js/app.js', 'app/js/*/*.js'],  
         dest: 'dist/js/<%= pkg.name %>.js'  
       }
     },
@@ -44,13 +53,6 @@ module.exports = function(grunt) {
         files: {
           'dist/js/<%= pkg.name %>.min.js': ['<%= concat.basic.dest %>'],
           'dist/js/bower.min.js': ['<%= bower_concat.all.dest %>']
-        }
-      }
-    },
-    cssmin: {
-      target: {
-        files: {
-          'dist/css/styles.min.css': ['app/css/fuentes.css', 'app/css/estilos-WAP.css']
         }
       }
     },
@@ -85,9 +87,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-bower-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-autoprefixer');
-  grunt.registerTask('default', ['stylus', 'autoprefixer', 'concat','bower_concat','uglify', 'cssmin','copy']);
-  grunt.registerTask('onlyConcat', ['concat']);
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.registerTask('default', ['stylus', 'jshint', 'concat','bower_concat','uglify','copy', 'watch']);
+  grunt.registerTask('compileStylus', ['stylus']);
+  grunt.registerTask('compileJavascript', ['jshint', 'concat', 'uglify']);
 };

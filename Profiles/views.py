@@ -13,9 +13,9 @@ from social.apps.django_app.default.models import UserSocialAuth
 from Thirdauth.mixins import LoginRequiredMixin
 
 class ChangePasswordView(LoginRequiredMixin,RequestFormMixin,FormView):
-	template_name = 'configuraciones_password.html'
+	template_name = 'settings_password.html'
 	form_class = ChangePasswordForm
-	success_url = reverse_lazy('index')
+	success_url = reverse_lazy('works:index')
 
 	def form_valid(self,form):
 		form.save()
@@ -24,9 +24,9 @@ class ChangePasswordView(LoginRequiredMixin,RequestFormMixin,FormView):
 
 
 class ProfileSettingsView(LoginRequiredMixin,RequestFormMixin,FormView):
-	template_name = 'configuraciones_informacion.html'
+	template_name = 'settings_information.html'
 	form_class = UserInformationForm
-	success_url =  reverse_lazy('settings_account')
+	success_url =  reverse_lazy('profiles:settings_account')
 
 	def form_valid(self,form):
 		form.save()
@@ -53,7 +53,7 @@ class ProfileSettingsView(LoginRequiredMixin,RequestFormMixin,FormView):
 
 
 class ProfileView(TemplateView):
-	template_name = 'perfil_informacion.html'
+	template_name = 'profile_information.html'
 
 	def get_context_data(self, **kwargs):
 		if 'view' not in kwargs:
@@ -64,7 +64,7 @@ class ProfileView(TemplateView):
 
 
 class SocialNetworkSettingsView(LoginRequiredMixin,TemplateView):
-	template_name = 'configuraciones_social.html'
+	template_name = 'settings_social.html'
 
 	def get_context_data(self, **kwargs):
 		if 'view' not in kwargs:
@@ -77,4 +77,4 @@ class SocialNetworkSettingsView(LoginRequiredMixin,TemplateView):
 def SocialNetworkDeleteView(request,provider,account_id):
 	account_to_delete = UserSocialAuth.objects.get(user__username = request.user.username, provider = provider, id = account_id )
 	account_to_delete.delete()
-	return redirect(reverse_lazy('index'))
+	return redirect(reverse_lazy('works:index'))

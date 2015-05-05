@@ -30,6 +30,7 @@ class Work(models.Model):
 	cover = models.ImageField(null=False,blank=False,upload_to=cover_url)
 	archive = models.FileField(blank=False,null=False,upload_to=archive_url)
 	slug = models.SlugField(max_length=50,unique=True)
+	work_type = models.CharField(blank=True,null=True, max_length=50)
 
 	class Meta:
 		verbose_name = "Work"

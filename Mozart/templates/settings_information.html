@@ -1,0 +1,185 @@
+{% extends 'settings.html' %}
+{% block title %}Editar información - mozArt{% endblock %}
+{% load thumbnail %}
+{% load static %}
+
+{% block icon-class %}information-icon{% endblock %}
+{% block option-name %}Editar información{% endblock %}
+
+{% block section %}
+{% if form.non_field_errors %}
+    {% ifnotequal form.non_field_errors.as_text|cut:"* " "$message" %}
+    <div class="aviso-error">
+      {{form.non_field_errors.as_text|cut:"$message"|cut:"* "}}
+    </div>
+  {% endifnotequal %}
+{% endif %}
+  <form class="text-center" action="" method="post" id="id_informationform" name="{{form.form_name}}" enctype="multipart/form-data" ng-controller="editInformationCtrl">
+  {% csrf_token %}
+        <fieldset class="two-elements">
+          <legend>Imagen de perfil</legend>
+          {% if not user.mozart_user.profile_picture %}
+          <img class="circle" src="{% static "img/default.png" %}" width="250px"/><br/>
+          {% else %}
+            {% thumbnail user.mozart_user.profile_picture "250x250" crop="center" as im %}
+          <img class="circle" src="{{ im.url }}"/><br/>
+          {% endthumbnail %}
+          {% endif %}
+          <div class="button file-button">
+            <span>Cambiar imagen</span>
+            {{form.profile_picture}}
+          </div><br/>
+          <div ng-show="mostrarTexto()">
+            <strong>Archivo seleccionado: </strong> 
+            <span ng-bind="imagen.name"></span>
+          </div>
+          <div class="aviso-error" ng-show="mostrarMensaje()">
+            El archivo que seleccionaste no es un archivo de imagen soportado por mozArt.
+          </div>
+        </fieldset>
+        <fieldset class="two-elements">
+          <legend>Datos básicos</legend>
+          <div class="mozart-field-container one-element">
+            <label for="id_username" class="mozart-label initial-label">Nickname *</label>
+            {{form.username}}
+          </div>
+
+          <div class="form-error" ng-show="{{form.form_name}}.username.$error.required && {{form.form_name}}.username.$dirty">No puedes dejar este campo vacío.</div>
+
+          <div class="form-error" ng-show="{{form.form_name}}.username.$error.minlength">
+            El username debe contener al menos 5 carácteres.
+          </div>
+
+          <div class="form-error" ng-show="{{form.form_name}}.username.$error.maxlength">
+            El username debe contener máximo 20 carácteres.
+          </div>
+
+          <div class="mozart-field-container one-element">
+            <label for="id_first_name" class="mozart-label initial-label">Nombre(s)</label>
+            {{form.first_name}}
+          </div>
+
+          <div class="form-error" ng-show="{{form.form_name}}.first_name.$error.minlength">
+            Este campo debe contener al menos 3 carácteres.
+          </div>
+
+          <div class="form-error" ng-show="{{form.form_name}}.first_name.$error.maxlength">
+            Este campo debe contener máximo 50 carácteres.
+          </div>
+
+          <div class="mozart-field-container one-element">
+            <label for="id_last_name" class="mozart-label initial-label">Apellido(s)</label>
+            {{form.last_name}}
+          </div>
+
+          <div class="form-error" ng-show="{{form.form_name}}.first_name.$error.minlength">
+            Este campo debe contener al menos 3 carácteres.
+          </div>
+
+          <div class="form-error" ng-show="{{form.form_name}}.first_name.$error.maxlength">
+            Este campo debe contener máximo 50 carácteres.
+          </div>
+
+          <div class="mozart-field-container one-element">
+            <label for="id_nationality" class="mozart-label non-active-label">País</label>
+            {{form.nationality}}
+          </div>
+          <div class="mozart-field-container one-element">
+            <label for="id_description" class="mozart-label initial-label">Descripción</label>
+            {{form.description}}
+          </div>
+        </fieldset>
+        <fieldset class="two-elements">
+          <legend>Contacto</legend>
+           <div class="mozart-field-container one-element">
+            <label for="id_personal_homepage" class="mozart-label initial-label">Sitio web</label>
+            {{form.personal_homepage}}
+          </div>
+
+          <div class="form-error" ng-show="{{form.form_name}}.$error.url">
+            Debes introducir una URL.
+          </div>
+
+          <div class="mozart-field-container one-element">
+            <label for="id_phone_number" class="mozart-label initial-label">Teléfono</label>
+            {{form.phone_number}}
+          </div>
+          <div class="form-error" ng-show="{{form.form_name}}.phone_number.$error.max">
+            El teléfono debe contener máximo 10 dígitos.
+          </div>
+          <div class="form-error" ng-show="{{form.form_name}}.phone_number.$error.number">
+            Solo puedes introducir numeros.
+          </div>
+          Si introduces menos de 10 dígitos, todos los espacios a la izquierda serán llenados con 0's.
+        </fieldset>
+        <fieldset class="two-elements">
+          <legend>Domicilio</legend>
+          <div class="mozart-field-container one-element">
+            <label for="id_adress" class="mozart-label initial-label">Dirección</label>
+            {{form.adress}}
+          </div>
+
+          <div class="form-error" ng-show="{{form.form_name}}.adress.$error.minlength">
+            La dirección debe contener mínimo 10 carácteres.
+          </div>
+
+          <div class="form-error" ng-show="{{form.form_name}}.adress.$error.maxlength">
+            La dirección debe contener máximo 100 carácteres.
+          </div>
+
+          <div class="mozart-field-container one-element">
+            <label for="id_city" class="mozart-label initial-label">Ciudad</label>
+            {{form.city}}
+          </div>
+
+          <div class="form-error" ng-show="{{form.form_name}}.adress.$error.maxlength">
+            El nombre de la ciudad debe contener mínimo 5 carácteres.
+          </div>
+
+          <div class="form-error" ng-show="{{form.form_name}}.adress.$error.maxlength">
+            El nombre de la ciudad debe contener máximo 30 carácteres.
+          </div>
+
+          <div class="mozart-field-container one-element">
+            <label for="id_zip_code" class="mozart-label initial-label">Código postal</label>
+            {{form.zip_code}}
+          </div>
+
+         <div class="form-error" ng-show="{{form.form_name}}.zip_code.$error.maxlength">
+            El código postal debe contener mínimo 5 carácteres.
+          </div>
+
+          <div class="form-error" ng-show="{{form.form_name}}.zip_code.$error.maxlength">
+            El código postal debe contener máximo 10 carácteres.
+          </div>
+
+          <div class="mozart-field-container one-element">
+            <label for="id_neighborhood" class="mozart-label initial-label">Vecindario</label>
+            {{form.neighborhood}}
+          </div>
+
+          <div class="form-error" ng-show="{{form.form_name}}.neighborhood.$error.maxlength">
+            El vecindario debe contener mínimo 4 carácteres.
+          </div>
+
+          <div class="form-error" ng-show="{{form.form_name}}.neighborhood.$error.maxlength">
+            El vecindario debe contener máximo 200 carácteres.
+          </div>
+
+        </fieldset>
+        <fieldset>
+          <h4>Escribe tu contraseña para guardar los cambios</h4>
+          <div class="mozart-field-container one-element">
+            <label for="id_password" class="mozart-label initial-label">Password *</label>
+            {{form.password}}
+          </div>
+
+          <div class="form-error" ng-show="{{form.form_name}}.password.$error.required && {{form.form_name}}.password.$dirty">No puedes dejar este campo vacío.</div>
+
+          <div class="form-error" ng-show="{{form.form_name}}.password.$error.minlength">
+            La contraseña debe contener al menos 6 carácteres.
+          </div>
+
+          <button type="submit" ng-disabled="!validate()" class="button submit-button">Guardar cambios</button>
+        </fieldset>
+      </form>{% endblock %}

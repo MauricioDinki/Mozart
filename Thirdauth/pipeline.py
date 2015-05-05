@@ -34,7 +34,7 @@ def save_extra_params(backend, details, response, uid, user, *args, **kwargs):
 			instancia_google_url.google = google_profile_url
 			instancia_google_url.save()
 
-		return HttpResponseRedirect(reverse_lazy('settings_social'))
+		return HttpResponseRedirect(reverse_lazy('profiles:settings_social'))
 	else:
 		try:
 			extend_name = ExtendUserSocialAuth.objects.get(user = social_user )
