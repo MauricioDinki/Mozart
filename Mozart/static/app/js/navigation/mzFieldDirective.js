@@ -34,6 +34,18 @@
           else {
             elem.prev('label').addClass('non-active-label');
           }
+          if(elem.hasClass('ng-valid') && elem.hasClass('ng-dirty')) {
+            if(elem.prev('label').hasClass('invalid-state')) {
+              elem.prev('label').removeClass('invalid-state');
+            }
+            elem.prev('label').addClass('valid-state');
+          }
+          if(elem.hasClass('ng-invalid') && elem.hasClass('ng-dirty')) {
+            if(elem.prev('label').hasClass('valid-state')) {
+              elem.prev('label').removeClass('valid-state');
+            }
+            elem.prev('label').addClass('invalid-state');
+          }
         });
         elem.keyup(function() {
           if(elem.hasClass('ng-invalid') && elem.hasClass('ng-dirty')) {

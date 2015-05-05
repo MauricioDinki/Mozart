@@ -6,17 +6,17 @@ from djangular.forms import NgModelFormMixin, NgFormValidationMixin
 from Thirdauth.validations import validate_blank, validate_title, default_error_messages
 from .validators import validate_image, validate_general_archive
 
-class CreateWorkForm(forms.Form):
-# class CreateWorkForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
+# class CreateWorkForm(forms.Form):
+class CreateWorkForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
 	"""
 		Form for create works
 	"""
-	# scope_prefix='work'
-	# form_name='workform'
+	scope_prefix='work'
+	form_name='workform'
 
 	title = forms.CharField(
 		max_length = 40,
-		# min_length = 4,
+		min_length = 4,
 		widget = forms.TextInput(
 			attrs = {
 				'class':'mozart-field empty-initial-field',
@@ -26,8 +26,8 @@ class CreateWorkForm(forms.Form):
 		),
     )
 
-	description = forms.CharField(max_length = 1000,
-		# min_length = 1,
+	description = forms.CharField(
+		max_length = 1000,
 		widget = forms.Textarea(
 			attrs = {
 				'class':'mozart-field empty-initial-field',
@@ -51,12 +51,19 @@ class CreateWorkForm(forms.Form):
 		widget = forms.FileInput(
 			attrs = {
 				'file-upload':'',
-				'file-bind':'archive',
+				'file-bind':'cover',
 			}
 		),
 	)
 
-	archive = forms.FileField()
+	archive = forms.FileField(
+		widget = forms.FileInput(
+			attrs = {
+				'file-upload':'',
+				'file-bind':'archive',
+			}
+		),
+	)
 
 	def __init__(self, *args, **kwargs):
 		self.request = kwargs.pop('request', None)
@@ -68,7 +75,8 @@ class CreateWorkForm(forms.Form):
 				self.fields[field].validators = [validate_image]
 			if field == 'archive':
 				self.fields[field].validators = [validate_general_archive]
-			self.fields[field].required=False
+			if field != 'cover':
+				self.fields[field].required=True
 
 	def clean_title(self):
 		title = self.cleaned_data.get('title')
