@@ -75,21 +75,22 @@ class CreateWorkForm(forms.Form):
 		return validate_title(title)
 
 	def save(self):
-		pass
-		# title = self.cleaned_data.get('title')
-		# description = self.cleaned_data.get('description')
-		# category = self.cleaned_data.get('category')
-		# archive = self.cleaned_data.get('archive')
-		
-		# newWork = Work(user = self.request.user,title = title, description = description, category = category , archive = archive)
-		# newWork.cover = newWork.archive
-		# newWork.save()
-		# print "Se guardo la obra"
-		# cover = self.cleaned_data.get('cover')
+		title = self.cleaned_data.get('title')
+		description = self.cleaned_data.get('description')
+		cover = self.cleaned_data.get('cover')
+		category = self.cleaned_data.get('category')
 		archive = self.cleaned_data.get('archive')
-		print str(archive.content_type) 
-		# if str(cover.content_type) == 'image/jpeg' or str(cover.content_type) == 'image/bmp':
-		# 	print "Si rifa"
+
+		newWork = Work(user = self.request.user, title = title, description = description, category = category , archive = archive)
+		if str(archive.content_type).startswith('image'):
+			newWork.cover = newWork.archive
+			newWork.work_type = 'image'
+		elif str(archive.content_type).startswith('audio'):
+			newWork.cover = cover
+			newWork.work_type = 'audio'
+		else:
+			newWork.cover = cover
+		newWork.save()
 
 class UpdateWorkForm(NgModelFormMixin, NgFormValidationMixin, forms.ModelForm):
 	"""
