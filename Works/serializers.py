@@ -10,4 +10,4 @@ class WorkSerializer(serializers.HyperlinkedModelSerializer):
     )
 	class Meta:
 		model = Work
-		fields = ('title', 'slug', 'date', 'description', 'category', 'cover', 'archive', 'user')
+		fields = ('title', 'slug', 'date', 'description', 'category', 'cover', 'archive', 'work_type', 'user')

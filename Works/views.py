@@ -12,8 +12,7 @@ from Thirdauth.mixins import AuthRedirectMixin, LoginRequiredMixin
 
 class CreateWorkView(LoginRequiredMixin,RequestFormMixin,FormView):
 	form_class = CreateWorkForm
-	# success_url =  reverse_lazy('works:work_list')
-	success_url =  reverse_lazy('works:create_work')
+	success_url =  reverse_lazy('works:work_list')
 	template_name = 'generic-form.html'
 
 	def form_valid(self,form):
