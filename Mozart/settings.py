@@ -103,7 +103,7 @@ LOGIN_URL = 'login'
 
 # Suit Configuration
 SUIT_CONFIG = {
-    'ADMIN_NAME': 'Mozart',
+    'ADMIN_NAME': 'Mozart: Artistic Plataform',
 }
 
 #Facebook Keys
