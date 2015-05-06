@@ -14,9 +14,23 @@
 	
 ::-webkit-media-controls-timeline
 	width 10px !important
+		
+.audio-file .track-title, .image-file .image-title
+	background rgba(mozart-dark-gray, 0)
+	color white
+	font-size 20px
+	font-weight 600
+	padding 15px
+	position absolute
+	text-shadow 0 0 15px black
+	top 0
+	transition all 0.3s
+	width 100%
+	
+.audio-file:hover .track-title, .image-file:hover .image-title
+	background rgba(mozart-dark-gray, 0.8)
+	text-shadow none
 
-#comments
-	background white
 .audio-file
 	background-color mozart-dark-gray !important
 	background-position center !important
@@ -24,7 +38,7 @@
 	background-size 200% auto !important
 	height 250px
 	
-		
+
 	::-webkit-media-controls-panel
 		bottom 20px
 		width 100% !important
@@ -33,22 +47,9 @@
 		background-position center !important
 		background-repeat no-repeat !important
 		background-size 100% auto !important
-			
-		.track-title
-			background rgba(mozart-dark-gray, 0.8)
-			text-shadow none
 				
 		::-webkit-media-controls-panel
 			background rgba(mozart-dark-gray, 0.8)	
-		
-	.track-title
-		background rgba(mozart-dark-gray, 0)
-		color white
-		font-size 20px
-		font-weight 600
-		padding 15px
-		text-shadow 0 0 15px black
-		transition all 0.3s
 		
 	audio
 		bottom 0
@@ -58,14 +59,34 @@
 		vertical-align top
 		width 100%
 	
-.media-player
+#comments-section
+	margin-top 5px !important
+	padding 0 !important
+	
+	h2
+		background white
+		display block
+		padding 20px
+	 	
+#comments-toggle
+	margin-top 5px !important
+	padding 15px !important
+	
+.image-file img
+	width 100%
+	
+.load-more-error
+	margin 15px 0
+	
+.media-content
 	margin 0 auto
 	position relative
 	width 100%
 	transition all 0.3s
 	
-.load-more-error
-	margin 15px 0
+#new-comment
+	text-align right
+
 
 .work-date
 	font-weight bold
@@ -75,7 +96,6 @@
 	margin 15px 0 0 0
 
 #work-details
-	background mozart-light-gray
 	padding 10px
 
 .work-item, .promotor-item
@@ -115,13 +135,17 @@
 .work-item.ng-enter.ng-enter-active 
 	opacity 1
 
-#work-section
-	background white
+#work-section, #comments-section
 	margin 0 auto
-	margin-top 20px
 	max-width 900px
-	padding 0 0 5px 0
 	width 90%
+	
+#work-section
+	border-color white
+	border-style solid
+	border-width 0 0 5px 0
+	margin-top 20px
+	padding 0 0 3px 0
 	
 .work-author-thumbnail
 	height 50px

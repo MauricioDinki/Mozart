@@ -2,9 +2,16 @@
 	'use strict';
 
 	function toggleController($scope) {
-	  $scope.isVisible = false;
-	  $scope.toggle = function() {
-	    $scope.isVisible = !$scope.isVisible;
+	 	$scope.isVisible = false;
+	 	$scope.symbol = '+';
+	 	$scope.toggle = function() {
+	    	if($scope.isVisible) {
+	 			$scope.symbol = '+';
+	    	}
+	    	else {
+	    		$scope.symbol = '-';
+	    	}
+	    	$scope.isVisible = !$scope.isVisible;
 		};
 	}
 

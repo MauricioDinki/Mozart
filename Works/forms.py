@@ -73,6 +73,7 @@ class CreateWorkForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
 			self.fields[field].validators=[validate_blank]
 			if field == 'cover':
 				self.fields[field].validators = [validate_image]
+				self.fields[field].required=False
 			if field == 'archive':
 				self.fields[field].validators = [validate_general_archive]
 			if field != 'cover':

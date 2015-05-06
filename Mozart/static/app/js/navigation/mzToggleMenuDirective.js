@@ -58,7 +58,7 @@
 	    require: '^mzToggleMenu',
 			template: '<div class="menu-option icons {$iconClassName$}">' + 
 			'<span ng-hide="showMenu">{$currentOptionText$}</span>' +
-			'<a class="toggle-menu-button" ng-click="toggleMenu()">{$buttonText$}</a></div>'
+			'<a class="toggle-menu-button white-background" ng-click="toggleMenu()">{$buttonText$}</a></div>'
 		};
 	}
 
