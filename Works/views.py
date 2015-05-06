@@ -57,7 +57,7 @@ class UpdateWorkView(LoginRequiredMixin,UpdateView):
 	slug_field = 'slug'
 	slug_url_kwarg = 'slug'
 	success_url =  reverse_lazy('works:settings_works')
-	template_name = 'configuraciones_editarobra.html'
+	template_name = 'settings_edit_work.html'
 
 	def get_object(self):
 		obj = get_object_or_404(self.model, user = self.request.user, slug = self.kwargs.get(self.slug_url_kwarg, None))
