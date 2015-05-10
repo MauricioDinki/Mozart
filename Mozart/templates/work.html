@@ -4,10 +4,6 @@
 {% load static %}
 {% load disqus_tags %}
 {% block content %}
-{# {% disqus_dev %} #}
-{% disqus_show_comments %}
-
-<!--
 	<section id="work-section">
 	{% if work.work_type == 'image' %}
 		<div class="media-content image-file">
@@ -40,8 +36,9 @@
 			<p class="work-description">{{work.description}}</p>
 		</div>
 	</section>
-	<section id="comments-section" ng-controller="toggleCtrl">
-		<h2>
+	<section id="comments-section">
+		{% disqus_show_comments %}
+		<!--<h2>
 			Comentarios (0)
 			<a class="toggle-menu-button blue-background" ng-click="toggle()">{$ symbol $}</a>
 		</h2>
@@ -57,7 +54,6 @@
 		<div id="new-comment">
 			<textarea id="new-comment-input" class="mozart-field active-field" placeholder="¿Qué opinas de mi obra?"></textarea>
 			<button id="new-comment-button" class="button okay-button">Enviar</button>
-		</div>
+		</div>-->
 	</section>
--->
 {% endblock %}
