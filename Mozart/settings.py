@@ -26,6 +26,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'sorl.thumbnail',
     'django_countries',
     'Thirdauth',
@@ -33,6 +34,7 @@ INSTALLED_APPS = (
     'Profiles',
     'rest_framework',
     'social.apps.django_app.default',
+    'disqus',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -86,6 +88,8 @@ USE_L10N = True
 
 USE_TZ = True
 
+SITE_ID = 1
+
 STATIC_URL = '/static/'
 STATIC_ROOT = 'staticfiles'
 
@@ -129,3 +133,7 @@ SOCIAL_AUTH_PIPELINE = (
     'social.pipeline.social_auth.load_extra_data',
     'Thirdauth.pipeline.save_extra_params',
 )
+
+# Disqus Keys
+DISQUS_API_KEY = os.environ.get("DISQUS_API_KEY", None)
+DISQUS_WEBSITE_SHORTNAME = os.environ.get("DISQUS_WEBSITE_SHORTNAME", None)

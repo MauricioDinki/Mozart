@@ -1,8 +1,13 @@
 {% extends 'base_view.html' %}
 {% block title %}{{work.title}} (por {{work.user.username}}) - mozArt{% endblock %}
-{% block content %}
 {% load thumbnail %}
 {% load static %}
+{% load disqus_tags %}
+{% block content %}
+{# {% disqus_dev %} #}
+{% disqus_show_comments %}
+
+<!--
 	<section id="work-section">
 	{% if work.work_type == 'image' %}
 		<div class="media-content image-file">
@@ -54,4 +59,5 @@
 			<button id="new-comment-button" class="button okay-button">Enviar</button>
 		</div>
 	</section>
+-->
 {% endblock %}
