@@ -42,6 +42,9 @@ class ListWorkView(TemplateView):
     	return kwargs
 
 
+class SearchProductsView(View):
+	template_name = 'search.html'
+
 class SettingsWorkView(LoginRequiredMixin,TemplateView):
 	template_name = 'settings_works.html'
 
