@@ -65,7 +65,7 @@ class UpdateWorkView(LoginRequiredMixin,UpdateView):
 
 
 class UserWorkView(TemplateView):
-	template_name = 'perfil_obras.html'
+	template_name = 'profile_works.html'
 
 	def get_context_data(self, **kwargs):
 		if 'view' not in kwargs:

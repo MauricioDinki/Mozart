@@ -19,7 +19,8 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = (
     'djangular',
-    'suit',
+    'material',
+    'material.admin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -104,11 +105,6 @@ THUMBNAIL_DEBUG = True
 
 LOGIN_REDIRECT_URL = 'works:work_list'
 LOGIN_URL = 'login'
-
-# Suit Configuration
-SUIT_CONFIG = {
-    'ADMIN_NAME': 'Mozart: Artistic Plataform',
-}
 
 #Facebook Keys
 SOCIAL_AUTH_FACEBOOK_KEY = os.environ.get("MOZART_SOCIAL_AUTH_FACEBOOK_KEY", None)
