@@ -30,12 +30,13 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'sorl.thumbnail',
     'django_countries',
-    'Thirdauth',
-    'Works',
-    'Profiles',
+    'haystack',
     'rest_framework',
     'social.apps.django_app.default',
     'disqus',
+    'Thirdauth',
+    'Works',
+    'Profiles',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -133,3 +134,11 @@ SOCIAL_AUTH_PIPELINE = (
 # Disqus Keys
 DISQUS_API_KEY = os.environ.get("DISQUS_API_KEY", None)
 DISQUS_WEBSITE_SHORTNAME = os.environ.get("DISQUS_WEBSITE_SHORTNAME", None)
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
+        'URL': 'http://mozart.com:8000/',
+        'INDEX_NAME': 'haystack',
+    },
+}
