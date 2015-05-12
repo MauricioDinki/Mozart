@@ -45,15 +45,20 @@ class ListWorkView(TemplateView):
 
 class SearchProductsView(View):
 	template_name = 'search.html'
-	queryset = Work.objects.all()
+	work_queryset = Work.objects.all()
+	user_queryset = User.objects.all()
 
 	def get(self,request):
 		if 'search' in request.GET:
 			arg = request.GET['search']
 			if arg == '':
 				return render_to_response('search_empty.html',context_instance = RequestContext(request))
-			works = self.queryset.filter(title__icontains = arg)
-			ctx = {'works':works}
+			works = self.work_queryset.filter(title__icontains = arg)
+			users = self.user_queryset.filter(username__icontains = arg)
+			ctx = {
+				'works':works,
+				'users':users,
+			}
 			return render_to_response(self.template_name,ctx,context_instance = RequestContext(request))
 		else:
 			return render_to_response('search_empty.html',context_instance = RequestContext(request))

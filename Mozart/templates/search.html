@@ -6,12 +6,21 @@
 </head>
 <body>
 	<h1>Aqui te manda si buscaste algo</h1>
-	{% for work in works %}
-		<p> {{work.title}} </p>
-		<p> {{work.description}} </p>
-		<p> {{work.category}} </p>
-	{% empty %}
-		No se encontraron obras
-	{% endfor %}
+	<h2>Se encontraron estas obras</h2>
+		{% for work in works %}
+			<p> {{work.title}} </p>
+			<p> {{work.description}} </p>
+			<p> {{work.category}} </p>
+		{% empty %}
+			No se encontraron obras
+		{% endfor %}
+	<h2>Se encontraron estos ususarios</h2>
+		{% for user in users %}
+			<p> {{user.username}} </p>
+			<p> {{user.email}} </p>
+		{% empty %}
+			No se encontraron Usuarios
+		{% endfor %}
+
 </body>
 </html>
