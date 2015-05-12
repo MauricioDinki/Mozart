@@ -70,14 +70,6 @@
 
           <div class="form-error" ng-show="{{form.form_name}}.password_2.$error.required && {{form.form_name}}.password_2.$dirty">No puedes dejar este campo vacío.</div>
 
-          <div class="form-error" ng-show="{{form.form_name}}.password_2.$error.minlength">
-            La contraseña debe contener al menos 6 carácteres.
-          </div>
-
-          <div class="form-error" ng-show="{{form.form_name}}.password_2.$error.maxlength">
-            La contraseña debe contener máximo 30 carácteres.
-          </div>
-
           <div class="form-error" ng-show="{{form.form_name}}.password_2.$error.match && {{form.form_name}}.password_2.$dirty">
             La contraseña no coincide.
           </div>

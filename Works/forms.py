@@ -114,21 +114,23 @@ class UpdateWorkForm(NgModelFormMixin, NgFormValidationMixin, forms.ModelForm):
 		widgets = {
         	'title':forms.TextInput(
         		attrs = {
-        			'class':'mozart-field empty-initial-field',
-        			'placeholder':'Escribe un titulo para la obra',
-				'mz-field':'',
+					'class':'mozart-field empty-initial-field',
+					'placeholder':'Escribe un titulo para la obra',
+					'mz-field':'',
     			}
 			),
         	'description':forms.Textarea(
         		attrs = {
         			'class':'mozart-field empty-initial-field',
-				'mz-field':'',
+					'placeholder':'Escribe un titulo para la obra',
+					'mz-field':'',
     			}
 			),
         	'category':forms.Select(
         		attrs = {
         			'class':'mozart-field empty-initial-field',
-				'mz-field':'',
+					'placeholder':'Escribe un titulo para la obra',
+					'mz-field':'',
     			}
 			),
         }

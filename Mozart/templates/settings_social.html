@@ -5,24 +5,24 @@
 {% block option-name %}Cuentas vinculadas{% endblock %}
 
 {% block section %}
-        <fieldset class="one-element">
+        <fieldset class="one-element social-container">
           <legend>Cuentas vinculadas</legend>
           <ul class="social-media-box"> {% for cuenta in cuentas %}{% if cuenta.provider = 'facebook' %}
             <li class="icons facebook-icon social-link">
-              <span class="link-social">
-                <a target="_blank" href="{{cuenta.social_network_facebook_url.facebook}}">{% elif  cuenta.provider = 'twitter' %}
-            <li class="icons twitter-icon social-link">
-              <span class="link-social">
-                <a class= target="_blank"href="{{cuenta.social_network_twitter_url.twitter}}">{% elif cuenta.provider = 'google-oauth2' %}
-            <li class="icons google-icon social-link">
-              <span class="link-social">
-                <a target="_blank" href="{{cuenta.social_network_google_url.google}}">{% endif %}{% if cuenta.provider = 'twitter' %}
+              <div class="social-media-name">
+                <a class="facebook-text" target="_blank" href="{{cuenta.social_network_facebook_url.facebook}}">{% elif  cuenta.provider = 'twitter' %}
+            <li class="icons twitter-icon social-item">
+              <div class="social-media-name">
+                <a class="twitter-text" target="_blank"href="{{cuenta.social_network_twitter_url.twitter}}">{% elif cuenta.provider = 'google-oauth2' %}
+            <li class="icons google-icon social-item">
+              <div class="social-media-name">
+                <a class="google-text" target="_blank" href="{{cuenta.social_network_google_url.google}}">{% endif %}{% if cuenta.provider = 'twitter' %}
             @{{cuenta.extendusersocialauth.username_identificator}}{% else %}
             {{cuenta.extendusersocialauth.username_identificator}}{% endif %}
                 </a>
-              </span> 
-              <span ng-controller="toggleCtrl">
-                <a class="thin-button cancel-button" ng-click="toggle()">x</a>
+              </div> 
+              <div ng-controller="toggleCtrl" class="social-media-delete-button">
+                <a class="button cancel-button" ng-click="toggle()">x</a>
                 <mz-modal show="isVisible" modal-title="¿Seguro de que quieres desvincular esta cuenta?">
                   <div  class="modal-dialog-content">
                     Ya no podrás iniciar sesión con ella, pero podrás revincularla en cualquier momento si así lo deseas.
@@ -30,15 +30,16 @@
                   <a class="button cancel-button" href="{% url 'profiles:settings_social_delete' cuenta.provider cuenta.id %}">Si</a>
                   <a class="button okay-button" ng-click="toggle()">No</a>
                 </mz-modal>
-              </span>
+              </div>
             </li>{% empty %}
             <li>Por el momento no tienes ninguna cuenta vinculada.</li>{% endfor %}
           </ul>
           Una vez que vincules tus redes sociales con mozArt, podrás iniciar sesión con cualquiera de ellas.<br/>
-        </fieldset><br/><br/>
-        <h2>Vincular otra cuenta</h2>
-        <div class="social-media-box">
+        </fieldset>
+        <div class="social-login-box">
+          <h2>Vincular otra cuenta</h2>
           <a class="social-link icons facebook-icon" href="{% url 'social:begin' 'facebook' %}">Vincular Facebook</a>
           <a class="social-link icons twitter-icon" href="{% url 'social:begin' 'twitter' %}">Vincular Twitter</a>
-          <a class="social-link icons google-icon" href="{% url 'social:begin' 'google-oauth2' %}">Vincular Google</a>
-        </div>Powered by Kiwi®{% endblock %} ®
+          <a class="social-link icons google-icon" href="{% url 'social:begin' 'google-oauth2' %}">Vincular Google</a><br/>
+          Powered by Kiwi®{% endblock %} ®
+        </div>

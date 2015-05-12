@@ -4,7 +4,7 @@
 {% block icon-class %}works-icon{% endblock %}
 {% block option-name %}Mis obras{% endblock %}
 
-{% block section %}<div ng-init="worksCategory='all';worksAuthor='{{username}}'"><div ng-controller="loadWorksCtrl">
+{% block section %}<div ng-init="worksCategory='all';worksAuthor='{{username}}'"><div ng-controller="loadWorksCtrl" class="text-center">
 <h2>Mis obras</h2><article class="work-item" ng-repeat="work in works">
         <div class="work-thumbnail" style="background:url('{$work.cover$}');">
         </div>

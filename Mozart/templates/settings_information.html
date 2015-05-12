@@ -132,11 +132,11 @@
             {{form.city}}
           </div>
 
-          <div class="form-error" ng-show="{{form.form_name}}.adress.$error.maxlength">
+          <div class="form-error" ng-show="{{form.form_name}}.city.$error.minlength">
             El nombre de la ciudad debe contener mínimo 5 carácteres.
           </div>
 
-          <div class="form-error" ng-show="{{form.form_name}}.adress.$error.maxlength">
+          <div class="form-error" ng-show="{{form.form_name}}.city.$error.maxlength">
             El nombre de la ciudad debe contener máximo 30 carácteres.
           </div>
 
@@ -145,7 +145,7 @@
             {{form.zip_code}}
           </div>
 
-         <div class="form-error" ng-show="{{form.form_name}}.zip_code.$error.maxlength">
+         <div class="form-error" ng-show="{{form.form_name}}.zip_code.$error.minlength">
             El código postal debe contener mínimo 5 carácteres.
           </div>
 
@@ -158,7 +158,7 @@
             {{form.neighborhood}}
           </div>
 
-          <div class="form-error" ng-show="{{form.form_name}}.neighborhood.$error.maxlength">
+          <div class="form-error" ng-show="{{form.form_name}}.neighborhood.$error.minlength">
             El vecindario debe contener mínimo 4 carácteres.
           </div>
 
