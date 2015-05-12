@@ -5,7 +5,8 @@ from .models import Work
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse_lazy
-from django.shortcuts import get_list_or_404,redirect,get_object_or_404
+from django.shortcuts import get_list_or_404,redirect,get_object_or_404, render_to_response
+from django.template import RequestContext
 from django.views.generic import DetailView, TemplateView, FormView, UpdateView, View
 from Profiles.mixins import RequestFormMixin
 from Thirdauth.mixins import AuthRedirectMixin, LoginRequiredMixin
@@ -45,6 +46,18 @@ class ListWorkView(TemplateView):
 class SearchProductsView(View):
 	template_name = 'search.html'
 	queryset = Work.objects.all()
+
+	def get(self,request):
+		if 'search' in request.GET:
+			arg = request.GET['search']
+			if arg == '':
+				return render_to_response('search_empty.html',context_instance = RequestContext(request))
+			works = self.queryset.filter(title__icontains = arg)
+			ctx = {'works':works}
+			return render_to_response(self.template_name,ctx,context_instance = RequestContext(request))
+		else:
+			return render_to_response('search_empty.html',context_instance = RequestContext(request))
+
 
 class SettingsWorkView(LoginRequiredMixin,TemplateView):
 	template_name = 'settings_works.html'

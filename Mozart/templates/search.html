@@ -5,6 +5,13 @@
 	<title>Search</title>
 </head>
 <body>
-	<p>Esta es una busqueda</p>
+	<h1>Aqui te manda si buscaste algo</h1>
+	{% for work in works %}
+		<p> {{work.title}} </p>
+		<p> {{work.description}} </p>
+		<p> {{work.category}} </p>
+	{% empty %}
+		No se encontraron obras
+	{% endfor %}
 </body>
 </html>
