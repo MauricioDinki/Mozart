@@ -145,4 +145,3 @@ class UpdateWorkForm(NgModelFormMixin, NgFormValidationMixin, forms.ModelForm):
 		for field in self.fields:
 			self.fields[field].error_messages.update(default_error_messages)
 			self.fields[field].validators=[validate_blank]
-    

@@ -1,12 +1,13 @@
 # -*- encoding: utf-8 -*-
 
-from .views import ListWorkView, HomeView, CreateWorkView, SettingsWorkView, UpdateWorkView, UserWorkView, DetailWorkView
+from .views import ListWorkView, HomeView, CreateWorkView, SettingsWorkView, UpdateWorkView, UserWorkView, DetailWorkView, SearchProductsView
 from django.conf.urls import patterns, url,include
 
 urlpatterns = patterns('',
 	url(r'^$', HomeView.as_view(), name = 'index',),
 	url(r'^explore/$', ListWorkView.as_view(), name = 'work_list'),
 	url(r'^explore/(?P<category>.*)/$', ListWorkView.as_view(), name = 'work_list_category'),
+	url(r'^search/$', SearchProductsView.as_view(), name = 'search'),
 )
 
 urlpatterns += patterns('',

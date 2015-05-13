@@ -19,20 +19,23 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = (
     'djangular',
-    'suit',
+    'material',
+    'material.admin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'sorl.thumbnail',
     'django_countries',
+    'rest_framework',
+    'social.apps.django_app.default',
+    'disqus',
     'Thirdauth',
     'Works',
     'Profiles',
-    'rest_framework',
-    'social.apps.django_app.default',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -86,6 +89,8 @@ USE_L10N = True
 
 USE_TZ = True
 
+SITE_ID = 1
+
 STATIC_URL = '/static/'
 STATIC_ROOT = 'staticfiles'
 
@@ -100,11 +105,6 @@ THUMBNAIL_DEBUG = True
 
 LOGIN_REDIRECT_URL = 'works:work_list'
 LOGIN_URL = 'login'
-
-# Suit Configuration
-SUIT_CONFIG = {
-    'ADMIN_NAME': 'Mozart: Artistic Plataform',
-}
 
 #Facebook Keys
 SOCIAL_AUTH_FACEBOOK_KEY = os.environ.get("MOZART_SOCIAL_AUTH_FACEBOOK_KEY", None)
@@ -129,3 +129,7 @@ SOCIAL_AUTH_PIPELINE = (
     'social.pipeline.social_auth.load_extra_data',
     'Thirdauth.pipeline.save_extra_params',
 )
+
+# Disqus Keys
+DISQUS_API_KEY = os.environ.get("DISQUS_API_KEY", None)
+DISQUS_WEBSITE_SHORTNAME = os.environ.get("DISQUS_WEBSITE_SHORTNAME", None)

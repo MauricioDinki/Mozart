@@ -58,8 +58,8 @@
       <figure id="mozart-logo">
         <a href="{% url 'works:work_list' %}"><img src="{% static "img/logo.png" %}" alt="mozArt"></a>
       </figure>
-      <form id="search-form">
-        <input type="search" name="busqueda" class="search-input" placeholder="Buscar en mozArt" autocomplete="off"/>
+      <form id="search-form" action="{% url 'works:search' %}" method="get">
+        <input type="search" name="search" class="search-input" placeholder="Buscar en mozArt" autocomplete="off"/>
         <button type="submit" class="icons search-button"></button>
       </form>
     </nav>

@@ -1,8 +1,9 @@
 {% extends 'base_view.html' %}
 {% block title %}{{work.title}} (por {{work.user.username}}) - mozArt{% endblock %}
-{% block content %}
 {% load thumbnail %}
 {% load static %}
+{% load disqus_tags %}
+{% block content %}
 	<section id="work-section">
 	{% if work.work_type == 'image' %}
 		<div class="media-content image-file">
@@ -20,7 +21,7 @@
 		<video class="media-content" src="{{work.archive.url}}" controls="true" poster="{{work.cover.url}}"></video>
  	{% endif %}	
  		<div id="work-details">
-	 		<a href="/{{work.user.username}}">
+	 		<a href="profiles/{{work.user.username}}">
 			{% if not work.user.mozart_user.profile_picture %}
 				<img class="circle work-author-thumbnail float-left" src="{% static "img/default.png" %}"/>
 		    {% else %}
@@ -30,13 +31,14 @@
 		    {% endif %}
 			</a>
 			<span class="icons {{work.category}}-icon"></span><span class="work-title">{{work.title}}</span><br/>
-			Creada por <a href="/{{work.user.username}}">{{work.user.username}}</a> 
+			Creada por <a href="profiles/{{work.user.username}}">{{work.user.username}}</a> 
 			en <span class="work-date">{{work.date}}</span><br/>
 			<p class="work-description">{{work.description}}</p>
 		</div>
 	</section>
-	<section id="comments-section" ng-controller="toggleCtrl">
-		<h2>
+	<section id="comments-section">
+		{% disqus_show_comments %}
+		<!--<h2>
 			Comentarios (0)
 			<a class="toggle-menu-button blue-background" ng-click="toggle()">{$ symbol $}</a>
 		</h2>
@@ -52,6 +54,6 @@
 		<div id="new-comment">
 			<textarea id="new-comment-input" class="mozart-field active-field" placeholder="¿Qué opinas de mi obra?"></textarea>
 			<button id="new-comment-button" class="button okay-button">Enviar</button>
-		</div>
+		</div>-->
 	</section>
 {% endblock %}
