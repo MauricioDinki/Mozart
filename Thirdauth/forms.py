@@ -73,7 +73,7 @@ class RegisterForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
         widget = forms.Select(
             attrs = {
                 'class':'mozart-field active-field',
-                'ng-change': 'validarFecha()',
+                'ng-change': 'validateDate()',
                 'mz-field':'',
             }
         ),
@@ -95,7 +95,7 @@ class RegisterForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
         widget = forms.Select(
             attrs = {
                 'class':'mozart-field active-field',
-                'ng-change': 'validarFecha()',
+                'ng-change': 'validateDate()',
                 'mz-field':'',
             }
         ),
@@ -155,7 +155,7 @@ class RegisterForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
             attrs = {
                 'class':'mozart-field active-field',
                 'placeholder':'Año',
-                'ng-change':'validarFecha()',
+                'ng-change':'validateDate()',
                 'value': this_year - 25,
                 'mz-field':'',
             }

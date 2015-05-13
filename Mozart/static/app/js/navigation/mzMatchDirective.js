@@ -11,7 +11,6 @@
       link: function(scope, elem, attrs, ctrl){
         function compare(){
           var valid = (scope.mzMatch === ctrl.$modelValue);
-          console.log(valid);
           if(valid && elem.val().length >= 6) {
             if(elem.prev('label').hasClass('invalid-state')) {
               elem.prev('label').removeClass('invalid-state');

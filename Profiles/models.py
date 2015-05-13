@@ -7,15 +7,15 @@ from social.apps.django_app.default.models import UserSocialAuth
 
 days = (
 	('','Dia'),
-	('1','1'),
-	('2','2'),
-	('3','3'),
-	('4','4'),
-	('5','5'),
-	('6','6'),
-	('7','7'),
-	('8','8'),
-	('9','9'),
+	('01','1'),
+	('02','2'),
+	('03','3'),
+	('04','4'),
+	('05','5'),
+	('06','6'),
+	('07','7'),
+	('08','8'),
+	('09','9'),
 	('10','10'),
 	('11','11'),
 	('12','12'),
@@ -41,21 +41,21 @@ days = (
 
 months = (
 	('','Mes'),
-	('Enero', 'Enero'),
-	('Febrero', 'Febrero'),
-	('Marzo', 'Marzo'),
-	('Abril', 'Abril'),
-	('Mayo', 'Mayo'),
-	('Junio', 'Junio'),
-	('Julio', 'Julio'),
-	('Agosto', 'Agosto'),
-	('Septiembre', 'Septiembre'),
-	('Octubre', 'Octubre'),
-	('Noviembre', 'Noviembre'),
-	('Diciembre', 'Diciembre'),)
+	('01', 'Enero'),
+	('02', 'Febrero'),
+	('03', 'Marzo'),
+	('04', 'Abril'),
+	('05', 'Mayo'),
+	('06', 'Junio'),
+	('07', 'Julio'),
+	('08', 'Agosto'),
+	('09', 'Septiembre'),
+	('10', 'Octubre'),
+	('11', 'Noviembre'),
+	('12', 'Diciembre'),)
 
 sexuality = (
-	('',''),
+	('','Sexo'),
 	('Masculino', 'Masculino'),
 	('Femenino', 'Femenino'),)
 

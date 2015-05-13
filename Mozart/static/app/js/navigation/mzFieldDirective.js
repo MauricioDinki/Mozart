@@ -28,8 +28,13 @@
           elem.prev('label').removeClass('active-label');
           if(elem.val() === '' && !((elem.hasClass('ng-valid') && elem.hasClass('ng-dirty')) || (elem.hasClass('ng-invalid') && elem.hasClass('ng-dirty')))){
             elem.removeClass('active-field');
-            elem.addClass('empty-initial-field'); 
-            elem.prev('label').addClass('initial-label');
+            elem.addClass('empty-initial-field');
+            if(elem.prop('tagName') === 'SELECT') {
+              elem.prev('label').addClass('non-active-label');
+            }
+            else{
+              elem.prev('label').addClass('initial-label');
+            }
           }
           else {
             elem.prev('label').addClass('non-active-label');
