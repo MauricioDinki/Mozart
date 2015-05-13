@@ -1,20 +1,28 @@
 from django.db import models
 from Profiles.models import days,months
 from django.utils.text import slugify
+from django.contrib.auth.models import User
 
 def event_cover_url(self,filename):
 	return str('event-cover/%s/%s')%(self.user.username,filename)
 
 class Event(models.Model):
+	"""
+		DB model for events
+	"""
+	user = models.OneToOneField(
+		User,
+		null=True,
+	)
 	name = models.CharField(
 		blank=True,
-		null=True,
 		max_length=50,
+		null=True,
 	)
 	description = models.CharField(
 		blank=True,
+		max_length=200,
 		null=True,
-		max_length=200
 	)
 	cover = models.FileField(
 		blank=True,
@@ -23,20 +31,20 @@ class Event(models.Model):
 	)
 	day = models.CharField(
 		blank=True,
-		null=True, 
 		max_length=50,
+		null=True, 
 		choices=days
 	)
 	month = models.CharField(
 		blank=True,
-		null=True, 
 		max_length=50,
+		null=True, 
 		choices=months
 	)
 	year = models.IntegerField(
 		blank=True,
+		max_length=4,
 		null=True,
-		max_length=4
 	)
 
 	start_time = models.TimeField(
@@ -49,12 +57,15 @@ class Event(models.Model):
 	)
 	place = models.CharField(
 		blank=True,
+		max_length=50,
 		null=True,
-		max_length=50
 	)
 	slug = models.SlugField(
+		blank=True,
 		max_length=50,
+		null=True,
 		unique=True,
+
 	)
 
 	class Meta:
@@ -62,5 +73,8 @@ class Event(models.Model):
 		verbose_name_plural = "Events"
 
 	def save(self, *args, **kwargs):
-		self.slug = slugify(self.title)
-		super(Work, self).save(*args, **kwargs)
+		self.slug = slugify(self.name)
+		super(Event, self).save(*args, **kwargs)
+
+	def __unicode__(self):
+		return self.name

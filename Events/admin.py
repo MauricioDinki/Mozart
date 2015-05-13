@@ -5,7 +5,5 @@ from .models import Event
 
 @admin.register(Event)
 class AdminWork(admin.ModelAdmin):
-	pass
-    # list_display = ('')
-    # list_filter = ('')
-    # prepopulated_fields = {''}
+	exclude = ('slug',)
+	list_display = ('name', 'place',)
