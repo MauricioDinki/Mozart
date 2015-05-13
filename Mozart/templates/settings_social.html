@@ -8,7 +8,7 @@
         <fieldset class="one-element social-container">
           <legend>Cuentas vinculadas</legend>
           <ul class="social-media-box"> {% for cuenta in cuentas %}{% if cuenta.provider = 'facebook' %}
-            <li class="icons facebook-icon social-link">
+            <li class="icons facebook-icon social-item">
               <div class="social-media-name">
                 <a class="facebook-text" target="_blank" href="{{cuenta.social_network_facebook_url.facebook}}">{% elif  cuenta.provider = 'twitter' %}
             <li class="icons twitter-icon social-item">
