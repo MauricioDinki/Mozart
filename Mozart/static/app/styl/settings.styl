@@ -6,21 +6,22 @@ div.menu-option
 
 ul.menu-list 
 	display block
-	height auto
+	max-height 1000px
 	overflow hidden
 	text-align left
-// 	transition all 0.3s ease-out !important
-	
-// ul.menu-list.ng-hide-add.ng-hide-add-active,
-// ul.menu-list.ng-hide-remove.ng-hide-remove-active
-//  	transition all 0.3s ease-out !important
+	transition all 0.5s
  	
 ul.menu-list.ng-hide
- 	height 0
-//  	transition all 0.3s ease-out !important
-	
+	display block !important
+	max-height 0px
+
+.menu-option.ng-hide
+	display block !important
+	height 0
+
 .menu-option
 	display block
+	transition all 0s
 	
 li.menu-option a
 	color white

@@ -13,12 +13,8 @@
         <li><a href="{% url 'works:work_user_list_category' username 'otros' %}" class="icons otros-icon" title="Otros"></a></li>
     </ul>
 </div>
-<style>
-	#settings-menu {
-		top: 100px !important;
-	}
-</style>
 <mz-toggle-menu id="profile-menu" icon-class-name="{% block icon-class %}{% endblock %}" current-option-text="{% block option-name %}{% endblock %}">
+<mz-toggle-visible>{$showMenu$}</mz-toggle-visible>
 			<li><img id="avatar-usuario" ng-src="{$imagen$}"/></li>
             <li class="menu-option"><a class="icons information-icon" href="{% url 'profiles:settings_account' %}">Editar información</a></li>
             <li class="menu-option"><a class="icons settings-icon" href="{% url 'profiles:settings_password' %}">Cambiar contraseña</a></li>
