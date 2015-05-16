@@ -19,8 +19,7 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = (
     'djangular',
-    'material',
-    'material.admin',
+    'suit',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -36,6 +35,7 @@ INSTALLED_APPS = (
     'Thirdauth',
     'Works',
     'Profiles',
+    'Events',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -98,6 +98,14 @@ STATICFILES_DIRS = (
     os.path.join(PROJECT_PATH,'static/dist'),
 )
 
+SUIT_CONFIG = {
+    'ADMIN_NAME': 'Mozart',
+    'MENU_ICONS': {
+       'sites': 'icon-leaf',
+       'auth': 'icon-lock',
+    },
+}
+
 MEDIA_ROOT = os.path.join(PROJECT_PATH,'media')
 MEDIA_URL = '/media/'
 
@@ -107,8 +115,8 @@ LOGIN_REDIRECT_URL = 'works:work_list'
 LOGIN_URL = 'login'
 
 #Facebook Keys
-SOCIAL_AUTH_FACEBOOK_KEY = os.environ.get("MOZART_SOCIAL_AUTH_FACEBOOK_KEY", None)
-SOCIAL_AUTH_FACEBOOK_SECRET = os.environ.get("MOZART_SOCIAL_AUTH_FACEBOOK_SECRET", None)
+SOCIAL_AUTH_FACEBOOK_KEY = os.environ.get("SOCIAL_AUTH_FACEBOOK_KEY", None)
+SOCIAL_AUTH_FACEBOOK_SECRET = os.environ.get("SOCIAL_AUTH_FACEBOOK_SECRET", None)
 
 # Twitter Keys
 SOCIAL_AUTH_TWITTER_KEY = os.environ.get("MOZART_SOCIAL_AUTH_TWITTER_KEY", None)

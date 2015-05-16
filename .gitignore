@@ -3,6 +3,7 @@ db.sqlite3
 Works/migrations/
 Thirdauth/migrations/
 Profiles/migrations/
+Events/migrations/
 Mozart-env/
 Mozart/media/
 Mozart/static/dist/
