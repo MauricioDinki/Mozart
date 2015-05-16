@@ -32,7 +32,6 @@ INSTALLED_APPS = (
     'rest_framework',
     'social.apps.django_app.default',
     'disqus',
-    'django_google_maps',
     'Thirdauth',
     'Works',
     'Profiles',
@@ -98,6 +97,14 @@ STATIC_ROOT = 'staticfiles'
 STATICFILES_DIRS = (
     os.path.join(PROJECT_PATH,'static/dist'),
 )
+
+SUIT_CONFIG = {
+    'ADMIN_NAME': 'Mozart',
+    'MENU_ICONS': {
+       'sites': 'icon-leaf',
+       'auth': 'icon-lock',
+    },
+}
 
 MEDIA_ROOT = os.path.join(PROJECT_PATH,'media')
 MEDIA_URL = '/media/'
