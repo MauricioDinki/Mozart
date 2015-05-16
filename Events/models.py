@@ -29,23 +29,27 @@ class Event(models.Model):
 		null=True,
 		upload_to=event_cover_url
 	)
-	day = models.CharField(
+	date = models.DateField(
 		blank=True,
-		max_length=50,
-		null=True, 
-		choices=days
-	)
-	month = models.CharField(
-		blank=True,
-		max_length=50,
-		null=True, 
-		choices=months
-	)
-	year = models.IntegerField(
-		blank=True,
-		max_length=4,
 		null=True,
 	)
+	# day = models.CharField(
+	# 	blank=True,
+	# 	max_length=50,
+	# 	null=True, 
+	# 	choices=days
+	# )
+	# month = models.CharField(
+	# 	blank=True,
+	# 	max_length=50,
+	# 	null=True, 
+	# 	choices=months
+	# )
+	# year = models.IntegerField(
+	# 	blank=True,
+	# 	max_length=4,
+	# 	null=True,
+	# )
 
 	start_time = models.TimeField(
 		blank=True,
