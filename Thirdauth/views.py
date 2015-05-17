@@ -33,7 +33,6 @@ class RegisterView(AuthRedirectMixin,FormView):
 		form.save()
 		login(self.request,form.user_cache)
 		return super(RegisterView,self).form_valid(form)
-
 	
 	def get_context_data(self, **kwargs):
 	    context = super(RegisterView, self).get_context_data(**kwargs)

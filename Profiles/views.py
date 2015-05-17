@@ -38,11 +38,6 @@ class ProfileSettingsView(LoginRequiredMixin,RequestFormMixin,FormView):
 		ctx = {'updated':'Perfil Actualizado','form':form}
 		return render_to_response(self.template_name, ctx, context_instance = RequestContext(self.request))
 
-	def get_context_data(self, **kwargs):
-	    context = super(ProfileSettingsView, self).get_context_data(**kwargs)
-	    context.update(form=UserInformationForm())
-	    return context
-
 	def get_initial(self):
 		initial = {
 			'adress':self.request.user.adress.adress,
@@ -60,7 +55,6 @@ class ProfileSettingsView(LoginRequiredMixin,RequestFormMixin,FormView):
 		}
 			
 		return initial
-
 
 class ProfileView(TemplateView):
 	template_name = 'profile_information.html'
