@@ -30,6 +30,7 @@ urlpatterns += patterns('',
     url(r'', include('Works.urls', namespace = u'works')),
     url(r'', include('Thirdauth.urls', namespace = u'thirdauth')),
     url(r'', include('Profiles.urls', namespace = u'profiles')),
+    url(r'', include('Events.urls', namespace = u'events')),
 )
 
 
