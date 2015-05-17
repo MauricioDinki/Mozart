@@ -2,12 +2,13 @@
 
 from .models import category, Work
 from django import forms
-from djangular.forms import NgModelFormMixin, NgFormValidationMixin
+from django.utils import six
+from djangular.forms import NgDeclarativeFieldsMetaclass, NgFormValidationMixin
 from Thirdauth.validations import validate_blank, validate_title, default_error_messages
 from .validators import validate_image, validate_general_archive
 
 # class CreateWorkForm(forms.Form):
-class CreateWorkForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
+class CreateWorkForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValidationMixin, forms.Form)):
 	"""
 		Form for create works
 	"""
@@ -101,7 +102,7 @@ class CreateWorkForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
 			newWork.cover = cover
 		newWork.save()
 
-class UpdateWorkForm(NgModelFormMixin, NgFormValidationMixin, forms.ModelForm):
+class UpdateWorkForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValidationMixin, forms.Form)):
 	"""
 		Form for update works
 	"""

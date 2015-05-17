@@ -1,10 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Search</title>
-</head>
-<body>
+{% extends 'base_view.html' %}
+{% block content %}
 	<h1>Aqui te manda si buscaste algo</h1>
 	<h2>Se encontraron estas obras</h2>
 		{% for work in works %}
@@ -22,5 +17,4 @@
 			No se encontraron Usuarios
 		{% endfor %}
 
-</body>
-</html>
+{% endblock %}

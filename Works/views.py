@@ -20,6 +20,11 @@ class CreateWorkView(LoginRequiredMixin,RequestFormMixin,FormView):
 		form.save()
 		return super(CreateWorkView,self).form_valid(form)
 
+	def get_context_data(self, **kwargs):
+	    context = super(CreateWorkView, self).get_context_data(**kwargs)
+	    context.update(form=CreateWorkForm())
+	    return context
+
 class DetailWorkView(DetailView):
 	template_name = 'work.html'
 	model = Work

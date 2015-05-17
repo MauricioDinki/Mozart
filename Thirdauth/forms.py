@@ -5,10 +5,11 @@ from datetime import date
 from django import forms
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
-from djangular.forms import NgModelFormMixin, NgFormValidationMixin
+from django.utils import six
+from djangular.forms import NgDeclarativeFieldsMetaclass, NgFormValidationMixin
 from Profiles.models import days,months,type_of_users,sexuality,Mozart_User,Date_of_Birth,Adress,Contact
 
-class LoginForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
+class LoginForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValidationMixin, forms.Form)):
     """
         Form for login with username and password
     """
@@ -59,7 +60,7 @@ class LoginForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
         return self.cleaned_data
 
 
-class RegisterForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
+class RegisterForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValidationMixin, forms.Form)):
     """
         Form for signup a new mozart user
     """

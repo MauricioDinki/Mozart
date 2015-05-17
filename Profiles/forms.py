@@ -2,11 +2,13 @@
 
 from .models import Mozart_User
 from django import forms
+from django.utils import six
+from djangular.forms import NgDeclarativeFieldsMetaclass, NgFormValidationMixin
 from django_countries import countries
 from djangular.forms import NgModelFormMixin, NgFormValidationMixin
 from Thirdauth.validations import *
 
-class ChangePasswordForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
+class ChangePasswordForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValidationMixin, forms.Form)):
 	"""
 		Form for update the user password
 	"""
@@ -75,7 +77,7 @@ class ChangePasswordForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
 		user_to_change.save()
 
 
-class UserInformationForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
+class UserInformationForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValidationMixin, forms.Form)):
 	"""
 		Form for change user information
 	"""
