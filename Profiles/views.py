@@ -22,6 +22,11 @@ class ChangePasswordView(LoginRequiredMixin,RequestFormMixin,FormView):
 		logout(self.request)
 		return super(ChangePasswordView,self).form_valid(form)
 
+	def get_context_data(self, **kwargs):
+	    context = super(ChangePasswordView, self).get_context_data(**kwargs)
+	    context.update(form=ChangePasswordForm())
+	    return context
+
 
 class ProfileSettingsView(LoginRequiredMixin,RequestFormMixin,FormView):
 	template_name = 'settings_information.html'
@@ -32,6 +37,11 @@ class ProfileSettingsView(LoginRequiredMixin,RequestFormMixin,FormView):
 		form.save()
 		ctx = {'updated':'Perfil Actualizado','form':form}
 		return render_to_response(self.template_name, ctx, context_instance = RequestContext(self.request))
+
+	def get_context_data(self, **kwargs):
+	    context = super(ProfileSettingsView, self).get_context_data(**kwargs)
+	    context.update(form=UserInformationForm())
+	    return context
 
 	def get_initial(self):
 		initial = {

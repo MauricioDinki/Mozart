@@ -18,6 +18,11 @@ class LoginView(AuthRedirectMixin,FormView):
 		login(self.request,form.user_cache)
 		return super(LoginView,self).form_valid(form)
 
+	def get_context_data(self, **kwargs):
+	    context = super(LoginView, self).get_context_data(**kwargs)
+	    context.update(form=LoginForm())
+	    return context
+
 
 class RegisterView(AuthRedirectMixin,FormView):
 	template_name = 'signup.html'
@@ -28,6 +33,12 @@ class RegisterView(AuthRedirectMixin,FormView):
 		form.save()
 		login(self.request,form.user_cache)
 		return super(RegisterView,self).form_valid(form)
+
+	
+	def get_context_data(self, **kwargs):
+	    context = super(RegisterView, self).get_context_data(**kwargs)
+	    context.update(form=RegisterForm())
+	    return context
 
 
 @login_required(login_url='login')
