@@ -4,6 +4,7 @@
 {% load static %}
 {% load disqus_tags %}
 {% block content %}
+
 	<section id="work-section">
 	{% if work.work_type == 'image' %}
 		<div class="media-content image-file">
@@ -37,6 +38,7 @@
 		</div>
 	</section>
 	<section id="comments-section">
+
 		{% disqus_show_comments %}
 		<!--<h2>
 			Comentarios (0)
