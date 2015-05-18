@@ -186,25 +186,42 @@ main
   .icons:before
     font-size 20px
     
-#big-search-container
-  margin 32% auto
-  max-width 800px
-  width 100%
+#big-search
+  background-image url('/static/img/fondo1.jpg')
+  background-position 50% 50% !important
+  background-size cover !important
+  bottom 0
+  position absolute
+  top 35px
     
 #big-search-form
-  margin 0 auto
-  position relative
+  width 100%
   
   .search-input
-    background white !important
-    font-size 25px !important
-    height 50px
+    background rgba(white, 0.6) !important
+    border-color mozart-light-blue !important
+    border-style solid !important
+    border-width 0 0 3px 0 !important
+    font-size 29px !important
+    height 120px
+    position relative !important
     
   .search-button
-    height 50px
+    background orange
+    box-shadow 0 0 30px mozart-dark-gray
+    display block
+    height 120px
+    margin 20px auto
+    position relative !important
+    transition background 0.3s
+    width 120px
     
     &:before
-      font-size 38px !important
+      color white
+      font-size 80px !important
+      
+    &:hover
+      background mozart-orange
     
 #search-form
   float right
