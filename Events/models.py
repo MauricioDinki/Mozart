@@ -33,23 +33,6 @@ class Event(models.Model):
 		blank=True,
 		null=True,
 	)
-	# day = models.CharField(
-	# 	blank=True,
-	# 	max_length=50,
-	# 	null=True, 
-	# 	choices=days
-	# )
-	# month = models.CharField(
-	# 	blank=True,
-	# 	max_length=50,
-	# 	null=True, 
-	# 	choices=months
-	# )
-	# year = models.IntegerField(
-	# 	blank=True,
-	# 	max_length=4,
-	# 	null=True,
-	# )
 
 	start_time = models.TimeField(
 		blank=True,
