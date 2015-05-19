@@ -14,7 +14,7 @@
     </div>
   {% endifnotequal %}
 {% endif %}
-  <form class="text-center" action="" method="post" id="id_informationform" name="{{form.form_name}}" enctype="multipart/form-data" ng-controller="editInformationCtrl">
+  <form class="text-center" action="" method="post" id="id_{{form.form_name}}" name="{{form.form_name}}" enctype="multipart/form-data" ng-controller="{{form.form_controller}}">
   {% csrf_token %}
         <fieldset class="two-elements">
           <legend>Imagen de perfil</legend>

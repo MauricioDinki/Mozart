@@ -12,7 +12,6 @@ class ChangePasswordForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgForm
 	"""
 		Form for update the user password
 	"""
-	scope_prefix = 'changePassword'
 	form_name = 'passwordform'
 
 	old_password = forms.CharField(
@@ -47,7 +46,7 @@ class ChangePasswordForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgForm
 				'class':'mozart-field empty-initial-field',
                 'placeholder':'Vuelve a escribir tu nueva contraseña',
 				'mz-field':'',
-                'mz-match':'changePassword.new_password_1',
+                'mz-match':'new_password_1',
             }
 		),
 	)
@@ -81,7 +80,7 @@ class UserInformationForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFor
 	"""
 		Form for change user information
 	"""
-	scope_prefix='information'
+	form_controller = 'editInformationCtrl'
 	form_name='informationform'
 
 	username = forms.CharField(

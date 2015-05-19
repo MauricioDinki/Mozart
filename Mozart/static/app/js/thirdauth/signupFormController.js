@@ -5,8 +5,10 @@
     $scope.agree = false;
     $scope.validDate = true;
     $scope.message = '';
+    $scope.dateIsDirty = false;
     $scope.validateDate = function(){
-      $scope.message = validateDates.validDate($scope.signup.day_of_birth, $scope.signup.month_of_birth, $scope.signup.year_of_birth);
+      $scope.message = validateDates.validDate($scope.day_of_birth, $scope.month_of_birth, $scope.year_of_birth);
+      $scope.dateIsDirty = ($scope.signupform.day_of_birth.$dirty && $scope.signupform.month_of_birth.$dirty);
       $scope.validDate = ($scope.message === 'Ok');
     };
     $scope.validate = function(){

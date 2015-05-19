@@ -12,7 +12,7 @@ class CreateWorkForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormVali
 	"""
 		Form for create works
 	"""
-	scope_prefix='work'
+	form_controller='uploadWorkCtrl'
 	form_name='workform'
 
 	title = forms.CharField(
@@ -106,7 +106,7 @@ class UpdateWorkForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormVali
 	"""
 		Form for update works
 	"""
-	scope_prefix='work'
+	form_controller='editWorkCtrl'
 	form_name='editworkform'
 
 	class Meta:
