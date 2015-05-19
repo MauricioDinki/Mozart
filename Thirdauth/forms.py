@@ -13,7 +13,6 @@ class LoginForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValidatio
     """
         Form for login with username and password
     """
-    scope_prefix='login'
     form_name='loginform'
 
     username = forms.CharField(
@@ -64,7 +63,7 @@ class RegisterForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValida
     """
         Form for signup a new mozart user
     """
-    scope_prefix='signup'
+    form_controller='signupFormCtrl'
     form_name='signupform'
     this_year=date.today().year
 
@@ -122,7 +121,7 @@ class RegisterForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValida
                 'class':'mozart-field empty-initial-field',
                 'placeholder':'Vuelve a escribir tu contraseña',
                 'mz-field':'',
-                'mz-match':'signup.password_1',
+                'mz-match':'password_1',
             }
         ),
     )

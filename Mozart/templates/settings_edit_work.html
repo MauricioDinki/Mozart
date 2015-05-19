@@ -7,7 +7,7 @@
       {{form.non_field_errors.as_text|cut:"$message"|cut:"* "}}
     </div>
   {% endifnotequal %}
-{% endif %}<form action="" method="post" id="id_editworkform" name="{{form.form_name}}" novalidate ng-controller="editWorkCtrl" class="text-center">
+{% endif %}<form action="" method="post" id="id_{{form.form_name}}" name="{{form.form_name}}" novalidate ng-controller="{{form.form_controller}}" class="text-center">
           <h2>Editar obra</h2>
           {% csrf_token %}
           <div class="mozart-field-container one-element initial-state">

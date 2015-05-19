@@ -13,7 +13,7 @@
         </div>
           {% endifnotequal %}
         {% endif %}
-        <form action="" method="post" id="id_loginform" name="{{form.form_name}}" novalidate>
+        <form action="" method="post" id="id_{{form.form_name}}" name="{{form.form_name}}" novalidate>
           {% csrf_token %}
           <div class="mozart-field-container one-element">
             <label for="id_username" class="mozart-label initial-label">Nickname</label>
