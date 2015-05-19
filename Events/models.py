@@ -8,22 +8,8 @@ def event_cover_url(self,filename):
 
 class Event(models.Model):
 	"""
-		DB model for events
+		Database model for events
 	"""
-	user = models.ForeignKey(
-		User,
-		null=True,
-	)
-	name = models.CharField(
-		blank=True,
-		max_length=50,
-		null=True,
-	)
-	description = models.CharField(
-		blank=True,
-		max_length=200,
-		null=True,
-	)
 	cover = models.FileField(
 		blank=True,
 		null=True,
@@ -33,14 +19,20 @@ class Event(models.Model):
 		blank=True,
 		null=True,
 	)
-
-	start_time = models.TimeField(
+	description = models.CharField(
 		blank=True,
+		max_length=200,
 		null=True,
 	)
 	finish_time = models.TimeField(
 		blank=True,
 		null=True,
+	)
+	name = models.CharField(
+		blank=True,
+		max_length=50,
+		null=True,
+
 	)
 	place = models.CharField(
 		blank=True,
@@ -50,6 +42,14 @@ class Event(models.Model):
 	slug = models.SlugField(
 		max_length=50,
 		unique=True,
+	)
+	start_time = models.TimeField(
+		blank=True,
+		null=True,
+	)
+	user = models.ForeignKey(
+		User,
+		null=True,
 	)
 
 	class Meta:

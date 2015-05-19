@@ -6,9 +6,15 @@ from django.core.urlresolvers import reverse_lazy
 from Utils.mixins import RequestFormMixin
 
 class ListEventView(TemplateView):
-    template_name = "event_list.html"
+	'''
+		View for events list
+	'''
+	template_name = "event_list.html"
 
 class CreateEventView(RequestFormMixin, FormView):
+	'''
+		View for the form to create events
+	'''
 	form_class = CreateEventForm
 	success_url =  reverse_lazy('events:event_list')
 	template_name = 'generic-form.html'
