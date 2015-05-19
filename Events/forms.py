@@ -1,18 +1,22 @@
 # -*- encoding: utf-8 -*-
 
-import time
-from Utils.validations import eval_blank
-from django import forms
 from .models import Event
+from django import forms
+from django.utils.text import slugify
+from Utils.validations import default_messages, custom_messages, eval_blank, eval_iexact
+import time
 
 class CreateEventForm(forms.ModelForm):
+    '''
+        This form is a ModelForm that create events
+    '''
     class Meta:
         model = Event
         exclude = ['user','slug']
         widgets = {
         	'name': forms.TextInput(
         		attrs = {
-        			'class': 'clasechida'
+        			'class': ''
         		}
     		),
             'description': forms.Textarea(
@@ -29,9 +33,10 @@ class CreateEventForm(forms.ModelForm):
         }
 
     def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop('request', None)
         super(CreateEventForm, self).__init__(*args, **kwargs)
         for field in self.fields:
-            # self.fields[field].error_messages.update(default_messages)
+            self.fields[field].error_messages.update(default_messages)
             self.fields[field].validators=[eval_blank]
             self.fields[field].required=True
 
@@ -46,13 +51,13 @@ class CreateEventForm(forms.ModelForm):
         eve = str(event_date).split('-')
         tday = time.strftime("%Y-%m-%d").split('-')
         if int(eve[0]) < int(tday[0]):
-            raise forms.ValidationError('El evento no puede ser antes de hoy 1')
+            raise forms.ValidationError(custom_messages['inevent'])
         elif int(eve[0]) == int(tday[0]):
             if int(eve[1]) < int(tday[1]):
-                raise forms.ValidationError('El evento no puede ser antes de hoy 2')
+                raise forms.ValidationError(custom_messages['inevent'])
             elif int(eve[1]) == int(tday[1]):
                 if int(eve[2]) < int(tday[2]):
-                    raise forms.ValidationError('El evento no puede ser antes de hoy 3')
+                    raise forms.ValidationError(custom_messages['inevent'])
         return event_date
 
     def clean_finish_time(self):
@@ -70,6 +75,31 @@ class CreateEventForm(forms.ModelForm):
             min_ini = (int(ini[0])*60) + int(ini[1])
 
             if abs(min_fin - min_ini) < 30:
-                raise forms.ValidationError('El evento no puede ser tan corto')     
+                raise forms.ValidationError(custom_messages['shevent'])     
         
         return start_time and finish_time
+
+    def clean_name(self):
+        data = self.cleaned_data.get('name')
+        return eval_iexact(data, self.Meta.model,'slug')
+
+    def save(self):
+        cleaned_data = super(CreateEventForm, self).clean()
+        newEvent = Event(
+            user = self.request.user,
+            name = cleaned_data.get('name'),
+            cover = cleaned_data.get('cover'),
+            date = cleaned_data.get('date'),
+            description = cleaned_data.get('description'),
+            finish_time = cleaned_data.get('finish_time'),
+            start_time = cleaned_data.get('start_time'),
+            place = cleaned_data.get('place'),
+            slug = slugify(cleaned_data.get('name')),
+        )
+        newEvent.save()
+
+
+
+
+        
+

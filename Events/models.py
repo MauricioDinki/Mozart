@@ -10,7 +10,7 @@ class Event(models.Model):
 	"""
 		DB model for events
 	"""
-	user = models.OneToOneField(
+	user = models.ForeignKey(
 		User,
 		null=True,
 	)
@@ -48,20 +48,13 @@ class Event(models.Model):
 		null=True,
 	)
 	slug = models.SlugField(
-		blank=True,
 		max_length=50,
-		null=True,
 		unique=True,
-
 	)
 
 	class Meta:
 		verbose_name = "Event"
 		verbose_name_plural = "Events"
-
-	def save(self, *args, **kwargs):
-		self.slug = slugify(self.name)
-		super(Event, self).save(*args, **kwargs)
 
 	def __unicode__(self):
 		return self.name
