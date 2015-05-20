@@ -6,6 +6,7 @@ from django.contrib import admin
 from Profiles.viewsets import UserViewSet,MozartUserViewSet,ContactViewSet,DateBirthViewSet,AdressViewSet
 from rest_framework import routers
 from Works.viewsets import WorkViewSet
+from API.viewsets import EventViewSet
 
 router = routers.DefaultRouter()
 
@@ -16,6 +17,7 @@ router.register(r'user_dateofbirth',DateBirthViewSet)
 router.register(r'users',UserViewSet)
 router.register(r'worksets',WorkViewSet)
 router.register(r'adress',AdressViewSet)
+router.register(r'events',EventViewSet)
 
 
 urlpatterns = patterns('',

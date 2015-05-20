@@ -5,5 +5,5 @@ from .models import Event
 
 @admin.register(Event)
 class AdminEvent(admin.ModelAdmin):
-	exclude = ('slug',)
 	list_display = ('name', 'place',)
+	prepopulated_fields = {'slug': ('name',)}
