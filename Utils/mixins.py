@@ -11,11 +11,11 @@ class RequestFormMixin(object):
 		kwargs['request'] = self.request
 		return kwargs
 
-# class UsernameSerializerMixin(object):
-# 	'''
-# 		This mixin show the username for a user in the api instead of the user url
-# 	'''
-# 	user = serializers.SlugRelatedField(
-#         read_only=True,
-#         slug_field='username'
-#     )
+class UsernameSerializerMixin(object):
+	'''
+		This mixin show the username for a user in the api instead of the user url
+	'''
+	user = serializers.SlugRelatedField(
+        read_only=True,
+        slug_field='username'
+    )

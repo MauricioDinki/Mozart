@@ -26,7 +26,6 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.sites',
     'sorl.thumbnail',
     'django_countries',
     'rest_framework',
@@ -36,6 +35,7 @@ INSTALLED_APPS = (
     'Works',
     'Profiles',
     'Events',
+
 )
 
 MIDDLEWARE_CLASSES = (
@@ -101,9 +101,18 @@ STATICFILES_DIRS = (
 SUIT_CONFIG = {
     'ADMIN_NAME': 'Mozart',
     'MENU_ICONS': {
-       'sites': 'icon-leaf',
        'auth': 'icon-lock',
+       'Events': 'icon-calendar',
+       'Profiles': 'icon-user',
+       'Thirdauth': 'icon-globe',
+       'Works': 'icon-briefcase',
     },
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ('rest_framework.filters.DjangoFilterBackend',),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 8,
 }
 
 MEDIA_ROOT = os.path.join(PROJECT_PATH,'media')
