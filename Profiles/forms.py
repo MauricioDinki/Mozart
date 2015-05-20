@@ -176,7 +176,8 @@ class UserInformationForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFor
 			attrs = {
 				'class':'mozart-field empty-initial-field',
 				'placeholder':'Escribe tu numero telefonico',
-				'mz-field': ''
+				'mz-field': '',
+				'ng-pattern': ''
 			}
 		),
 	)

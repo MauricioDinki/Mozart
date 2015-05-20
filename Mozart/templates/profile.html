@@ -1,7 +1,8 @@
 {% extends 'base_view.html' %}
+{% load thumbnail %}
 {% block title %}Perfil de {{username}} - mozArt{% endblock %}
 {% block content %}
-<div id="blue-navbar" class="categories-navbar">
+<div id="blue-navbar" class="categories-navbar" ng-init="base_username='{{username}}'">
     <ul>
         <li><a href="{% url 'works:work_user_list' username %}" class="icons todas-icon" title="Todas las categorías"></a></li>
         <li><a href="{% url 'works:work_user_list_category' username 'dibujo-pintura' %}" class="icons dibujo-pintura-icon" title="Dibujo y pintura"></a</li>
@@ -13,28 +14,21 @@
         <li><a href="{% url 'works:work_user_list_category' username 'otros' %}" class="icons otros-icon" title="Otros"></a></li>
     </ul>
 </div>
-<mz-toggle-menu id="profile-menu" icon-class-name="{% block icon-class %}{% endblock %}" current-option-text="{% block option-name %}{% endblock %}">
-			<li><img id="avatar-usuario" ng-src="{$imagen$}"/></li>
-            <li class="menu-option"><a class="icons information-icon" href="{% url 'profiles:settings_account' %}">Editar información</a></li>
-            <li class="menu-option"><a class="icons settings-icon" href="{% url 'profiles:settings_password' %}">Cambiar contraseña</a></li>
-            <li class="menu-option"><a class="icons settings-icon" href="{% url 'profiles:settings_social' %}">Cuentas vinculadas</a></li>
-            {% if user.mozart_user.user_type == 'Artista' %}
-            <li class="menu-option"><a class="icons works-icon" href="{% url 'works:settings_works' %}">Mis obras</a></li>
-            {% endif %}
+<div ng-controller="mozartUserInformationCtrl">
+    <mz-toggle-container id="profile-menu">
+        <div class="text-center">
+            <img ng-src="{$user.profile_picture$}" alt="{$user.username$}" class="circle work-user-thumbnail" width="90%"/>
+            <h2>{$user.username$}</h2>
+        </div>
+        <mz-toggle-menu icon-class-name="{% block icon-class %}{% endblock %}" current-option-text="{% block option-name %}{% endblock %}">
+            <ul>
+                <li class="menu-option"><a class="icons user-icon" ng-href="/profiles/{$ user.username $}">Información</a></li>
+                <li class="menu-option"><a class="icons folders-icon" ng-href="/profiles/{$ user.username $}/folders">Mis carpetas</a></li>
+            </ul>
         </mz-toggle-menu>
-<div id="obras-principal"  ng-init="usuario='{{username}}'">
-	<div id="contenedor-principal" ng-controller="mozartUserInformationCtrl">
-		<div id="barra-lateral">
-			
-			<h2 ng-bind="usuario">
-			</h2>
-			<p ng-bind="descripcion">
-			</p>
-			<ul class="menu-bloques">
-				<li class="opcion-menu "><a class="iconos icono-tarjeta" href="/{{username}}/">Mi tarjeta</a></li>
-			</ul>
-		</div>
+    </mz-toggle-container>
+<div id="blue-navbar-section" class="profile-section">
 		{% block section %}{% endblock %}
 	</div>
-</div>
+</div></div>
 {% endblock %}

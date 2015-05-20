@@ -1,29 +1,31 @@
 {% extends 'profile.html' %}
+{% block icon-class %}icons user-icon{% endblock %}
+{% block option-name %}Información{% endblock %}
 {% block section %}<section id="informacion">
-			<div class="bloque">
+			<div class="mozart-form">
 				<h3 class="titulo-caja">Datos personales</h3>
 				<div>
 					<h4>Nombre completo</h4>
-					<span ng-bind="nombrecompleto"></span>
+					<span ng-bind="user.fullname"></span>
 					<h4>Fecha de nacimiento</h4>
-					<span ng-bind="fechanacimiento"></span>
+					<span ng-bind="user.dateOfBirth"></span>
 					<h4>Sexo</h4>
-					<span ng-bind="sexo"></span>
+					<span ng-bind="user.sex"></span>
 					<h4>Código de país</h4>
-					<span ng-bind="cpais"></span>
+					<span ng-bind="user.countryCode"></span>
 					<h4>Miembro desde</h4>
-					<span ng-bind="fechamozart"></span>
+					<span ng-bind="user.mozArtDate"></span>
 				</div>
 			</div>
-			<div class="bloque">
+			<div class="mozart-form">
 				<h3 class="titulo-caja">Contactame</h3>
 				<div>
 					<h4>Dirección</h4>
-					<span ng-bind="domicilio"></span>
+					<span ng-bind="user.address"></span>
 					<h4>Email</h4>
-					<span ng-bind="email"></span>
+					<span ng-bind="user.email"></span>
 					<h4>Telefono</h4>
-					<span ng-bind="telefono"></span>
+					<span ng-bind="user.phoneNumber"></span>
 				</div>
 			</div>
 		</section>
