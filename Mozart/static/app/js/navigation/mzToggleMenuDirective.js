@@ -1,9 +1,24 @@
 (function() {
 	'use strict';
 	
+	function toggleContainerDirective() {
+		return {
+			restrict: 'E',
+			transclude: true,
+			template: '<div class="toggle-menu" ng-controller="toggleCtrl">' +
+				'<ng-transclude>' +
+				'</ng-transclude>' + 
+				'</div>'
+		};
+	}
+
+	angular.module('mozArtApp')
+		.directive('mzToggleContainer', toggleContainerDirective);
+
 	function toggleMenuDirective(matchmedia) {
 		return {
 		    restrict: 'E',
+		    require: '^mzToggleContainer',
 		    transclude: true,
 		    scope: {
 		    	iconClassName: '@',
@@ -37,11 +52,9 @@
 					$scope.showMenu = !$scope.showMenu;
 				};
 			},
-			template: '<div class="settings-menu" ng-controller="toggleCtrl">' +
-			'<mz-toggle-visible>' +
+			template: '<mz-toggle-visible>' +
 			'</mz-toggle-visible>' + 
-			'<ul class="menu-list" ng-show="showMenu" ng-transclude>' +
-			'</ul>' +
+			'<div class="menu-list" ng-show="showMenu" ng-transclude>' +
 			'</div>'
 		};
 	}
