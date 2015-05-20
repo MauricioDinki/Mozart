@@ -9,7 +9,7 @@
         url: '/api/' + information_to_get + '/?username=' + user
       })
       .success(function(data, status, headers, config) {
-        fnOK(data);
+        fnOK(data.results[0]);
       })
       .error(function(data, status, headers, config) {
         fnError(data,status);

@@ -2,37 +2,37 @@
 	'use strict';
 
 	function loadWorksController($scope, $window, worksRequest) {
-		$scope.worksPaginate = 6;
 		$scope.showMessage = false;
-		$scope.works = {};
+		$scope.works = [];
+		$scope.pageNumber = 1;
 		$scope.getWorks = function(){
 			worksRequest.recentWorks.get(
-				function(works) {
-					var size = angular.fromJson(works).length;
-					if(size != $scope.works.length){
-						$scope.works = works;
+				function(works, nextPage) {
+					var prevSize = $scope.works.length;
+					function workExists(work) {
+						console.log(work.slug);
+						return $filter('filter')(
+							$scope.works,
+							work.slug
+						)[0];
 					}
-					if(size < $scope.worksPaginate){
-						$scope.showMessage = ($scope.worksPaginate != 6);
-						// if($scope.worksPaginate == 6){
-						// 	$scope.showMessage = false;
-						// }
-						// else{
-						// 	$scope.showMessage = true;
-						// }
-						$scope.worksPaginate = size + 6;
+					for(var i in works) {
+						var isRepeated = worksRequest.checkRepeatedWork($scope.works, works[i]);
+						if(!isRepeated) {
+							$scope.works.push(works[i]);
+						}
 					}
-					else{
-						$scope.showMessage = false;
-						$scope.worksPaginate += 6;
+					if(nextPage !== null) {
+						$scope.pageNumber++;
 					}
+					$scope.showMessage = (prevSize === $scope.works.length);
 				},
 				function(data, status) {
 					$window.alert('Ha fallado la petición. Estado HTTP:' + status);
 				},
 				$scope.worksCategory,
 				$scope.worksAuthor,
-				$scope.worksPaginate
+				$scope.pageNumber
 			);
 		};
 		$scope.getWorks();

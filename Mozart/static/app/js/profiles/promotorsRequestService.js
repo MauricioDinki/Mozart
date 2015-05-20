@@ -10,7 +10,7 @@
         url: apiBaseUrl + '?' + 'nameFirstLetter=' + nameFirstLetter +  '&paginate=' + paginate
       })
       .success(function(data, status, headers, config) {
-        fnOK(data);
+        fnOK(data.results);
       })
       .error(function(data, status, headers, config) {
         fnError(data,status);
