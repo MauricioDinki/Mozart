@@ -11,13 +11,15 @@
           <span>{$work.work_type | uppercase$}</span>
         </div>
         </a>
-        <span class="icons {$work.category$}-icon"></span><a ng-href="{% url 'works:work_user_list' username %}{$work.slug$}" ng-bind="work.title"></a><br/>
-        Creada el <span class="work-date" ng-bind="work.date.split('T')[0]"></span>
-        <div style="padding-right: 5px;text-align:right" ng-controller="toggleCtrl">
-          <a class="thin-button okay-button" ng-href="{% url 'works:settings_works' %}{$work.slug$}">Editar</a>
-          <mz-triggered-decision-modal modal-title="¿Seguro de que quieres eliminar esta obra?" cancel-text="No" okay-text="Si" okay-link="/delete/work/{$work.slug$}" trigger-text="Eliminar" trigger-button-class="cancel" trigger-button-weight="thin-button">
-            Ya no podrás iniciar sesión con ella, pero podrás revincularla en cualquier momento si así lo deseas.
-          </mz-triggered-decision-modal>
+        <div class="work-item-information">
+          <span class="icons {$work.category$}-icon"></span><a class="work-title" ng-href="{% url 'works:work_user_list' username %}{$work.slug$}" ng-bind="work.title"></a><br/>
+          Creada el <span class="work-date" ng-bind="work.date.split('T')[0]"></span>
+          <div style="padding-right: 5px;text-align:right" ng-controller="toggleCtrl">
+            <a class="thin-button okay-button" ng-href="{% url 'works:settings_works' %}{$work.slug$}">Editar</a>
+            <mz-triggered-decision-modal modal-title="¿Seguro de que quieres eliminar esta obra?" cancel-text="No" okay-text="Si" okay-link="/delete/work/{$work.slug$}" trigger-text="Eliminar" trigger-button-class="cancel" trigger-button-weight="thin-button">
+              Ya no podrás iniciar sesión con ella, pero podrás revincularla en cualquier momento si así lo deseas.
+            </mz-triggered-decision-modal>
+          </div>
         </div>
       </article><br/>
       <div class="form-error" ng-show="mostrarMensaje">
