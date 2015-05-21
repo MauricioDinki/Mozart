@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.utils import six
 from djangular.forms import NgDeclarativeFieldsMetaclass, NgFormValidationMixin
-from Profiles.models import days,months,type_of_users,sexuality,Mozart_User,Date_of_Birth,Adress,Contact
+from Profiles.models import days,months,type_of_users,sexuality,Mozart_User,Date_of_Birth,Address,Contact
 
 class LoginForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValidationMixin, forms.Form)):
     """
@@ -204,7 +204,7 @@ class RegisterForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValida
         newUserContact = Contact(user = user)
         newUserContact.save()
 
-        newUserAdress = Adress(user = user)
-        newUserAdress.save()
+        newUserAddress = Address(user = user)
+        newUserAddress.save()
 
         self.user_cache = authenticate(username = username, password = password)

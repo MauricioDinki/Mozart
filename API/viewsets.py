@@ -1,18 +1,18 @@
 # -*- encoding: utf-8 -*-
 
-from .filters import AdressFilter, ContactFilter, Date_of_BirthFilter, EventFilter, Mozart_UserFilter, WorkFilter
-from .serializers import AdressSerializer, ContactSerializer, Date_of_BirthSerializer, EventSerializer, Mozart_UserSerializer, UserSerializer, WorkSerializer
+from .filters import AddressFilter, ContactFilter, Date_of_BirthFilter, EventFilter, Mozart_UserFilter, WorkFilter
+from .serializers import AddressSerializer, ContactSerializer, Date_of_BirthSerializer, EventSerializer, Mozart_UserSerializer, UserSerializer, WorkSerializer
 from django.contrib.auth.models import User
 from django_filters import filters
 from Events.models import Event
-from Profiles.models import Adress, Contact, Date_of_Birth, Mozart_User
+from Profiles.models import Address, Contact, Date_of_Birth, Mozart_User
 from rest_framework import viewsets
 from Works.models import Work
 
-class AdressViewSet(viewsets.ModelViewSet):
-	queryset = Adress.objects.all()
-	serializer_class = AdressSerializer
-	filter_class = AdressFilter
+class AddressViewSet(viewsets.ModelViewSet):
+	queryset = Address.objects.all()
+	serializer_class = AddressSerializer
+	filter_class = AddressFilter
 
 class ContactViewSet(viewsets.ModelViewSet):
 	queryset = Contact.objects.all()

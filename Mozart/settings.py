@@ -33,6 +33,7 @@ INSTALLED_APPS = (
     'rest_framework',
     'social.apps.django_app.default',
     'disqus',
+    'autofixture',
     'Thirdauth',
     'Works',
     'Profiles',

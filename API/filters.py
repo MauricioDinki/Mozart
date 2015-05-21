@@ -2,7 +2,7 @@
 
 from Events.models import Event
 from rest_framework import generics
-from Profiles.models import Adress, Contact, Date_of_Birth, Mozart_User
+from Profiles.models import Address, Contact, Date_of_Birth, Mozart_User
 from Works.models import Work
 import django_filters
 
@@ -12,9 +12,9 @@ class GenericUserFilter(django_filters.FilterSet):
 		fields = ['user']
 		order_by = ['user']
 
-class AdressFilter(GenericUserFilter):
+class AddressFilter(GenericUserFilter):
     class Meta:
-        model = Adress
+        model = Address
 
 class ContactFilter(GenericUserFilter):
 	class Meta:

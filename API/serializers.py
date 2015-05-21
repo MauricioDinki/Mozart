@@ -2,14 +2,14 @@
 
 from django.contrib.auth.models import User
 from Events.models import Event
-from Profiles.models import Adress, Contact, Date_of_Birth, Mozart_User
+from Profiles.models import Address, Contact, Date_of_Birth, Mozart_User
 from rest_framework import serializers
 from Works.models import Work
 
-class AdressSerializer(serializers.HyperlinkedModelSerializer):
+class AddressSerializer(serializers.HyperlinkedModelSerializer):
 	user = serializers.SlugRelatedField(read_only=True, slug_field='username')
 	class Meta:
-		model = Adress
+		model = Address
 		exclude = ['url']
 
 class ContactSerializer(serializers.HyperlinkedModelSerializer):

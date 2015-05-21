@@ -4,7 +4,7 @@ from django.conf import settings
 from django.conf.urls import patterns,include,url
 from django.contrib import admin
 from rest_framework import routers
-from API.viewsets import AdressViewSet, ContactViewSet, Date_of_BirthViewSet, EventViewSet, Mozart_UserViewSet, UserViewSet, WorkViewSet
+from API.viewsets import AddressViewSet, ContactViewSet, Date_of_BirthViewSet, EventViewSet, Mozart_UserViewSet, UserViewSet, WorkViewSet
 
 router = routers.DefaultRouter()
 
@@ -13,7 +13,7 @@ router.register(r'contact',ContactViewSet)
 router.register(r'birth',Date_of_BirthViewSet)
 router.register(r'users',UserViewSet)
 router.register(r'worksets',WorkViewSet)
-router.register(r'adress',AdressViewSet)
+router.register(r'adress',AddressViewSet)
 router.register(r'events',EventViewSet)
 
 

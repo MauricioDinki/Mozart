@@ -157,16 +157,16 @@ class Date_of_Birth(models.Model):
 		return self.user.username
 
 
-class Adress(models.Model):
+class Address(models.Model):
 	user = models.OneToOneField(User)
-	adress = models.CharField(blank=True,null=True, max_length=50)
+	address = models.CharField(blank=True,null=True, max_length=50)
 	city = models.CharField(blank=True,null=True, max_length=50)
 	zip_code = models.CharField(blank=True,null=True,max_length=10)
 	neighborhood = models.CharField(blank=True,null=True, max_length=50)
 
 	class Meta:
-		verbose_name = "Adress"
-		verbose_name_plural = "Adress"
+		verbose_name = "Address"
+		verbose_name_plural = "Address"
 
 	def __unicode__(self):
 		return self.user.username
