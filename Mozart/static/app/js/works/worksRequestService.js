@@ -6,9 +6,22 @@
     var apiBaseUrl = '/api/worksets/';
     this.recentWorks = {
       get:function(fnOK,fnError, category, author, pageNumber) {
+        var requestUrl;
+        if(category === 'all' && author === 'all') {
+          requestUrl = apiBaseUrl + '?page=' + pageNumber;
+        }
+        else if(category === 'all') {
+          requestUrl = apiBaseUrl + '?user=' + author + '&page=' + pageNumber;
+        }
+        else if(author==='all') {
+          requestUrl = apiBaseUrl + '?category=' + category + '&page=' + pageNumber;
+        }
+        else {
+          requestUrl = apiBaseUrl + '?author=' + author +  '&category=' + category + '&page=' + pageNumber;
+        }
         $http({
           method: 'GET',
-          url: apiBaseUrl + '?' + 'category=' + category + '&author=' + author +  '&page=' + pageNumber
+          url: requestUrl
         })
         .success(function(data, status, headers, config) {
           fnOK(data.results, data.next);
@@ -20,9 +33,19 @@
     };
     this.randomWorks = {
       get:function(fnOK,fnError, category, author, pageNumber) {
+        var requestUrl;
+        if(category === 'all' && author === 'all') {
+          requestUrl = apiBaseUrl + '?page=' + pageNumber;
+        }
+        else if(category === 'all') {
+          requestUrl = apiBaseUrl + '?user=' + author + '&page=' + pageNumber;
+        }
+        else {
+          requestUrl = apiBaseUrl + '?category=' + category + '&page=' + pageNumber;
+        }
         $http({
           method: 'GET',
-          url: apiBaseUrl + '?' + 'category=' + category + '&author=' + author +  '&page=' + pageNumber
+          url: requestUrl
         })
         .success(function(data, status, headers, config) {
           fnOK(data.results, data.next);

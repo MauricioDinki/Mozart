@@ -20,7 +20,7 @@
           $window.alert('Ha fallado la petición. Estado HTTP:' + status);
         },
         username,
-        'mozart_user'
+        'mozart'
       );
       userInformation.get(
         function(results) {
@@ -47,7 +47,7 @@
           $window.alert('Ha fallado la petición. Estado HTTP:' + status);
         },
         username,
-        'user_contact'
+        'contact'
       );
       userInformation.get(
         function(results) {
@@ -57,15 +57,15 @@
           $window.alert('Ha fallado la petición. Estado HTTP:' + status);
         },
         username,
-        'user_dateofbirth'
+        'birth'
       );
       userInformation.get(
         function(results) {
           mozart_user.address = results.adress + ', ' + results.neighborhood + ', ' + results.city + ', ' + results.zip_code;
-          if(results.adress === '' && results.city === '' && results.zip_code === '' && results.neighborhood === ''){
+          if(results.adress === null && results.city === null && results.zip_code === null && results.neighborhood === null){
             mozart_user.address = 'No disponible.';
           }
-          else if(results.adress === '' || results.city === '' || results.zip_code === '' || results.neighborhood === ''){
+          else if(results.adress === null || results.city === null || results.zip_code === null || results.neighborhood === null){
             mozart_user.address += ' (Domicilio incompleto)';
           }
         },
@@ -73,7 +73,7 @@
           $window.alert('Ha fallado la petición. Estado HTTP:' + status);
         },
         username,
-        'adress'
+        'address'
       );
       $scope.user = mozart_user;
     })($scope.base_username);

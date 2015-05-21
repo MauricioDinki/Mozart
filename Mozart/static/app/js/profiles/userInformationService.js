@@ -6,7 +6,7 @@
     this.get = function(fnOK,fnError, user, information_to_get) {
       $http({
         method: 'GET',
-        url: '/api/' + information_to_get + '/?username=' + user
+        url: '/api/' + information_to_get + '/?user=' + user
       })
       .success(function(data, status, headers, config) {
         fnOK(data.results[0]);

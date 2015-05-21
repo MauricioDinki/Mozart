@@ -41,5 +41,5 @@ class WorkFilter(django_filters.FilterSet):
     user = django_filters.CharFilter(name = "user__username")
     class Meta:
         model = Work
-        fields = ['user', 'category', 'work_type']
+        fields = ['user', 'category', 'work_type', 'slug']
         order_by = ['-date']
