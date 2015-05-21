@@ -25,7 +25,6 @@
     };
     this.validAge = function(day, month, year, age){
       var datesDifference = this.current_year - year;
-        console.log(month);
       if(this.current_month < month){
         datesDifference--;
       }
