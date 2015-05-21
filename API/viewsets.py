@@ -1,11 +1,11 @@
 # -*- encoding: utf-8 -*-
 
-from .filters import AdressFilter, ContactFilter, Date_of_BirthFilter, EventFilter, WorkFilter
-from .serializers import AdressSerializer, ContactSerializer, Date_of_BirthSerializer, EventSerializer, UserSerializer, WorkSerializer
+from .filters import AdressFilter, ContactFilter, Date_of_BirthFilter, EventFilter, Mozart_UserFilter, WorkFilter
+from .serializers import AdressSerializer, ContactSerializer, Date_of_BirthSerializer, EventSerializer, Mozart_UserSerializer, UserSerializer, WorkSerializer
 from django.contrib.auth.models import User
 from django_filters import filters
 from Events.models import Event
-from Profiles.models import Adress, Contact, Date_of_Birth
+from Profiles.models import Adress, Contact, Date_of_Birth, Mozart_User
 from rest_framework import viewsets
 from Works.models import Work
 
@@ -28,6 +28,11 @@ class EventViewSet(viewsets.ModelViewSet):
 	queryset = Event.objects.all()
 	serializer_class = EventSerializer
 	filter_class = EventFilter
+
+class Mozart_UserViewSet(viewsets.ModelViewSet):
+	queryset = Mozart_User.objects.all()
+	serializer_class = Mozart_UserSerializer
+	filter_class = Mozart_UserFilter
 
 class UserViewSet(viewsets.ModelViewSet):
 	queryset = User.objects.all()

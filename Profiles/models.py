@@ -37,7 +37,8 @@ days = (
 	('28','28'),
 	('29','29'),
 	('30','30'),
-	('31','31'),)
+	('31','31'),
+)
 
 months = (
 	('','Mes'),
@@ -52,12 +53,14 @@ months = (
 	('Septiembre', 'Septiembre'),
 	('Octubre', 'Octubre'),
 	('Noviembre', 'Noviembre'),
-	('Diciembre', 'Diciembre'),)
+	('Diciembre', 'Diciembre'),
+)
 
 sexuality = (
 	('','Sexo'),
 	('Masculino', 'Masculino'),
-	('Femenino', 'Femenino'),)
+	('Femenino', 'Femenino'),
+)
 
 type_of_users = (
 	('','Seleccionar tipo de cuenta'),

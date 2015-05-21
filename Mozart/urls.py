@@ -3,13 +3,12 @@
 from django.conf import settings
 from django.conf.urls import patterns,include,url
 from django.contrib import admin
-from Profiles.viewsets import MozartUserViewSet
 from rest_framework import routers
-from API.viewsets import AdressViewSet, ContactViewSet, Date_of_BirthViewSet, EventViewSet, UserViewSet, WorkViewSet
+from API.viewsets import AdressViewSet, ContactViewSet, Date_of_BirthViewSet, EventViewSet, Mozart_UserViewSet, UserViewSet, WorkViewSet
 
 router = routers.DefaultRouter()
 
-router.register(r'mozart_user',MozartUserViewSet)
+router.register(r'mozart',Mozart_UserViewSet)
 router.register(r'contact',ContactViewSet)
 router.register(r'birth',Date_of_BirthViewSet)
 router.register(r'users',UserViewSet)
