@@ -40,18 +40,18 @@ class ProfileSettingsView(LoginRequiredMixin,RequestFormMixin,FormView):
 
 	def get_initial(self):
 		initial = {
-			'adress':self.request.user.adress.adress,
-			'city':self.request.user.adress.city,
+			'address':self.request.user.address.address,
+			'city':self.request.user.address.city,
 			'description':self.request.user.mozart_user.description,
 			'first_name':self.request.user.first_name,
 			'last_name':self.request.user.last_name,
 			'nationality':self.request.user.mozart_user.nationality,
-			'neighborhood':self.request.user.adress.neighborhood,
+			'neighborhood':self.request.user.address.neighborhood,
 			'personal_homepage':self.request.user.contact.personal_homepage,
 			'profile_picture':self.request.user.mozart_user.profile_picture,
 			'phone_number':self.request.user.contact.phone_number,
 			'username' : self.request.user.username,
-			'zip_code':self.request.user.adress.zip_code,
+			'zip_code':self.request.user.address.zip_code,
 		}
 			
 		return initial

@@ -4,41 +4,82 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.utils.text import slugify
 
-def archive_url(self,filename):
-	return str('files/%s/%s')%(self.user.username,filename)
 
-def cover_url(self,filename):
-	return str('covers/%s/%s')%(self.user.username,filename)
+def archive_url(self, filename):
+    return str('files/%s/%s') % (self.user.username, filename)
+
+
+def cover_url(self, filename):
+    return str('covers/%s/%s') % (self.user.username, filename)
+
 
 category = (
-	('','Selecciona la categoría'),
-	('dibujo-pintura','Dibujo/Pintura'),
-	('fotografia-filme','Fotografia/Filme'),
-	('teatro-literatura','Teatro/Literatura'),
-	('musica-baile','Musica/Baile'),
-	('escultura-ceramica','Escultura/Ceramica'),
-	('arte_digital','Arte digital'),
-	('otros','Otros'),
+    ('', ''),
+    ('dibujo-pintura', 'Dibujo/Pintura'),
+    ('fotografia-filme', 'Fotografia/Filme'),
+    ('teatro-literatura', 'Teatro/Literatura'),
+    ('musica-baile', 'Musica/Baile'),
+    ('escultura-ceramica', 'Escultura/Ceramica'),
+    ('arte_digital', 'Arte digital'),
+    ('otros', 'Otros'),
 )
 
+files = (
+    ('', ''),
+    ('image', 'Imagen'),
+    ('audio', 'Audio'),
+)
+
+
 class Work(models.Model):
-	user = models.ForeignKey(User)
-	title = models.CharField(blank=False,null=False, max_length=50,unique=True)
-	description = models.CharField(blank=False,null=False, max_length=200)
-	category = models.CharField(blank=False,null=False, max_length=50,choices=category)
-	date = models.DateTimeField(blank=False,null=False,auto_now_add=True)
-	cover = models.ImageField(null=False,blank=False,upload_to=cover_url)
-	archive = models.FileField(blank=False,null=False,upload_to=archive_url)
-	slug = models.SlugField(max_length=50,unique=True)
-	work_type = models.CharField(blank=True,null=True, max_length=50)
 
-	class Meta:
-		verbose_name = "Work"
-		verbose_name_plural = "Works"
+    class Meta:
+        verbose_name = "Work"
+        verbose_name_plural = "Works"
 
-	def save(self, *args, **kwargs):
-		self.slug = slugify(self.title)
-		super(Work, self).save(*args, **kwargs)
+    user = models.ForeignKey(User)
+    title = models.CharField(
+        blank=False,
+        max_length=50,
+        null=False,
+        unique=True,
+    )
+    description = models.CharField(
+        blank=False,
+        max_length=200,
+        null=False,
+    )
+    category = models.CharField(
+        blank=False,
+        choices=category,
+        max_length=50,
+        null=False,
+    )
+    date = models.DateTimeField(
+        auto_now_add=True,
+        blank=False,
+        null=False,
+    )
+    cover = models.ImageField(
+        blank=False,
+        null=False,
+        upload_to=cover_url,
+    )
+    archive = models.FileField(
+        blank=False,
+        null=False,
+        upload_to=archive_url,
+    )
+    slug = models.SlugField(
+        max_length=50,
+        unique=True,
+    )
+    work_type = models.CharField(
+        blank=False,
+        choices=files,
+        max_length=50,
+        null=False,
+    )
 
-	def __unicode__(self):
-		return self.title
+    def __unicode__(self):
+        return self.title
