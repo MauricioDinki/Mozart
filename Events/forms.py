@@ -3,7 +3,7 @@
 from .models import Event
 from django import forms
 from django.utils.text import slugify
-from Utils.validations import default_messages, custom_messages, eval_blank, eval_iexact
+from Utils.validators import default_messages, custom_messages, eval_blank, eval_iexact
 import time
 
 class CreateEventForm(forms.ModelForm):
@@ -14,22 +14,22 @@ class CreateEventForm(forms.ModelForm):
         model = Event
         exclude = ['user','slug']
         widgets = {
-        	'name': forms.TextInput(
-        		attrs = {
-        			'class': ''
-        		}
-    		),
+            'name': forms.TextInput(
+                attrs = {
+                    'class': ''
+                }
+            ),
             'description': forms.Textarea(
-            	attrs = {
-            		'cols': 40, 
-            		'rows': 10,
-        		}
-    		),
-    		'date': forms.TextInput(
-    			attrs = {
-    				'type' : 'date',
-    			}
-			)
+                attrs = {
+                    'cols': 40, 
+                    'rows': 10,
+                }
+            ),
+            'date': forms.TextInput(
+                attrs = {
+                    'type' : 'date',
+                }
+            )
         }
 
     def __init__(self, *args, **kwargs):
@@ -62,7 +62,7 @@ class CreateEventForm(forms.ModelForm):
 
     def clean_finish_time(self):
         start_time  = self.cleaned_data.get('start_time')
-    	finish_time = self.cleaned_data.get('finish_time')
+        finish_time = self.cleaned_data.get('finish_time')
 
         if start_time is not None:
             ini = str(start_time).split(':')
