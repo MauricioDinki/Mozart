@@ -1,10 +1,11 @@
 # -*- encoding: utf-8 -*-
 
-from .models import Event
 from django import forms
 from django.utils.text import slugify
-from Utils.validators import default_messages, custom_messages, eval_blank, eval_iexact
+
 import time
+from Events.models import Event
+from Utils.validators import default_messages, custom_messages, eval_blank, eval_iexact, eval_image
 
 
 class CreateEventForm(forms.ModelForm):
@@ -37,6 +38,8 @@ class CreateEventForm(forms.ModelForm):
             self.fields[field].error_messages.update(default_messages)
             self.fields[field].validators = [eval_blank]
             self.fields[field].required = True
+            if field == 'cover':
+                self.fields[field].validators = [eval_image]
 
     def eval_00(self, data):
         if data == '00':

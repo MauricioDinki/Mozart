@@ -10,46 +10,46 @@ def event_cover_url(self, filename):
 
 
 class Event(models.Model):
-    cover = models.FileField(
-        blank=True,
-        null=True,
+    cover = models.ImageField(
+        blank=False,
+        null=False,
         upload_to=event_cover_url
     )
     date = models.DateField(
-        blank=True,
-        null=True,
+        blank=False,
+        null=False,
     )
     description = models.CharField(
-        blank=True,
+        blank=False,
         max_length=200,
-        null=True,
+        null=False,
     )
     finish_time = models.TimeField(
-        blank=True,
-        null=True,
+        blank=False,
+        null=False,
     )
     name = models.CharField(
-        blank=True,
+        blank=False,
         max_length=50,
-        null=True,
+        null=False,
 
     )
     place = models.CharField(
-        blank=True,
+        blank=False,
         max_length=50,
-        null=True,
+        null=False,
     )
     slug = models.SlugField(
         max_length=50,
-        unique=True,
+        unique=False,
     )
     start_time = models.TimeField(
-        blank=True,
-        null=True,
+        blank=False,
+        null=False,
     )
     user = models.ForeignKey(
         User,
-        null=True,
+        null=False,
     )
 
     class Meta:
