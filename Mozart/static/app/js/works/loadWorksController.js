@@ -10,7 +10,6 @@
 				function(works, nextPage) {
 					var prevSize = $scope.works.length;
 					function workExists(work) {
-						console.log(work.slug);
 						return $filter('filter')(
 							$scope.works,
 							work.slug

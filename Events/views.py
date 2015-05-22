@@ -1,24 +1,23 @@
+# -*- encoding: utf-8 -*-
+
+from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import render
 from django.views.generic import TemplateView, FormView
-from .forms import CreateEventForm
-from .models import Event
-from django.core.urlresolvers import reverse_lazy
+
+from Events.forms import CreateEventForm
+from Events.models import Event
 from Utils.mixins import RequestFormMixin
 
+
 class ListEventView(TemplateView):
-	'''
-		View for events list
-	'''
-	template_name = "event_list.html"
+    template_name = "event_list.html"
+
 
 class CreateEventView(RequestFormMixin, FormView):
-	'''
-		View for the form to create events
-	'''
-	form_class = CreateEventForm
-	success_url =  reverse_lazy('events:event_list')
-	template_name = 'generic-form.html'
+    form_class = CreateEventForm
+    success_url = reverse_lazy('events:event_list')
+    template_name = 'generic-form.html'
 
-	def form_valid(self,form):
-		form.save()
-		return super(CreateEventView,self).form_valid(form)
+    def form_valid(self, form):
+        form.save()
+        return super(CreateEventView, self).form_valid(form)

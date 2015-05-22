@@ -22,7 +22,7 @@
 		<video class="media-content" src="{{work.archive.url}}" controls="true" poster="{{work.cover.url}}"></video>
  	{% endif %}	
  		<div id="work-details">
-	 		<a href="profiles/{{work.user.username}}">
+	 		<a href="/profiles/{{work.user.username}}">
 			{% if not work.user.mozart_user.profile_picture %}
 				<img class="circle work-author-thumbnail float-left" src="{% static "img/default.png" %}"/>
 		    {% else %}
@@ -32,7 +32,7 @@
 		    {% endif %}
 			</a>
 			<span class="icons {{work.category}}-icon"></span><span class="work-title">{{work.title}}</span><br/>
-			Creada por <a href="profiles/{{work.user.username}}">{{work.user.username}}</a> 
+			Creada por <a href="/profiles/{{work.user.username}}">{{work.user.username}}</a> 
 			en <span class="work-date">{{work.date}}</span><br/>
 			<p class="work-description">{{work.description}}</p>
 		</div>

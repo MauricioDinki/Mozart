@@ -23,8 +23,10 @@
             <span>{$work.work_type | uppercase$}</span>
           </div>
           </a>
-          <span class="icons {$work.category$}-icon"></span><a class="work-title" ng-href="/profiles/{$ work.user $}/works/{$work.slug$}" ng-bind="work.title"></a><br/>
-          <span class="icons user-icon"><a ng-href="/profiles/{$ work.user $}" ng-bind="work.user"></a></span> el <span class="work-date" ng-bind="work.date.split('T')[0]"></span>
+          <div class="work-item-information">
+            <span class="icons {$work.category$}-icon"></span><a class="work-title" ng-href="/profiles/{$ work.user $}/works/{$work.slug$}" ng-bind="work.title"></a><br/>
+            <span class="icons user-icon"><a class="work-author-name" ng-href="/profiles/{$ work.user $}" ng-bind="work.user"></a></span> el <span class="work-date" ng-bind="work.date.split('T')[0]"></span>
+          </div>
         </article><br/>
         <div class="load-more-error" ng-show="showMessage">
           No existen obras suficientes para cubir la petición. Intenta refrescar la página.
