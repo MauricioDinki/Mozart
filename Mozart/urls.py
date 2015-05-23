@@ -13,7 +13,7 @@ router.register(r'contact',ContactViewSet)
 router.register(r'birth',Date_of_BirthViewSet)
 router.register(r'users',UserViewSet)
 router.register(r'worksets',WorkViewSet)
-router.register(r'adress',AddressViewSet)
+router.register(r'address',AddressViewSet)
 router.register(r'events',EventViewSet)
 
 

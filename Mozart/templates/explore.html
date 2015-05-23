@@ -18,14 +18,13 @@
     <div ng-init="worksCategory='{{category}}';worksAuthor='all'">
       <section id="blue-navbar-section" ng-controller="loadWorksCtrl" >
         <article class="work-item" ng-repeat="work in works">
-          <a ng-href="/profiles/{$ work.user $}/works/{$work.slug$}">
           <div class="work-thumbnail" style="background:url('{$work.cover$}');">
-            <span>{$work.work_type | uppercase$}</span>
-          </div>
+            <a ng-href="{$work.workUrl$}"><span>{$work.work_type | uppercase$}</span>
           </a>
+          </div>
           <div class="work-item-information">
-            <span class="icons {$work.category$}-icon"></span><a class="work-title" ng-href="/profiles/{$ work.user $}/works/{$work.slug$}" ng-bind="work.title"></a><br/>
-            <span class="icons user-icon"><a class="work-author-name" ng-href="/profiles/{$ work.user $}" ng-bind="work.user"></a></span> el <span class="work-date" ng-bind="work.date.split('T')[0]"></span>
+            <div class="icons {$work.category$}-icon"><a class="work-title" ng-href="{$work.workUrl$}" ng-bind="work.title"></a></div>
+            <span class="icons user-icon"><a class="work-author-name" ng-href="{$work.userUrl$}" ng-bind="work.user"></a></span> el <span class="work-date" ng-bind="work.date.split('T')[0]"></span>
           </div>
         </article><br/>
         <div class="load-more-error" ng-show="showMessage">

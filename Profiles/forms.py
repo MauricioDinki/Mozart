@@ -182,7 +182,7 @@ class UserInformationForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFor
 		),
 	)
 
-	adress = forms.CharField(
+	address = forms.CharField(
 		min_length=10,
 		max_length=100,
 		required = False,
@@ -297,8 +297,8 @@ class UserInformationForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFor
 		user_to_change.contact.phone_number = self.cleaned_data.get('phone_number')
 		user_to_change.contact.save()
 
-		user_to_change.adress.adress = self.cleaned_data.get('adress')
-		user_to_change.adress.city = self.cleaned_data.get('city')
-		user_to_change.adress.zip_code = self.cleaned_data.get('zip_code')
-		user_to_change.adress.neighborhood = self.cleaned_data.get('neighborhood')
-		user_to_change.adress.save()
+		user_to_change.address.address = self.cleaned_data.get('address')
+		user_to_change.address.city = self.cleaned_data.get('city')
+		user_to_change.address.zip_code = self.cleaned_data.get('zip_code')
+		user_to_change.address.neighborhood = self.cleaned_data.get('neighborhood')
+		user_to_change.address.save()

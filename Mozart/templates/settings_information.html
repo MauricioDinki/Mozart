@@ -115,15 +115,15 @@
         <fieldset class="two-elements">
           <legend>Domicilio</legend>
           <div class="mozart-field-container one-element">
-            <label for="id_adress" class="mozart-label initial-label">Dirección</label>
-            {{form.adress}}
+            <label for="id_address" class="mozart-label initial-label">Dirección</label>
+            {{form.address}}
           </div>
 
-          <div class="form-error" ng-show="{{form.form_name}}.adress.$error.minlength">
+          <div class="form-error" ng-show="{{form.form_name}}.address.$error.minlength">
             La dirección debe contener mínimo 10 carácteres.
           </div>
 
-          <div class="form-error" ng-show="{{form.form_name}}.adress.$error.maxlength">
+          <div class="form-error" ng-show="{{form.form_name}}.address.$error.maxlength">
             La dirección debe contener máximo 100 carácteres.
           </div>
 

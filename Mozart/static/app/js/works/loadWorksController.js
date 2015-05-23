@@ -1,7 +1,7 @@
 (function() {
 	'use strict';
 
-	function loadWorksController($scope, $window, worksRequest) {
+	function loadWorksController($scope, $window, worksRequest, workUrl, profileUrl) {
 		$scope.showMessage = false;
 		$scope.works = [];
 		$scope.pageNumber = 1;
@@ -16,9 +16,12 @@
 						)[0];
 					}
 					for(var i in works) {
-						var isRepeated = worksRequest.checkRepeatedWork($scope.works, works[i]);
+						var work = works[i];
+						var isRepeated = worksRequest.checkRepeatedWork($scope.works, work);
 						if(!isRepeated) {
-							$scope.works.push(works[i]);
+							work.workUrl = workUrl(work.user, work.slug);
+							work.userUrl = profileUrl(work.user);
+							$scope.works.push(work);
 						}
 					}
 					if(nextPage !== null) {
@@ -37,7 +40,7 @@
 		$scope.getWorks();
 	}
 
-	loadWorksController.$inject = ['$scope', '$window', 'worksRequest'];
+	loadWorksController.$inject = ['$scope', '$window', 'worksRequest', 'workUrl', 'profileUrl'];
 
 	angular.module('mozArtApp')
 		.controller('loadWorksCtrl', loadWorksController);
