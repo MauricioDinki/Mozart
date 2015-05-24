@@ -21,7 +21,7 @@ class LoginView(AuthRedirectMixin, FormView):
 
 
 class RegisterView(AuthRedirectMixin, FormView):
-    template_name = 'generic-form.html'
+    template_name = 'signup.html'
     form_class = RegisterForm
     success_url = reverse_lazy('works:work_list')
 

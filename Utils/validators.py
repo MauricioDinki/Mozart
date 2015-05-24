@@ -11,7 +11,7 @@ from Utils.messages import default_messages, custom_messages, media_messages
 
 def eval_blank(data):
     if str(data).isspace():
-        raise forms.ValidationError(default_errors['blank'],)
+        raise forms.ValidationError(default_messages['blank'],)
     return data
 
 

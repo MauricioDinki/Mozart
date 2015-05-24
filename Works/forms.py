@@ -1,12 +1,14 @@
 # -*- encoding: utf-8 -*-
 
 from django import forms
+from django.core.validators import RegexValidator
 from django.utils import six
 
 from djangular.forms import NgDeclarativeFieldsMetaclass, NgFormValidationMixin
 
+from Utils.messages import default_messages
+from Utils.validators import eval_blank, eval_iexact, eval_image, eval_general
 from Works.models import category, Work
-from Utils.validators import eval_blank, eval_iexact, eval_image, eval_general, default_messages
 
 
 class CreateWorkForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValidationMixin, forms.Form)):
@@ -69,7 +71,7 @@ class CreateWorkForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormVali
         super(CreateWorkForm, self).__init__(*args, **kwargs)
         for field in self.fields:
             self.fields[field].error_messages.update(default_messages)
-            self.fields[field].validators = [eval_blank]
+            self.fields[field].validators = [RegexValidator(regex='^[a-zA-Z0-9]*$',), ]
             if field == 'cover':
                 self.fields[field].validators = [eval_image]
                 self.fields[field].required = False
@@ -144,4 +146,4 @@ class UpdateWorkForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormVali
         super(UpdateWorkForm, self).__init__(*args, **kwargs)
         for field in self.fields:
             self.fields[field].error_messages.update(default_messages)
-            self.fields[field].validators = [eval_blank]
+            self.fields[field].validators = [RegexValidator(regex='^[a-zA-Z0-9]*$',), ]

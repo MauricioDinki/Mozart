@@ -1,23 +1,26 @@
 from django.utils.translation import ugettext_lazy as _
 
 default_messages = {
-    'invalid': _('Inserte un valor valido'),
-    'invalid_choice': _('Selecciona una opcion valida'),
-    'invalid_image': _('Selecciona un archivo de imagen valido'),
-    'max_length': _('Longitud maxima rebasada'),
-    'required': _('Este campo es requerido'),
-    'blank': _('El campo esta en blanco'),
-    'unique': _('Este nombre ya no esta disponible'),
+    'blank': _('001'),
+    'invalid': _('002'),
+    'invalid_choice': _('003'),
+    'invalid_image': _('004'),
+    'max_length': _('005'),
+    'required': _('006'),
+    'unique': _('007'),
 }
 
+
 custom_messages = {
-    'inevent': _('La fecha del evento es invalida'),
-    'shevent': _('El evento no puede ser tan corto'),
-    'mismatch': _('Los valores no coinciden'),
+    'inevent': _('101'),
+    'shevent': _('102'),
+    'mismatch': _('103'),
+    'invalid_login': _('104'),
+    'inactive_account': _('105'),
 }
 
 media_messages = {
-    'invalid_image': _('Mozart no soporta este formato de imagen'),
-    'invalid_audio': _('Mozart no soporta este formato de audio'),
-    'invalid_archive': _('Mozart no soporta este formato de archivo'),
+    'invalid_archive': _('201'),
+    'invalid_audio': _('202'),
+    'invalid_image': _('203'),
 }

@@ -11,7 +11,7 @@ from djangular.forms import NgDeclarativeFieldsMetaclass, NgFormValidationMixin
 from .validations import *
 from datetime import date
 from Profiles.models import days, months, type_of_users, sexuality, Mozart_User, Date_of_Birth, Address, Contact
-from Utils.validators import eval_iexact, eval_matching
+from Utils.validators import eval_iexact, eval_matching, eval_blank
 from Utils.messages import default_messages, custom_messages
 
 
@@ -47,9 +47,8 @@ class LoginForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValidatio
         super(LoginForm, self).__init__(*args, **kwargs)
         for field in self.fields:
             self.fields[field].error_messages.update(default_messages)
-            self.fields[field].validators = [validate_blank]
+            self.fields[field].validators = [eval_blank]
             self.fields[field].required = True
-            print self.fields[field].validators
 
     def clean(self):
         username = self.cleaned_data.get('username')
@@ -59,15 +58,14 @@ class LoginForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValidatio
             if self.user_cache is None:
                 raise forms.ValidationError(custom_messages['invalid_login'],)
             elif not self.user_cache.is_active:
-                raise forms.ValidationError(custom_messages['inactive'])
+                raise forms.ValidationError(custom_messages['inactive_account'])
         return self.cleaned_data
 
 
-# class RegisterForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValidationMixin, forms.Form)):
-class RegisterForm(forms.Form):
-    # form_controller = 'signupFormCtrl'
-    # form_name = 'signupform'
-    # this_year = date.today().year
+class RegisterForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValidationMixin, forms.Form)):
+    form_controller = 'signupFormCtrl'
+    form_name = 'signupform'
+    this_year = date.today().year
 
     day_of_birth = forms.ChoiceField(
         choices=days,
@@ -104,8 +102,8 @@ class RegisterForm(forms.Form):
     )
 
     password_1 = forms.CharField(
-        # max_length=40,
-        # min_length=6,
+        max_length=40,
+        min_length=6,
         widget=forms.PasswordInput(
             attrs={
                 'class': 'mozart-field empty-initial-field',
@@ -116,8 +114,8 @@ class RegisterForm(forms.Form):
     )
 
     password_2 = forms.CharField(
-        # max_length=40,
-        # min_length=6,
+        max_length=40,
+        min_length=6,
         widget=forms.PasswordInput(
             attrs={
                 'class': 'mozart-field empty-initial-field',
@@ -139,8 +137,8 @@ class RegisterForm(forms.Form):
     )
 
     username = forms.CharField(
-        # max_length=20,
-        # min_length=5,
+        max_length=20,
+        min_length=5,
         widget=forms.TextInput(
             attrs={
                 'class': 'mozart-field empty-initial-field',
@@ -151,14 +149,14 @@ class RegisterForm(forms.Form):
     )
 
     year_of_birth = forms.IntegerField(
-        # max_value=this_year - 18,
-        # min_value=this_year - 100,
+        max_value=this_year - 18,
+        min_value=this_year - 100,
         widget=forms.NumberInput(
             attrs={
                 'class': 'mozart-field active-field',
                 'placeholder': 'Año',
                 'ng-change': 'validateDate()',
-                # 'value':  this_year - 25,
+                'value':  this_year - 25,
                 'mz-field': '',
             }
         ),
