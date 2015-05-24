@@ -2,28 +2,8 @@
 
 from django import forms
 from django.utils.text import slugify
-from django.utils.translation import ugettext_lazy as _
 
-default_messages = {
-    'invalid': _('Inserte un valor valido'),
-    'invalid_choice': _('Selecciona una opcion valida'),
-    'invalid_image': _('Selecciona un archivo de imagen valido'),
-    'max_length': _('Longitud maxima rebasada'),
-    'required': _('Este campo es requerido'),
-    'blank': _('El campo esta en blanco'),
-    'unique': _('Este nombre ya no esta disponible'),
-}
-
-custom_messages = {
-    'inevent': _('La fecha del evento es invalida'),
-    'shevent': _('El evento no puede ser tan corto'),
-}
-
-media_error_messages = {
-    'invalid_image': _('Mozart no soporta este formato de imagen'),
-    'invalid_audio': _('Mozart no soporta este formato de audio'),
-    'invalid_archive': _('Mozart no soporta este formato de archivo'),
-}
+from Utils.messages import default_messages, custom_messages, media_messages
 
 
 # Data Validators
@@ -37,13 +17,21 @@ def eval_blank(data):
 
 def eval_iexact(data, model, field):
     original = data
+    lookup = '%s__iexact' % field
     if field == 'slug':
         data = slugify(data)
+        lookup = field
     try:
-        smth = model.objects.get(**{field: data})
+        smth = model.objects.get(**{lookup: data})
     except model.DoesNotExist:
         return original
     raise forms.ValidationError(default_messages['unique'],)
+
+
+def eval_matching(data_1, data_2):
+    if data_1 != data_2:
+            raise forms.ValidationError(custom_messages['mismatch'],)
+    return data_1 and data_2
 
 
 # Media Validators
@@ -53,7 +41,7 @@ def eval_audio(data):
     file_type = str(data.content_type)
     if file_type == 'audio/mp3':
         return data
-    raise forms.ValidationError(custom_error_messages['invalid_audio'],)
+    raise forms.ValidationError(media_messages['invalid_audio'],)
 
 
 def eval_image(data):
@@ -61,7 +49,7 @@ def eval_image(data):
     if file_type == 'image/jpeg' or file_type == 'image/bmp' \
        or file_type == 'image/png':
         return data
-    raise forms.ValidationError(custom_error_messages['invalid_image'],)
+    raise forms.ValidationError(media_messages['invalid_image'],)
 
 
 def eval_general(data):
@@ -69,4 +57,4 @@ def eval_general(data):
     if file_type == 'image/jpeg' or file_type == 'image/bmp' \
        or file_type == 'image/png' or file_type == 'audio/mp3':
         return data
-    raise forms.ValidationError(custom_error_messages['invalid_archive'],)
+    raise forms.ValidationError(media_messages['invalid_archive'],)
