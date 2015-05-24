@@ -18,7 +18,7 @@
 	}
 
 	angular
-		.module('mozArtApp', ['ng.django.forms', 'ngAnimate', 'offClick', 'matchmedia-ng'])
+		.module('mozArtApp', ['ng.django.forms', 'ngAnimate', 'offClick', 'matchmedia-ng', 'hmTouchEvents'])
 		.config(appConfig)
 		.value('workUrl', getWorkUrl)
 		.value('profileUrl', getUserProfile);
