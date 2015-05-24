@@ -56,9 +56,3 @@ def validate_email(data):
 	except User.DoesNotExist:
 		return data
 	raise forms.ValidationError(custom_error_messages['email_exist'],)
-
-def validate_password(username, password):
-	user_cache = authenticate(username = username, password = password)
-	if user_cache is None:
-		raise forms.ValidationError(custom_error_messages['incorrect_password'])
-	return username and password

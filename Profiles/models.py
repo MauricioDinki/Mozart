@@ -107,7 +107,7 @@ class Contact(models.Model):
 		verbose_name_plural = 'Contact'
 
 
-class Social_Network_Facebook_URL(models.Model):
+class Facebook_URL(models.Model):
 	user = models.OneToOneField(UserSocialAuth)
 	facebook = models.URLField(blank=True,null=True, max_length=200)
 
@@ -119,7 +119,7 @@ class Social_Network_Facebook_URL(models.Model):
 		return self.user.user.username
 
 
-class Social_Network_Twitter_URL(models.Model):
+class Twitter_URL(models.Model):
 	user = models.OneToOneField(UserSocialAuth)
 	twitter = models.URLField(blank=True,null=True, max_length=200)
 
@@ -131,7 +131,7 @@ class Social_Network_Twitter_URL(models.Model):
 		return self.user.user.username
 
 
-class Social_Network_Google_URL(models.Model):
+class Google_URL(models.Model):
 	user = models.OneToOneField(UserSocialAuth)
 	google = models.URLField(blank=True,null=True, max_length=200)
 

@@ -5,6 +5,16 @@
 	<title>Lista de eventos</title>
 </head>
 <body>
-	
+	{% for event in events%}
+        <p>Titulo : {{event.name}}</p>
+        <p>Descripcion: {{event.description}}</p>
+        <p>Lugar: {{event.place}}</p>
+        <p>Hora de Inicio: {{event.start_time}}</p>
+        <p>Hora de Fin: {{event.finish_time}}</p>
+        <p>Fecha: {{event.date}}</p>
+        <p>Cover: <img src="{{event.cover.url}}"></p>
+        <p>Anfitrion : {{event.user}}</p>
+        <p>---------------------------------------</p>
+    {% endfor%}
 </body>
 </html>

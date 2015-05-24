@@ -10,6 +10,11 @@ def event_cover_url(self, filename):
 
 
 class Event(models.Model):
+
+    class Meta:
+        verbose_name = "Event"
+        verbose_name_plural = "Events"
+
     cover = models.ImageField(
         blank=False,
         null=False,
@@ -51,10 +56,6 @@ class Event(models.Model):
         User,
         null=False,
     )
-
-    class Meta:
-        verbose_name = "Event"
-        verbose_name_plural = "Events"
 
     def __unicode__(self):
         return self.name

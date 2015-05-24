@@ -81,8 +81,8 @@ class CreateEventForm(forms.ModelForm):
         return start_time and finish_time
 
     def clean_name(self):
-        data = self.cleaned_data.get('name')
-        return eval_iexact(data, self.Meta.model, 'slug')
+        name = self.cleaned_data.get('name')
+        return eval_iexact(name, self.Meta.model, 'slug')
 
     def save(self):
         cleaned_data = super(CreateEventForm, self).clean()
