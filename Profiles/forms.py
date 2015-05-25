@@ -313,9 +313,3 @@ class UserInformationForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFor
         user_to_change.adress.zip_code = self.cleaned_data.get('zip_code')
         user_to_change.adress.neighborhood = self.cleaned_data.get('neighborhood')
         user_to_change.adress.save()
-
-
-class TestForm(forms.Form):
-    a = forms.CharField(
-        validators=[RegexValidator(regex=u'^[0-9\-]*$')]
-    )
