@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 
-from .forms import UserInformationForm,ChangePasswordForm
+from .forms import UserInformationForm,ChangePasswordForm, TestForm
 from .mixins import RequestFormMixin
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
@@ -11,6 +11,13 @@ from django.template import RequestContext
 from django.views.generic import FormView,TemplateView
 from social.apps.django_app.default.models import UserSocialAuth
 from Thirdauth.mixins import LoginRequiredMixin
+
+
+class TestView(FormView):
+	template_name = 'generic-form.html'
+	form_class = TestForm
+	success_url = '/test/'
+
 
 class ChangePasswordView(LoginRequiredMixin,RequestFormMixin,FormView):
 	template_name = 'settings_password.html'

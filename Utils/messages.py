@@ -17,6 +17,7 @@ custom_messages = {
     'mismatch': _('103'),
     'invalid_login': _('104'),
     'inactive_account': _('105'),
+    'incorrect_password': _('106'),
 }
 
 media_messages = {
