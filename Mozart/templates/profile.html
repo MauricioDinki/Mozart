@@ -17,7 +17,7 @@
 <div ng-controller="mozartUserInformationCtrl">
     <mz-toggle-container id="profile-menu">
         <div class="text-center">
-            <img id="profile-avatar" ng-src="{$user.profile_picture$}" alt="{$user.username$}" class="circle work-user-thumbnail"/>
+            <img id="profile-avatar" ng-src="{$user.profile_picture$}" alt="{$user.username$}" class="circle"/>
             <h2 id="profile-username">{$user.username$}</h2>
         </div>
         <mz-toggle-menu icon-class-name="{% block icon-class %}{% endblock %}" current-option-text="{% block option-name %}{% endblock %}">

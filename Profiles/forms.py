@@ -8,7 +8,6 @@ from django_countries import countries
 from djangular.forms import NgDeclarativeFieldsMetaclass, NgFormValidationMixin
 from djangular.forms import NgModelFormMixin, NgFormValidationMixin
 
-
 from Profiles.models import Mozart_User
 from Utils.messages import default_messages
 from Utils.validators import eval_image, eval_blank, eval_password, eval_matching
@@ -308,8 +307,8 @@ class UserInformationForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFor
         user_to_change.contact.phone_number = self.cleaned_data.get('phone_number')
         user_to_change.contact.save()
 
-        user_to_change.adress.adress = self.cleaned_data.get('adress')
-        user_to_change.adress.city = self.cleaned_data.get('city')
-        user_to_change.adress.zip_code = self.cleaned_data.get('zip_code')
-        user_to_change.adress.neighborhood = self.cleaned_data.get('neighborhood')
-        user_to_change.adress.save()
+        user_to_change.address.address = self.cleaned_data.get('address')
+        user_to_change.address.city = self.cleaned_data.get('city')
+        user_to_change.address.zip_code = self.cleaned_data.get('zip_code')
+        user_to_change.address.neighborhood = self.cleaned_data.get('neighborhood')
+        user_to_change.address.save()

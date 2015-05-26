@@ -3,16 +3,15 @@
 from django import forms
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
-from django.utils import six
 from django.core.validators import RegexValidator
+from django.utils import six
 
 from djangular.forms import NgDeclarativeFieldsMetaclass, NgFormValidationMixin
 
-from .validations import *
 from datetime import date
 from Profiles.models import days, months, type_of_users, sexuality, Mozart_User, Date_of_Birth, Address, Contact
-from Utils.validators import eval_iexact, eval_matching, eval_blank
 from Utils.messages import default_messages, custom_messages
+from Utils.validators import eval_iexact, eval_matching, eval_blank
 
 
 class LoginForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValidationMixin, forms.Form)):
@@ -21,6 +20,7 @@ class LoginForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValidatio
     username = forms.CharField(
         max_length=20,
         min_length=5,
+        validators=[RegexValidator(regex=u'^[a-zA-Z0-9]*$')],
         widget=forms.TextInput(
             attrs={
                 'class': 'mozart-field empty-initial-field',
@@ -33,6 +33,7 @@ class LoginForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValidatio
     password = forms.CharField(
         max_length=40,
         min_length=6,
+        validators=[eval_blank],
         widget=forms.PasswordInput(
             attrs={
                 'class': 'mozart-field empty-initial-field',
@@ -47,7 +48,6 @@ class LoginForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValidatio
         super(LoginForm, self).__init__(*args, **kwargs)
         for field in self.fields:
             self.fields[field].error_messages.update(default_messages)
-            self.fields[field].validators = [eval_blank]
             self.fields[field].required = True
 
     def clean(self):
@@ -167,9 +167,11 @@ class RegisterForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValida
         super(RegisterForm, self).__init__(*args, **kwargs)
         for field in self.fields:
             self.fields[field].error_messages.update(default_messages)
-            self.fields[field].validators = [RegexValidator(regex='^[a-zA-Z0-9]*$',), ]
+            self.fields[field].validators = [RegexValidator(regex=u'^[a-zA-Z0-9]*$',), ]
             if field == 'email':
-                self.fields[field].validators = [RegexValidator(regex='^[\w.@+-]+$',), ]
+                self.fields[field].validators = [RegexValidator(regex=u'^[\w.@+-]+$',), ]
+            if field == 'username':
+                self.fields[field].validators = [RegexValidator(regex=u'^[a-zA-Z0-9]*$')]
             self.fields[field].required = True
 
     def clean_email(self):

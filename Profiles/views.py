@@ -78,4 +78,4 @@ class SocialNetworkSettingsView(LoginRequiredMixin, TemplateView):
 def SocialNetworkDeleteView(request, provider, account_id):
     account_to_delete = UserSocialAuth.objects.get(user__username=request.user.username, provider=provider, id=account_id)
     account_to_delete.delete()
-    return redirect(reverse_lazy('works:index'))
+    return redirect(reverse_lazy('profiles:settings_social'))
