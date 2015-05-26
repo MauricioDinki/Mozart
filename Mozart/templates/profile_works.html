@@ -3,13 +3,12 @@
 <div ng-init="worksCategory='{{category}}';worksAuthor='{{username}}'">
 <section id="informacion" ng-controller="loadWorksCtrl">
       <article class="work-item" ng-repeat="work in works">
-        <a ng-href="/profiles/{$ user.username $}/works/{$work.slug$}">
         <div class="work-thumbnail" style="background:url('{$work.cover$}');">
-          <span>{$work.work_type | uppercase$}</span>
-        </div>
+          <a ng-href="/profiles/{$ user.username $}/works/{$work.slug$}"><span>{$work.work_type | uppercase$}</span>
         </a>
+        </div>
         <div class="work-item-information">
-          <span class="icons {$work.category$}-icon"></span><a class="work-title" ng-href="{% url 'works:work_user_list' username %}{$work.slug$}" ng-bind="work.title"></a><br/>
+          <div class="icons {$work.category$}-icon"><a class="work-title" ng-href="{% url 'works:work_user_list' username %}{$work.slug$}" ng-bind="work.title"></a></div>
           <span class="icons user-icon work-author"><a class="work-author-name" ng-href="/profiles/{$ work.user $}" ng-bind="work.user"></a></span> el <span class="work-date" ng-bind="work.date.split('T')[0]"></span>
         </div>
       </article><br/>

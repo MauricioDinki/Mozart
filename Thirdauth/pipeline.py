@@ -5,8 +5,8 @@ from social.backends.facebook import FacebookOAuth2
 from social.backends.google import GoogleOAuth2
 from social.backends.twitter import TwitterOAuth
 
-from Thirdauth.models import ExtendUserSocialAuth
 from Profiles.models import Facebook_URL, Twitter_URL, Google_URL
+from Thirdauth.models import ExtendUserSocialAuth
 
 
 def save_extra_params(backend, details, response, uid, user, *args, **kwargs):

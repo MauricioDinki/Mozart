@@ -2,6 +2,7 @@
 
 from django import forms
 from django.utils.text import slugify
+from django.contrib.auth import authenticate
 
 from Utils.messages import default_messages, custom_messages, media_messages
 
