@@ -61,11 +61,11 @@
       );
       userInformation.get(
         function(results) {
-          mozart_user.address = results.adress + ', ' + results.neighborhood + ', ' + results.city + ', ' + results.zip_code;
-          if(results.adress === null && results.city === null && results.zip_code === null && results.neighborhood === null){
+          mozart_user.address = results.address + ', ' + results.neighborhood + ', ' + results.city + ', ' + results.zip_code;
+          if(results.address === null && results.city === null && results.zip_code === null && results.neighborhood === null){
             mozart_user.address = 'No disponible.';
           }
-          else if(results.adress === null || results.city === null || results.zip_code === null || results.neighborhood === null){
+          else if(results.address === null || results.city === null || results.zip_code === null || results.neighborhood === null){
             mozart_user.address += ' (Domicilio incompleto)';
           }
         },
