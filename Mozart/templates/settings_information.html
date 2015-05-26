@@ -29,11 +29,11 @@
             <span>Cambiar imagen</span>
             {{form.profile_picture}}
           </div><br/>
-          <div ng-show="mostrarTexto()">
+          <div ng-show="showText()">
             <strong>Archivo seleccionado: </strong> 
-            <span ng-bind="imagen.name"></span>
+            <span ng-bind="image.name"></span>
           </div>
-          <div class="aviso-error" ng-show="mostrarMensaje()">
+          <div class="form-error" ng-show="showMessage()">
             El archivo que seleccionaste no es un archivo de imagen soportado por mozArt.
           </div>
         </fieldset>
