@@ -18,7 +18,7 @@
     <mz-toggle-container id="profile-menu">
         <div class="text-center">
             <img ng-src="{$user.profile_picture$}" alt="{$user.username$}" class="circle work-user-thumbnail" width="90%"/>
-            <h2>{$user.username$}</h2>
+            <h2 id="profile-username">{$user.username$}</h2>
         </div>
         <mz-toggle-menu icon-class-name="{% block icon-class %}{% endblock %}" current-option-text="{% block option-name %}{% endblock %}">
             <ul>
