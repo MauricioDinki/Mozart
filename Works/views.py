@@ -62,7 +62,7 @@ class SearchProductsView(View):
             arg = request.GET['search']
             if arg == '':
                 return render_to_response('search_empty.html', context_instance=RequestContext(request))
-            works = self.work_queryset.filter(title__icontain=arg)
+            works = self.work_queryset.filter(title__icontains=arg)
             users = self.user_queryset.filter(username__icontains=arg)
             ctx = {
                 'works': works,

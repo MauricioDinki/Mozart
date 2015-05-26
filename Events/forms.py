@@ -1,11 +1,14 @@
 # -*- encoding: utf-8 -*-
 
 from django import forms
+from django.core.validators import RegexValidator
+from django.core.validators import RegexValidator
 from django.utils.text import slugify
 
-import time
 from Events.models import Event
-from Utils.validators import default_messages, custom_messages, eval_blank, eval_iexact, eval_image
+from Utils.messages import default_messages, custom_messages
+from Utils.validators import eval_blank, eval_iexact, eval_image
+import time
 
 
 class CreateEventForm(forms.ModelForm):
@@ -36,10 +39,15 @@ class CreateEventForm(forms.ModelForm):
         super(CreateEventForm, self).__init__(*args, **kwargs)
         for field in self.fields:
             self.fields[field].error_messages.update(default_messages)
-            self.fields[field].validators = [eval_blank]
             self.fields[field].required = True
             if field == 'cover':
                 self.fields[field].validators = [eval_image]
+            if field == 'name':
+                self.fields[field].validators = [RegexValidator(regex=u'^[a-zA-Z0-9]*$')]
+            if field == 'place':
+                self.fields[field].validators = [RegexValidator(regex=u'^[a-zA-Z0-9_áéíóúñ#\s]*$')]
+            if field == 'description':
+                self.fields[field].validators = [RegexValidator(regex=u'^[a-zA-Z0-9_áéíóúñ#\s]*$')]
 
     def eval_00(self, data):
         if data == '00':

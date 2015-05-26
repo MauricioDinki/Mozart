@@ -30,8 +30,15 @@ def eval_iexact(data, model, field):
 
 def eval_matching(data_1, data_2):
     if data_1 != data_2:
-            raise forms.ValidationError(custom_messages['mismatch'],)
+        raise forms.ValidationError(custom_messages['mismatch'],)
     return data_1 and data_2
+
+
+def eval_password(username, password):
+    user_cache = authenticate(username=username, password=password)
+    if user_cache is None:
+        raise forms.ValidationError(custom_messages['incorrect_password'])
+    return username and password
 
 
 # Media Validators
