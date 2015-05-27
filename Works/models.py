@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.utils.text import slugify
 
+from sorl.thumbnail import ImageField
+
 
 def archive_url(self, filename):
     return str('files/%s/%s') % (self.user.username, filename)
@@ -11,6 +13,10 @@ def archive_url(self, filename):
 
 def cover_url(self, filename):
     return str('covers/%s/%s') % (self.user.username, filename)
+
+
+def thumbnail_url(self, filename):
+    return str('thumbnails/%s/%s') % (self.user.username, filename)
 
 
 category = (
@@ -60,10 +66,15 @@ class Work(models.Model):
         blank=False,
         null=False,
     )
-    cover = models.ImageField(
+    cover = ImageField(
         blank=False,
         null=False,
         upload_to=cover_url,
+    )
+    thumbnail = ImageField(
+        blank=True,
+        null=True,
+        upload_to=thumbnail_url,
     )
     archive = models.FileField(
         blank=False,
