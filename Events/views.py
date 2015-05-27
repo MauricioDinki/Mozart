@@ -18,6 +18,7 @@ class ListEventView(ListView):
 class CreateEventView(RequestFormMixin, FormView):
     form_class = CreateEventForm
     success_url = reverse_lazy('events:event_list')
+    # template_name = 'create_event.html'
     template_name = 'generic-form.html'
 
     def form_valid(self, form):

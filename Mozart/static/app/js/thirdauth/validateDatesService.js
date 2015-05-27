@@ -3,10 +3,11 @@
 
   function validateDatesService() {
     /* jshint validthis:true */
-    this.current_date = new Date();
-    this.current_year = parseInt(this.current_date.getYear()) + 1900;
-    this.current_month = parseInt(this.current_date.getMonth()) + 1;
-    this.current_day = parseInt(this.current_date.getDate());
+    this.full_current_date = new Date();
+    this.current_year = parseInt(this.full_current_date.getYear()) + 1900;
+    this.current_month = parseInt(this.full_current_date.getMonth()) + 1;
+    this.current_day = parseInt(this.full_current_date.getDate());
+    this.current_date = new Date(this.current_year, this.current_month - 1, this.current_day);
     this.validDate = function(day, monthName, year, age){
       var month;
       if(isNaN(monthName)){
@@ -40,6 +41,20 @@
       else{
         return 'Lo sentimos, debes ser mayor de edad';
       }
+    };
+    this.futureDate = function(date) {
+      var date_elements = date.split('-');
+      var new_date = new Date(date_elements[0], date_elements[1] - 1, date_elements[2]);
+      return new_date.getTime() - this.current_date.getTime() >= 86400000;
+    };
+    this.validDuration = function(start_time, finish_time) {
+      var start_time_elements = String(start_time.$modelValue).split(':');
+      var finish_time_elements = String(finish_time.$modelValue).split(':');
+
+      var absolute_start_time = (parseInt(start_time_elements[0]) * 60) + parseInt(start_time_elements[1]);
+      var absolute_finish_time = (parseInt(finish_time_elements[0]) * 60) + parseInt(finish_time_elements[1]);
+
+      return absolute_finish_time >= absolute_start_time + 30;
     };
     this.getMonthNumber = function(monthName){
       if(monthName === 'Enero'){
