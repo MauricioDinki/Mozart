@@ -11,7 +11,7 @@
           mozart_user.profile_picture = 
             (results.profile_picture !== null) ? results.profile_picture : '/static/img/default.png';
           mozart_user.description = 
-            (results.description !== null || results.description === '') ? results.description : 'Sin descripción.';
+            (results.description === null || results.description === '') ? 'Sin descripción.' : results.description;
           mozart_user.sex = 
             (results.sex !== null) ? results.sex : 'No disponible.';
           mozart_user.countryCode =  results.nationality;
@@ -62,11 +62,11 @@
       userInformation.get(
         function(results) {
           mozart_user.address = results.address + ', ' + results.neighborhood + ', ' + results.city + ', ' + results.zip_code;
-          if(results.address === null && results.city === null && results.zip_code === null && results.neighborhood === null){
+          if((results.address === null && results.city === null && results.zip_code === null && results.neighborhood === null)  || (results.address === '' && results.city === '' && results.zip_code === '' && results.neighborhood === '')){
             mozart_user.address = 'No disponible.';
           }
-          else if(results.address === null || results.city === null || results.zip_code === null || results.neighborhood === null){
-            mozart_user.address += ' (Domicilio incompleto)';
+          else if((results.address === null || results.city === null || results.zip_code === null || results.neighborhood === null) || (results.address === '' || results.city === '' || results.zip_code === '' || results.neighborhood === '')){
+            mozart_user.address += '(Domicilio incompleto)';
           }
         },
         function(data, status) {
