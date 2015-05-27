@@ -5,6 +5,7 @@ from django.db import models
 
 from django_countries.fields import CountryField
 from social.apps.django_app.default.models import UserSocialAuth
+from sorl.thumbnail import ImageField
 
 days = (
     ('', 'Dia'),
@@ -99,6 +100,11 @@ class Mozart_User(models.Model):
         blank=True,
         null=True,
         upload_to=profile_picture_url
+    )
+    thumbnail = ImageField(
+        blank=True,
+        null=True,
+        upload_to='null',
     )
     sex = models.CharField(
         blank=True,

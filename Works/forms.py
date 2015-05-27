@@ -3,17 +3,21 @@
 from django import forms
 from django.core.validators import RegexValidator
 from django.utils import six
+from django.utils.text import slugify
+from django.core.files.images import ImageFile
 
 from djangular.forms import NgDeclarativeFieldsMetaclass, NgFormValidationMixin
+from sorl.thumbnail import get_thumbnail
 
 from Utils.messages import default_messages
 from Utils.validators import eval_blank, eval_iexact, eval_image, eval_general
 from Works.models import category, Work
 
 
-class CreateWorkForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValidationMixin, forms.Form)):
-    form_controller = 'uploadWorkCtrl'
-    form_name = 'workform'
+# class CreateWorkForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValidationMixin, forms.Form)):
+class CreateWorkForm(forms.Form):
+#     form_controller = 'uploadWorkCtrl'
+#     form_name = 'workform'
 
     title = forms.CharField(
         max_length=40,
@@ -71,7 +75,7 @@ class CreateWorkForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormVali
         super(CreateWorkForm, self).__init__(*args, **kwargs)
         for field in self.fields:
             self.fields[field].error_messages.update(default_messages)
-            self.fields[field].validators = [RegexValidator(regex='^[a-zA-Z0-9]*$',), ]
+            self.fields[field].validators = [RegexValidator(regex='^[a-zA-Z0-9\-]*$',), ]
             if field == 'cover':
                 self.fields[field].validators = [eval_image]
                 self.fields[field].required = False
@@ -85,7 +89,7 @@ class CreateWorkForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormVali
         return eval_iexact(title, Work, 'slug')
 
     def save(self):
-        cleaned_data = super(CreateEventForm, self).clean()
+        cleaned_data = super(CreateWorkForm, self).clean()
         newWork = Work(
             user=self.request.user,
             title=cleaned_data.get('title'),
@@ -95,14 +99,17 @@ class CreateWorkForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormVali
             slug=slugify(cleaned_data.get('title')),
         )
 
-        if str(archive.content_type).startswith('image'):
+        if str(cleaned_data.get('archive').content_type).startswith('image'):
             newWork.cover = newWork.archive
             newWork.work_type = 'image'
-        elif str(archive.content_type).startswith('audio'):
+        elif str(cleaned_data.get('archive').content_type).startswith('audio'):
             newWork.cover = cleaned_data.get('cover')
             newWork.work_type = 'audio'
         else:
             newWork.cover = cleaned_data.get('cover')
+        newWork.save()
+
+        newWork.thumbnail = get_thumbnail(newWork.cover, '300x160', crop='center', quality=99).url
         newWork.save()
 
 
