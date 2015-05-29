@@ -42,11 +42,7 @@ class CreateEventForm(forms.ModelForm):
             self.fields[field].required = True
             if field == 'cover':
                 self.fields[field].validators = [eval_image]
-            if field == 'name':
-                self.fields[field].validators = [RegexValidator(regex=u'^[a-zA-Z0-9]*$')]
-            if field == 'place':
-                self.fields[field].validators = [RegexValidator(regex=u'^[a-zA-Z0-9_áéíóúñ#\s]*$')]
-            if field == 'description':
+            if field == 'name' or field == 'place' or field == 'description':
                 self.fields[field].validators = [RegexValidator(regex=u'^[a-zA-Z0-9_áéíóúñ#\s]*$')]
 
     def eval_00(self, data):
@@ -69,11 +65,12 @@ class CreateEventForm(forms.ModelForm):
                     raise forms.ValidationError(custom_messages['inevent'])
         return event_date
 
-    def clean_finish_time(self):
-        start_time = self.cleaned_data.get('start_time')
+    def clean(self):
+        cleaned_data = super(CreateEventForm, self).clean()
         finish_time = self.cleaned_data.get('finish_time')
+        start_time = self.cleaned_data.get('start_time')
 
-        if start_time is not None:
+        if start_time and finish_time:
             ini = str(start_time).split(':')
             fin = str(finish_time).split(':')
 
@@ -86,14 +83,21 @@ class CreateEventForm(forms.ModelForm):
             if abs(min_fin - min_ini) < 30:
                 raise forms.ValidationError(custom_messages['shevent'])
 
-        return start_time and finish_time
-
     def clean_name(self):
         name = self.cleaned_data.get('name')
         return eval_iexact(name, self.Meta.model, 'slug')
 
     def save(self):
         cleaned_data = super(CreateEventForm, self).clean()
+        print cleaned_data.get('name'),
+        print cleaned_data.get('cover'),
+        print cleaned_data.get('date'),
+        print cleaned_data.get('description'),
+        print cleaned_data.get('finish_time'),
+        print cleaned_data.get('start_time'),
+        print cleaned_data.get('place'),
+        print slugify(cleaned_data.get('name')),
+
         newEvent = Event(
             user=self.request.user,
             name=cleaned_data.get('name'),
