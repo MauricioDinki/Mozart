@@ -188,7 +188,7 @@ class RegisterForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValida
         return eval_iexact(username, User, 'username')
 
     def save(self):
-        cleaned_data = super(CreateEventForm, self).clean()
+        cleaned_data = super(RegisterForm, self).clean()
 
         user = User.objects.create_user(username, email, password)
 
