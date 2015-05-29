@@ -1,22 +1,35 @@
 {% extends 'base_view.html' %}
 {% block title %}Resultados de busqueda - mozArt{% endblock %}
 {% block content %}
-	<section id="search-section">
-		<h1>Aqui te manda si buscaste algo</h1>
-		<h2>Se encontraron estas obras</h2>
+	<section id="search-section" ng-controller="searchResultsCtrl">
+		<h2>Se encontraron estas obras ({{ works|length }})</h2>
+		<section ng-show="results.showWorks">
 			{% for work in works %}
-				<p> {{work.title}} </p>
-				<p> {{work.description}} </p>
-				<p> {{work.category}} </p>
+			
+			<article class="work-item">
+	          <div class="work-thumbnail" style="background:url('{{work.thumbnail}}');">
+	            <a href="{%url 'works:work_user_detail' work.user work.slug %}"><span>{{work.work_type|upper}}</span>
+	          </a>
+	          </div>
+	          <div class="work-item-information">
+	            <div class="icons {{work.category}}-icon"><a class="work-title" href="{%url 'works:work_user_detail' work.user work.slug %}">{{work.title}}</a></div>
+	            <span class="icons user-icon"><a class="work-author-name" href="{%url 'profiles:user_profile' work.user %}">{{work.user}}</a></span> el <span class="work-date">{{work.date|date:"Y-m-d"}}</span>
+	          </div>
+	        </article>
 			{% empty %}
 				No se encontraron obras
 			{% endfor %}
-		<h2>Se encontraron estos ususarios</h2>
+			</section>
+		<h2>Se encontraron estos usuarios ({{ users|length }})</h2>
 			{% for user in users %}
-				<p> {{user.username}} </p>
-				<p> {{user.email}} </p>
+			<section ng-show="results.showUsers">
+				<p class="icons user-icon"> {{user.username}} </p>
 			{% empty %}
 				No se encontraron Usuarios
 			{% endfor %}
+</section>
+			<button type="button" ng-click="results.displayWorks()">Ver obras</button>
+
+			<button type="button" ng-click="results.displayUsers()">Ver usuarios</button>
 	</section>
 {% endblock %}
