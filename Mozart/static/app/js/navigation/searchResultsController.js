@@ -6,17 +6,28 @@
       showWorks : true,
       showUsers : false,
       works : {},
-      users : {}
+      users : {},
+      aciveOptionText : 'Obras',
+      nonAciveOptionText : 'Usuarios',
+      aciveOptionClass : 'left-option',
+      nonAciveOptionClass : 'right-option'
     };
 
-    $scope.results.displayWorks = function() {
-      $scope.results.showUsers = false;
-      $scope.results.showWorks = true;
-    };
-
-    $scope.results.displayUsers = function() {
-      $scope.results.showWorks = false;
-      $scope.results.showUsers = true;
+    $scope.results.alternateResults = function() {
+      if($scope.results.showWorks === false) {
+        $scope.results.aciveOptionText = 'Obras';
+        $scope.results.nonAciveOptionText = 'Usuarios';
+        $scope.results.aciveOptionClass = 'left-option';
+        $scope.results.nonAciveOptionClass = 'right-option';
+      }
+      else {
+        $scope.results.nonAciveOptionText = 'Obras';
+        $scope.results.aciveOptionText = 'Usuarios';
+        $scope.results.nonAciveOptionClass = 'left-option';
+        $scope.results.aciveOptionClass = 'right-option';
+      }
+      $scope.results.showWorks = !$scope.results.showWorks;
+      $scope.results.showUsers = !$scope.results.showUsers;
     };
   }
 

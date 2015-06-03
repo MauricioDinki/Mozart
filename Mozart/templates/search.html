@@ -1,9 +1,12 @@
 {% extends 'base_view.html' %}
 {% block title %}Resultados de busqueda - mozArt{% endblock %}
 {% block content %}
-	<section id="search-section" ng-controller="searchResultsCtrl">
-		<h2>Se encontraron estas obras ({{ works|length }})</h2>
-		<section ng-show="results.showWorks">
+	<div id="search-section" ng-controller="searchResultsCtrl">
+		<div class="slide-button" ng-click="results.alternateResults()">
+				<span class="active-option" ng-class="results.aciveOptionClass" ng-bind="results.aciveOptionText"></span>
+				<span class="non-active-option" ng-class="results.nonAciveOptionClass" ng-bind="results.nonAciveOptionText"></span>
+			</div><br/>
+		<section id="works-search-results" ng-show="results.showWorks">
 			{% for work in works %}
 			
 			<article class="work-item">
@@ -20,16 +23,12 @@
 				No se encontraron obras
 			{% endfor %}
 			</section>
-		<h2>Se encontraron estos usuarios ({{ users|length }})</h2>
+			<section id="users-search-results" ng-show="results.showUsers">
 			{% for user in users %}
-			<section ng-show="results.showUsers">
-				<p class="icons user-icon"> {{user.username}} </p>
+				<span class="icons user-icon"> {{user.username}} </span>
 			{% empty %}
 				No se encontraron Usuarios
 			{% endfor %}
 </section>
-			<button type="button" ng-click="results.displayWorks()">Ver obras</button>
-
-			<button type="button" ng-click="results.displayUsers()">Ver usuarios</button>
-	</section>
+	</div>
 {% endblock %}
