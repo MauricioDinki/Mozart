@@ -17,7 +17,7 @@
           requestUrl = apiBaseUrl + '?category=' + category + '&page=' + pageNumber;
         }
         else {
-          requestUrl = apiBaseUrl + '?author=' + author +  '&category=' + category + '&page=' + pageNumber;
+          requestUrl = apiBaseUrl + '?user=' + author +  '&category=' + category + '&page=' + pageNumber;
         }
         $http({
           method: 'GET',

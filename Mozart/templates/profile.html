@@ -2,6 +2,7 @@
 {% load thumbnail %}
 {% block title %}Perfil de {{username}} - mozArt{% endblock %}
 {% block content %}
+
 <div id="blue-navbar" class="categories-navbar" ng-init="base_username='{{username}}'">
     <ul>
         <li><a href="{% url 'works:work_user_list' username %}" class="icons todas-icon" title="Todas las categorías"></a></li>
