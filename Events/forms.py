@@ -99,6 +99,7 @@ import time
 #             }
 #         ),
 #     )
+
 class CreateEventForm(forms.ModelForm):
     class Meta:
         model = Event
@@ -174,6 +175,7 @@ class CreateEventForm(forms.ModelForm):
     def clean_name(self):
         name = self.cleaned_data.get('name')
         return eval_iexact(name, self.Meta.model, 'slug')
+        # return eval_iexact(name, Event, 'slug')
 
     def save(self):
         cleaned_data = super(CreateEventForm, self).clean()

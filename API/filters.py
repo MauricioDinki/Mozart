@@ -47,7 +47,7 @@ class Mozart_UserFilter(GenericUserFilter):
 
     class Meta:
         model = Mozart_User
-        fields = ['user', 'sex', 'nationality']
+        fields = ['user', 'sex', 'nationality', 'user_type']
 
 
 class WorkFilter(django_filters.FilterSet):

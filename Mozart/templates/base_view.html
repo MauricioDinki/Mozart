@@ -36,9 +36,8 @@
             <hr/>{% if user.is_authenticated %}{% if user.mozart_user.user_type == 'Artista' %}
             <li><a href="{% url 'works:create_work' %}" class="icons create-work-icon">Crear obra</a>
             </li>{% endif %}{% if user.mozart_user.user_type == 'Promotor' %}
-            <li><a href="{% url 'events:create_event' %}" class="icons event-icon">Crear evento</a>
-            </li>{% endif %}
             <li><a href="{% url 'events:create_event' %}" class="icons events-icon">Crear evento</a>
+            </li>{% endif %}
             <li><a href="{% url 'profiles:user_profile'  user.username %}" class="icons user-icon">Ver mi Perfil</a></li>
             <li><a href="{% url 'profiles:settings_account' %}" class="icons settings-icon">Panel de usuario</a></li>
             <li><a href="{% url 'thirdauth:logout' %}" class="icons logout-icon">Cerrar sesión</a></li>{% else %}

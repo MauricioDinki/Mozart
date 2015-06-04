@@ -1,20 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Lista de eventos</title>
-</head>
-<body>
-	{% for event in events%}
-        <p>Titulo : {{event.name}}</p>
+{% extends 'base_view.html' %}
+{% load thumbnail %}
+{% load static %}
+{% block title %}Eventos - mozArt{% endblock %}
+{% block content %}
+{% for event in events%}
+    <div style="background:url('{{event.cover.url}}');background-size:cover;background-position:50% 50% !important;">
+    <div class="welcome-box" style="padding:50px;color:white">
+   <p>Titulo : {{event.name}}</p>
         <p>Descripcion: {{event.description}}</p>
         <p>Lugar: {{event.place}}</p>
-        <p>Hora de Inicio: {{event.start_time}}</p>
-        <p>Hora de Fin: {{event.finish_time}}</p>
+        <p>Hora de Inicio: {{event.start_time|date:"h:i a"}}</p>
+        <p>Hora de Fin: {{event.finish_time|date:"h:i a"}}</p>
         <p>Fecha: {{event.date}}</p>
-        <p>Cover: <img src="{{event.cover.url}}"></p>
         <p>Anfitrion : {{event.user}}</p>
         <p>---------------------------------------</p>
-    {% endfor%}
-</body>
-</html>
+</div></div>
+
+        
+    {% endfor%}{% endblock %}
