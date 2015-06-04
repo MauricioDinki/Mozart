@@ -190,7 +190,11 @@ class RegisterForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValida
     def save(self):
         cleaned_data = super(RegisterForm, self).clean()
 
-        user = User.objects.create_user(username, email, password)
+        user = User.objects.create_user(
+            cleaned_data.get('username'),
+            cleaned_data.get('email'),
+            cleaned_data.get('password_2'),
+        )
 
         newExtendedUser = Mozart_User(
             user=user,
