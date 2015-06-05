@@ -4,19 +4,88 @@ from django import forms
 from django.core.validators import RegexValidator
 from django.core.validators import RegexValidator
 from django.utils.text import slugify
-# from django.utils import six 
+from django.utils import six 
 
 # from djangular.forms import NgDeclarativeFieldsMetaclass, NgFormValidationMixin
+# from djangular.forms import NgModelFormMixin, NgModelForm
 
 from Events.models import Event
 from Utils.messages import default_messages, custom_messages
 from Utils.validators import eval_blank, eval_iexact, eval_image
-import time
+import time, datetime
+
+# class CreateEventForm(NgModelFormMixin, NgModelForm):
+#     form_controller = 'createEventCtrl'
+#     form_name = 'eventform'
+
+#     class Meta:
+#         current_date = datetime.date.today()
+#         model = Event
+#         exclude = ['user', 'slug']
+#         widgets = {
+#             'name': forms.TextInput(
+#                 attrs={
+#                     'class': 'mozart-field empty-initial-field',
+#                     'placeholder': 'Escribe un nombre para el evento.',
+#                     'mz-field': '',
+#                 }
+#             ),
+#             'description': forms.Textarea(
+#                 attrs={
+#                     'class': 'mozart-field empty-initial-field',
+#                     'mz-field': '',
+#                 }
+#             ),
+#             'place': forms.TextInput(
+#                 attrs={
+#                     'class': 'mozart-field empty-initial-field',
+#                     'placeholder': '¿En dónde se llevará a cabo el evento?',
+#                     'mz-field': '',
+#                 }
+#             ),
+#             'date': forms.TextInput(
+#                 attrs={
+#                     'class': 'mozart-field active-field',
+#                     'type': 'date',
+#                     'mz-field': '',
+#                     'ng-change' : 'validateDate()',
+#                     'value':  current_date + datetime.timedelta(days=1),
+#                 }
+#             ),
+#             'start_time': forms.TextInput(
+#                 attrs={
+#                     'class': 'mozart-field active-field',
+#                     'placeholder': '¿A qué hora comienza el evento?',
+#                     'mz-field': '',
+#                     'value':  '12:00',
+#                     'ng-change' : 'validateDuration()',
+#                     'ng-pattern' : '/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/',
+#                 }
+#             ),
+#             'finish_time': forms.TextInput(
+#                 attrs={
+#                     'class': 'mozart-field active-field',
+#                     'placeholder': '¿A qué hora finaliza el evento?',
+#                     'mz-field': '',
+#                     'value':  '12:30',
+#                     'ng-change' : 'validateDuration()',
+#                     'ng-pattern' : '/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/',
+#                 }
+#             ),
+#             'cover': forms.FileInput(
+#                 attrs={
+#                     'file-upload': '',
+#                     'file-bind': 'cover',
+#                     'accept' : 'image/*',
+#                 }
+#             ),
+#         }
 
 # class CreateEventForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValidationMixin, forms.Form)):
 #     form_controller = 'createEventCtrl'
 #     form_name = 'eventform'
 
+#     current_date = datetime.date.today()
 #     name = forms.CharField(
 #         max_length=40,
 #         min_length=4,
@@ -84,7 +153,7 @@ import time
 #                 'type': 'date',
 #                 'mz-field': '',
 #                 'ng-change' : 'validateDate()',
-#                 'value':  time.strftime("%Y-%m-%d"),
+#                 'value':  current_date,
 #             }
 #         ),
 #     )

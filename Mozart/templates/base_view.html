@@ -32,7 +32,7 @@
           <ul>
             <li><a class="icons explore-icon" href="{% url 'works:work_list' %}">Explorar obras</a></li>
             <li><a class="icons promotors-icon" href="/promoters">Promotores</a></li>
-            <li><a class="icons tour-icon" href="/tour">Recorrido por mozArt</a></li>
+            <li><a class="icons tour-icon" href="#">Recorrido por mozArt *</a></li>
             <hr/>{% if user.is_authenticated %}{% if user.mozart_user.user_type == 'Artista' %}
             <li><a href="{% url 'works:create_work' %}" class="icons create-work-icon">Crear obra</a>
             </li>{% endif %}{% if user.mozart_user.user_type == 'Promotor' %}
@@ -44,8 +44,8 @@
             <li><a href="{% url 'thirdauth:login' %}" class="icons login-icon">Iniciar sesión</a></li>
             <li><a href="{% url 'thirdauth:signup' %}" class="icons signup-icon">Unirse a mozArt</a></li>{% endif %}
             <hr/>
-            <li><a class="icons random-icon" href="/">Obra aleatoria</a></li>
-            <li><a class="icons random-icon" href="/">Usuario aleatorio</a></li>
+            <li><a class="icons random-icon" href="#">Obra aleatoria *</a></li>
+            <li><a class="icons random-icon" href="#">Usuario aleatorio *</a></li>
           </ul>
         </div>
         <footer id="mozart-footer">

@@ -14,10 +14,10 @@ from Utils.validators import eval_blank, eval_iexact, eval_image, eval_general
 from Works.models import category, Work
 
 
-# class CreateWorkForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValidationMixin, forms.Form)):
-class CreateWorkForm(forms.Form):
-#     form_controller = 'uploadWorkCtrl'
-#     form_name = 'workform'
+class CreateWorkForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValidationMixin, forms.Form)):
+# class CreateWorkForm(forms.Form):
+    form_controller = 'uploadWorkCtrl'
+    form_name = 'workform'
 
     title = forms.CharField(
         max_length=40,
