@@ -3,8 +3,8 @@
 from django import forms
 from django.core.validators import RegexValidator
 from django.core.validators import RegexValidator
-from django.utils.text import slugify
 from django.utils import six
+from django.utils.text import slugify
 
 from djangular.forms import NgDeclarativeFieldsMetaclass, NgFormValidationMixin
 
@@ -15,6 +15,7 @@ import datetime
 import time
 
 current_date = datetime.date.today()
+
 
 class CreateEventForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValidationMixin, forms.Form)):
     form_controller = 'createEventCtrl'
@@ -51,8 +52,8 @@ class CreateEventForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormVal
                 'class': 'mozart-field active-field',
                 'mz-field': '',
                 'value':  '12:00',
-                'ng-change' : 'validateDuration()',
-                'ng-pattern' : '/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/',
+                'ng-change': 'validateDuration()',
+                'ng-pattern': '/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/',
             }
         ),
     )
@@ -64,8 +65,8 @@ class CreateEventForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormVal
                 'class': 'mozart-field active-field',
                 'mz-field': '',
                 'value':  '12:30',
-                'ng-change' : 'validateDuration()',
-                'ng-pattern' : '/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/',
+                'ng-change': 'validateDuration()',
+                'ng-pattern': '/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/',
             }
         ),
     )
@@ -88,7 +89,7 @@ class CreateEventForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormVal
                 'class': 'mozart-field active-field',
                 'type': 'date',
                 'mz-field': '',
-                'ng-change' : 'validateDate()',
+                'ng-change': 'validateDate()',
                 'value':  current_date,
             }
         ),
@@ -99,7 +100,7 @@ class CreateEventForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormVal
             attrs={
                 'file-upload': '',
                 'file-bind': 'cover',
-                'accept' : 'image/*',
+                'accept': 'image/*',
             }
         ),
     )
