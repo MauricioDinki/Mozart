@@ -10,10 +10,10 @@
         </mz-basic-okay-modal>
           {% endifnotequal %}
         {% endif %}
-        <form action="" method="post" id="id_{{form.form_name}}" name="{{form.form_name}}" novalidate ng-controller="{{form.form_controller}}">
+        <form action="" method="post" enctype="multipart/form-data" id="id_{{form.form_name}}" name="{{form.form_name}}" novalidate ng-controller="{{form.form_controller}}">
           {% csrf_token %}
           <div class="mozart-field-container one-element">
-            <label for="id_name" class="mozart-label initial-label">Nombre del evento</label>
+            <label for="id_name" class="mozart-label initial-label">{{form.name.label}}</label>
             {{form.name}}
           </div>
 
@@ -28,7 +28,7 @@
           </div>
 
           <div class="mozart-field-container one-element">
-            <label for="id_description" class="mozart-label initial-label">Descripción del evento</label>
+            <label for="id_description" class="mozart-label initial-label">{{form.description.label}}</label>
             {{form.description}}
           </div>
 
@@ -40,7 +40,7 @@
           </div>
 
           <div class="mozart-field-container one-element">
-            <label for="id_place" class="mozart-label initial-label">Lugar</label>
+            <label for="id_place" class="mozart-label initial-label">{{form.place.label}}</label>
             {{form.place}}
           </div>
 
@@ -54,17 +54,17 @@
           Fecha y hora<br/>
 
           <div class="mozart-field-container three-elements ">
-            <label for="id_date" class="mozart-label non-active-label">Fecha del evento</label>
+            <label for="id_date" class="mozart-label non-active-label">{{form.date.label}}</label>
             {{form.date}}
           </div>
 
 					<div class="mozart-field-container three-elements ">
-            <label for="id_start_time" class="mozart-label non-active-label">Hora de inicio</label>
+            <label for="id_start_time" class="mozart-label non-active-label">{{form.start_time.label}}</label>
             {{form.start_time}}
           </div>
 
           <div class="mozart-field-container three-elements ">
-            <label for="id_finish_time" class="mozart-label non-active-label">Hora de termino</label>
+            <label for="id_finish_time" class="mozart-label non-active-label">{{form.finish_time.label}}</label>
             {{form.finish_time}}
           </div>
 

@@ -24,7 +24,6 @@ class LoginForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValidatio
         widget=forms.TextInput(
             attrs={
                 'class': 'mozart-field empty-initial-field',
-                'placeholder': 'Escribe tu nickname',
                 'mz-field': '',
             }
         ),
@@ -37,7 +36,6 @@ class LoginForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValidatio
         widget=forms.PasswordInput(
             attrs={
                 'class': 'mozart-field empty-initial-field',
-                'placeholder': 'Escribe tu contraseña',
                 'mz-field': '',
             }
         ),
@@ -107,7 +105,6 @@ class RegisterForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValida
         widget=forms.PasswordInput(
             attrs={
                 'class': 'mozart-field empty-initial-field',
-                'placeholder': 'Elije una contraseña',
                 'mz-field': '',
             }
         ),
@@ -119,7 +116,6 @@ class RegisterForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValida
         widget=forms.PasswordInput(
             attrs={
                 'class': 'mozart-field empty-initial-field',
-                'placeholder': 'Vuelve a escribir tu contraseña',
                 'mz-field': '',
                 'mz-match': 'password_1',
             }
@@ -142,7 +138,6 @@ class RegisterForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValida
         widget=forms.TextInput(
             attrs={
                 'class': 'mozart-field empty-initial-field',
-                'placeholder': 'Escribe tu nickname',
                 'mz-field': '',
             }
         ),

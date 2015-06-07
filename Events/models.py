@@ -26,7 +26,7 @@ class Event(models.Model):
     )
     description = models.CharField(
         blank=False,
-        max_length=200,
+        max_length=1000,
         null=False,
     )
     finish_time = models.TimeField(
@@ -37,11 +37,10 @@ class Event(models.Model):
         blank=False,
         max_length=50,
         null=False,
-
     )
     place = models.CharField(
         blank=False,
-        max_length=50,
+        max_length=200,
         null=False,
     )
     slug = models.SlugField(

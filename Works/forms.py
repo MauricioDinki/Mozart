@@ -15,7 +15,6 @@ from Works.models import category, Work
 
 
 class CreateWorkForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValidationMixin, forms.Form)):
-# class CreateWorkForm(forms.Form):
     form_controller = 'uploadWorkCtrl'
     form_name = 'workform'
 
@@ -25,7 +24,6 @@ class CreateWorkForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormVali
         widget=forms.TextInput(
             attrs={
                 'class': 'mozart-field empty-initial-field',
-                'placeholder': 'Escribe un titulo para la obra',
                 'mz-field': '',
             }
         ),
@@ -52,7 +50,6 @@ class CreateWorkForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormVali
     )
 
     cover = forms.ImageField(
-        validators=[eval_image],
         widget=forms.FileInput(
             attrs={
                 'file-upload': '',
@@ -124,21 +121,18 @@ class UpdateWorkForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormVali
             'title': forms.TextInput(
                 attrs={
                     'class': 'mozart-field empty-initial-field',
-                    'placeholder': 'Escribe un titulo para la obra',
                     'mz-field': '',
                 }
             ),
             'description': forms.Textarea(
                 attrs={
                     'class': 'mozart-field empty-initial-field',
-                    'placeholder': 'Escribe un titulo para la obra',
                     'mz-field': '',
                 }
             ),
             'category': forms.Select(
                 attrs={
                     'class': 'mozart-field empty-initial-field',
-                    'placeholder': 'Escribe un titulo para la obra',
                     'mz-field': '',
                 }
             ),

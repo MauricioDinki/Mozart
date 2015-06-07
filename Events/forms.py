@@ -6,191 +6,102 @@ from django.core.validators import RegexValidator
 from django.utils.text import slugify
 from django.utils import six 
 
-# from djangular.forms import NgDeclarativeFieldsMetaclass, NgFormValidationMixin
-# from djangular.forms import NgModelFormMixin, NgModelForm
+from djangular.forms import NgDeclarativeFieldsMetaclass, NgFormValidationMixin
 
 from Events.models import Event
 from Utils.messages import default_messages, custom_messages
 from Utils.validators import eval_blank, eval_iexact, eval_image
 import time, datetime
 
-# class CreateEventForm(NgModelFormMixin, NgModelForm):
-#     form_controller = 'createEventCtrl'
-#     form_name = 'eventform'
+current_date = datetime.date.today()
 
-#     class Meta:
-#         current_date = datetime.date.today()
-#         model = Event
-#         exclude = ['user', 'slug']
-#         widgets = {
-#             'name': forms.TextInput(
-#                 attrs={
-#                     'class': 'mozart-field empty-initial-field',
-#                     'placeholder': 'Escribe un nombre para el evento.',
-#                     'mz-field': '',
-#                 }
-#             ),
-#             'description': forms.Textarea(
-#                 attrs={
-#                     'class': 'mozart-field empty-initial-field',
-#                     'mz-field': '',
-#                 }
-#             ),
-#             'place': forms.TextInput(
-#                 attrs={
-#                     'class': 'mozart-field empty-initial-field',
-#                     'placeholder': '¿En dónde se llevará a cabo el evento?',
-#                     'mz-field': '',
-#                 }
-#             ),
-#             'date': forms.TextInput(
-#                 attrs={
-#                     'class': 'mozart-field active-field',
-#                     'type': 'date',
-#                     'mz-field': '',
-#                     'ng-change' : 'validateDate()',
-#                     'value':  current_date + datetime.timedelta(days=1),
-#                 }
-#             ),
-#             'start_time': forms.TextInput(
-#                 attrs={
-#                     'class': 'mozart-field active-field',
-#                     'placeholder': '¿A qué hora comienza el evento?',
-#                     'mz-field': '',
-#                     'value':  '12:00',
-#                     'ng-change' : 'validateDuration()',
-#                     'ng-pattern' : '/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/',
-#                 }
-#             ),
-#             'finish_time': forms.TextInput(
-#                 attrs={
-#                     'class': 'mozart-field active-field',
-#                     'placeholder': '¿A qué hora finaliza el evento?',
-#                     'mz-field': '',
-#                     'value':  '12:30',
-#                     'ng-change' : 'validateDuration()',
-#                     'ng-pattern' : '/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/',
-#                 }
-#             ),
-#             'cover': forms.FileInput(
-#                 attrs={
-#                     'file-upload': '',
-#                     'file-bind': 'cover',
-#                     'accept' : 'image/*',
-#                 }
-#             ),
-#         }
+class CreateEventForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValidationMixin, forms.Form)):
+    form_controller = 'createEventCtrl'
+    form_name = 'eventform'
 
-# class CreateEventForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValidationMixin, forms.Form)):
-#     form_controller = 'createEventCtrl'
-#     form_name = 'eventform'
+    name = forms.CharField(
+        label='Nombre del evento',
+        min_length=4,
+        max_length=50,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'mozart-field empty-initial-field',
+                'mz-field': '',
+            }
+        ),
+    )
 
-#     current_date = datetime.date.today()
-#     name = forms.CharField(
-#         max_length=40,
-#         min_length=4,
-#         widget=forms.TextInput(
-#             attrs={
-#                 'class': 'mozart-field empty-initial-field',
-#                 'placeholder': 'Escribe un nombre para el evento.',
-#                 'mz-field': '',
-#             }
-#         ),
-#     )
+    place = forms.CharField(
+        label='Lugar',
+        min_length=4,
+        max_length=200,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'mozart-field empty-initial-field',
+                'mz-field': '',
+            }
+        ),
+    )
 
-#     place = forms.CharField(
-#         max_length=200,
-#         min_length=4,
-#         widget=forms.TextInput(
-#             attrs={
-#                 'class': 'mozart-field empty-initial-field',
-#                 'placeholder': '¿En dónde se llevará a cabo el evento?',
-#                 'mz-field': '',
-#             }
-#         ),
-#     )
+    start_time = forms.CharField(
+        label='Hora de inicio',
+        widget=forms.TextInput(
+            attrs={
+                'class': 'mozart-field active-field',
+                'mz-field': '',
+                'value':  '12:00',
+                'ng-change' : 'validateDuration()',
+                'ng-pattern' : '/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/',
+            }
+        ),
+    )
 
-#     start_time = forms.CharField(
-#         widget=forms.TextInput(
-#             attrs={
-#                 'class': 'mozart-field active-field',
-#                 'placeholder': '¿A qué hora comienza el evento?',
-#                 'mz-field': '',
-#                 'value':  '12:00',
-#                 'ng-change' : 'validateDuration()',
-#                 'ng-pattern' : '/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/',
-#             }
-#         ),
-#     )
+    finish_time = forms.CharField(
+        label='Hora de termino',
+        widget=forms.TextInput(
+            attrs={
+                'class': 'mozart-field active-field',
+                'mz-field': '',
+                'value':  '12:30',
+                'ng-change' : 'validateDuration()',
+                'ng-pattern' : '/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/',
+            }
+        ),
+    )
 
-#     finish_time = forms.CharField(
-#         widget=forms.TextInput(
-#             attrs={
-#                 'class': 'mozart-field active-field',
-#                 'placeholder': '¿A qué hora finaliza el evento?',
-#                 'mz-field': '',
-#                 'value':  '12:30',
-#                 'ng-change' : 'validateDuration()',
-#                 'ng-pattern' : '/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/',
-#             }
-#         ),
-#     )
+    description = forms.CharField(
+        label='Descripción del evento',
+        max_length=1000,
+        widget=forms.Textarea(
+            attrs={
+                'class': 'mozart-field empty-initial-field',
+                'mz-field': '',
+            }
+        ),
+    )
 
-#     description = forms.CharField(
-#         max_length=1000,
-#         widget=forms.Textarea(
-#             attrs={
-#                 'class': 'mozart-field empty-initial-field',
-#                 'mz-field': '',
-#             }
-#         ),
-#     )
+    date = forms.CharField(
+        label='Fecha del evento',
+        widget=forms.TextInput(
+            attrs={
+                'class': 'mozart-field active-field',
+                'type': 'date',
+                'mz-field': '',
+                'ng-change' : 'validateDate()',
+                'value':  current_date,
+            }
+        ),
+    )
 
-#     date = forms.CharField(
-#         widget=forms.TextInput(
-#             attrs={
-#                 'class': 'mozart-field active-field',
-#                 'type': 'date',
-#                 'mz-field': '',
-#                 'ng-change' : 'validateDate()',
-#                 'value':  current_date,
-#             }
-#         ),
-#     )
-
-#     cover = forms.ImageField(
-#         validators=[eval_image],
-#         widget=forms.FileInput(
-#             attrs={
-#                 'file-upload': '',
-#                 'file-bind': 'cover',
-#                 'accept' : 'image/*',
-#             }
-#         ),
-#     )
-
-class CreateEventForm(forms.ModelForm):
-    class Meta:
-        model = Event
-        exclude = ['user', 'slug']
-        widgets = {
-            'name': forms.TextInput(
-                attrs={
-                    'class': '',
-                }
-            ),
-            'description': forms.Textarea(
-                attrs={
-                    'cols': 40,
-                    'rows': 10,
-                }
-            ),
-            'date': forms.TextInput(
-                attrs={
-                    'type': 'date',
-                }
-            )
-        }
+    cover = forms.ImageField(
+        widget=forms.FileInput(
+            attrs={
+                'file-upload': '',
+                'file-bind': 'cover',
+                'accept' : 'image/*',
+            }
+        ),
+    )
 
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request', None)
@@ -243,8 +154,7 @@ class CreateEventForm(forms.ModelForm):
 
     def clean_name(self):
         name = self.cleaned_data.get('name')
-        return eval_iexact(name, self.Meta.model, 'slug')
-        # return eval_iexact(name, Event, 'slug')
+        return eval_iexact(name, Event, 'slug')
 
     def save(self):
         cleaned_data = super(CreateEventForm, self).clean()
@@ -268,4 +178,5 @@ class CreateEventForm(forms.ModelForm):
             place=cleaned_data.get('place'),
             slug=slugify(cleaned_data.get('name')),
         )
+
         newEvent.save()

@@ -22,7 +22,6 @@ class ChangePasswordForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgForm
         widget=forms.PasswordInput(
             attrs={
                 'class': 'mozart-field empty-initial-field',
-                'placeholder': 'Escribe tu contraseña actual',
                 'mz-field': '',
             }
         ),
@@ -34,7 +33,6 @@ class ChangePasswordForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgForm
         widget=forms.PasswordInput(
             attrs={
                 'class': 'mozart-field empty-initial-field',
-                'placeholder': 'Escribe tu nueva contraseña',
                 'mz-field': '',
             }
         ),
@@ -46,7 +44,6 @@ class ChangePasswordForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgForm
         widget=forms.PasswordInput(
             attrs={
                 'class': 'mozart-field empty-initial-field',
-                'placeholder': 'Vuelve a escribir tu nueva contraseña',
                 'mz-field': '',
                 'mz-match': 'new_password_1',
             }
@@ -89,7 +86,6 @@ class UserInformationForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFor
         widget=forms.TextInput(
             attrs={
                 'class': 'mozart-field empty-initial-field',
-                'placeholder': 'Elije un nuevo nickname',
                 'mz-field': ''
             }
         ),
@@ -103,7 +99,6 @@ class UserInformationForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFor
         widget=forms.TextInput(
             attrs={
                 'class': 'mozart-field empty-initial-field',
-                'placeholder': 'Escribe tu(s) nombre(s)',
                 'mz-field': ''
             }
         ),
@@ -117,7 +112,6 @@ class UserInformationForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFor
         widget=forms.TextInput(
             attrs={
                 'class': 'mozart-field empty-initial-field',
-                'placeholder': 'Escribe tu(s) apellido(s)',
                 'mz-field': ''
             }
         ),
@@ -155,7 +149,6 @@ class UserInformationForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFor
         widget=forms.Textarea(
             attrs={
                 'class': 'mozart-field empty-initial-field',
-                'placeholder': 'Cuentanos Sobre ti',
                 'mz-field': ''
             }
         ),
@@ -167,7 +160,6 @@ class UserInformationForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFor
         widget=forms.URLInput(
             attrs={
                 'class': 'mozart-field empty-initial-field',
-                'placeholder': 'Tu página personal',
                 'mz-field': ''
             }
         ),
@@ -181,7 +173,6 @@ class UserInformationForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFor
         widget=forms.NumberInput(
             attrs={
                 'class': 'mozart-field empty-initial-field',
-                'placeholder': 'Escribe tu numero telefonico',
                 'mz-field': '',
                 'ng-pattern': ''
             }
@@ -196,7 +187,6 @@ class UserInformationForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFor
         widget=forms.TextInput(
             attrs={
                 'class': 'mozart-field empty-initial-field',
-                'placeholder': 'Escribe tu dirección',
                 'mz-field': ''
             }
         ),
@@ -210,7 +200,6 @@ class UserInformationForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFor
         widget=forms.TextInput(
             attrs={
                 'class': 'mozart-field empty-initial-field',
-                'placeholder': 'Escribe el nombre de tu ciudad',
                 'mz-field': ''
             }
         ),
@@ -224,7 +213,6 @@ class UserInformationForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFor
         widget=forms.TextInput(
             attrs={
                 'class': 'mozart-field empty-initial-field',
-                'placeholder': 'Escribe tu código postal',
                 'mz-field': ''
             }
         ),
@@ -238,7 +226,6 @@ class UserInformationForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFor
         widget=forms.TextInput(
             attrs={
                 'class': 'mozart-field empty-initial-field',
-                'placeholder': 'Escribe el nombre de tu vecindario',
                 'mz-field': ''
             }
         ),
@@ -252,7 +239,6 @@ class UserInformationForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFor
         widget=forms.PasswordInput(
             attrs={
                 'class': 'mozart-field empty-initial-field',
-                'placeholder': 'Escribe tu contraseña',
                 'mz-field': ''
             }
         ),

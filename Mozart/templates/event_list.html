@@ -4,7 +4,9 @@
 {% block title %}Eventos - mozArt{% endblock %}
 {% block content %}
 <div class="text-center">
-{% for event in events%}
+    <h2>Eventos </h2>
+{% for event in events reversed %}
+    {% if event.date > current_date %}
     <article class="two-elements event-item" style="background-image:url('{{event.cover.url}}')">
         <div>
             <div class="event-title-date">
@@ -24,5 +26,6 @@
             </div>
         </div>
     </article>
+    {% endif %}
     {% endfor%}{% endblock %}
 </div>
