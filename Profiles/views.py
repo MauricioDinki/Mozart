@@ -60,8 +60,13 @@ class ProfileView(TemplateView):
         if 'view' not in kwargs:
             kwargs['view'] = self
             kwargs['username'] = self.kwargs.get('username')
-            error = get_object_or_404(User, username__iexact=self.kwargs.get('username'))
+            user = get_object_or_404(User, username__iexact=self.kwargs.get('username'))
+            kwargs['user_type'] = user.mozart_user.user_type
             return kwargs
+
+
+class PromoterListView(TemplateView):
+    template_name = "promoter_list.html"
 
 
 class SocialNetworkSettingsView(LoginRequiredMixin, TemplateView):

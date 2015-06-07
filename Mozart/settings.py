@@ -14,7 +14,7 @@ DEBUG = True
 TEMPLATE_DEBUG = True
 
 TEMPLATE_DIRS = (
-    os.path.join(PROJECT_PATH,'templates'),
+    os.path.join(PROJECT_PATH, 'templates'),
 )
 
 ALLOWED_HOSTS = ['*']
@@ -65,10 +65,10 @@ TEMPLATE_CONTEXT_PROCESSORS = TCP + (
 )
 
 AUTHENTICATION_BACKENDS = (
-   'social.backends.facebook.FacebookOAuth2',
-   'social.backends.google.GoogleOAuth2',
-   'social.backends.twitter.TwitterOAuth',
-   'django.contrib.auth.backends.ModelBackend',
+    'social.backends.facebook.FacebookOAuth2',
+    'social.backends.google.GoogleOAuth2',
+    'social.backends.twitter.TwitterOAuth',
+    'django.contrib.auth.backends.ModelBackend',
 )
 
 ROOT_URLCONF = 'Mozart.urls'
@@ -98,17 +98,17 @@ STATIC_URL = '/static/'
 STATIC_ROOT = 'staticfiles'
 
 STATICFILES_DIRS = (
-    os.path.join(PROJECT_PATH,'static/dist'),
+    os.path.join(PROJECT_PATH, 'static/dist'),
 )
 
 SUIT_CONFIG = {
     'ADMIN_NAME': 'Mozart',
     'MENU_ICONS': {
-       'auth': 'icon-lock',
-       'Events': 'icon-calendar',
-       'Profiles': 'icon-user',
-       'Thirdauth': 'icon-globe',
-       'Works': 'icon-briefcase',
+        'auth': 'icon-lock',
+        'Events': 'icon-calendar',
+        'Profiles': 'icon-user',
+        'Thirdauth': 'icon-globe',
+        'Works': 'icon-briefcase',
     },
 }
 
@@ -118,7 +118,7 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 16,
 }
 
-MEDIA_ROOT = os.path.join(PROJECT_PATH,'media')
+MEDIA_ROOT = os.path.join(PROJECT_PATH, 'media')
 MEDIA_URL = '/media/'
 
 THUMBNAIL_DEBUG = False
@@ -139,7 +139,7 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.environ.get("MOZART_SOCIAL_AUTH_GOOGLE_OAUTH2
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ.get("MOZART_SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET", None)
 
 # Social Auth Pipeline
-SOCIAL_AUTH_PIPELINE = (    
+SOCIAL_AUTH_PIPELINE = (
     'social.pipeline.social_auth.social_details',
     'social.pipeline.social_auth.social_uid',
     'social.pipeline.social_auth.auth_allowed',
