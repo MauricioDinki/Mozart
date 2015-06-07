@@ -4,14 +4,15 @@ from django import forms
 from django.core.validators import RegexValidator
 from django.core.validators import RegexValidator
 from django.utils.text import slugify
-from django.utils import six 
+from django.utils import six
 
 from djangular.forms import NgDeclarativeFieldsMetaclass, NgFormValidationMixin
 
 from Events.models import Event
 from Utils.messages import default_messages, custom_messages
 from Utils.validators import eval_blank, eval_iexact, eval_image
-import time, datetime
+import datetime
+import time
 
 current_date = datetime.date.today()
 
@@ -158,14 +159,6 @@ class CreateEventForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormVal
 
     def save(self):
         cleaned_data = super(CreateEventForm, self).clean()
-        print cleaned_data.get('name'),
-        print cleaned_data.get('cover'),
-        print cleaned_data.get('date'),
-        print cleaned_data.get('description'),
-        print cleaned_data.get('finish_time'),
-        print cleaned_data.get('start_time'),
-        print cleaned_data.get('place'),
-        print slugify(cleaned_data.get('name')),
 
         newEvent = Event(
             user=self.request.user,
