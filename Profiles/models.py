@@ -8,7 +8,6 @@ from social.apps.django_app.default.models import UserSocialAuth
 from sorl.thumbnail import ImageField
 
 days = (
-    ('', 'Dia'),
     ('1', '1'),
     ('2', '2'),
     ('3', '3'),
@@ -43,7 +42,6 @@ days = (
 )
 
 months = (
-    ('', 'Mes'),
     ('Enero', 'Enero'),
     ('Febrero', 'Febrero'),
     ('Marzo', 'Marzo'),
@@ -59,13 +57,11 @@ months = (
 )
 
 sexuality = (
-    ('', 'Sexo'),
     ('Masculino', 'Masculino'),
     ('Femenino', 'Femenino'),
 )
 
 type_of_users = (
-    ('', 'Seleccionar tipo de cuenta'),
     ('Artista', 'Artista'),
     ('Promotor', 'Promotor'),
 )

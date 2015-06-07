@@ -81,7 +81,6 @@ class RegisterForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValida
         widget=forms.EmailInput(
             attrs={
                 'class': 'mozart-field empty-initial-field',
-                'placeholder': 'Escribe tu email',
                 'mz-field': '',
             }
         ),
@@ -122,7 +121,20 @@ class RegisterForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValida
         ),
     )
 
+    user_sexuality = forms.ChoiceField(
+        choices=sexuality,
+        initial='Masculino',
+        widget=forms.Select(
+            attrs={
+                'class': 'mozart-field active-field',
+                'ng-change': 'validateDate()',
+                'mz-field': '',
+            }
+        ),
+    )
+
     type_of_user = forms.ChoiceField(
+        initial='Artista',
         choices=type_of_users,
         widget=forms.Select(
             attrs={
@@ -193,7 +205,8 @@ class RegisterForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValida
 
         newExtendedUser = Mozart_User(
             user=user,
-            user_type=cleaned_data.get('type_of_user')
+            user_type=cleaned_data.get('type_of_user'),
+            sex=cleaned_data.get('user_sexuality')
         )
 
         newExtendedUser.nationality = 'MX'
