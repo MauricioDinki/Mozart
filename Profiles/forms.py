@@ -183,7 +183,7 @@ class UserInformationForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFor
         min_length=10,
         max_length=100,
         required=False,
-        validators=[RegexValidator(regex=u'^[a-zA-Z_áéíóúñ#\s]*$')],
+        validators=[RegexValidator(regex=u'^[a-zA-Z0-9_áéíóúñ#\s]*$')],
         widget=forms.TextInput(
             attrs={
                 'class': 'mozart-field empty-initial-field',
