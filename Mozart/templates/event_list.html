@@ -3,29 +3,37 @@
 {% load static %}
 {% block title %}Eventos - mozArt{% endblock %}
 {% block content %}
-<div class="text-center">
-    <h2>Eventos </h2>
-{% for event in events reversed %}
-    {% if event.date > current_date %}
-    <article class="two-elements event-item" style="background-image:url('{{event.cover.url}}')">
+
+    <span ng-init="eventsCreator='all'"></span>
+    <mz-toggle-container>
+        <mz-toggle-menu icon-class-name="events-icon" current-option-text="Ver eventos">
+            <ul>
+                <li class="menu-option"><a class="icons user-icon" href="/promoters">Ver promotores</a></li>
+                <li class="menu-option"><a class="icons events-icon" style="color:orange;font-weight:bold;" href="/events">Ver eventos</a></li>
+            </ul>
+        </mz-toggle-menu>
+    </mz-toggle-container>
+
+    <section id="settings-content" class="text-center" style="background:none" ng-controller="loadEventsCtrl">
+    <article class="two-elements event-item" style="background-image:url('{$event.cover$}')" ng-repeat="event in events">
         <div>
             <div class="event-title-date">
                 <div class="event-date">
-                    {{event.date|date:"d"}}<br/>
-                    {{event.date|date:"M"}}
+                    {$event.date|date:"d"$}<br/>
+                    {$event.date|date:"M"|monthAbbreviation$}
                 </div>
-                <div class="event-title">{{event.name}}</div>
+                <div class="event-title">{$event.name$}</div>
             </div>
             <div class="event-content">
-                <p>{{event.description}}</p>
+                <p>{$event.description$}</p>
                 <hr/>
-                <p>{{event.place}}</p>
-                <p>{{event.date}}</p>
-                <p>{{event.start_time|date:"h:i a"}} - {{event.finish_time|date:"h:i a"}}</p>
-                <p>Anfitrion: {{event.user}}</p>
+                <p>{$event.place$}</p>
+                <p>{$event.date$}</p>
+                <p>{$event.start_time|hoursMinutes$} - {$event.finish_time|hoursMinutes$}</p>
+                <p>Anfitrion: <a ng-href="{$event.userUrl$}">{$event.user$}</a></p>
             </div>
         </div>
     </article>
-    {% endif %}
-    {% endfor%}{% endblock %}
-</div>
+    </section>
+
+{% endblock %}

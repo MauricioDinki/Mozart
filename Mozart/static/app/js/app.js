@@ -17,9 +17,26 @@
 		return '/profiles/' + username;
 	}
 
+	function getMonthAbbreviation() {
+        return function(monthNumber) {
+        	var monthAbbreviations = [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+        		'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec' ];
+        	return monthAbbreviations[monthNumber - 1];
+        };
+    }
+
+    function getHoursMinutes() {
+        return function(fullTime) {
+        	var array = fullTime.split(':');
+        	return array[0] + ':' + array[1];
+        };
+    }
+
 	angular
 		.module('mozArtApp', ['ng.django.forms', 'ngAnimate', 'offClick', 'matchmedia-ng', 'hmTouchEvents'])
 		.config(appConfig)
 		.value('workUrl', getWorkUrl)
-		.value('profileUrl', getUserProfile);
+		.value('profileUrl', getUserProfile)
+		.filter('monthAbbreviation', getMonthAbbreviation)
+		.filter('hoursMinutes', getHoursMinutes);
 })();

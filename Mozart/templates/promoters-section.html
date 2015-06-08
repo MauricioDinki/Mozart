@@ -1,0 +1,20 @@
+{% extends 'base_view.html' %}
+{% load thumbnail %}
+{% block title %}Promotores - mozArt{% endblock %}
+{% block content %}
+	<span ng-init="worksAuthor='all';worksCategory='all'"></span>
+    <mz-toggle-container>
+        <mz-toggle-menu icon-class-name="user-icon" current-option-text="Ver promotores">
+            <ul>
+                <li class="menu-option"><a class="icons user-icon" style="color:orange;font-weight:bold;" href="/promoters">Ver promotores</a></li>
+                <li class="menu-option"><a class="icons events-icon" href="/events">Ver eventos</a></li>
+            </ul>
+        </mz-toggle-menu>
+    </mz-toggle-container>
+
+    <section id="settings-content" style="background:none" ng-controller="loadWorksCtrl">
+    	<article ng-repeat="work in works">dfdsgfsdgfdghfhgfdghfgh</article><br>
+
+    </section>
+
+{% endblock %}

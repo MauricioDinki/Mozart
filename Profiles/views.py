@@ -66,7 +66,7 @@ class ProfileView(TemplateView):
 
 
 class PromoterListView(TemplateView):
-    template_name = "promoter_list.html"
+    template_name = "promoters-section.html"
 
 
 class SocialNetworkSettingsView(LoginRequiredMixin, TemplateView):
