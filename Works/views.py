@@ -104,6 +104,8 @@ class UserWorkView(TemplateView):
         if 'view' not in kwargs:
             kwargs['view'] = self
             kwargs['username'] = self.kwargs.get('username')
+            user = get_object_or_404(User, username__iexact=self.kwargs.get('username'))
+            kwargs['user_type'] = user.mozart_user.user_type
             if self.kwargs.get('category'):
                 kwargs['category'] = self.kwargs.get('category')
             else:
