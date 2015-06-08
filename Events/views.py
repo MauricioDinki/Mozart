@@ -1,8 +1,9 @@
 # -*- encoding: utf-8 -*-
 
 from django.core.urlresolvers import reverse_lazy
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, FormView, TemplateView
+from django.contrib.auth.models import User
 
 from Events.forms import CreateEventForm, current_date
 from Events.models import Event
@@ -37,4 +38,5 @@ class UserEventView(TemplateView):
         if 'view' not in kwargs:
             kwargs['view'] = self
             kwargs['username'] = self.kwargs.get('username')
+            user = get_object_or_404(User, username__iexact=self.kwargs.get('username'))
         return kwargs
