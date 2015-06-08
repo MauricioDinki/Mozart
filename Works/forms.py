@@ -72,7 +72,7 @@ class CreateWorkForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormVali
         super(CreateWorkForm, self).__init__(*args, **kwargs)
         for field in self.fields:
             self.fields[field].error_messages.update(default_messages)
-            self.fields[field].validators = [RegexValidator(regex='^[a-zA-Z0-9\-]*$',), ]
+            self.fields[field].validators = [RegexValidator(regex=u'^[a-zA-Z0-9_áéíóúñ\s]*$')]
             if field == 'cover':
                 self.fields[field].validators = [eval_image]
                 self.fields[field].required = False
