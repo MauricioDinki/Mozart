@@ -1,8 +1,10 @@
 # -*- encoding: utf-8 -*-
 
 from django.core.urlresolvers import reverse_lazy
-from django.shortcuts import render
-from django.views.generic import TemplateView, FormView
+
+from django.shortcuts import render, get_object_or_404
+from django.views.generic import ListView, FormView, TemplateView
+from django.contrib.auth.models import User
 
 from Events.forms import CreateEventForm, current_date
 from Events.models import Event
@@ -20,3 +22,14 @@ class CreateEventView(RequestFormMixin, FormView):
     def form_valid(self, form):
         form.save()
         return super(CreateEventView, self).form_valid(form)
+
+
+class UserEventView(TemplateView):
+    template_name = "event_user.html"
+
+    def get_context_data(self, **kwargs):
+        if 'view' not in kwargs:
+            kwargs['view'] = self
+            kwargs['username'] = self.kwargs.get('username')
+            user = get_object_or_404(User, username__iexact=self.kwargs.get('username'))
+        return kwargs
