@@ -14,7 +14,8 @@ from Utils.validators import eval_blank, eval_iexact, eval_image, eval_general
 from Works.models import category, Work
 
 
-class CreateWorkForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValidationMixin, forms.Form)):
+class CreateWorkForm(forms.Form):
+# class CreateWorkForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValidationMixin, forms.Form)):
     form_controller = 'uploadWorkCtrl'
     form_name = 'workform'
 
@@ -72,7 +73,7 @@ class CreateWorkForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormVali
         super(CreateWorkForm, self).__init__(*args, **kwargs)
         for field in self.fields:
             self.fields[field].error_messages.update(default_messages)
-            self.fields[field].validators = [RegexValidator(regex='^[a-zA-Z0-9\-]*$',), ]
+            self.fields[field].validators = [RegexValidator(regex='^[a-zA-Z0-9\-\s]*$',), ]
             if field == 'cover':
                 self.fields[field].validators = [eval_image]
                 self.fields[field].required = False
@@ -110,7 +111,7 @@ class CreateWorkForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormVali
         newWork.save()
 
 
-class UpdateWorkForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValidationMixin, forms.Form)):
+class UpdateWorkForm(forms.ModelForm):
     form_controller = 'editWorkCtrl'
     form_name = 'editworkform'
 
