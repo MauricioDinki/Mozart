@@ -9,9 +9,10 @@
   {% endifnotequal %}
 {% endif %}<form action="" method="post" id="id_{{form.form_name}}" name="{{form.form_name}}" novalidate ng-controller="{{form.form_controller}}" class="text-center">
           <h2>Editar obra</h2>
+          {{obj}}
           {% csrf_token %}
           <div class="mozart-field-container one-element initial-state">
-            <label for="id_title" class="mozart-label non-active-label">Tipo</label>
+            <label for="id_title" class="mozart-label non-active-label">Titulo</label>
             {{form.title}}
           </div>
           <div ng-show="{{form.form_name}}.title.$error.required && {{form.form_name}}.title.$dirty" class="form-error">

@@ -151,6 +151,7 @@ class RegisterForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValida
             attrs={
                 'class': 'mozart-field empty-initial-field',
                 'mz-field': '',
+                'ng-pattern': '/^[a-zA-Z0-9_ñÑ]*$/',
             }
         ),
     )
@@ -178,7 +179,7 @@ class RegisterForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValida
             if field == 'email':
                 self.fields[field].validators = [RegexValidator(regex=u'^[\w.@+-]+$',), ]
             if field == 'username':
-                self.fields[field].validators = [RegexValidator(regex=u'^[a-zA-Z0-9]*$')]
+                self.fields[field].validators = [RegexValidator(regex=u'^[a-zA-Z0-9_ñÑ]*$')]
             if field == 'password_1' or field == 'password_2':
                 self.fields[field].validators = [eval_blank]
             self.fields[field].required = True

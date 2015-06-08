@@ -15,8 +15,7 @@ from Works.models import Work
 class CreateWorkView(LoginRequiredMixin, RequestFormMixin, FormView):
     form_class = CreateWorkForm
     success_url = reverse_lazy('works:work_list')
-    template_name = 'generic-form.html'
-    # template_name = 'upload_work.html'
+    template_name = 'upload_work.html'
 
     def form_valid(self, form):
         form.save()

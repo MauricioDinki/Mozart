@@ -86,7 +86,8 @@ class UserInformationForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFor
         widget=forms.TextInput(
             attrs={
                 'class': 'mozart-field empty-initial-field',
-                'mz-field': ''
+                'mz-field': '',
+                'ng-pattern': '/^[a-zA-Z0-9_ñÑ]*$/',
             }
         ),
     )
@@ -99,7 +100,8 @@ class UserInformationForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFor
         widget=forms.TextInput(
             attrs={
                 'class': 'mozart-field empty-initial-field',
-                'mz-field': ''
+                'mz-field': '',
+                'ng-pattern': '/^[a-zA-Z_áéíóúñ\s]*$/',
             }
         ),
     )
@@ -112,7 +114,8 @@ class UserInformationForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFor
         widget=forms.TextInput(
             attrs={
                 'class': 'mozart-field empty-initial-field',
-                'mz-field': ''
+                'mz-field': '',
+                'ng-pattern': '/^[a-zA-Z_áéíóúñ\s]*$/',
             }
         ),
     )
@@ -137,7 +140,8 @@ class UserInformationForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFor
         widget=forms.Select(
             attrs={
                 'class': 'mozart-field empty-initial-field',
-                'mz-field': ''
+                'mz-field': '',
+                'ng-pattern': '/^[a-zA-Z0-9_áéíóúñ\s]*$/',
             }
         ),
     )
@@ -149,7 +153,8 @@ class UserInformationForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFor
         widget=forms.Textarea(
             attrs={
                 'class': 'mozart-field empty-initial-field',
-                'mz-field': ''
+                'mz-field': '',
+                'ng-pattern': '/^[a-zA-Z_áéíóúñ\s]*$/',
             }
         ),
     )
@@ -174,7 +179,6 @@ class UserInformationForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFor
             attrs={
                 'class': 'mozart-field empty-initial-field',
                 'mz-field': '',
-                'ng-pattern': ''
             }
         ),
     )
@@ -187,7 +191,8 @@ class UserInformationForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFor
         widget=forms.TextInput(
             attrs={
                 'class': 'mozart-field empty-initial-field',
-                'mz-field': ''
+                'mz-field': '',
+                'ng-pattern': '/^[a-zA-Z0-9_áéíóúñ#\s]*$/',
             }
         ),
     )
@@ -200,7 +205,8 @@ class UserInformationForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFor
         widget=forms.TextInput(
             attrs={
                 'class': 'mozart-field empty-initial-field',
-                'mz-field': ''
+                'mz-field': '',
+                'ng-pattern': '/^[a-zA-Z0-9_áéíóúñ#\s]*$/',
             }
         ),
     )
@@ -213,7 +219,8 @@ class UserInformationForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFor
         widget=forms.TextInput(
             attrs={
                 'class': 'mozart-field empty-initial-field',
-                'mz-field': ''
+                'mz-field': '',
+                'ng-pattern': '/^[0-9\-]*$/',
             }
         ),
     )
@@ -226,7 +233,8 @@ class UserInformationForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFor
         widget=forms.TextInput(
             attrs={
                 'class': 'mozart-field empty-initial-field',
-                'mz-field': ''
+                'mz-field': '',
+                'ng-pattern': '/^[a-zA-Z0-9_áéíóúñ\s]*$/',
             }
         ),
     )
