@@ -2,7 +2,6 @@
 {% load thumbnail %}
 {% block title %}Promotores - mozArt{% endblock %}
 {% block content %}
-	<span ng-init="worksAuthor='all';worksCategory='all'"></span>
     <mz-toggle-container>
         <mz-toggle-menu icon-class-name="user-icon" current-option-text="Ver promotores">
             <ul>
@@ -12,9 +11,17 @@
         </mz-toggle-menu>
     </mz-toggle-container>
 
-    <section id="settings-content" style="background:none" ng-controller="loadWorksCtrl">
-    	<article ng-repeat="work in works">dfdsgfsdgfdghfhgfdghfgh</article><br>
-
+    <section id="settings-content" style="background:none" class="text-center" ng-controller="loadPromotersCtrl">
+    	<article class="promoter-item" ng-repeat="user in promoters">
+            <a ng-href="{$user.userUrl$}"><div class="promoter-thumbnail" style="background:url('{$user.picture$}');"></div></a>
+            <div class="work-item-information">
+                <span class="icons user-icon"><a class="work-author-name" ng-href="{$user.userUrl$}" ng-bind="user.user"></a></span>
+            </div>
+        </article><br/>
+        <div class="load-more-error" ng-show="showMessage">
+          No existen usuarios suficientes para cubir la petición. Intenta refrescar la página.
+        </div>
+        <span class="button load-more-button" ng-click="getUsers()">Mostrar más usuarios</span>
     </section>
 
 {% endblock %}

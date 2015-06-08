@@ -107,7 +107,7 @@
 	text-align left
 	width 100%
 
-.work-item, .promotor-item
+.work-item, .promoter-item
 	background white
 	border #ccc solid 1px
 	color  mozart-dark-gray
@@ -161,13 +161,15 @@
 	margin-top 20px
 	padding 0 0 3px 0
 	
-.work-thumbnail
+.work-thumbnail, .promoter-thumbnail
+	background-size cover !important
 	background-position center !important
 	background-repeat no-repeat !important
-	background-size 110% auto !important
+	width 100%
+		
+.work-thumbnail
 	height 160px
 	margin 0px 0 5px 0
-	width 100%
 	
 	span
 		background black
@@ -182,6 +184,9 @@
 		
 	&:hover span
 		opacity 0.7
-
+		
 .work-title
 	font-weight bold
+	
+.promoter-thumbnail
+	height 250px

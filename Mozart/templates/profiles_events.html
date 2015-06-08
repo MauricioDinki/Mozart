@@ -1,20 +1,7 @@
-{% extends 'base_view.html' %}
-{% load thumbnail %}
-{% load static %}
-{% block title %}Eventos - mozArt{% endblock %}
-{% block content %}
-
-    <span ng-init="eventsCreator='all'"></span>
-    <mz-toggle-container>
-        <mz-toggle-menu icon-class-name="events-icon" current-option-text="Ver eventos">
-            <ul>
-                <li class="menu-option"><a class="icons user-icon" href="/promoters">Ver promotores</a></li>
-                <li class="menu-option"><a class="icons events-icon" style="color:orange;font-weight:bold;" href="/events">Ver eventos</a></li>
-            </ul>
-        </mz-toggle-menu>
-    </mz-toggle-container>
-
-    <section id="settings-content" class="text-center" style="background:none" ng-controller="loadEventsCtrl">
+{% extends 'profile.html' %}
+{% block section %}
+<div ng-init="eventsCreator='{{username}}'">
+	<section ng-controller="loadEventsCtrl">
     <article class="two-elements event-item" style="background-image:url('{$event.cover$}')" ng-repeat="event in events">
         <div>
             <div class="event-title-date">
@@ -39,6 +26,5 @@
       </div>
       <span class="button load-more-button" ng-click="getEvents()">Mostrar más eventos</span>
     </section>
-    </section>
-
+</div>
 {% endblock %}

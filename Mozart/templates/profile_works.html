@@ -1,7 +1,7 @@
 {% extends 'profile.html' %}
 {% block section %}
 <div ng-init="worksCategory='{{category}}';worksAuthor='{{username}}'">
-<section id="informacion" ng-controller="loadWorksCtrl">
+<section ng-controller="loadWorksCtrl">
       <article class="work-item" ng-repeat="work in works">
         <div class="work-thumbnail" style="background:url('{$work.cover$}');">
           <a ng-href="/profiles/{$ user.username $}/works/{$work.slug$}"><span>{$work.work_type | uppercase$}</span>

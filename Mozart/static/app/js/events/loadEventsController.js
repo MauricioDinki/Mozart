@@ -9,15 +9,9 @@
 			eventsRequest.get(
 				function(events, nextPage) {
 					var prevSize = $scope.events.length;
-					function eventExists(work) {
-						return $filter('filter')(
-							$scope.events,
-							_event.slug
-						)[0];
-					}
 					for(var i in events) {
 						var _event = events[i];
-						var isRepeated = eventsRequest.checkRepeatedEvent($scope.events, _event);
+						var isRepeated = eventsRequest.checkRepeatedEvent($scope.events, _event.slug);
 						var hasFinished = eventsRequest.checkFinishedEvent(_event);
 						if(!isRepeated && !hasFinished) {
 							_event.userUrl = profileUrl(_event.user);

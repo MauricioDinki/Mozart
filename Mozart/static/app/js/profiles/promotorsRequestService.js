@@ -1,13 +1,18 @@
 (function() {
   'use strict';
 
-  function promotorsRequestService($http) {
+  function promotersRequestService($http, $filter) {
     /* jshint validthis:true */
-    var apiBaseUrl = '/api/promotors/';
-    this.get=function(fnOK,fnError, nameFirstLetter, paginate) {
+    var apiBaseUrl = '/api/mozart/?user_type=Promotor';
+    // this.get=function(fnOK,fnError, nameFirstLetter, paginate) {
+    //   $http({
+    //     method: 'GET',
+    //     url: apiBaseUrl + '?' + 'nameFirstLetter=' + nameFirstLetter +  '&paginate=' + paginate
+    //   })
+    this.get=function(fnOK,fnError, paginate) {
       $http({
         method: 'GET',
-        url: apiBaseUrl + '?' + 'nameFirstLetter=' + nameFirstLetter +  '&paginate=' + paginate
+        url: apiBaseUrl + '&paginate=' + paginate
       })
       .success(function(data, status, headers, config) {
         fnOK(data.results);
@@ -16,10 +21,16 @@
         fnError(data,status);
       });
     };
+    this.checkRepeatedUser = function(usersArray, user) {
+      return $filter('filter')(
+        usersArray,
+        user
+      )[0];
+    };
   }
 
-  promotorsRequestService.$inject = ['$http'];
+  promotersRequestService.$inject = ['$http', '$filter'];
 
   angular.module('mozArtApp')
-    .service('promotorsRequest', promotorsRequestService);
+    .service('promotersRequest', promotersRequestService);
 })();

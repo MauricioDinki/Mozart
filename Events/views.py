@@ -25,7 +25,7 @@ class CreateEventView(RequestFormMixin, FormView):
 
 
 class UserEventView(TemplateView):
-    template_name = "event_user.html"
+    template_name = "profiles_events.html"
 
     def get_context_data(self, **kwargs):
         if 'view' not in kwargs:

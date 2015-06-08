@@ -9,15 +9,9 @@
 			worksRequest.recentWorks.get(
 				function(works, nextPage) {
 					var prevSize = $scope.works.length;
-					function workExists(work) {
-						return $filter('filter')(
-							$scope.works,
-							work.slug
-						)[0];
-					}
 					for(var i in works) {
 						var work = works[i];
-						var isRepeated = worksRequest.checkRepeatedWork($scope.works, work);
+						var isRepeated = worksRequest.checkRepeatedWork($scope.works, work.slug);
 						if(!isRepeated) {
 							work.workUrl = workUrl(work.user, work.slug);
 							work.userUrl = profileUrl(work.user);
