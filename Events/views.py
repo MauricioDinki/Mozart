@@ -2,7 +2,7 @@
 
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import render
-from django.views.generic import ListView, FormView
+from django.views.generic import ListView, FormView, TemplateView
 
 from Events.forms import CreateEventForm, current_date
 from Events.models import Event
@@ -19,6 +19,7 @@ class ListEventView(ListView):
         context.update({'current_date': current_date})
         return context
 
+
 class CreateEventView(RequestFormMixin, FormView):
     form_class = CreateEventForm
     success_url = reverse_lazy('events:event_list')
@@ -27,3 +28,13 @@ class CreateEventView(RequestFormMixin, FormView):
     def form_valid(self, form):
         form.save()
         return super(CreateEventView, self).form_valid(form)
+
+
+class UserEventView(TemplateView):
+    template_name = "event_user.html"
+
+    def get_context_data(self, **kwargs):
+        if 'view' not in kwargs:
+            kwargs['view'] = self
+            kwargs['username'] = self.kwargs.get('username')
+        return kwargs
