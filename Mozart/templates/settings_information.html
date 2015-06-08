@@ -44,6 +44,10 @@
             {{form.username}}
           </div>
 
+          <div class="form-error" ng-show="{{form.form_name}}.username.$error.pattern">
+            El nombre de usuario no puede contener acentos, espacios ni caracteres especiales.
+          </div>
+
           <div class="form-error" ng-show="{{form.form_name}}.username.$error.required && {{form.form_name}}.username.$dirty">No puedes dejar este campo vacío.</div>
 
           <div class="form-error" ng-show="{{form.form_name}}.username.$error.minlength">
@@ -59,6 +63,10 @@
             {{form.first_name}}
           </div>
 
+          <div class="form-error" ng-show="{{form.form_name}}.first_name.$error.pattern">
+            Los nombres no pueden contener numeros ni caracteres especiales.
+          </div>
+
           <div class="form-error" ng-show="{{form.form_name}}.first_name.$error.minlength">
             Este campo debe contener al menos 3 carácteres.
           </div>
@@ -72,11 +80,15 @@
             {{form.last_name}}
           </div>
 
-          <div class="form-error" ng-show="{{form.form_name}}.first_name.$error.minlength">
+          <div class="form-error" ng-show="{{form.form_name}}.last_name.$error.pattern">
+            Los apellidos no pueden contener numeros ni caracteres especiales.
+          </div>
+
+          <div class="form-error" ng-show="{{form.form_name}}.last_name.$error.minlength">
             Este campo debe contener al menos 3 carácteres.
           </div>
 
-          <div class="form-error" ng-show="{{form.form_name}}.first_name.$error.maxlength">
+          <div class="form-error" ng-show="{{form.form_name}}.last_name.$error.maxlength">
             Este campo debe contener máximo 50 carácteres.
           </div>
 
@@ -87,6 +99,10 @@
           <div class="mozart-field-container one-element">
             <label for="id_description" class="mozart-label initial-label">Descripción</label>
             {{form.description}}
+          </div>
+
+          <div class="form-error" ng-show="{{form.form_name}}.description.$error.pattern">
+            La descripción no pueden contener numeros ni caracteres especiales.
           </div>
         </fieldset>
         <fieldset class="two-elements">
@@ -119,6 +135,10 @@
             {{form.address}}
           </div>
 
+          <div class="form-error" ng-show="{{form.form_name}}.address.$error.pattern">
+            La dirección solo puede contener letras, numeros, espacios y el símbolo #.
+          </div>
+
           <div class="form-error" ng-show="{{form.form_name}}.address.$error.minlength">
             La dirección debe contener mínimo 10 carácteres.
           </div>
@@ -130,6 +150,10 @@
           <div class="mozart-field-container one-element">
             <label for="id_city" class="mozart-label initial-label">Ciudad</label>
             {{form.city}}
+          </div>
+
+          <div class="form-error" ng-show="{{form.form_name}}.city.$error.pattern">
+            La ciudad solo puede contener letras, numeros y espacios.
           </div>
 
           <div class="form-error" ng-show="{{form.form_name}}.city.$error.minlength">
@@ -145,6 +169,10 @@
             {{form.zip_code}}
           </div>
 
+          <div class="form-error" ng-show="{{form.form_name}}.zip_code.$error.pattern">
+            El código postal solo puede contener numeros y el guión -.
+          </div>
+
          <div class="form-error" ng-show="{{form.form_name}}.zip_code.$error.minlength">
             El código postal debe contener mínimo 5 carácteres.
           </div>
@@ -156,6 +184,10 @@
           <div class="mozart-field-container one-element">
             <label for="id_neighborhood" class="mozart-label initial-label">Vecindario</label>
             {{form.neighborhood}}
+          </div>
+
+          <div class="form-error" ng-show="{{form.form_name}}.neighborhood.$error.pattern">
+            El vecindario solo puede contener letras, numeros y espacios.
           </div>
 
           <div class="form-error" ng-show="{{form.form_name}}.neighborhood.$error.minlength">

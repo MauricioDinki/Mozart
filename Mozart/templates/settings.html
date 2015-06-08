@@ -8,8 +8,8 @@
                 <li class="menu-option"><a class="icons settings-icon" href="{% url 'profiles:settings_social' %}">Cuentas vinculadas</a></li>
                 {% if user.mozart_user.user_type == 'Artista' %}
                 <li class="menu-option"><a class="icons works-icon" href="{% url 'works:settings_works' %}">Mis obras</a></li>
+                {% endif %}
             </ul>
-            {% endif %}
         </mz-toggle-menu>
     </mz-toggle-container>
     <div id="settings-content">

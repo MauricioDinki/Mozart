@@ -40,6 +40,10 @@
             {{form.username}}
           </div>
 
+          <div class="form-error" ng-show="{{form.form_name}}.username.$error.pattern">
+            El nombre de usuario no puede contener acentos, espacios ni caracteres especiales.
+          </div>
+
           <div class="form-error" ng-show="{{form.form_name}}.username.$error.required && {{form.form_name}}.username.$dirty">No puedes dejar este campo vacío.</div>
 
           <div class="form-error" ng-show="{{form.form_name}}.username.$error.minlength">

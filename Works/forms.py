@@ -6,7 +6,7 @@ from django.utils import six
 from django.utils.text import slugify
 from django.core.files.images import ImageFile
 
-from djangular.forms import NgDeclarativeFieldsMetaclass, NgFormValidationMixin
+from djangular.forms import NgDeclarativeFieldsMetaclass, NgFormValidationMixin, NgModelForm
 from sorl.thumbnail import get_thumbnail
 
 from Utils.messages import default_messages
@@ -14,6 +14,7 @@ from Utils.validators import eval_blank, eval_iexact, eval_image, eval_general
 from Works.models import category, Work
 
 
+# class CreateWorkForm(forms.Form):
 class CreateWorkForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValidationMixin, forms.Form)):
     form_controller = 'uploadWorkCtrl'
     form_name = 'workform'
@@ -110,7 +111,7 @@ class CreateWorkForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormVali
         newWork.save()
 
 
-class UpdateWorkForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValidationMixin, forms.Form)):
+class UpdateWorkForm(NgModelForm, NgFormValidationMixin):
     form_controller = 'editWorkCtrl'
     form_name = 'editworkform'
 
@@ -120,7 +121,7 @@ class UpdateWorkForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormVali
         widgets = {
             'title': forms.TextInput(
                 attrs={
-                    'class': 'mozart-field empty-initial-field',
+                    'class': 'mozart-field non-active-field',
                     'mz-field': '',
                 }
             ),
@@ -147,4 +148,5 @@ class UpdateWorkForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormVali
         super(UpdateWorkForm, self).__init__(*args, **kwargs)
         for field in self.fields:
             self.fields[field].error_messages.update(default_messages)
-            self.fields[field].validators = [RegexValidator(regex='^[a-zA-Z0-9]*$',), ]
+            if field != 'category':
+                self.fields[field].validators = [RegexValidator(regex='^[a-zA-Z0-9]*$',), ]

@@ -15,17 +15,11 @@ from Works.models import Work
 class CreateWorkView(LoginRequiredMixin, RequestFormMixin, FormView):
     form_class = CreateWorkForm
     success_url = reverse_lazy('works:work_list')
-    # template_name = 'generic-form.html'
     template_name = 'upload_work.html'
 
     def form_valid(self, form):
         form.save()
         return super(CreateWorkView, self).form_valid(form)
-
-    # def get_context_data(self, **kwargs):
-    #     context = super(CreateWorkView, self).get_context_data(**kwargs)
-    #     context.update(form=CreateWorkForm())
-    #     return context
 
 
 class DetailWorkView(DetailView):
