@@ -12,7 +12,7 @@
     </mz-toggle-container>
 
     <section id="settings-content" style="background:none" class="text-center" ng-controller="loadPromotersCtrl">
-    	<article class="promoter-item" ng-repeat="user in promoters">
+    	<article style="margin: 10px;" class="promoter-item" ng-repeat="user in promoters">
             <a ng-href="{$user.userUrl$}"><div class="promoter-thumbnail" style="background:url('{$user.picture$}');"></div></a>
             <div class="work-item-information">
                 <span class="icons user-icon"><a class="work-author-name" ng-href="{$user.userUrl$}" ng-bind="user.user"></a></span>
