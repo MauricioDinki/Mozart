@@ -81,6 +81,10 @@ class CreateWorkForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormVali
                 self.fields[field].validators = [eval_general]
             if field != 'cover':
                 self.fields[field].required = True
+            if field == 'category':
+                self.fields[field].validators = [eval_blank]
+            if field == 'description':
+                self.fields[field].validators = [eval_blank]
 
     def clean_title(self):
         title = self.cleaned_data.get('title')
