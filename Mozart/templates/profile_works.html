@@ -3,7 +3,7 @@
 <div ng-init="worksCategory='{{category}}';worksAuthor='{{username}}'">
 <section ng-controller="loadWorksCtrl">
       <article class="work-item" ng-repeat="work in works">
-        <div class="work-thumbnail" style="background:url('{$work.cover$}');">
+        <div class="work-thumbnail" style="background:url('{$work.thumbnail$}');">
           <a ng-href="/profiles/{$ user.username $}/works/{$work.slug$}"><span>{$work.work_type | uppercase$}</span>
         </a>
         </div>
