@@ -29,6 +29,7 @@ class CreateEventForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormVal
             attrs={
                 'class': 'mozart-field empty-initial-field',
                 'mz-field': '',
+                'ng-pattern': '/^[a-zA-Z0-9_áéíóúñ\s]*$/',
             }
         ),
     )
@@ -41,6 +42,7 @@ class CreateEventForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormVal
             attrs={
                 'class': 'mozart-field empty-initial-field',
                 'mz-field': '',
+                'ng-pattern': '/^[a-zA-Z0-9_áéíóúñ#\s]*$/',
             }
         ),
     )
@@ -78,6 +80,7 @@ class CreateEventForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormVal
             attrs={
                 'class': 'mozart-field empty-initial-field',
                 'mz-field': '',
+                'ng-pattern': '/^[a-zA-Z0-9_áéíóúñ#\s]*$/',
             }
         ),
     )
@@ -90,7 +93,7 @@ class CreateEventForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormVal
                 'type': 'date',
                 'mz-field': '',
                 'ng-change': 'validateDate()',
-                'value':  current_date,
+                'value':  current_date + datetime.timedelta(days=1),
             }
         ),
     )
@@ -113,8 +116,10 @@ class CreateEventForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormVal
             self.fields[field].required = True
             if field == 'cover':
                 self.fields[field].validators = [eval_image]
-            if field == 'name' or field == 'place' or field == 'description':
+            if field == 'place' or field == 'description':
                 self.fields[field].validators = [RegexValidator(regex=u'^[a-zA-Z0-9_áéíóúñ#\s]*$')]
+            if field == 'name':
+                self.fields[field].validators = [RegexValidator(regex=u'^[a-zA-Z0-9_áéíóúñ\s]*$')]
 
     def eval_00(self, data):
         if data == '00':

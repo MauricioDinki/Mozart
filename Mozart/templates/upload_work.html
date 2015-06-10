@@ -17,6 +17,9 @@
             {{form.title}}
           </div>
 
+          <div class="form-error" ng-show="{{form.form_name}}.title.$error.pattern">
+            El titulo de la obra solo puede contener letras, numeros y espacios.
+          </div>
           <div ng-show="{{form.form_name}}.title.$error.required && {{form.form_name}}.title.$dirty" class="form-error">
             Este campo es obligatorio.
           </div>
@@ -32,6 +35,9 @@
             {{form.description}}
           </div>
 
+          <div class="form-error" ng-show="{{form.form_name}}.description.$error.pattern">
+            La descripción de la obra solo puede contener letras, numeros y espacios.
+          </div>
           <div ng-show="{{form.form_name}}.description.$error.required && {{form.form_name}}.description.$dirty" class="form-error">
             Este campo es obligatorio.
           </div>

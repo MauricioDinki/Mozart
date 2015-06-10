@@ -16,7 +16,10 @@
             <label for="id_name" class="mozart-label initial-label">{{form.name.label}}</label>
             {{form.name}}
           </div>
-
+          
+          <div class="form-error" ng-show="{{form.form_name}}.name.$error.pattern">
+            El titulo del evento solo puede contener letras, numeros y espacios.
+          </div>
           <div ng-show="{{form.form_name}}.name.$error.required && {{form.form_name}}.name.$dirty" class="form-error">
             Este campo es obligatorio.
           </div>
@@ -31,7 +34,11 @@
             <label for="id_description" class="mozart-label initial-label">{{form.description.label}}</label>
             {{form.description}}
           </div>
+          
 
+          <div class="form-error" ng-show="{{form.form_name}}.description.$error.pattern">
+            La descripción del evento solo puede contener letras, numeros, espacios y el símbolo #.
+          </div>
           <div ng-show="{{form.form_name}}.description.$error.required && {{form.form_name}}.description.$dirty" class="form-error">
             Este campo es obligatorio.
           </div>
@@ -43,7 +50,10 @@
             <label for="id_place" class="mozart-label initial-label">{{form.place.label}}</label>
             {{form.place}}
           </div>
-
+          
+          <div class="form-error" ng-show="{{form.form_name}}.place.$error.pattern">
+            El nombre del lugar del evento solo puede contener letras, numeros, espacios y el símbolo #.
+          </div>
           <div ng-show="{{form.form_name}}.place.$error.minlength" class="form-error">
             El nombre del lugar debe contener al menos 4 carácteres.
           </div>

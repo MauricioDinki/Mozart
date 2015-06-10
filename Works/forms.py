@@ -26,6 +26,7 @@ class CreateWorkForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormVali
             attrs={
                 'class': 'mozart-field empty-initial-field',
                 'mz-field': '',
+                'ng-pattern': '/^[a-zA-Z0-9_áéíóúñ\s]*$/',
             }
         ),
     )
@@ -36,6 +37,7 @@ class CreateWorkForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormVali
             attrs={
                 'class': 'mozart-field empty-initial-field',
                 'mz-field': '',
+                'ng-pattern': '/^[a-zA-Z0-9_áéíóúñ\s]*$/',
             }
         ),
     )
@@ -77,13 +79,11 @@ class CreateWorkForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormVali
             if field == 'cover':
                 self.fields[field].validators = [eval_image]
                 self.fields[field].required = False
+            else:
+                self.fields[field].required = True
             if field == 'archive':
                 self.fields[field].validators = [eval_general]
-            if field != 'cover':
-                self.fields[field].required = True
-            if field == 'category':
-                self.fields[field].validators = [eval_blank]
-            if field == 'description':
+            if field == 'category' or field == 'description':
                 self.fields[field].validators = [eval_blank]
 
     def clean_title(self):
