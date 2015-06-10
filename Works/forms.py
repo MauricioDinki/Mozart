@@ -73,7 +73,7 @@ class CreateWorkForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormVali
         super(CreateWorkForm, self).__init__(*args, **kwargs)
         for field in self.fields:
             self.fields[field].error_messages.update(default_messages)
-            self.fields[field].validators = [RegexValidator(regex='^[a-zA-Z0-9\-\s]*$',), ]
+            self.fields[field].validators = [RegexValidator(regex=u'^[a-zA-Z0-9_áéíóúñ\s]*$')]
             if field == 'cover':
                 self.fields[field].validators = [eval_image]
                 self.fields[field].required = False
@@ -81,6 +81,10 @@ class CreateWorkForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormVali
                 self.fields[field].validators = [eval_general]
             if field != 'cover':
                 self.fields[field].required = True
+            if field == 'category':
+                self.fields[field].validators = [eval_blank]
+            if field == 'description':
+                self.fields[field].validators = [eval_blank]
 
     def clean_title(self):
         title = self.cleaned_data.get('title')
