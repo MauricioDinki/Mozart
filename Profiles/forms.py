@@ -206,7 +206,7 @@ class UserInformationForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFor
             attrs={
                 'class': 'mozart-field empty-initial-field',
                 'mz-field': '',
-                'ng-pattern': '/^[a-zA-Z0-9_áéíóúñ#\s]*$/',
+                'ng-pattern': '/^[a-zA-Z0-9_áéíóúñ\s]*$/',
             }
         ),
     )

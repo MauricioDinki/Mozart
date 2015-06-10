@@ -12,10 +12,10 @@
     this.get=function(fnOK,fnError, paginate) {
       $http({
         method: 'GET',
-        url: apiBaseUrl + '&paginate=' + paginate
+        url: apiBaseUrl + '&page=' + paginate
       })
       .success(function(data, status, headers, config) {
-        fnOK(data.results);
+        fnOK(data.results, data.next);
       })
       .error(function(data, status, headers, config) {
         fnError(data,status);
@@ -24,8 +24,9 @@
     this.checkRepeatedUser = function(usersArray, user) {
       return $filter('filter')(
         usersArray,
-        user
-      )[0];
+        user,
+        true
+      )[0] ? true: false;
     };
   }
 

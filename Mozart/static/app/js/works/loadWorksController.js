@@ -11,7 +11,7 @@
 					var prevSize = $scope.works.length;
 					for(var i in works) {
 						var work = works[i];
-						var isRepeated = worksRequest.checkRepeatedWork($scope.works, work.slug);
+						var isRepeated = worksRequest.checkRepeatedWork($scope.works, {slug: work.slug});
 						if(!isRepeated) {
 							work.workUrl = workUrl(work.user, work.slug);
 							work.userUrl = profileUrl(work.user);

@@ -26,8 +26,9 @@
     this.checkRepeatedEvent = function(eventsArray, _event) {
       return $filter('filter')(
         eventsArray,
-        _event
-      )[0];
+        _event,
+        true
+      )[0] ? true: false;
     };
     this.checkFinishedEvent = function(_event) {
       console.log(validateDates.futureDate(_event.date));

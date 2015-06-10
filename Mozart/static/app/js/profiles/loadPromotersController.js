@@ -11,12 +11,12 @@
 					var prevSize = $scope.promoters.length;
 					for(var i in promoters) {
 						var user = promoters[i];
-						// var isRepeated = promotersRequest.checkRepeatedUser($scope.promoters, user.slug);
+						var isRepeated = promotersRequest.checkRepeatedUser($scope.promoters, {user: user.user});
 						user.picture = (user.profile_picture !== null) ? user.profile_picture : '/static/img/default.png';
-						// if(!isRepeated) {
+						if(!isRepeated) {
 							user.userUrl = profileUrl(user.user);
 							$scope.promoters.push(user);
-						// }
+						}
 					}
 					if(nextPage !== null) {
 						$scope.pageNumber++;
@@ -26,7 +26,6 @@
 				function(data, status) {
 					$window.alert('Ha fallado la petición. Estado HTTP:' + status);
 				},
-				$scope.eventsCreator,
 				$scope.pageNumber
 			);
 		};

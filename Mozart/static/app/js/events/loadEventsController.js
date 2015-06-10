@@ -11,7 +11,7 @@
 					var prevSize = $scope.events.length;
 					for(var i in events) {
 						var _event = events[i];
-						var isRepeated = eventsRequest.checkRepeatedEvent($scope.events, _event.slug);
+						var isRepeated = eventsRequest.checkRepeatedEvent($scope.events, {slug: _event.slug});
 						var hasFinished = eventsRequest.checkFinishedEvent(_event);
 						if(!isRepeated && !hasFinished) {
 							_event.userUrl = profileUrl(_event.user);

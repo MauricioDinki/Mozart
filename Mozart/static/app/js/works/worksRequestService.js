@@ -55,11 +55,12 @@
         });
       }
     };
-    this.checkRepeatedWork = function(worksArray, work) {
+    this.checkRepeatedWork = function(worksArray, work, ex) {
       return $filter('filter')(
         worksArray,
-        work
-      )[0];
+        work,
+        true
+      )[0] ? true: false;
     };
   }
 
