@@ -3,6 +3,7 @@
 from django import forms
 from django.core.validators import RegexValidator
 from django.utils import six
+from django.contrib.auth.models import User
 
 from django_countries import countries
 from djangular.forms import NgDeclarativeFieldsMetaclass, NgFormValidationMixin
