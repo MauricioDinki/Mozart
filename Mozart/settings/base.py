@@ -1,45 +1,25 @@
-# -*- encoding: utf-8 -*-
-
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
-
 import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-PROJECT_PATH = os.path.dirname(os.path.realpath(__file__))
 
 SECRET_KEY = os.environ.get("MOZART_SECRET_KEY", None)
 
-DEBUG = True
+ROOT_URLCONF = 'Mozart.urls'
 
-TEMPLATE_DEBUG = True
+WSGI_APPLICATION = 'Mozart.wsgi.application'
 
-TEMPLATE_DIRS = (
-    os.path.join(PROJECT_PATH, 'templates'),
-)
+LANGUAGE_CODE = 'en-us'
 
-ALLOWED_HOSTS = ['*']
+TIME_ZONE = 'America/Mexico_City'
 
-INSTALLED_APPS = (
-    'djangular',
-    'suit',
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'sorl.thumbnail',
-    'django_countries',
-    'rest_framework',
-    'social.apps.django_app.default',
-    'disqus',
-    'autofixture',
-    'Thirdauth',
-    'Works',
-    'Profiles',
-    'Events',
+USE_I18N = True
 
-)
+USE_L10N = True
+
+USE_TZ = True
+
+SITE_ID = 1
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -71,35 +51,11 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
-ROOT_URLCONF = 'Mozart.urls'
-
-WSGI_APPLICATION = 'Mozart.wsgi.application'
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ('rest_framework.filters.DjangoFilterBackend',),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 8,
 }
-
-LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'America/Mexico_City'
-
-USE_I18N = True
-
-USE_L10N = True
-
-USE_TZ = True
-
-SITE_ID = 1
-
-STATIC_URL = '/static/'
-STATIC_ROOT = 'staticfiles'
-
-STATICFILES_DIRS = (
-    os.path.join(PROJECT_PATH, 'static/dist'),
-)
 
 SUIT_CONFIG = {
     'ADMIN_NAME': 'Mozart',
@@ -112,33 +68,15 @@ SUIT_CONFIG = {
     },
 }
 
-REST_FRAMEWORK = {
-    'DEFAULT_FILTER_BACKENDS': ('rest_framework.filters.DjangoFilterBackend',),
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 8,
-}
-
-MEDIA_ROOT = os.path.join(PROJECT_PATH, 'media')
-MEDIA_URL = '/media/'
-
-THUMBNAIL_DEBUG = False
-
-LOGIN_REDIRECT_URL = 'works:work_list'
-LOGIN_URL = 'login'
-
-#Facebook Keys
 SOCIAL_AUTH_FACEBOOK_KEY = os.environ.get("MOZART_SOCIAL_AUTH_FACEBOOK_KEY", None)
 SOCIAL_AUTH_FACEBOOK_SECRET = os.environ.get("MOZART_SOCIAL_AUTH_FACEBOOK_SECRET", None)
 
-# Twitter Keys
 SOCIAL_AUTH_TWITTER_KEY = os.environ.get("MOZART_SOCIAL_AUTH_TWITTER_KEY", None)
 SOCIAL_AUTH_TWITTER_SECRET = os.environ.get("MOZART_SOCIAL_AUTH_TWITTER_SECRET", None)
 
-# Google Keys
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.environ.get("MOZART_SOCIAL_AUTH_GOOGLE_OAUTH2_KEY", None)
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ.get("MOZART_SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET", None)
 
-# Social Auth Pipeline
 SOCIAL_AUTH_PIPELINE = (
     'social.pipeline.social_auth.social_details',
     'social.pipeline.social_auth.social_uid',
@@ -150,6 +88,5 @@ SOCIAL_AUTH_PIPELINE = (
     'Thirdauth.pipeline.save_extra_params',
 )
 
-# Disqus Keys
 DISQUS_API_KEY = os.environ.get("DISQUS_API_KEY", None)
 DISQUS_WEBSITE_SHORTNAME = os.environ.get("DISQUS_WEBSITE_SHORTNAME", None)
