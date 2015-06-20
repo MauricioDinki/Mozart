@@ -6,7 +6,6 @@ Profiles/migrations/
 Events/migrations/
 Mozart-env/
 Mozart/media/
-Mozart/static/dist/
 Mozart/static/bower_components/
 Mozart/static/node_modules/
 staticfiles/
