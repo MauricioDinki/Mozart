@@ -10,3 +10,4 @@ Mozart/static/dist/
 Mozart/static/bower_components/
 Mozart/static/node_modules/
 staticfiles/
+.env
