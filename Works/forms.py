@@ -14,7 +14,6 @@ from Utils.validators import eval_blank, eval_iexact, eval_image, eval_general
 from Works.models import category, Work
 
 
-# class CreateWorkForm(forms.Form):
 class CreateWorkForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValidationMixin, forms.Form)):
     form_controller = 'uploadWorkCtrl'
     form_name = 'workform'
