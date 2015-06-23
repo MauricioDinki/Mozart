@@ -21,6 +21,7 @@ INSTALLED_APPS = (
     'Works',
     'Profiles',
     'Events',
+    'storages',
 )
 
 DATABASES = {
@@ -40,12 +41,13 @@ ALLOWED_HOSTS = ['*']
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-STATIC_URL = '/static/'
-STATIC_ROOT = 'staticfiles'
-
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static/dist'),
 )
+
+STATIC_URL = "https://%s/" % os.environ.get("AWS_BUCKET_URL", None)
+
+STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
 TEMPLATE_DEBUG = False
 
