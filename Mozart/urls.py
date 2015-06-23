@@ -34,14 +34,3 @@ urlpatterns += patterns(
     url(r'', include('Thirdauth.urls', namespace=u'thirdauth')),
     url(r'', include('Profiles.urls', namespace=u'profiles')),
 )
-
-
-urlpatterns += patterns(
-    '',
-    url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}, name='media'),
-)
-
-urlpatterns += patterns(
-    '',
-    url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}, name='media'),
-)

@@ -1,3 +1,5 @@
+# -*- encoding: utf-8 -*-
+
 from base import *
 import dj_database_url
 
@@ -38,16 +40,21 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 ALLOWED_HOSTS = ['*']
 
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
+MEDIAFILES_LOCATION = 'media'
+
+DEFAULT_FILE_STORAGE = 'Mozart.custom_storages.MediaStorage'
+
+MEDIA_URL = "https://%s/%s/" % (os.environ.get("AWS_BUCKET_URL", None), MEDIAFILES_LOCATION)
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static/dist'),
 )
 
-STATIC_URL = "https://%s/" % os.environ.get("AWS_BUCKET_URL", None)
+STATICFILES_LOCATION = 'static'
 
-STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+STATICFILES_STORAGE = 'Mozart.custom_storages.StaticStorage'
+
+STATIC_URL = "https://%s/%s/" % (os.environ.get("AWS_BUCKET_URL", None), STATICFILES_LOCATION)
 
 TEMPLATE_DEBUG = False
 

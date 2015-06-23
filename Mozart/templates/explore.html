@@ -18,7 +18,7 @@
     <div ng-init="worksCategory='{{category}}';worksAuthor='all'">
       <section id="blue-navbar-section" ng-controller="loadWorksCtrl" >
         <article class="work-item" ng-repeat="work in works">
-          <div class="work-thumbnail" style="background:url('{$work.thumbnail$}');">
+          <div class="work-thumbnail" style="background:url('{$work.cover$}');">
             <a ng-href="{$work.workUrl$}"><span>{$work.work_type | uppercase$}</span>
           </a>
           </div>

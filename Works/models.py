@@ -15,10 +15,6 @@ def cover_url(self, filename):
     return str('covers/%s/%s') % (self.user.username, filename)
 
 
-def thumbnail_url(self, filename):
-    return str('thumbnails/%s/%s') % (self.user.username, filename)
-
-
 category = (
     ('', ''),
     ('dibujo-pintura', 'Dibujo/Pintura'),
@@ -70,11 +66,6 @@ class Work(models.Model):
         blank=False,
         null=False,
         upload_to=cover_url,
-    )
-    thumbnail = ImageField(
-        blank=True,
-        null=True,
-        upload_to=thumbnail_url,
     )
     archive = models.FileField(
         blank=False,

@@ -7,7 +7,6 @@ from django.utils.text import slugify
 from django.core.files.images import ImageFile
 
 from djangular.forms import NgDeclarativeFieldsMetaclass, NgFormValidationMixin, NgModelForm
-from sorl.thumbnail import get_thumbnail
 
 from Utils.messages import default_messages
 from Utils.validators import eval_blank, eval_iexact, eval_image, eval_general
@@ -108,9 +107,6 @@ class CreateWorkForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormVali
             newWork.work_type = 'audio'
         else:
             newWork.cover = cleaned_data.get('cover')
-        newWork.save()
-
-        newWork.thumbnail = get_thumbnail(newWork.cover, '300x160', crop='center', quality=99).url
         newWork.save()
 
 

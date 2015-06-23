@@ -1,4 +1,7 @@
+# -*- encoding: utf-8 -*-
+
 from base import *
+from Mozart.custom_storages import *
 
 DEBUG = True
 
@@ -32,12 +35,14 @@ DATABASES = {
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
+
 STATIC_URL = '/static/'
 STATIC_ROOT = 'staticfiles'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static/dist'),
 )
+
 
 TEMPLATE_DEBUG = False
 
