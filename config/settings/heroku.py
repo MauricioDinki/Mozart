@@ -1,63 +1,85 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
+'''
+Production Configurations
 
-from base import *
+- Use djangosecure
+- Use Amazon's S3 for storing static files and uploaded media
+- Use sendgrid to send emails
+- Use MEMCACHIER on Heroku
+'''
+from __future__ import absolute_import, unicode_literals
+
+
+from .base import *  # noqa
+from boto.s3.connection import OrdinaryCallingFormat
+from django.utils import six
 import dj_database_url
 
-DEBUG = False
 
-INSTALLED_APPS = (
-    'djangular',
-    'suit',
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'sorl.thumbnail',
-    'django_countries',
-    'rest_framework',
-    'social.apps.django_app.default',
-    'disqus',
-    'Thirdauth',
-    'Works',
-    'Profiles',
-    'Events',
-    'storages',
-)
+# SECRET CONFIGURATION
+# ------------------------------------------------------------------------------
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
+# Raises ImproperlyConfigured exception if DJANO_SECRET_KEY not in os.environ
+SECRET_KEY = env("MOZART_SECRET_KEY")
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+# DEBUG
+# ------------------------------------------------------------------------------
+DEBUG = env.bool('DJANGO_DEBUG', default=False)
+TEMPLATES[0]['OPTIONS']['debug'] = DEBUG
 
-DATABASES['default'] = dj_database_url.config()
-
+# This ensures that Django will be able to detect a secure connection
+# properly on Heroku.
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-ALLOWED_HOSTS = ['*']
+# This ensures that Django will be able to detect a secure connection
+# properly on Heroku.
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
+# SITE CONFIGURATION
+# ------------------------------------------------------------------------------
+# Hosts/domain names that are valid for this site
+# See https://docs.djangoproject.com/en/1.6/ref/settings/#allowed-hosts
+ALLOWED_HOSTS = ["*"]
+# END SITE CONFIGURATION
 
-MEDIAFILES_LOCATION = 'media'
+INSTALLED_APPS += ("gunicorn", )
 
-DEFAULT_FILE_STORAGE = 'Mozart.custom_storages.MediaStorage'
+# DATABASE CONFIGURATION
+# ------------------------------------------------------------------------------
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#databases
+DATABASES['default'] = dj_database_url.config()
 
-MEDIA_URL = "https://%s/%s/" % (os.environ.get("AWS_BUCKET_URL", None), MEDIAFILES_LOCATION)
-
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static/dist'),
+# STORAGE CONFIGURATION
+# ------------------------------------------------------------------------------
+# Uploaded Media Files
+# ------------------------
+# See: http://django-storages.readthedocs.org/en/latest/index.html
+INSTALLED_APPS += (
+    'storages',
 )
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
-STATICFILES_LOCATION = 'static'
+AWS_STORAGE_BUCKET_NAME = env("AWS_STORAGE_BUCKET_NAME")
+AWS_ACCESS_KEY_ID = env("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = env("AWS_SECRET_ACCESS_KEY")
+AWS_AUTO_CREATE_BUCKET = True
+AWS_QUERYSTRING_AUTH = False
+AWS_S3_CALLING_FORMAT = OrdinaryCallingFormat()
 
-STATICFILES_STORAGE = 'Mozart.custom_storages.StaticStorage'
+# AWS cache settings, don't change unless you know what you're doing:
+AWS_EXPIRY = 60 * 60 * 24 * 7
 
-STATIC_URL = "https://%s/%s/" % (os.environ.get("AWS_BUCKET_URL", None), STATICFILES_LOCATION)
+# TODO See: https://github.com/jschneier/django-storages/issues/47
+# Revert the following and use str after the above-mentioned bug is fixed in
+# either django-storage-redux or boto
+AWS_HEADERS = {
+    'Cache-Control': six.b('max-age=%d, s-maxage=%d, must-revalidate' % (
+        AWS_EXPIRY, AWS_EXPIRY))
+}
 
-TEMPLATE_DEBUG = False
+# URL that handles the media served from MEDIA_ROOT, used for managing stored files.
+MEDIA_URL = 'https://s3.amazonaws.com/%s/' % AWS_STORAGE_BUCKET_NAME
 
-TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, 'templates'),
-)
+# Static Assests
+# ------------------------
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
