@@ -1,0 +1,22 @@
+# Pro-tip: Try not to put anything here. There should be no dependency in
+#	production that isn't in development.
+-r base.txt
+
+# WSGI Handler
+# ------------------------------------------------
+gunicorn==19.3.0
+
+# Database
+# ------------------------------------------------
+dj-database-url==0.3.0
+
+# Static and Media Storage
+# ------------------------------------------------
+boto==2.38.0
+django-storages==1.1.8
+dj-static==0.0.6
+static3==0.6.1
+
+# Your custom requirements go here
+# ------------------------------------------------
+django-toolbelt==0.0.1

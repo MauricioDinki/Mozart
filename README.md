@@ -1,3 +1,4 @@
-# Mozart Plataforma social para artistas independientes
+# Project Mozart
+## Social platform for independent artists
 
-Aun nos estamos rifando en esto
+We are building this beautiful platform
