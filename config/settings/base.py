@@ -1,3 +1,4 @@
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 """
 Django settings for mozart project.
@@ -10,6 +11,7 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 """
 
 from __future__ import absolute_import, unicode_literals
+from django.utils.translation import ugettext_lazy as _
 import environ
 import os
 
@@ -38,7 +40,7 @@ DJANGO_APPS = (
 THIRD_PARTY_APPS = (
     'djangular',
     'suit',
-    'sorl.thumbnail',
+    # 'sorl.thumbnail',
     'django_countries',
     'rest_framework',
     'social.apps.django_app.default',
@@ -46,16 +48,21 @@ THIRD_PARTY_APPS = (
 )
 
 # Apps specific for this project go here.
-LOCAL_APPS = ()
+LOCAL_APPS = (
+    # 'mozart.works',
+)
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
-INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
+INSTALLED_APPS = THIRD_PARTY_APPS + DJANGO_APPS + LOCAL_APPS
+
+# sys.path.insert(0, os.path.join(PROJECT_ROOT, 'apps'))
 
 # MIDDLEWARE CONFIGURATION
 # ------------------------------------------------------------------------------
 MIDDLEWARE_CLASSES = (
     # Make sure djangosecure.middleware.SecurityMiddleware is listed first
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -114,6 +121,19 @@ USE_L10N = True
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#use-tz
 USE_TZ = True
 
+# LANGUAGE CONFIGURATION
+# ------------------------------------------------------------------------------
+# The language codes are provided by the ISO 639-1 standar, you can find this
+# codes in https://en.wikipedia.org/wiki/ISO_639-1
+# See: https://docs.djangoproject.com/en/1.8/ref/settings/
+LANGUAGES = (
+    ('en', _('English')),
+    ('es', _('Spanish')),
+)
+
+LOCALE_PATHS = (
+    str(APPS_DIR('locale')),
+)
 # TEMPLATE CONFIGURATION
 # ------------------------------------------------------------------------------
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#templates
