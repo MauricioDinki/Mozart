@@ -1,32 +1,23 @@
-# -*- encoding: utf-8 -*-
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
 
-from django.conf.urls import patterns, url, include
-from Works.views import ListWorkView, HomeView, CreateWorkView, SettingsWorkView, UpdateWorkView,\
-    UserWorkView, DetailWorkView, SearchProductsView
+from __future__ import absolute_import, unicode_literals
 
-urlpatterns = patterns(
-    '',
-    url(r'^$', HomeView.as_view(), name='index',),
-    url(r'^explore/$', ListWorkView.as_view(), name='work_list',),
-    url(r'^explore/(?P<category>.*)/$', ListWorkView.as_view(), name='work_list_category',),
-    url(r'^search/$', SearchProductsView.as_view(), name='search',),
-)
+from django.conf.urls import url
 
-urlpatterns += patterns(
-    '',
-    url(r'^create/work/$', CreateWorkView.as_view(), name='create_work',),
-    url(r'^delete/work/(?P<slug>.*)/$', 'Works.views.DeleteWorkView', name='delete_work',),
-)
+from . import views
 
-urlpatterns += patterns(
-    '',
-    url(r'^settings/works/$', SettingsWorkView.as_view(), name='settings_works',),
-    url(r'^settings/works/(?P<slug>.*)/$', UpdateWorkView.as_view(), name='edit_work',),
-)
+urlpatterns = [
+    url(regex=r'^explore/$', view=views.WorkListView.as_view(), name='work_list'),
+    url(regex=r'^explore/(?P<category>\w+)/$', view=views.WorkListView.as_view(), name='work_list_category'),
 
-urlpatterns += patterns(
-    '',
-    url(r'^profiles/(?P<username>.*)/works/category/(?P<category>.*)/$', UserWorkView.as_view(), name='work_user_list_category'),
-    url(r'^profiles/(?P<username>.*)/works/(?P<slug>.*)/$', DetailWorkView.as_view(), name='work_user_detail'),
-    url(r'^profiles/(?P<username>.*)/works/$', UserWorkView.as_view(), name='work_user_list'),
-)
+    url(regex=r'^works/create/$', view=views.WorkCreateView.as_view(), name='work_create'),
+    url(regex=r'^works/delete/(?P<slug>.*)/$', view=views.WorkDeleteView, name='work_delete'),
+
+    url(regex=r'^settings/works/$', view=views.WorkSettingsView.as_view(), name='work_settings'),
+    url(regex=r'^settings/works/(?P<slug>.*)/$', view=views.WorkUpdateView.as_view(), name='work_update'),
+
+    url(regex=r'^profiles/(?P<username>.*)/works/category/(?P<category>.*)/$', view=views.WorkUserView.as_view(), name='work_user_list_category'),
+    url(regex=r'^profiles/(?P<username>.*)/works/(?P<slug>.*)/$', view=views.WorkDetailView.as_view(), name='worl_detail'),
+    url(regex=r'^profiles/(?P<username>.*)/works/$', view=views.WorkUserView.as_view(), name='work_user_list'),
+]

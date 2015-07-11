@@ -1,75 +1,62 @@
-# -*- encoding: utf-8 -*-
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse_lazy
-from django.shortcuts import get_list_or_404, redirect, get_object_or_404, render_to_response
-from django.template import RequestContext
-from django.views.generic import DetailView, TemplateView, FormView, UpdateView, View
+from django.shortcuts import redirect
+from django.views.generic import CreateView, DetailView, TemplateView, UpdateView
+from django.utils.translation import ugettext as _
+from django.core.exceptions import PermissionDenied
+from django.http import Http404
 
-from Utils.mixins import AuthRedirectMixin, LoginRequiredMixin, RequestFormMixin
-from Works.forms import CreateWorkForm, UpdateWorkForm
-from Works.models import Work
+from mozart.core.mixins import LoginRequiredMixin, RequestFormMixin
+
+from .models import Work
+from .forms import WorkCreateForm, WorkUpdateForm
 
 
-class CreateWorkView(LoginRequiredMixin, RequestFormMixin, FormView):
-    form_class = CreateWorkForm
+class WorkCreateView(LoginRequiredMixin, RequestFormMixin, CreateView):
+    form_class = WorkCreateForm
     success_url = reverse_lazy('works:work_list')
-    template_name = 'upload_work.html'
-
-    def form_valid(self, form):
-        form.save()
-        return super(CreateWorkView, self).form_valid(form)
+    template_name = 'works/work-create.html'
 
 
-class DetailWorkView(DetailView):
-    template_name = 'work.html'
+@login_required(login_url='/')
+def WorkDeleteView(request, slug):
+    try:
+        work_instance = Work.objects.get(user=request.user, slug=slug)
+    except Work.DoesNotExist:
+        raise PermissionDenied()
+    work_instance.delete()
+    return redirect(reverse_lazy('works:work_list'))
+
+
+class WorkDetailView(DetailView):
     model = Work
     slug_field = 'slug'
     slug_url_kwarg = 'slug'
+    template_name = 'works/work-detail.html'
 
 
-class HomeView(AuthRedirectMixin, TemplateView):
-    template_name = "welcome_view.html"
-
-
-class ListWorkView(TemplateView):
-    template_name = "explore.html"
+class WorkListView(TemplateView):
+    template_name = 'works/explore.html'
 
     def get_context_data(self, **kwargs):
         if 'view' not in kwargs:
             kwargs['view'] = self
             if self.kwargs.get('category'):
-                error = get_list_or_404(Work, category=self.kwargs.get('category'))
+                kwarg_category = self.kwargs.get('category')
+                category_works = list(Work.objects.filter(category=kwarg_category))
+                if not category_works:
+                    raise Http404(_("Thers any work with this category"))
                 kwargs['category'] = self.kwargs.get('category')
-            else:
-                kwargs['category'] = 'all'
+            kwargs['category'] = 'all'
         return kwargs
 
 
-class SearchProductsView(View):
-    template_name = 'search.html'
-    work_queryset = Work.objects.all()
-    user_queryset = User.objects.all()
-
-    def get(self, request):
-        if 'search' in request.GET:
-            arg = request.GET['search']
-            if arg == '':
-                return render_to_response('search_empty.html', context_instance=RequestContext(request))
-            works = self.work_queryset.filter(title__icontains=arg)
-            users = self.user_queryset.filter(username__icontains=arg)
-            ctx = {
-                'works': works,
-                'users': users,
-            }
-            return render_to_response(self.template_name, ctx, context_instance=RequestContext(request))
-        else:
-            return render_to_response('search_empty.html', context_instance=RequestContext(request))
-
-
-class SettingsWorkView(LoginRequiredMixin, TemplateView):
-    template_name = 'settings_works.html'
+class WorkSettingsView(LoginRequiredMixin, TemplateView):
+    template_name = 'works/work-settings.html'
 
     def get_context_data(self, **kwargs):
         if 'view' not in kwargs:
@@ -78,37 +65,37 @@ class SettingsWorkView(LoginRequiredMixin, TemplateView):
         return kwargs
 
 
-class UpdateWorkView(LoginRequiredMixin, UpdateView):
-    form_class = UpdateWorkForm
+class WorkUpdateView(LoginRequiredMixin, UpdateView):
     model = Work
-    slug_field = 'slug'
-    slug_url_kwarg = 'slug'
-    success_url = reverse_lazy('works:settings_works')
-    template_name = 'settings_edit_work.html'
+    form_class = WorkUpdateForm
+    # success_url = reverse_lazy('works:settings_works')
+    template_name = 'works/work-update.html.html'
 
     def get_object(self):
-        obj = get_object_or_404(self.model, user=self.request.user, slug=self.kwargs.get(self.slug_url_kwarg, None))
-        return obj
+        try:
+            obj = self.model.objects.get(user=self.request.user, slug=self.kwargs.get(self.slug_url_kwarg))
+            return obj
+        except self.model.DoesNotExist:
+            raise PermissionDenied()
 
 
-class UserWorkView(TemplateView):
-    template_name = 'profile_works.html'
+class WorkUserView(TemplateView):
+    template_name = 'works/work-user.html'
 
     def get_context_data(self, **kwargs):
         if 'view' not in kwargs:
             kwargs['view'] = self
             kwargs['username'] = self.kwargs.get('username')
-            user = get_object_or_404(User, username__iexact=self.kwargs.get('username'))
-            kwargs['user_type'] = user.mozart_user.user_type
+            try:
+                user = User.objects.get(username__iexact=self.kwargs.get('username'))
+                kwargs['user_type'] = user.mozart_user.user_type
+            except User.DoesNotExist:
+                raise Http404(_("Thers any user with this username"))
             if self.kwargs.get('category'):
+                kwarg_category = self.kwargs.get('category')
+                category_works = list(Work.objects.filter(category=kwarg_category, user__username__iexact=self.request.user.username))
+                if not category_works:
+                    raise Http404(_("Thers any work with this category"))
                 kwargs['category'] = self.kwargs.get('category')
-            else:
-                kwargs['category'] = 'all'
+            kwargs['category'] = 'all'
             return kwargs
-
-
-@login_required(login_url='login')
-def DeleteWorkView(request, slug):
-    account_to_delete = get_object_or_404(Work, user=request.user, slug=slug)
-    account_to_delete.delete()
-    return redirect(reverse_lazy('works:work_list'))

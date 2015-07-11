@@ -1,96 +1,101 @@
-# -*- encoding: utf-8 -*-
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+from __future__ import unicode_literals
 
 from django import forms
 from django.core.validators import RegexValidator
-from django.utils import six
 from django.utils.text import slugify
-from django.core.files.images import ImageFile
+from django.utils.translation import ugettext_lazy as _
 
-from djangular.forms import NgDeclarativeFieldsMetaclass, NgFormValidationMixin, NgModelForm
+from djangular.forms import NgFormValidationMixin, NgModelForm
 
-from Utils.messages import default_messages
-from Utils.validators import eval_blank, eval_iexact, eval_image, eval_general
-from Works.models import category, Work
+from mozart.core import validators
+from mozart.core.messages import regex_sentences
+
+from .models import Work
 
 
-class CreateWorkForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValidationMixin, forms.Form)):
-    form_controller = 'uploadWorkCtrl'
-    form_name = 'workform'
-
-    title = forms.CharField(
-        max_length=40,
-        min_length=4,
-        widget=forms.TextInput(
-            attrs={
-                'class': 'mozart-field empty-initial-field',
-                'mz-field': '',
-                'ng-pattern': '/^[a-zA-Z0-9_áéíóúñ\s]*$/',
-            }
-        ),
-    )
-
-    description = forms.CharField(
-        max_length=1000,
-        widget=forms.Textarea(
-            attrs={
-                'class': 'mozart-field empty-initial-field',
-                'mz-field': '',
-                'ng-pattern': '/^[a-zA-Z0-9_áéíóúñ\s]*$/',
-            }
-        ),
-    )
-
-    category = forms.ChoiceField(
-        choices=category,
-        widget=forms.Select(
-            attrs={
-                'class': 'mozart-field empty-initial-field',
-                'mz-field': '',
-            }
-        ),
-    )
-
-    cover = forms.ImageField(
-        widget=forms.FileInput(
-            attrs={
-                'file-upload': '',
-                'file-bind': 'cover',
-            }
-        ),
-    )
-
-    archive = forms.FileField(
-        widget=forms.FileInput(
-            attrs={
-                'file-upload': '',
-                'file-bind': 'archive',
-            }
-        ),
-    )
+class WorkAbstractForm(NgFormValidationMixin, NgModelForm):
+    class Meta:
+        model = Work
+        fields = '__all__'
+        error_messages = {
+            'title': {
+                'unique': _("There is a %(model_name)s with this %(field_label)s already registred") % {
+                    'model_name': (model._meta.verbose_name).lower(),
+                    'field_label': (model._meta.get_field('title').verbose_name).lower(),
+                },
+            },
+        }
+        widgets = {
+            'title': forms.TextInput(
+                attrs={
+                    'class': 'mozart-field empty-initial-field',
+                    'mz-field': '',
+                    'ng-pattern': '/^[a-zA-Z0-9_áéíóúñ\s]*$/',
+                }
+            ),
+            'description': forms.TextInput(
+                attrs={
+                    'class': 'mozart-field empty-initial-field',
+                    'mz-field': '',
+                    'ng-pattern': '/^[a-zA-Z0-9_áéíóúñ\s]*$/',
+                }
+            ),
+            'category': forms.Select(
+                attrs={
+                    'class': 'mozart-field empty-initial-field',
+                    'mz-field': '',
+                }
+            ),
+            'cover': forms.FileInput(
+                attrs={
+                    'file-upload': '',
+                    'file-bind': 'cover',
+                }
+            ),
+            'archive': forms.FileInput(
+                attrs={
+                    'file-upload': '',
+                    'file-bind': 'cover',
+                }
+            ),
+        }
 
     def __init__(self, *args, **kwargs):
-        self.request = kwargs.pop('request', None)
-        super(CreateWorkForm, self).__init__(*args, **kwargs)
+        super(WorkAbstractForm, self).__init__(*args, **kwargs)
         for field in self.fields:
-            self.fields[field].error_messages.update(default_messages)
-            self.fields[field].validators = [RegexValidator(regex=u'^[a-zA-Z0-9_áéíóúñ\s]*$')]
+            self.fields[field].validators = [RegexValidator(regex=regex_sentences['numbres_and_letters'])]
             if field == 'cover':
-                self.fields[field].validators = [eval_image]
+                self.fields[field].validators = [validators.eval_image]
                 self.fields[field].required = False
             else:
                 self.fields[field].required = True
             if field == 'archive':
-                self.fields[field].validators = [eval_general]
+                self.fields[field].validators = [validators.eval_general]
             if field == 'category' or field == 'description':
-                self.fields[field].validators = [eval_blank]
+                self.fields[field].validators = [validators.eval_blank]
+
+
+class WorkCreateForm(WorkAbstractForm):
+    form_controller = 'uploadWorkCtrl'
+    form_name = 'workform'
+
+    class Meta(WorkAbstractForm.Meta):
+        fields = ['title', 'description', 'category', 'cover', 'archive']
+
+    def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop('request', None)
+        super(WorkCreateForm, self).__init__(*args, **kwargs)
 
     def clean_title(self):
         title = self.cleaned_data.get('title')
-        return eval_iexact(title, Work, 'slug')
+        return validators.eval_iexact(title, Work, 'slug', 'title')
 
     def save(self):
-        cleaned_data = super(CreateWorkForm, self).clean()
-        newWork = Work(
+        cleaned_data = super(WorkForm, self).clean()
+        work_instance = Work(
             user=self.request.user,
             title=cleaned_data.get('title'),
             description=cleaned_data.get('description'),
@@ -100,52 +105,20 @@ class CreateWorkForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormVali
         )
 
         if str(cleaned_data.get('archive').content_type).startswith('image'):
-            newWork.cover = newWork.archive
-            newWork.work_type = 'image'
+            work_instance.cover = work_instance.archive
+            work_instance.work_type = 'image'
         elif str(cleaned_data.get('archive').content_type).startswith('audio'):
-            newWork.cover = cleaned_data.get('cover')
-            newWork.work_type = 'audio'
+            work_instance.cover = cleaned_data.get('cover')
+            work_instance.work_type = 'audio'
         else:
-            newWork.cover = cleaned_data.get('cover')
-        newWork.save()
+            work_instance.cover = cleaned_data.get('cover')
+        work_instance.save()
+        return work_instance
 
 
-class UpdateWorkForm(NgModelForm, NgFormValidationMixin):
+class WorkUpdateForm(WorkAbstractForm):
     form_controller = 'editWorkCtrl'
     form_name = 'editworkform'
 
-    class Meta:
-        model = Work
+    class Meta(WorkAbstractForm.Meta):
         fields = ['title', 'description', 'category']
-        widgets = {
-            'title': forms.TextInput(
-                attrs={
-                    'class': 'mozart-field non-active-field',
-                    'mz-field': '',
-                }
-            ),
-            'description': forms.Textarea(
-                attrs={
-                    'class': 'mozart-field empty-initial-field',
-                    'mz-field': '',
-                }
-            ),
-            'category': forms.Select(
-                attrs={
-                    'class': 'mozart-field empty-initial-field',
-                    'mz-field': '',
-                }
-            ),
-        }
-        error_messages = {
-            'title': {
-                'unique': 'Ya hay una obra con ese titulo',
-            },
-        }
-
-    def __init__(self, *args, **kwargs):
-        super(UpdateWorkForm, self).__init__(*args, **kwargs)
-        for field in self.fields:
-            self.fields[field].error_messages.update(default_messages)
-            if field != 'category':
-                self.fields[field].validators = [RegexValidator(regex='^[a-zA-Z0-9]*$',), ]

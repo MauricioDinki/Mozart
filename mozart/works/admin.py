@@ -1,8 +1,9 @@
-# -*- encoding: utf-8 -*-
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
 
 from django.contrib import admin
 
-from Works.models import Work
+from .models import Work
 
 
 @admin.register(Work)

@@ -5,11 +5,18 @@ from django.conf import settings
 from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.views.generic import TemplateView
+
+from mozart.works import urls as works_urls
+from mozart.landing import urls as landing_urls
 
 urlpatterns = [
     # Django Admin
     url(r'^admin/', include(admin.site.urls)),
+
     # Your stuff: custom urls includes go here
+    url(r'^', include(works_urls, namespace='works')),
+    url(r'^', include(landing_urls, namespace='landing')),
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

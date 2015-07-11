@@ -40,7 +40,7 @@ DJANGO_APPS = (
 THIRD_PARTY_APPS = (
     'djangular',
     'suit',
-    # 'sorl.thumbnail',
+    'sorl.thumbnail',
     'django_countries',
     'rest_framework',
     'social.apps.django_app.default',
@@ -49,7 +49,7 @@ THIRD_PARTY_APPS = (
 
 # Apps specific for this project go here.
 LOCAL_APPS = (
-    # 'mozart.works',
+    'mozart.works',
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -62,7 +62,8 @@ INSTALLED_APPS = THIRD_PARTY_APPS + DJANGO_APPS + LOCAL_APPS
 MIDDLEWARE_CLASSES = (
     # Make sure djangosecure.middleware.SecurityMiddleware is listed first
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.locale.LocaleMiddleware',
+    # 'django.middleware.locale.LocaleMiddleware',
+    'mozart.core.middlewares.FixedLocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -127,7 +128,7 @@ USE_TZ = True
 # codes in https://en.wikipedia.org/wiki/ISO_639-1
 # See: https://docs.djangoproject.com/en/1.8/ref/settings/
 LANGUAGES = (
-    ('en', _('English')),
+    ('en-us', _('English')),
     ('es', _('Spanish')),
 )
 
@@ -156,8 +157,9 @@ TEMPLATES = [
             ],
             # See: https://docs.djangoproject.com/en/dev/ref/settings/#template-context-processors
             'context_processors': [
-                'django.contrib.auth.context_processors.auth',
                 'django.core.context_processors.debug',
+                'django.core.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
                 'django.core.context_processors.i18n',
                 'django.core.context_processors.media',
                 'django.core.context_processors.static',
@@ -165,7 +167,6 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'social.apps.django_app.context_processors.backends',
                 'social.apps.django_app.context_processors.login_redirect',
-                'django.core.context_processors.request',
             ],
         },
     },
