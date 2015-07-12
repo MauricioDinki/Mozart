@@ -66,7 +66,7 @@ class WorkAbstractForm(NgFormValidationMixin, NgModelForm):
     def __init__(self, *args, **kwargs):
         super(WorkAbstractForm, self).__init__(*args, **kwargs)
         for field in self.fields:
-            self.fields[field].validators = [RegexValidator(regex=regex_sentences['numbres_and_letters'])]
+            self.fields[field].validators = [RegexValidator(regex=regex_sentences['numbres_and_letters_special'])]
             if field == 'cover':
                 self.fields[field].validators = [validators.eval_image]
                 self.fields[field].required = False
@@ -94,7 +94,7 @@ class WorkCreateForm(WorkAbstractForm):
         return validators.eval_iexact(title, Work, 'slug', 'title')
 
     def save(self):
-        cleaned_data = super(WorkForm, self).clean()
+        cleaned_data = super(WorkCreateForm, self).clean()
         work_instance = Work(
             user=self.request.user,
             title=cleaned_data.get('title'),
