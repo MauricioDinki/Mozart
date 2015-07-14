@@ -4,6 +4,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.utils.decorators import method_decorator
+from django.core.urlresolvers import reverse_lazy
 
 
 class AuthRedirectMixin(object):
@@ -15,7 +16,7 @@ class AuthRedirectMixin(object):
 
 
 class LoginRequiredMixin(object):
-    @method_decorator(login_required(login_url='login'))
+    @method_decorator(login_required(login_url=reverse_lazy('xauth:login')))
     def dispatch(self, request, *args, **kwargs):
         return super(LoginRequiredMixin, self).dispatch(request, *args, **kwargs)
 

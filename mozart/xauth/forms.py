@@ -212,7 +212,7 @@ class SignupForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValidati
             sex=cleaned_data.get('user_sexuality')
         )
 
-        extended_user_instance.nationality = 'MX'
+        extended_user_instance.nationality = 'US'
         extended_user_instance.save()
 
         birthday_instance = Birthday(

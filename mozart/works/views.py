@@ -6,11 +6,12 @@ from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import redirect
 from django.views.generic import CreateView, DetailView, TemplateView, UpdateView
-from django.utils.translation import ugettext as _
 from django.core.exceptions import PermissionDenied
 from django.http import Http404
 
 from mozart.core.mixins import LoginRequiredMixin, RequestFormMixin
+from mozart.core.messages import not_found_messages
+
 
 from .models import Work
 from .forms import WorkCreateForm, WorkUpdateForm
@@ -49,7 +50,7 @@ class WorkListView(TemplateView):
                 kwarg_category = self.kwargs.get('category')
                 category_works = list(Work.objects.filter(category=kwarg_category))
                 if not category_works:
-                    raise Http404(_("Thers any work with this category"))
+                    raise Http404(not_found_messages['404_work_category'])
                 kwargs['category'] = self.kwargs.get('category')
             kwargs['category'] = 'all'
         return kwargs
@@ -90,12 +91,12 @@ class WorkUserView(TemplateView):
                 user = User.objects.get(username__iexact=self.kwargs.get('username'))
                 kwargs['user_type'] = user.mozart_user.user_type
             except User.DoesNotExist:
-                raise Http404(_("Thers any user with this username"))
+                raise Http404(not_found_messages['404_user'])
             if self.kwargs.get('category'):
                 kwarg_category = self.kwargs.get('category')
                 category_works = list(Work.objects.filter(category=kwarg_category, user__username__iexact=self.request.user.username))
                 if not category_works:
-                    raise Http404(_("Thers any work with this category"))
+                    raise Http404(not_found_messages['404_work_category'])
                 kwargs['category'] = self.kwargs.get('category')
             kwargs['category'] = 'all'
             return kwargs

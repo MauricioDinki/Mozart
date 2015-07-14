@@ -29,7 +29,8 @@ def LogoutView(request):
 
 
 class SignupView(AuthRedirectMixin, FormView):
-    template_name = 'xauth/signup.html'
+    # template_name = 'xauth/signup.html'
+    template_name = 'generic-form.html'
     form_class = SignupForm
     success_url = reverse_lazy('works:work_list')
 

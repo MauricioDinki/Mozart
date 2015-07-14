@@ -9,6 +9,7 @@ from django.contrib import admin
 from mozart.works import urls as works_urls
 from mozart.landing import urls as landing_urls
 from mozart.xauth import urls as xauth_urls
+from mozart.profiles import urls as profiles_urls
 
 urlpatterns = [
     # Django Admin
@@ -18,6 +19,7 @@ urlpatterns = [
     url(r'^', include(works_urls, namespace='works')),
     url(r'^', include(landing_urls, namespace='landing')),
     url(r'^', include(xauth_urls, namespace='xauth')),
+    url(r'^', include(profiles_urls, namespace='profiles')),
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

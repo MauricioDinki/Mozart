@@ -9,6 +9,7 @@ regex_sentences = {
     'numbres_and_letters_special': '^[a-zA-Z0-9_áéíóúñ\s]*$',
     'numbres_and_letters': '^[a-zA-Z0-9]*$',
     'email': '^[\w.@+-]+$',
+    'zip_code': '^[0-9\-]*$',
 }
 
 custom_error_messages = {
@@ -16,7 +17,7 @@ custom_error_messages = {
     'unique': _("There is a %(model_name)s with this %(field_label)s already registred"),
     'inevent': _('101'),
     'shevent': _('102'),
-    'mismatch': _('103'),
+    'mismatch': _('Passwords do not match'),
     'invalid_login': _('The username or password are incorrect'),
     'inactive_account': _('This account is inactive'),
     'incorrect_password': _('The password is incorrect'),
@@ -26,6 +27,15 @@ media_messages = {
     'invalid_archive': _('201'),
     'invalid_audio': _('202'),
     'invalid_image': _('203'),
+}
+
+confirmation_messages = {
+    'updated_user': _('Profile updated'),
+}
+
+not_found_messages = {
+    '404_user': _("Thers any user with this username"),
+    '404_work_category': _("Thers any work with this category")
 }
 
 DAYS = (
