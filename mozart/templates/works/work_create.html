@@ -1,0 +1,82 @@
+{% extends 'base.html'%}
+
+{% block title %} Crear Obra - mozArt {% endblock %}
+{% block content %}
+  <div class="mozart-form">
+    <h2> Crear obra </h2>
+    {% if form.non_field_errors %}
+      {% ifnotequal form.non_field_errors.as_text|cut:"* " "$message" %}
+        <mz-basic-okay-modal modal-title="No se pudo crear la obra." okay-text="Entendido">
+          {{ form.non_field_errors.as_text|cut:"$message"|cut:"* " }}
+        </mz-basic-okay-modal>
+      {% endifnotequal %}
+    {% endif %}
+    <form action="" method="post" enctype="multipart/form-data" id="id_{{form.form_name}}" name="{{form.form_name}}" novalidate ng-controller="{{form.form_controller}}">
+      {% csrf_token %}
+      <div class="mozart-field-container one-element">
+        <label for="id_title" class="mozart-label initial-label"> Título </label>
+        {{ form.title }}
+      </div>
+      <div class="form-error" ng-show="{{form.form_name}}.title.$error.pattern">
+        El titulo de la obra solo puede contener letras, numeros y espacios.
+      </div>
+      <div ng-show="{{form.form_name}}.title.$error.required && {{form.form_name}}.title.$dirty" class="form-error">
+        Este campo es obligatorio.
+      </div>
+      <div ng-show="{{form.form_name}}.title.$error.minlength" class="form-error">
+        El título debe contener al menos 4 carácteres.
+      </div>
+      <div ng-show="{{form.form_name}}.title.$error.maxlength" class="form-error">
+        El título debe contener a lo mucho 40 carácteres.
+      </div>
+      <div class="mozart-field-container one-element">
+        <label for="id_description" class="mozart-label initial-label"> Descripción de la obra </label>
+        {{ form.description }}
+      </div>
+      <div class="form-error" ng-show="{{form.form_name}}.description.$error.pattern">
+        La descripción de la obra solo puede contener letras, numeros y espacios.
+      </div>
+      <div ng-show="{{form.form_name}}.description.$error.required && {{form.form_name}}.description.$dirty" class="form-error">
+        Este campo es obligatorio.
+      </div>
+      <div ng-show="{{form.form_name}}.description.$error.maxlength" class="form-error">
+        La descripción debe contener a lo más 1000 carácteres.
+      </div>
+      <div class="mozart-field-container one-element">
+        <label for="id_category" class="mozart-label non-active-label">Categoría </label>
+        {{ form.category }}
+      </div>
+      <div ng-show="{{form.form_name}}.category.$error.required && {{form.form_name}}.category.$dirty" class="form-error">
+        Debes seleccionar una categoría.
+      </div>
+      <div class="button file-button">
+        <span>
+          Seleccionar archivo
+        </span>
+        {{ form.archive }}
+      </div>
+      <br/>
+      <div ng-show="showText1()">
+        <strong> Archivo seleccionado: </strong>
+        <span ng-bind="workFile.name"></span>
+      </div>
+      <div class="form-error" ng-show="showMessage1()">
+        El archivo que seleccionaste no es soportado por mozArt.
+      </div>
+      <div ng-show="showButton2()">
+        <div class="button file-button">
+          <span>Seleccionar portada</span>
+          {{ form.cover }}
+        </div>
+        <div ng-show="showText2()">
+          <strong> Imagen de portada seleccionada: </strong>
+          <span ng-bind="workCover.name"></span>
+        </div>
+        <div class="form-error" ng-show="showMessage2()">
+          El archivo de portada que seleccionaste no es un archivo de imagen valido.
+        </div>
+      </div>
+      <button class="button submit-button" type="submit" ng-disabled="!validate()" name="Subir obra"> Subir obra </button>
+    </form>
+  </div>
+{% endblock %}

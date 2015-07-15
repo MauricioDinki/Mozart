@@ -37,11 +37,11 @@ class WorkDetailView(DetailView):
     model = Work
     slug_field = 'slug'
     slug_url_kwarg = 'slug'
-    template_name = 'works/work-detail.html'
+    template_name = 'works/work_detail.html'
 
 
 class WorkListView(TemplateView):
-    template_name = 'works/explore.html'
+    template_name = 'works/work_list.html'
 
     def get_context_data(self, **kwargs):
         if 'view' not in kwargs:
@@ -57,7 +57,7 @@ class WorkListView(TemplateView):
 
 
 class WorkSettingsView(LoginRequiredMixin, TemplateView):
-    template_name = 'works/work-settings.html'
+    template_name = 'works/work_settings.html'
 
     def get_context_data(self, **kwargs):
         if 'view' not in kwargs:
@@ -69,8 +69,8 @@ class WorkSettingsView(LoginRequiredMixin, TemplateView):
 class WorkUpdateView(LoginRequiredMixin, UpdateView):
     model = Work
     form_class = WorkUpdateForm
-    # success_url = reverse_lazy('works:settings_works')
-    template_name = 'works/work-update.html.html'
+    success_url = reverse_lazy('works:work_settings')
+    template_name = 'works/work_update.html'
 
     def get_object(self):
         try:
@@ -81,7 +81,7 @@ class WorkUpdateView(LoginRequiredMixin, UpdateView):
 
 
 class WorkUserView(TemplateView):
-    template_name = 'works/work-user.html'
+    template_name = 'works/work_user_list.html'
 
     def get_context_data(self, **kwargs):
         if 'view' not in kwargs:
@@ -89,7 +89,7 @@ class WorkUserView(TemplateView):
             kwargs['username'] = self.kwargs.get('username')
             try:
                 user = User.objects.get(username__iexact=self.kwargs.get('username'))
-                kwargs['user_type'] = user.mozart_user.user_type
+                kwargs['user_type'] = user.extendeduser.user_type
             except User.DoesNotExist:
                 raise Http404(not_found_messages['404_user'])
             if self.kwargs.get('category'):

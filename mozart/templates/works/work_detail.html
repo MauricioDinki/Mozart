@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% load thumbnail %}
+{% load static %}
+{% load disqus_tags %}
+
+{% block title %} {{ work.title }} (por {{work.user.username}}) - mozArt {% endblock %}
+
+{% block content %}
+	<section id="work-section">
+		{% if work.work_type == 'image' %}
+			<div class="media-content image-file">
+				<div class="image-title">
+					{{ work.title }}
+				</div>
+				<img src="{{ work.archive.url }}" alt="{{ work.title }}" title="{{ work.title }}">
+			</div>
+			{% elif work.work_type == 'audio' %}
+				<div class="media-content audio-file" style="background: url({{ work.cover.url }})">
+					<div class="track-title">
+						{{ work.title }}
+					</div>
+					<audio src="{{ work.archive.url }}" controls="true"></audio>
+				</div>
+			{% elif work.work_type == 'text' %}
+				:D Aun no existe visualizacion
+			{% else %}
+				<video class="media-content" src="{{ work.archive.url }}" controls="true" poster="{{ work.cover.url }}"></video>
+	 	{% endif %}
+		<div id="work-details">
+	 		<a href="{% url 'profiles:profile_detail' work.user.username %}">
+			{% if not work.user.extendeduser.profile_picture %}
+				<img class="circle work-author-thumbnail float-left" src="{% static "img/default.png" %}"/>
+	    {% else %}
+				{% thumbnail work.user.extendeduser.profile_picture "33x33" crop="center" as im %}
+					<img class="circle work-author-thumbnail float-left" src="{{ im.url }}"/>
+				{% endthumbnail %}
+	    {% endif %}
+			</a>
+			<span class="icons {{ work.category }}-icon"></span>
+			<span class="work-title">{{ work.title }}</span>
+			<br/>
+			Creada por <a href="{% url 'profiles:profile_detail' work.user.username %}">{{ work.user.username }}</a>
+			en <span class="work-date">{{ work.date }}</span><br/>
+			<p class="work-description">{{ work.description }}</p>
+		</div>
+	</section>
+	<section id="comments-section">
+		{% disqus_show_comments %}
+	</section>
+{% endblock %}
