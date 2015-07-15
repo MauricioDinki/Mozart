@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+	<mz-toggle-container>
+		<mz-toggle-menu icon-class-name="{% block icon-class %}{% endblock %}" current-option-text="{% block option-name %}{% endblock %}">
+			<ul>
+			<li class="menu-option">
+				<a class="icons information-icon" href="{% url 'profiles:account_settings' %}">
+					Editar información
+				</a>
+			</li>
+			<li class="menu-option">
+				<a class="icons settings-icon" href="{% url 'profiles:password_settings' %}">
+					Cambiar contraseña
+				</a>
+			</li>
+			<li class="menu-option">
+				<a class="icons settings-icon" href="{% url 'profiles:social_settings' %}">
+					Cuentas vinculadas
+				</a>
+			</li>
+			{% if user.extendeduser.user_type == 'artist' %}
+				<li class="menu-option">
+					<a class="icons works-icon" href="{% url 'works:work_settings' %}">
+						Mis obras
+					</a>
+				</li>
+			{% endif %}
+			</ul>
+		</mz-toggle-menu>
+	</mz-toggle-container>
+  <div id="settings-content">
+    {% block section %} {% endblock %}
+  </div>
+{% endblock %}

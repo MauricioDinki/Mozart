@@ -14,6 +14,7 @@ from mozart.profiles import urls as profiles_urls
 urlpatterns = [
     # Django Admin
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^', include('social.apps.django_app.urls', namespace='social')),
 
     # Your stuff: custom urls includes go here
     url(r'^', include(works_urls, namespace='works')),

@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% load thumbnail %}
+
+{% block title %} Perfil de {{ username }} - mozArt {% endblock %}
+
+{% block content %}
+	{% ifequal user_type 'artist' %}
+		<div id="blue-navbar" class="categories-navbar" ng-init="base_username='{{username}}'">
+		    <ul>
+		        <li>
+							<a href="{% url 'works:work_user_list' username %}" class="icons todas-icon" title="Todas las categorías"></a></li>
+		        <li>
+							<a href="{% url 'works:work_user_list_category' username 'dibujo-pintura' %}" class="icons dibujo-pintura-icon" title="Dibujo y pintura"></a>
+						</li>
+		        <li>
+							<a href="{% url 'works:work_user_list_category' username 'fotografia-filme' %}" class="icons fotografia-filme-icon" title="Fotografía y filme"></a>
+						</li>
+		        <li>
+							<a href="{% url 'works:work_user_list_category' username 'teatro-literatura' %}" class="icons teatro-literatura-icon" title="Teatro y literatura"></a>
+						</li>
+		        <li>
+							<a href="{% url 'works:work_user_list_category' username 'musica-baile' %}" class="icons musica-baile-icon" title="Música y baile"></a>
+						</li>
+		        <li>
+							<a href="{% url 'works:work_user_list_category' username 'escultura-ceramica' %}" class="icons escultura-ceramica-icon" title="Escultura y cerámica"></a>
+						</li>
+		        <li>
+							<a href="{% url 'works:work_user_list_category' username 'dibujo-pintura' %}" class="icons arte_digital-icon" title="Arte digital"></a>
+						</li>
+		        <li>
+							<a href="{% url 'works:work_user_list_category' username 'otros' %}" class="icons otros-icon" title="Otros"></a>
+						</li>
+		    </ul>
+		</div>
+	{% else %}
+		<span ng-init="base_username='{{username}}'"></span>
+	{% endifequal %}
+	<div ng-controller="mozartUserInformationCtrl">
+		{% ifequal user_type 'artist' %}
+			<mz-toggle-container id="profile-menu" class="artist-profile">
+		{% else %}
+			<mz-toggle-container id="profile-menu" class="promoter-profile">
+		{% endifequal %}
+			<div class="text-center">
+				<img id="profile-avatar" ng-src="{$user.profile_picture$}" alt="{$user.username$}" class="circle"/>
+				<h2 id="profile-username"> {$user.username$} </h2>
+			</div>
+			<mz-toggle-menu icon-class-name="{% block icon-class %}{% endblock %}" current-option-text="{% block option-name %}{% endblock %}">
+				<ul>
+					<li class="menu-option">
+						<a class="icons user-icon" ng-href="/profiles/{$ user.username $}">
+							Información
+						</a>
+					</li>
+					{% ifequal user_type 'artist' %}
+						<li class="menu-option">
+							<a class="icons folders-icon" href="#">
+								Mis carpetas *
+							</a>
+						</li>
+					{% else %}
+						<li class="menu-option">
+							<a class="icons events-icon" ng-href="/profiles/{$ user.username $}/events">
+								Mis eventos
+							</a>
+						</li>
+					{% endifequal %}
+				</ul>
+			</mz-toggle-menu>
+		</mz-toggle-container>
+		{% ifequal user_type 'artist' %}
+			<div id="blue-navbar-section" class="profile-section">
+		{% else %}
+			<div class="profile-section">
+		{% endifequal %}
+		{% block section %}{% endblock %}
+			</div>
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,44 @@
+.event-item
+	background-position 50% 50% !important
+	background-size cover
+	color white
+	display inline-block
+	height auto
+	margin 8px
+	
+	> div
+		background linear-gradient(90deg, rgba(black, 0.8), rgba(black, 0.6), rgba(white, 0))
+		height 100%
+		transition all 0.3s
+		
+	.event-title-date
+		font-weight 700
+		height 85px
+		overflow hidden !important
+		text-align left
+		text-overflow ellipsis
+		white-space nowrap
+		
+		.event-date
+			float left
+			font-size 25px
+			padding 10px 20px
+			text-align center
+			
+		.event-title
+			font-size 20px
+			line-height 85px
+			padding 0 10px
+			overflow hidden !important
+			text-overflow ellipsis
+			white-space nowrap
+	
+	.event-content
+		color white
+		height auto
+		min-height 300px
+		padding 50px
+		text-align justify
+		
+	&:hover > div
+		background-color rgba(black, 0.8)

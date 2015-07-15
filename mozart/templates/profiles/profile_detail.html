@@ -1,0 +1,63 @@
+{% extends 'base_profile.html' %}
+
+{% block icon-class %} icons user-icon {% endblock %}
+{% block option-name %} Información {% endblock %}
+
+{% block section %}
+	<section>
+		<div class="profile-information-box two-elements">
+			<h3 class="profile-box-title"> Acerca de mí </h3>
+			<div class="profile-box-content">
+				<p ng-bind="user.description"></p>
+			</div>
+		</div>
+		<div class="profile-information-box two-elements">
+			<h3 class="profile-box-title"> Datos personales </h3>
+			<div class="profile-box-content">
+				<div class="two-elements">
+					<h4> Nombre completo </h4>
+					<span ng-bind="user.fullname"></span>
+				</div>
+				<div class="two-elements">
+					<h4> Fecha de nacimiento </h4>
+					<span ng-bind="user.dateOfBirth"></span>
+				</div>
+				<div class="two-elements">
+					<h4> Sexo </h4>
+					<span ng-bind="user.sex"></span>
+				</div>
+				<div class="two-elements">
+					<h4> Código de país </h4>
+					<span ng-bind="u ser.countryCode"></span>
+				</div>
+				<div class="two-elements">
+					<h4> Miembro desde </h4>
+					<span ng-bind="user.mozArtDate"></span>
+				</div>
+			</div>
+		</div>
+		<div class="profile-information-box two-elements">
+			<h3 class="profile-box-title"> Contactame </h3>
+			<div class="profile-box-content">
+				<div class="two-elements">
+					<h4> Dirección </h4>
+					<span ng-bind="user.address"></span>
+				</div>
+				<div class="two-elements">
+					<h4> Email </h4>
+					<span ng-bind="user.email"></span>
+				</div>
+				<div class="two-elements">
+					<h4> Telefono </h4>
+					<span ng-bind="user.phoneNumber"></span>
+				</div>
+			</div>
+		</div>
+		<div class="profile-information-box two-elements">
+			<h3 class="profile-box-title"> Redes sociales </h3>
+			<div class="profile-box-content">
+				<p> No disponible. </p>
+			</div>
+		</div>
+	</section>
+{% endblock %}

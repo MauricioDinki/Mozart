@@ -1,0 +1,59 @@
+{% extends 'base_settings.html' %}
+
+{% block title %} Cuentas vinculadas - mozArt {% endblock %}
+
+{% block icon-class %} settings-icon {% endblock %}
+{% block option-name %} Cuentas vinculadas {% endblock %}
+
+{% block section %}
+	<fieldset class="one-element social-container">
+		<legend> Cuentas vinculadas </legend>
+		<ul class="social-media-box">
+			{% for cuenta in cuentas %}
+				{% if cuenta.provider = 'facebook' %}
+					<li class="icons facebook-icon social-item">
+						<div class="social-media-name">
+							<a class="facebook-text" target="_blank" href="{{cuenta.social_network_facebook_url.facebook}}">
+				{% elif  cuenta.provider = 'twitter' %}
+					<li class="icons twitter-icon social-item">
+						<div class="social-media-name">
+							<a class="twitter-text" target="_blank"href="{{cuenta.social_network_twitter_url.twitter}}">
+				{% elif cuenta.provider = 'google-oauth2' %}
+					<li class="icons google-icon social-item">
+						<div class="social-media-name">
+							<a class="google-text" target="_blank" href="{{cuenta.social_network_google_url.google}}">
+				{% endif %}
+				{% if cuenta.provider = 'twitter' %}
+					@{{cuenta.extendusersocialauth.username_identificator}}
+				{% else %}
+					{{cuenta.extendusersocialauth.username_identificator}}
+				{% endif %}
+							</a>
+						</div>
+					<mz-triggered-decision-modal class="social-media-delete-button" modal-title="¿Seguro de que quieres desvincular esta cuenta?" cancel-text="No" okay-text="Si" okay-link="{% url 'profiles:settings_social_delete' cuenta.provider cuenta.id %}" trigger-text="x" trigger-button-class="cancel" trigger-button-weight="button">
+						Ya no podrás iniciar sesión con ella, pero podrás revincularla en cualquier momento si así lo deseas.
+					</mz-triggered-decision-modal>
+				</li>
+			{% empty %}
+			<li>
+				Por el momento no tienes ninguna cuenta vinculada.
+			</li>
+			{% endfor %}
+		</ul>
+		Una vez que vincules tus redes sociales con mozArt, podrás iniciar sesión con cualquiera de ellas.<br/>
+	</fieldset>
+  <div class="social-login-box">
+    <h2> Vincular otra cuenta </h2>
+    <a class="social-link icons facebook-icon" href="{% url 'social:begin' 'facebook' %}">
+			Vincular Facebook
+		</a>
+    <a class="social-link icons twitter-icon" href="{% url 'social:begin' 'twitter' %}">
+			Vincular Twitter
+		</a>
+    <a class="social-link icons google-icon" href="{% url 'social:begin' 'google-oauth2' %}">
+			Vincular Google
+		</a>
+		<br/>
+    Powered by Kiwi®
+	</div>
+{% endblock %} 

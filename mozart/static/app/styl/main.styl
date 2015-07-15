@@ -1,0 +1,235 @@
+@import 'variables-mixins.styl' 
+@import 'fonts.styl' 
+@import 'icons.styl' 
+@import 'buttons.styl' 
+
+*
+  box-sizing border-box !important
+  outline 0px
+
+a
+  color mozart-medium-blue
+  cursor pointer
+  text-decoration none
+
+.alphabetic-navbar li
+  font-family Montserrat
+  margin-top 6px
+
+  a
+    color white
+    font-size 25px
+    line-height 35px
+    padding 10px
+
+    &:hover
+      color mozart-orange
+      
+#blue-navbar
+  background mozart-light-blue
+  position fixed
+  text-align center
+  top 35px
+  width 100%
+  z-index 1
+
+  .icons
+    color rgba(white, 0.6)
+    display inline-block
+    
+    &:before
+      font-size 30px
+
+    &:hover
+      color orange
+
+  ul
+    height 45px
+    margin-bottom 0
+    margin-top 0
+    overflow-x auto !important
+    overflow-y hidden !important
+    width 100%
+    white-space nowrap
+    
+    li
+      display inline-block      
+      
+#blue-navbar-section
+  margin 40px 0 0 0
+  padding 10px
+  text-align center
+  
+#blue-navbar-section.profile-section
+  margin-top 0 !important
+    
+body
+  background #ededed
+  font-family Lato
+  font-size 14px
+  margin 0
+  padding 0
+
+.categories-navbar li
+  height 40px
+  margin-top 7px
+  width 45px
+
+.circle
+  border-radius 50%
+
+.float-left
+  float left
+  
+.float-right
+  float right
+
+main
+  left 0
+  position absolute
+  right 0
+  top 35px
+  
+  h2
+    margin 0
+  
+#mozart-footer
+  color white
+  padding 15px 0
+  transition left 0.2s
+
+  a
+    color mozart-medium-blue
+    display inline-block
+    padding 5px
+
+#mozart-logo
+  display none
+  margin 0 0 0 100px
+  padding 6px 0
+  
+  img
+    height 22px
+
+#mozart-menu
+  background mozart-dark-gray
+  box-shadow 4px 4px 6px mozart-dark-gray
+  height 100%
+  margin-left 0px
+  overflow auto !important
+  padding-bottom 30px
+  position fixed
+  text-align center
+  top 35px
+  width 320px
+  
+  div
+    background #ededed
+    padding 20px 0
+    
+    ul
+      transition right 0.2s
+      
+      li a
+        display block
+        padding 5px 0
+        text-align left
+        width 60%
+        
+    figure
+      display inline-block
+      margin 0
+
+      img
+        border 1px solid orange
+        cursor pointer
+    
+        display inline-block
+        height 33px
+        margin 2px 2px 0 0
+        position relative
+        vertical-align middle
+        width 33px
+
+        &:hover
+          border 1px solid mozart-medium-blue
+        
+  hr
+    hr-mixin(mozart-light-blue)
+
+.text-center
+  text-align center
+  
+.text-left
+  text-align left
+  
+.text-right
+  text-align right
+
+#mozart-menu.ng-hide-add.ng-hide-add-active,
+#mozart-menu.ng-hide-remove.ng-hide-remove-active
+  transition margin-left 0.3s
+
+#mozart-menu.ng-hide
+  margin-left -330px
+
+#mozart-navbar
+  background white
+  height 35px
+  position fixed
+  width 100%
+  top 0
+  z-index 3
+  
+  a.icons
+    display inline-block
+    line-height 20px
+    vertical-align middle 
+    
+  .icons:before
+    font-size 20px
+    
+#search-form
+  float right
+  margin-right 0
+  max-width 700px
+  min-width 278px
+  position relative
+  text left
+  width 60%
+  
+  .search-input
+    height 35px
+    
+  .search-button
+    height 35px
+    
+    &:before
+      font-size 25px !important
+  
+#big-search-form, #search-form 
+  .search-input
+    background #f5f5f5
+    border none
+    input-fields()
+    padding-right 50px
+    width 100%
+    
+ul 
+  margin 0
+  padding 0
+
+  li
+    display block
+    
+@import 'events.styl' 
+@import 'profiles.styl' 
+@import 'welcome-view.styl' 
+@import 'works.styl'
+@import 'forms.styl'
+@import 'settings.styl' 
+@import 'modal-dialog.styl'
+@import 'search-section.styl' 
+@import 'social-media.styl' 
+
+@import 'media-queries.styl' 
