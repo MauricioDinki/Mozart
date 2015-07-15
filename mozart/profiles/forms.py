@@ -75,6 +75,9 @@ class ChangePasswordForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgForm
         user_instance = self.request.user
         user_instance.set_password(cleaned_data.get('new_password_2'))
         user_instance.save()
+        user_to_change = self.request.user
+        user_to_change.set_password(self.cleaned_data.get('new_password_2'))
+        user_to_change.save()
 
 
 class ProfileForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValidationMixin, forms.Form)):
@@ -275,8 +278,8 @@ class ProfileForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValidat
                 raise forms.ValidationError(
                     custom_error_messages['unique'],
                     params={
-                        'model_name': User._meta.verbose_name.lower(),
-                        'field_label': User._meta.get_field('username').verbose_name.lower()
+                        User._meta.verbose_name.lower(),
+                        User._meta.get_field('username').verbose_name.lower()
                     }
                 )
 
@@ -286,31 +289,30 @@ class ProfileForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValidat
         return validators.eval_password(username, password)
 
     def save(self):
-        cleaned_data = super(ProfileForm, self).clean()
         same_username = self.same_username
-        user_instance = self.request.user
+        user_to_change = self.request.user
 
         if not same_username:
-            user_instance.username = cleaned_data.get('username')
+            user_to_change.username = self.cleaned_data.get('username')
 
-        user_instance.first_name = cleaned_data.get('first_name')
-        user_instance.last_name = cleaned_data.get('last_name')
-        user_instance.save()
+        user_to_change.first_name = self.cleaned_data.get('first_name')
+        user_to_change.last_name = self.cleaned_data.get('last_name')
+        user_to_change.save()
 
-        user_instance.extendeduser.nationality = cleaned_data.get('nationality')
-        user_instance.extendeduser.description = cleaned_data.get('description')
+        user_to_change.mozart_user.nationality = self.cleaned_data.get('nationality')
+        user_to_change.mozart_user.description = self.cleaned_data.get('description')
 
         if self.request.FILES.get('profile_picture', False):
-            user_instance.extendeduser.profile_picture = self.request.FILES['profile_picture']
+            user_to_change.mozart_user.profile_picture = self.request.FILES['profile_picture']
 
-        user_instance.extendeduser.save()
+        user_to_change.mozart_user.save()
 
-        user_instance.contact.personal_homepage = cleaned_data.get('personal_homepage')
-        user_instance.contact.phone_number = cleaned_data.get('phone_number')
-        user_instance.contact.save()
+        user_to_change.contact.personal_homepage = self.cleaned_data.get('personal_homepage')
+        user_to_change.contact.phone_number = self.cleaned_data.get('phone_number')
+        user_to_change.contact.save()
 
-        user_instance.address.address = cleaned_data.get('address')
-        user_instance.address.city = cleaned_data.get('city')
-        user_instance.address.zip_code = cleaned_data.get('zip_code')
-        user_instance.address.neighborhood = cleaned_data.get('neighborhood')
-        user_instance.address.save()
+        user_to_change.address.address = self.cleaned_data.get('address')
+        user_to_change.address.city = self.cleaned_data.get('city')
+        user_to_change.address.zip_code = self.cleaned_data.get('zip_code')
+        user_to_change.address.neighborhood = self.cleaned_data.get('neighborhood')
+        user_to_change.address.save()

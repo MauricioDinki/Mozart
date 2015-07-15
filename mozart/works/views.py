@@ -20,7 +20,7 @@ from .forms import WorkCreateForm, WorkUpdateForm
 class WorkCreateView(LoginRequiredMixin, RequestFormMixin, CreateView):
     form_class = WorkCreateForm
     success_url = reverse_lazy('works:work_list')
-    template_name = 'works/work-create.html'
+    template_name = 'works/work_create.html'
 
 
 @login_required(login_url='/')
