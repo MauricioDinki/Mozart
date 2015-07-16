@@ -10,13 +10,16 @@ from mozart.works import urls as works_urls
 from mozart.landing import urls as landing_urls
 from mozart.xauth import urls as xauth_urls
 from mozart.profiles import urls as profiles_urls
+from mozart.events import urls as events_urls
 
 urlpatterns = [
     # Django Admin
     url(r'^admin/', include(admin.site.urls)),
+    # Python social auth
     url(r'^', include('social.apps.django_app.urls', namespace='social')),
 
     # Your stuff: custom urls includes go here
+    url(r'^', include(events_urls, namespace='events')),
     url(r'^', include(works_urls, namespace='works')),
     url(r'^', include(landing_urls, namespace='landing')),
     url(r'^', include(xauth_urls, namespace='xauth')),

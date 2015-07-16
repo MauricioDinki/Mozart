@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% load thumbnail %}
+{% load static %}
+
+{% block title %} Eventos - mozArt {% endblock %}
+
+{% block content %}
+  <span ng-init="eventsCreator='all'"></span>
+  <mz-toggle-container>
+    <mz-toggle-menu icon-class-name="events-icon" current-option-text="Ver eventos">
+      <ul>
+          <li class="menu-option">
+            <a class="icons user-icon" href="/promoters">
+              Ver promotores
+            </a>
+          </li>
+          <li class="menu-option">
+            <a class="icons events-icon" style="color:orange;font-weight:bold;" href="/events">
+              Ver eventos
+            </a>
+          </li>
+      </ul>
+    </mz-toggle-menu>
+  </mz-toggle-container>
+
+  <section id="settings-content" class="text-center" style="background:none" ng-controller="loadEventsCtrl">
+    <article class="two-elements event-item" style="background-image:url('{$event.cover$}')" ng-repeat="event in events">
+      <div>
+        <div class="event-title-date">
+          <div class="event-date">
+            {$event.date|date:"d"$}
+            <br/>
+            {$event.date|date:"M"|monthAbbreviation$}
+          </div>
+          <div class="event-title">
+            {$event.name$}
+          </div>
+        </div>
+        <div class="event-content">
+            <p>
+              {$event.description$}
+            </p>
+            <hr/>
+            <p>
+              {$event.place$}
+            </p>
+            <p>
+              {$event.date$}
+            </p>
+            <p>
+              {$event.start_time|hoursMinutes$} - {$event.finish_time|hoursMinutes$}
+            </p>
+            <p>
+              Anfitrion:
+              <a ng-href="{$event.userUrl$}">
+                {$event.user$}
+              </a>
+            </p>
+        </div>
+      </div>
+    </article>
+    <br/>
+    <div class="load-more-error" ng-show="showMessage">
+      No existen eventos suficientes para cubir la petición. Intenta refrescar la página.
+    </div>
+    <span class="button load-more-button" ng-click="getEvents()">Mostrar más eventos</span>
+  </section>
+{% endblock %}

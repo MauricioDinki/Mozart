@@ -52,6 +52,7 @@ LOCAL_APPS = (
     'mozart.works',
     'mozart.xauth',
     'mozart.profiles',
+    'mozart.events',
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
