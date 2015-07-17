@@ -11,10 +11,13 @@ from mozart.landing import urls as landing_urls
 from mozart.xauth import urls as xauth_urls
 from mozart.profiles import urls as profiles_urls
 from mozart.events import urls as events_urls
+from mozart.api import urls as api_urls
 
 urlpatterns = [
     # Django Admin
     url(r'^admin/', include(admin.site.urls)),
+    # Rest api
+    url(r'^api/v1/', include(api_urls)),
     # Python social auth
     url(r'^', include('social.apps.django_app.urls', namespace='social')),
 
