@@ -15,7 +15,7 @@ class AddressSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Address
-        exclude = ['url']
+        fields = ('id', 'user', 'address', 'city', 'zip_code', 'neighborhood')
 
 
 class ContactSerializer(serializers.HyperlinkedModelSerializer):
@@ -23,7 +23,7 @@ class ContactSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Contact
-        exclude = ['url']
+        fields = ('id', 'user', 'personal_homepage', 'phone_number')
 
 
 class BirthdaySerializer(serializers.HyperlinkedModelSerializer):
@@ -31,7 +31,7 @@ class BirthdaySerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Birthday
-        exclude = ['url']
+        fields = ('id', 'user', 'day', 'month', 'year')
 
 
 class EventSerializer(serializers.HyperlinkedModelSerializer):
@@ -39,7 +39,7 @@ class EventSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Event
-        fields = ('cover', 'date', 'description', 'finish_time', 'name', 'place', 'slug', 'start_time', 'user',)
+        fields = ('id', 'cover', 'date', 'description', 'finish_time', 'name', 'place', 'slug', 'start_time', 'user',)
 
 
 class ExtendedUserSerializer(serializers.HyperlinkedModelSerializer):
@@ -47,7 +47,7 @@ class ExtendedUserSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = ExtendedUser
-        exclude = ['url']
+        fields = ('id', 'user', 'description', 'nationality', 'presentation_file', 'profile_picture', 'sex', 'user_type')
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -62,4 +62,4 @@ class WorkSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Work
-        fields = ('title', 'slug', 'date', 'description', 'category', 'cover', 'archive', 'work_type', 'user')
+        fields = ('id', 'title', 'slug', 'date', 'description', 'category', 'cover', 'archive', 'work_type', 'user')

@@ -18,11 +18,21 @@ class WorkList(generics.ListCreateAPIView):
     filter_class = mz_filters.WorkFilter
 
 
+class WorkDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Work.objects.all()
+    serializer_class = serializers.WorkSerializer
+
+
 class EventList(generics.ListCreateAPIView):
     serializer_class = serializers.EventSerializer
     queryset = Event.objects.all()
     filter_backends = (filters.DjangoFilterBackend,)
     filter_class = mz_filters.EventFilter
+
+
+class EventDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Event.objects.all()
+    serializer_class = serializers.EventSerializer
 
 
 class AddressList(generics.ListCreateAPIView):
@@ -32,11 +42,21 @@ class AddressList(generics.ListCreateAPIView):
     filter_class = mz_filters.AddressFilter
 
 
+class AddressDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Address.objects.all()
+    serializer_class = serializers.AddressSerializer
+
+
 class ContactList(generics.ListCreateAPIView):
     serializer_class = serializers.ContactSerializer
     queryset = Contact.objects.all()
     filter_backends = (filters.DjangoFilterBackend,)
     filter_class = mz_filters.ContactFilter
+
+
+class ContactDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Contact.objects.all()
+    serializer_class = serializers.ContactSerializer
 
 
 class BirthdayList(generics.ListCreateAPIView):
@@ -46,8 +66,18 @@ class BirthdayList(generics.ListCreateAPIView):
     filter_class = mz_filters.BirthdayFilter
 
 
+class BirthdayDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Birthday.objects.all()
+    serializer_class = serializers.BirthdaySerializer
+
+
 class ExtendedUserList(generics.ListCreateAPIView):
     serializer_class = serializers.ExtendedUserSerializer
     queryset = ExtendedUser.objects.all()
     filter_backends = (filters.DjangoFilterBackend,)
     filter_class = mz_filters.ExtendedUserFilter
+
+
+class ExtendedUserDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = ExtendedUser.objects.all()
+    serializer_class = serializers.ExtendedUserSerializer
