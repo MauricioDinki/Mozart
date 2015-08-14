@@ -1,3 +1,4 @@
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 '''
 Production Configurations
@@ -51,13 +52,10 @@ DATABASES['default'] = dj_database_url.config()
 
 # STORAGE CONFIGURATION
 # ------------------------------------------------------------------------------
-# Uploaded Media Files
-# ------------------------
 # See: http://django-storages.readthedocs.org/en/latest/index.html
 INSTALLED_APPS += (
     'storages',
 )
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
 AWS_STORAGE_BUCKET_NAME = env("AWS_STORAGE_BUCKET_NAME")
 AWS_ACCESS_KEY_ID = env("AWS_ACCESS_KEY_ID")
@@ -77,9 +75,19 @@ AWS_HEADERS = {
         AWS_EXPIRY, AWS_EXPIRY))
 }
 
-# URL that handles the media served from MEDIA_ROOT, used for managing stored files.
-MEDIA_URL = 'https://s3.amazonaws.com/%s/' % AWS_STORAGE_BUCKET_NAME
+# Uploaded Media Files
+# ------------------------
+MEDIAFILES_LOCATION = 'media'
+
+DEFAULT_FILE_STORAGE = 'mozart.custom_storages.MediaStorage'
+MEDIA_URL = "https://%s/%s/" % (env("AWS_BUCKET_URL", None),
+                                MEDIAFILES_LOCATION)
 
 # Static Assests
 # ------------------------
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+STATICFILES_LOCATION = 'static'
+
+STATICFILES_STORAGE = 'mozart.custom_storages.StaticStorage'
+
+STATIC_URL = "https://%s/%s/" % (env("AWS_BUCKET_URL", None),
+                                STATICFILES_LOCATION)

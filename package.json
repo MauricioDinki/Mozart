@@ -1,5 +1,5 @@
 {
-  "name": "Mozart",
+  "name": "mozart",
   "version": "0.0.0",
   "devDependencies": {
     "autoprefixer-stylus": "^0.5.0",

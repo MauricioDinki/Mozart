@@ -1,1 +1,1 @@
-web: gunicorn Mozart.wsgi 
+web: gunicorn mozart.wsgi 
