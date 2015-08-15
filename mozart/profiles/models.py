@@ -5,8 +5,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 
-
 from django_countries.fields import CountryField
+from social.apps.django_app.default.models import UserSocialAuth
 
 from mozart.core.messages import DAYS, MONTHS, SEXUALITY, USER_TYPE
 
@@ -168,3 +168,63 @@ class Birthday(models.Model):
 
     def __unicode__(self):
         return self.user.username
+
+
+class Facebook_URL(models.Model):
+    user = models.ForeignKey(
+        UserSocialAuth,
+        verbose_name=_('User'),
+    )
+    facebook = models.URLField(
+        _('Facebook profile url'),
+        blank=True,
+        max_length=200,
+        null=True,
+    )
+
+    class Meta:
+        verbose_name = _("Facebook Profile URL")
+        verbose_name_plural = _("Facebook Profile URL")
+
+    def __unicode__(self):
+        return self.user.user.username
+
+
+class Twitter_URL(models.Model):
+    user = models.ForeignKey(
+        UserSocialAuth,
+        verbose_name=_('User'),
+    )
+    twitter = models.URLField(
+        _('Twitter profile url'),
+        blank=True,
+        max_length=200,
+        null=True,
+    )
+
+    class Meta:
+        verbose_name = _("Twitter Profile URL")
+        verbose_name_plural = _("Twitter Profile URL")
+
+    def __unicode__(self):
+        return self.user.user.username
+
+
+class Google_URL(models.Model):
+    user = models.ForeignKey(
+        UserSocialAuth,
+        verbose_name=_('User'),
+    )
+    google = models.URLField(
+        _('Google profile url'),
+        blank=True,
+        max_length=200,
+        null=True,
+    )
+
+    class Meta:
+        verbose_name = _("Google Profile URL")
+        verbose_name_plural = _("Google Profile URL")
+
+    def __unicode__(self):
+        return self.user.user.username

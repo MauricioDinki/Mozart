@@ -20,10 +20,13 @@
   	{% csrf_token %}
     <fieldset class="two-elements">
     	<legend> Imagen de perfil </legend>
-      {% if not user.mozart_user.profile_picture %}
+      {% if not user.extendeduser.profile_picture %}
 	      <img class="circle" src="{% static "img/default.png" %}" width="250px"/><br/>
       {% else %}
-        {% thumbnail user.mozart_user.profile_picture "250x250" crop="center" as im %}
+				<p>
+					Dinki
+				</p>
+        {% thumbnail user.extendeduser.profile_picture "250x250" crop="center" as im %}
 	      	<img class="circle" src="{{ im.url }}"/>
 					<br/>
 	      {% endthumbnail %}

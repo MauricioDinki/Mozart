@@ -84,6 +84,8 @@ class SocialNetworkSettingsView(LoginRequiredMixin, TemplateView):
         if 'view' not in kwargs:
             kwargs['view'] = self
             kwargs['accounts'] = UserSocialAuth.objects.filter(user__username=self.request.user.username)
+            for account in kwargs['accounts']:
+                print account.facebook_url.facebook
         return kwargs
 
 

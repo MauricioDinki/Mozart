@@ -1,6 +1,6 @@
 {% extends 'base_settings.html' %}
 
-{% block title %} Cuentas vinculadas - mozArt {% endblock %}
+{% block title %} accounts vinculadas - mozArt {% endblock %}
 
 {% block icon-class %} settings-icon {% endblock %}
 {% block option-name %} Cuentas vinculadas {% endblock %}
@@ -9,28 +9,28 @@
 	<fieldset class="one-element social-container">
 		<legend> Cuentas vinculadas </legend>
 		<ul class="social-media-box">
-			{% for cuenta in cuentas %}
-				{% if cuenta.provider = 'facebook' %}
+			{% for account in accounts %}
+				{% if account.provider = 'facebook' %}
 					<li class="icons facebook-icon social-item">
 						<div class="social-media-name">
-							<a class="facebook-text" target="_blank" href="{{cuenta.social_network_facebook_url.facebook}}">
-				{% elif  cuenta.provider = 'twitter' %}
+							<a class="facebook-text" target="_blank" href="{{account.Facebook_URL.facebook}}">
+				{% elif  account.provider = 'twitter' %}
 					<li class="icons twitter-icon social-item">
 						<div class="social-media-name">
-							<a class="twitter-text" target="_blank"href="{{cuenta.social_network_twitter_url.twitter}}">
-				{% elif cuenta.provider = 'google-oauth2' %}
+							<a class="twitter-text" target="_blank"href="{{account.twitter_url.twitter}}">
+				{% elif account.provider = 'google-oauth2' %}
 					<li class="icons google-icon social-item">
 						<div class="social-media-name">
-							<a class="google-text" target="_blank" href="{{cuenta.social_network_google_url.google}}">
+							<a class="google-text" target="_blank" href="{{account.google_url.google}}">
 				{% endif %}
-				{% if cuenta.provider = 'twitter' %}
-					@{{cuenta.extendusersocialauth.username_identificator}}
+				{% if account.provider = 'twitter' %}
+					@{{account.extendusersocialauth.network_username}}
 				{% else %}
-					{{cuenta.extendusersocialauth.username_identificator}}
+					{{account.extendusersocialauth.network_username}}
 				{% endif %}
 							</a>
 						</div>
-					<mz-triggered-decision-modal class="social-media-delete-button" modal-title="¿Seguro de que quieres desvincular esta cuenta?" cancel-text="No" okay-text="Si" okay-link="{% url 'profiles:settings_social_delete' cuenta.provider cuenta.id %}" trigger-text="x" trigger-button-class="cancel" trigger-button-weight="button">
+					<mz-triggered-decision-modal class="social-media-delete-button" modal-title="¿Seguro de que quieres desvincular esta cuenta?" cancel-text="No" okay-text="Si" okay-link="{% url 'profiles:social_delete' account.provider account.id %}" trigger-text="x" trigger-button-class="cancel" trigger-button-weight="button">
 						Ya no podrás iniciar sesión con ella, pero podrás revincularla en cualquier momento si así lo deseas.
 					</mz-triggered-decision-modal>
 				</li>
@@ -56,4 +56,4 @@
 		<br/>
     Powered by Kiwi®
 	</div>
-{% endblock %} 
+{% endblock %}

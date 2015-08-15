@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 from __future__ import absolute_import, unicode_literals
 from django.utils.translation import ugettext_lazy as _
 import environ
-import os
+import os  # noqa
 
 ROOT_DIR = environ.Path(__file__) - 3  # (/a/b/myfile.py - 3 = /)
 APPS_DIR = ROOT_DIR.path('mozart')
@@ -206,7 +206,7 @@ ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 # more details on how to customize your logging configuration.
 LOGGING = {
     'version': 1,
-    'disable_existing_loggers': False,
+    'disable_existing_loggers': True,
     'filters': {
         'require_debug_false': {
             '()': 'django.utils.log.RequireDebugFalse'
@@ -271,7 +271,7 @@ SOCIAL_AUTH_PIPELINE = (
     'social.pipeline.user.get_username',
     'social.pipeline.social_auth.associate_user',
     'social.pipeline.social_auth.load_extra_data',
-    # 'xauth.pipeline.save_extra_params',
+    'mozart.xauth.pipeline.save_extra_params',
 )
 
 # DISQUS CONFIGURATION

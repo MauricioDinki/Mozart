@@ -1,11 +1,16 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
 from django.core.urlresolvers import reverse_lazy
-from django.http import Http404, HttpResponseRedirect
+from django.shortcuts import redirect
+from django.http import Http404
 
 from social.backends.facebook import FacebookOAuth2
 from social.backends.google import GoogleOAuth2
 from social.backends.twitter import TwitterOAuth
 
-from profiles.models import Facebook_URL, Twitter_URL, Google_URL
+from mozart.profiles.models import Facebook_URL, Twitter_URL, Google_URL
+
 from .models import ExtendUserSocialAuth
 
 
@@ -17,7 +22,7 @@ def save_extra_params(backend, details, response, uid, user, *args, **kwargs):
 
     if new_association:
         extend_name = ExtendUserSocialAuth(user=social_user)
-        extend_name.username_identificator = user_username
+        extend_name.network_username = user_username
         extend_name.save()
 
         if backend.__class__ is FacebookOAuth2:
@@ -36,11 +41,11 @@ def save_extra_params(backend, details, response, uid, user, *args, **kwargs):
             instancia_google_url.google = google_profile_url
             instancia_google_url.save()
 
-        return HttpResponseRedirect(reverse_lazy('profiles:settings_social'))
+        return redirect(reverse_lazy('profiles:social_settings'))
     else:
         try:
             extend_name = ExtendUserSocialAuth.objects.get(user=social_user)
         except ExtendUserSocialAuth.DoesNotExist:
             raise Http404("No has sincronizado tus cuentas.")
-        extend_name.username_identificator = user_username
+        extend_name.network_username = user_username
         extend_name.save()
