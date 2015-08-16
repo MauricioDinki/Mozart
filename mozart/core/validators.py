@@ -33,7 +33,6 @@ def eval_iexact(data, model, field, label):
 def eval_matching(data_1, data_2):
     if data_1 != data_2:
         raise forms.ValidationError(custom_error_messages['mismatch'],)
-    return data_1 and data_2
 
 
 def eval_password(username, password):

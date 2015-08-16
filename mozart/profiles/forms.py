@@ -13,6 +13,7 @@ from mozart.core import validators
 from mozart.core.messages import regex_sentences, custom_error_messages
 
 
+# class ChangePasswordForm(forms.Form):
 class ChangePasswordForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValidationMixin, forms.Form)):
     form_name = 'passwordform'
 
@@ -72,14 +73,13 @@ class ChangePasswordForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgForm
 
     def save(self):
         cleaned_data = super(ChangePasswordForm, self).clean()
+        print cleaned_data
         user_instance = self.request.user
         user_instance.set_password(cleaned_data.get('new_password_2'))
         user_instance.save()
-        user_to_change = self.request.user
-        user_to_change.set_password(self.cleaned_data.get('new_password_2'))
-        user_to_change.save()
 
 
+# class ProfileForm(forms.Form):
 class ProfileForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValidationMixin, forms.Form)):
     form_controller = 'editInformationCtrl'
     form_name = 'informationform'
@@ -290,29 +290,29 @@ class ProfileForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValidat
 
     def save(self):
         same_username = self.same_username
-        user_to_change = self.request.user
+        user_insta = self.request.user
 
         if not same_username:
-            user_to_change.username = self.cleaned_data.get('username')
+            user_insta.username = self.cleaned_data.get('username')
 
-        user_to_change.first_name = self.cleaned_data.get('first_name')
-        user_to_change.last_name = self.cleaned_data.get('last_name')
-        user_to_change.save()
+        user_insta.first_name = self.cleaned_data.get('first_name')
+        user_insta.last_name = self.cleaned_data.get('last_name')
+        user_insta.save()
 
-        user_to_change.mozart_user.nationality = self.cleaned_data.get('nationality')
-        user_to_change.mozart_user.description = self.cleaned_data.get('description')
+        user_insta.extendeduser.nationality = self.cleaned_data.get('nationality')
+        user_insta.extendeduser.description = self.cleaned_data.get('description')
 
         if self.request.FILES.get('profile_picture', False):
-            user_to_change.mozart_user.profile_picture = self.request.FILES['profile_picture']
+            user_insta.extendeduser.profile_picture = self.request.FILES['profile_picture']
 
-        user_to_change.mozart_user.save()
+        user_insta.extendeduser.save()
 
-        user_to_change.contact.personal_homepage = self.cleaned_data.get('personal_homepage')
-        user_to_change.contact.phone_number = self.cleaned_data.get('phone_number')
-        user_to_change.contact.save()
+        user_insta.contact.personal_homepage = self.cleaned_data.get('personal_homepage')
+        user_insta.contact.phone_number = self.cleaned_data.get('phone_number')
+        user_insta.contact.save()
 
-        user_to_change.address.address = self.cleaned_data.get('address')
-        user_to_change.address.city = self.cleaned_data.get('city')
-        user_to_change.address.zip_code = self.cleaned_data.get('zip_code')
-        user_to_change.address.neighborhood = self.cleaned_data.get('neighborhood')
-        user_to_change.address.save()
+        user_insta.address.address = self.cleaned_data.get('address')
+        user_insta.address.city = self.cleaned_data.get('city')
+        user_insta.address.zip_code = self.cleaned_data.get('zip_code')
+        user_insta.address.neighborhood = self.cleaned_data.get('neighborhood')
+        user_insta.address.save()
