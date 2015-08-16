@@ -55,7 +55,7 @@ node_modules/
 # virtual environments
 .env
 
-#Database
+# Database
 db.sqlite3
 
 # Static
@@ -64,3 +64,12 @@ mozart/static/bower_components/
 mozart/static/node_modules/
 staticfiles/
 .env
+
+# Django Migrations
+mozart/profiles/migrations
+mozart/landing/migrations
+mozart/events/migrations
+mozart/core/migrations
+mozart/api/migrations
+mozart/works/migrations
+mozart/azuth/migrations

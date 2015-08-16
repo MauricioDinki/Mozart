@@ -1,8 +1,8 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 from django.contrib import admin
-from .models import ExtendedUser, Contact, Address, Birthday, Facebook_URL, Google_URL, Twitter_URL
+from .models import ExtendedUser, Contact, Address, Birthday, Facebookauth, Googleauth, Twitterauth
 
 
 @admin.register(ExtendedUser)
@@ -28,16 +28,16 @@ class AdminAddress(admin.ModelAdmin):
     list_display = ('user', 'address', 'city', 'zip_code', 'neighborhood')
 
 
-@admin.register(Facebook_URL)
+@admin.register(Facebookauth)
 class AdminFacebook(admin.ModelAdmin):
-    list_display = ('user', 'facebook')
+    list_display = ('user', 'profile_url', 'network_username',)
 
 
-@admin.register(Twitter_URL)
+@admin.register(Twitterauth)
 class AdminTwitter(admin.ModelAdmin):
-    list_display = ('user', 'twitter')
+    list_display = ('user', 'profile_url', 'network_username',)
 
 
-@admin.register(Google_URL)
+@admin.register(Googleauth)
 class AdminGoogle(admin.ModelAdmin):
-    list_display = ('user', 'google')
+    list_display = ('user', 'profile_url', 'network_username',)

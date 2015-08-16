@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 from django.db import models
@@ -170,61 +170,82 @@ class Birthday(models.Model):
         return self.user.username
 
 
-class Facebook_URL(models.Model):
-    user = models.ForeignKey(
+class Facebookauth(models.Model):
+    user = models.OneToOneField(
         UserSocialAuth,
         verbose_name=_('User'),
     )
-    facebook = models.URLField(
+    profile_url = models.URLField(
         _('Facebook profile url'),
         blank=True,
         max_length=200,
         null=True,
     )
 
+    network_username = models.CharField(
+        _('Social Network Username'),
+        blank=True,
+        null=True,
+        max_length=50,
+    )
+
     class Meta:
-        verbose_name = _("Facebook Profile URL")
-        verbose_name_plural = _("Facebook Profile URL")
+        verbose_name = _("Facebook information")
+        verbose_name_plural = _("Facebook information")
 
     def __unicode__(self):
         return self.user.user.username
 
 
-class Twitter_URL(models.Model):
-    user = models.ForeignKey(
+class Twitterauth(models.Model):
+    user = models.OneToOneField(
         UserSocialAuth,
         verbose_name=_('User'),
     )
-    twitter = models.URLField(
+    profile_url = models.URLField(
         _('Twitter profile url'),
         blank=True,
         max_length=200,
         null=True,
     )
 
+    network_username = models.CharField(
+        _('Social Network Username'),
+        blank=True,
+        null=True,
+        max_length=50,
+    )
+
     class Meta:
-        verbose_name = _("Twitter Profile URL")
-        verbose_name_plural = _("Twitter Profile URL")
+        verbose_name = _("Twitter information")
+        verbose_name_plural = _("Twitter information")
 
     def __unicode__(self):
         return self.user.user.username
 
 
-class Google_URL(models.Model):
-    user = models.ForeignKey(
+class Googleauth(models.Model):
+    user = models.OneToOneField(
         UserSocialAuth,
         verbose_name=_('User'),
     )
-    google = models.URLField(
+    profile_url = models.URLField(
         _('Google profile url'),
         blank=True,
         max_length=200,
         null=True,
     )
 
+    network_username = models.CharField(
+        _('Social Network Username'),
+        blank=True,
+        null=True,
+        max_length=50,
+    )
+
     class Meta:
-        verbose_name = _("Google Profile URL")
-        verbose_name_plural = _("Google Profile URL")
+        verbose_name = _("Google information")
+        verbose_name_plural = _("Google information")
 
     def __unicode__(self):
         return self.user.user.username

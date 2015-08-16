@@ -13,23 +13,25 @@
 				{% if account.provider = 'facebook' %}
 					<li class="icons facebook-icon social-item">
 						<div class="social-media-name">
-							<a class="facebook-text" target="_blank" href="{{account.Facebook_URL.facebook}}">
+							<a class="facebook-text" target="_blank" href="{{ account.facebookauth.profile_url }}">
+								{{ account.facebookauth.network_username }}
+							</a>
+						</div>
 				{% elif  account.provider = 'twitter' %}
 					<li class="icons twitter-icon social-item">
 						<div class="social-media-name">
-							<a class="twitter-text" target="_blank"href="{{account.twitter_url.twitter}}">
+							<a class="twitter-text" target="_blank" href="{{ account.twitterauth.profile_url }}">
+								{{ account.twitterauth.network_username }}
+							</a>
+						</div>
 				{% elif account.provider = 'google-oauth2' %}
 					<li class="icons google-icon social-item">
 						<div class="social-media-name">
-							<a class="google-text" target="_blank" href="{{account.google_url.google}}">
-				{% endif %}
-				{% if account.provider = 'twitter' %}
-					@{{account.extendusersocialauth.network_username}}
-				{% else %}
-					{{account.extendusersocialauth.network_username}}
-				{% endif %}
+							<a class="google-text" target="_blank" href="{{ account.googleauth.profile_url }}">
+								{{ account.googleauth.network_username }}
 							</a>
 						</div>
+				{% endif %}
 					<mz-triggered-decision-modal class="social-media-delete-button" modal-title="¿Seguro de que quieres desvincular esta cuenta?" cancel-text="No" okay-text="Si" okay-link="{% url 'profiles:social_delete' account.provider account.id %}" trigger-text="x" trigger-button-class="cancel" trigger-button-weight="button">
 						Ya no podrás iniciar sesión con ella, pero podrás revincularla en cualquier momento si así lo deseas.
 					</mz-triggered-decision-modal>
