@@ -3,7 +3,7 @@
 
   function worksRequestService($http, $filter) {
     /* jshint validthis:true */
-    var apiBaseUrl = '/api/worksets/';
+    var apiBaseUrl = '/api/v1/works/';
     this.recentWorks = {
       get:function(fnOK,fnError, category, author, pageNumber) {
         var requestUrl;

@@ -3,7 +3,7 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
     watch: {
       styl: {
-        files: ['mozart/static/app/styl/*.styl'],
+        files: [' mozart/static/app/styl/*.styl'],
         tasks: ['compileStylus']
       },
       js: {
@@ -21,7 +21,7 @@ module.exports = function(grunt) {
       },
       compile: {
         files: {
-          'dist/css/styles.min.css': 'mozart/static/app/styl/main.styl'
+          'mozart/static/dist/css/styles.min.css': 'mozart/static/app/styl/main.styl'
         }
       }
     },

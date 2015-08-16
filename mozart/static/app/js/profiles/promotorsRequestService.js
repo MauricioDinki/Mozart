@@ -3,7 +3,7 @@
 
   function promotersRequestService($http, $filter) {
     /* jshint validthis:true */
-    var apiBaseUrl = '/api/mozart/?user_type=Promotor';
+    var apiBaseUrl = '/api/v1/extendedusers/?user_type=promoter';
     // this.get=function(fnOK,fnError, nameFirstLetter, paginate) {
     //   $http({
     //     method: 'GET',

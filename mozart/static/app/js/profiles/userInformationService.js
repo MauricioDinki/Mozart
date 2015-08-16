@@ -10,7 +10,7 @@
       }
       $http({
         method: 'GET',
-        url: '/api/' + information_to_get + '/?' + userParameterName + '=' + user
+        url: '/api/v1/' + information_to_get + '/?' + userParameterName + '=' + user
       })
       .success(function(data, status, headers, config) {
         fnOK(data.results[0]);

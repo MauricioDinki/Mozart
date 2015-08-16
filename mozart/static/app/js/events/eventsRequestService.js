@@ -3,7 +3,7 @@
 
   function eventsRequestService($http, $filter, validateDates) {
     /* jshint validthis:true */
-    var apiBaseUrl = '/api/events/';
+    var apiBaseUrl = '/api/v1/events/';
     this.get = function(fnOK,fnError, creator, pageNumber) {
         var requestUrl;
         if(creator==='all') {

@@ -63,6 +63,7 @@ class LoginForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValidatio
         return cleaned_data
 
 
+# class SignupForm(forms.Form):
 class SignupForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValidationMixin, forms.Form)):
     form_controller = 'signupFormCtrl'
     form_name = 'signupform'
@@ -188,14 +189,17 @@ class SignupForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValidati
         email = self.cleaned_data.get('email')
         return validators.eval_iexact(email, User, 'email', 'email')
 
-    def clean_password_2(self):
-        password_1 = self.cleaned_data.get('password_1')
-        password_2 = self.cleaned_data.get('password_2')
-        return validators.eval_matching(password_1, password_2)
-
     def clean_username(self):
         username = self.cleaned_data.get('username')
         return validators.eval_iexact(username, User, 'username', 'username')
+
+    def clean(self):
+        cleaned_data = super(SignupForm, self).clean()
+        new_password_1 = cleaned_data.get('password_1')
+        new_password_2 = cleaned_data.get('password_2')
+        if new_password_1 and new_password_2:
+            return validators.eval_matching(new_password_1, new_password_2)
+        return cleaned_data
 
     def save(self):
         cleaned_data = super(SignupForm, self).clean()
