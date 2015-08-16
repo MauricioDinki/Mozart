@@ -48,6 +48,7 @@ nosetests.xml
 
 # npm
 node_modules/
+bower_components/
 
 # Compass
 .sass-cache
@@ -60,16 +61,15 @@ db.sqlite3
 
 # Static
 mozart/media/
-mozart/static/bower_components/
-mozart/static/node_modules/
+mozart/static/dist/
 staticfiles/
 .env
 
 # Django Migrations
-mozart/profiles/migrations
-mozart/landing/migrations
-mozart/events/migrations
-mozart/core/migrations
-mozart/api/migrations
-mozart/works/migrations
-mozart/azuth/migrations
+mozart/profiles/migrations/
+mozart/landing/migrations/
+mozart/events/migrations/
+mozart/core/migrations/
+mozart/api/migrations/
+mozart/works/migrations/
+mozart/azuth/migrations/

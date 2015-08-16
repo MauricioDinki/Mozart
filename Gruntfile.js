@@ -1,13 +1,13 @@
-module.exports = function(grunt) {  
-  grunt.initConfig({  
-    pkg: grunt.file.readJSON('package.json'),  
+module.exports = function(grunt) {
+  grunt.initConfig({
+    pkg: grunt.file.readJSON('package.json'),
     watch: {
       styl: {
-        files: ['app/styl/*.styl'],
+        files: ['mozart/static/app/styl/*.styl'],
         tasks: ['compileStylus']
       },
       js: {
-        files: ['Gruntfile.js', 'app/js/app.js', 'app/js/*/*.js'],
+        files: ['Gruntfile.js', 'mozart/static/app/js/app.js', 'mozart/static/app/js/*/*.js'],
         tasks: ['compileJavascript']
       }
     },
@@ -21,25 +21,25 @@ module.exports = function(grunt) {
       },
       compile: {
         files: {
-          'dist/css/styles.min.css': 'app/styl/main.styl'
+          'dist/css/styles.min.css': 'mozart/static/app/styl/main.styl'
         }
       }
     },
     jshint: {
-      all: ['Gruntfile.js', 'app/js/app.js', 'app/js/*/*.js']
+      all: ['Gruntfile.js', 'mozart/static/app/js/app.js', 'mozart/static/app/js/*/*.js']
     },
-    concat: {   
+    concat: {
       options: {
-        separator: ''  
+        separator: ''
       },
       basic: {
-        src: ['app/js/app.js', 'app/js/*/*.js'],  
-        dest: 'dist/js/<%= pkg.name %>.js'  
+        src: ['mozart/static/app/js/app.js', 'mozart/static/app/js/*/*.js'],
+        dest: 'mozart/static/dist/js/<%= pkg.name %>.js'
       }
     },
     bower_concat: {
       all: {
-        dest: 'dist/js/bower.js',
+        dest: 'mozart/static/dist/js/bower.js',
         dependencies: {
           'underscore': 'jquery'
         }
@@ -47,12 +47,12 @@ module.exports = function(grunt) {
     },
     uglify: {
       options: {
-        banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n' 
+        banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n'
       },
       dist: {
         files: {
-          'dist/js/<%= pkg.name %>.min.js': ['<%= concat.basic.dest %>'],
-          'dist/js/bower.min.js': ['<%= bower_concat.all.dest %>']
+          'mozart/static/dist/js/<%= pkg.name %>.min.js': ['<%= concat.basic.dest %>'],
+          'mozart/static/dist/js/bower.min.js': ['<%= bower_concat.all.dest %>']
         }
       }
     },
@@ -61,29 +61,29 @@ module.exports = function(grunt) {
         files : [
           {
             expand : true,
-            dest   : 'dist/img',
-            cwd    : 'app/img',
+            dest   : 'mozart/static/dist/img',
+            cwd    : 'mozart/static/app/img',
             src    : [
               '**/*'
             ]
           },
           {
             expand : true,
-            dest   : 'dist/fonts',
-            cwd    : 'app/fonts',
+            dest   : 'mozart/static/dist/fonts',
+            cwd    : 'mozart/static/app/fonts',
             src    : [
               '**/*'
             ]
           },
           {
-            src: 'app/favicon.ico',
-            dest: 'dist/favicon.ico'
+            src: 'mozart/static/app/favicon.ico',
+            dest: 'mozart/static/dist/favicon.ico'
           }
         ]
       }
     }
   });
-  grunt.loadNpmTasks('grunt-contrib-stylus'); 
+  grunt.loadNpmTasks('grunt-contrib-stylus');
   grunt.loadNpmTasks('grunt-bower-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-concat');
