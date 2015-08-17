@@ -58,7 +58,7 @@ class WorkAbstractForm(NgFormValidationMixin, NgModelForm):
             'archive': forms.FileInput(
                 attrs={
                     'file-upload': '',
-                    'file-bind': 'cover',
+                    'file-bind': 'archive',
                 }
             ),
         }

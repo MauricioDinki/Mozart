@@ -104,8 +104,8 @@ class EventAbstractForm(NgFormValidationMixin, NgModelForm):
 
 
 class EventCreateForm(EventAbstractForm):
-    form_controller = 'uploadWorkCtrl'
-    form_name = 'workform'
+    form_controller = 'createEventCtrl'
+    form_name = 'eventform'
 
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request', None)
@@ -151,7 +151,7 @@ class EventCreateForm(EventAbstractForm):
 
     def clean_name(self):
         name = self.cleaned_data.get('name')
-        return validators.eval_iexact(name, Event, 'slug')
+        return validators.eval_iexact(name, Event, 'slug', 'name')
 
     def save(self):
         cleaned_data = super(EventCreateForm, self).clean()

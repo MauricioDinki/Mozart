@@ -24,6 +24,7 @@
     };
 
     $scope.$on('cover', function (event, args) {
+      console.log('a');
       $scope.$apply(function() {
         onCoverFunction(args);
       });
