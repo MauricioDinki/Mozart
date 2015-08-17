@@ -1,4 +1,4 @@
-(function() { 
+(function() {
   'use strict';
 
   function mozartUserInformationController($scope, $window, userInformation){
@@ -8,11 +8,11 @@
       userInformation.get(
         function(results) {
           mozart_user.username = results.user;
-          mozart_user.profile_picture = 
+          mozart_user.profile_picture =
             (results.profile_picture !== null) ? results.profile_picture : '/static/img/default.png';
-          mozart_user.description = 
+          mozart_user.description =
             (results.description === null || results.description === '') ? 'Sin descripción.' : results.description;
-          mozart_user.sex = 
+          mozart_user.sex =
             (results.sex !== null) ? results.sex : 'No disponible.';
           mozart_user.countryCode =  results.nationality;
         },
@@ -20,7 +20,7 @@
           $window.alert('Ha fallado la petición. Estado HTTP:' + status);
         },
         username,
-        'mozart'
+        'extendedusers'
       );
       userInformation.get(
         function(results) {
@@ -28,7 +28,7 @@
           mozart_user.mozArtDate = arr[0];
           var names = results.first_name;
           var surnames = results.last_name;
-          mozart_user.fullname = 
+          mozart_user.fullname =
             !(names === '' || surnames === '' ) ? names + ' ' + surnames : 'No disponible.';
           mozart_user.email =  results.email;
         },
@@ -40,14 +40,14 @@
       );
       userInformation.get(
         function(results) {
-          mozart_user.phoneNumber = 
+          mozart_user.phoneNumber =
             (results.phone_number !== null) ? results.phone_number : 'No disponible.';
         },
         function(data, status) {
           $window.alert('Ha fallado la petición. Estado HTTP:' + status);
         },
         username,
-        'contact'
+        'contacts'
       );
       userInformation.get(
         function(results) {
@@ -57,7 +57,7 @@
           $window.alert('Ha fallado la petición. Estado HTTP:' + status);
         },
         username,
-        'birth'
+        'birthdays'
       );
       userInformation.get(
         function(results) {
@@ -73,7 +73,7 @@
           $window.alert('Ha fallado la petición. Estado HTTP:' + status);
         },
         username,
-        'address'
+        'addresses'
       );
       $scope.user = mozart_user;
     })($scope.base_username);
