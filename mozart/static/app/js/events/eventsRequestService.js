@@ -31,7 +31,6 @@
       )[0] ? true: false;
     };
     this.checkFinishedEvent = function(_event) {
-      console.log(validateDates.futureDate(_event.date));
       return !validateDates.futureDate(_event.date);
     };
   }
