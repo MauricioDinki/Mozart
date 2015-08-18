@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from rest_framework import generics, filters
+from django.contrib.auth.models import User
 
 from mozart.works.models import Work
 from mozart.events.models import Event
@@ -69,6 +70,18 @@ class BirthdayList(generics.ListCreateAPIView):
 class BirthdayDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Birthday.objects.all()
     serializer_class = serializers.BirthdaySerializer
+
+
+class UserList(generics.ListCreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = serializers.UserSerializer
+    filter_backends = (filters.DjangoFilterBackend,)
+    filter_class = mz_filters.UserFilter
+
+
+class UserDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = User.objects.all()
+    serializer_class = serializers.UserSerializer
 
 
 class ExtendedUserList(generics.ListCreateAPIView):

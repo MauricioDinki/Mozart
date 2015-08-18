@@ -8,6 +8,8 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
+    url(regex=r'^users/$', view=views.UserList.as_view(), name='api_user_list'),
+    url(regex=r'^users/(?P<pk>[0-9]+)/$', view=views.UserDetail.as_view(), name='api_user_detail'),
     url(regex=r'^works/$', view=views.WorkList.as_view(), name='api_work_list'),
     url(regex=r'^works/(?P<pk>[0-9]+)/$', view=views.WorkDetail.as_view(), name='api_work_detail'),
     url(regex=r'^events/$', view=views.EventList.as_view(), name='api_event_list'),
