@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse_lazy
@@ -18,15 +17,15 @@ from mozart.core.messages import success_messages, not_found_messages
 from .forms import ChangePasswordForm, ProfileForm
 
 
-class ChangePasswordView(LoginRequiredMixin, RequestFormMixin, FormView):
+class PasswordUpdateView(SuccessMessage, LoginRequiredMixin, RequestFormMixin, FormView):
     template_name = 'profiles/password_settings.html'
     form_class = ChangePasswordForm
-    success_url = reverse_lazy('landing:home')
+    success_msg = success_messages['password_update']
+    success_url = reverse_lazy('profiles:password_settings')
 
     def form_valid(self, form):
         form.save()
-        logout(self.request)
-        return super(ChangePasswordView, self).form_valid(form)
+        return super(PasswordUpdateView, self).form_valid(form)
 
 
 class ProfileSettingsView(SuccessMessage, LoginRequiredMixin, RequestFormMixin, FormView):

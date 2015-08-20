@@ -31,6 +31,7 @@ media_messages = {
 
 success_messages = {
     'event_create': _('Event created successfully'),
+    'password_update': _('Password updated successfully'),
     'user_update': _('Profile updated successfully'),
     'work_create': _('Work created successfully'),
     'work_update': _('Work updated successfully'),

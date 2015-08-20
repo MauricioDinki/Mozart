@@ -9,7 +9,7 @@ from . import views
 
 urlpatterns = [
     url(regex=r'^promoters/$', view=views.PromoterListView.as_view(), name='promoters_list'),
-    url(regex=r'^settings/password/$', view=views.ChangePasswordView.as_view(), name='password_settings'),
+    url(regex=r'^settings/password/$', view=views.PasswordUpdateView.as_view(), name='password_settings'),
     url(regex=r'^settings/account/$', view=views.ProfileSettingsView.as_view(), name='account_settings'),
     url(regex=r'^profiles/(?P<username>.*)/$', view=views.ProfileDetailView.as_view(), name='profile_detail'),
     url(regex=r'^settings/social/$', view=views.SocialNetworkSettingsView.as_view(), name='social_settings'),
