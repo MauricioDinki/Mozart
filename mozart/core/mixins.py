@@ -1,10 +1,11 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.utils.decorators import method_decorator
 from django.core.urlresolvers import reverse_lazy
+from django.contrib import messages
 
 
 class AuthRedirectMixin(object):
@@ -26,3 +27,13 @@ class RequestFormMixin(object):
         kwargs = super(RequestFormMixin, self).get_form_kwargs()
         kwargs['request'] = self.request
         return kwargs
+
+
+class SuccessMessage(object):
+    @property
+    def success_msg(self):
+        return NotImplemented
+
+    def form_valid(self, form):
+        messages.info(self.request, self.success_msg)
+        return super(SuccessMessage, self).form_valid(form)

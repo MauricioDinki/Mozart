@@ -9,16 +9,16 @@ from django.views.generic import CreateView, DetailView, TemplateView, UpdateVie
 from django.core.exceptions import PermissionDenied
 from django.http import Http404
 
-from mozart.core.mixins import LoginRequiredMixin, RequestFormMixin
-from mozart.core.messages import not_found_messages
-
+from mozart.core.mixins import LoginRequiredMixin, RequestFormMixin, SuccessMessage
+from mozart.core.messages import not_found_messages, success_messages
 
 from .models import Work
 from .forms import WorkCreateForm, WorkUpdateForm
 
 
-class WorkCreateView(LoginRequiredMixin, RequestFormMixin, CreateView):
+class WorkCreateView(SuccessMessage, LoginRequiredMixin, RequestFormMixin, CreateView):
     form_class = WorkCreateForm
+    success_msg = success_messages['work_create']
     success_url = reverse_lazy('works:work_list')
     template_name = 'works/work_create.html'
 
@@ -66,9 +66,10 @@ class WorkSettingsView(LoginRequiredMixin, TemplateView):
         return kwargs
 
 
-class WorkUpdateView(LoginRequiredMixin, UpdateView):
+class WorkUpdateView(SuccessMessage, LoginRequiredMixin, UpdateView):
     model = Work
     form_class = WorkUpdateForm
+    success_msg = success_messages['work_update']
     success_url = reverse_lazy('works:work_settings')
     template_name = 'works/work_update.html'
 

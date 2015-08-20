@@ -29,14 +29,19 @@ media_messages = {
     'invalid_image': _('203'),
 }
 
-confirmation_messages = {
-    'updated_user': _('Profile updated'),
+success_messages = {
+    'event_create': _('Event created successfully'),
+    'user_update': _('Profile updated successfully'),
+    'work_create': _('Work created successfully'),
+    'work_update': _('Work updated successfully'),
 }
 
 not_found_messages = {
     '404_user': _("Thers any user with this username"),
     '404_work_category': _("Thers any work with this category")
 }
+
+# CHOICES
 
 DAYS = (
     ('1', '1'),
