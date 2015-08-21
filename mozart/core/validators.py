@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 from django import forms
@@ -52,17 +52,17 @@ def eval_audio(data):
     raise forms.ValidationError(media_messages['invalid_audio'],)
 
 
-def eval_image(data):
-    file_type = str(data.content_type)
-    if file_type == 'image/jpeg' or file_type == 'image/bmp' \
-       or file_type == 'image/png':
-        return data
-    raise forms.ValidationError(media_messages['invalid_image'],)
-
-
 def eval_general(data):
     file_type = str(data.content_type)
     if file_type == 'image/jpeg' or file_type == 'image/bmp' \
        or file_type == 'image/png' or file_type == 'audio/mp3':
         return data
     raise forms.ValidationError(media_messages['invalid_archive'],)
+
+
+def eval_image(data):
+    file_type = str(data.content_type)
+    if file_type == 'image/jpeg' or file_type == 'image/bmp' \
+       or file_type == 'image/png':
+        return data
+    raise forms.ValidationError(media_messages['invalid_image'],)

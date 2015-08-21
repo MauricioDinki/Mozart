@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 from __future__ import unicode_literals
@@ -16,6 +16,7 @@ from mozart.core.messages import regex_sentences
 from .models import Work
 
 
+# class WorkAbstractForm(forms.ModelForm):
 class WorkAbstractForm(NgFormValidationMixin, NgModelForm):
     class Meta:
         model = Work

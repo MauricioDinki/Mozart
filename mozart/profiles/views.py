@@ -14,12 +14,12 @@ from social.apps.django_app.default.models import UserSocialAuth
 from mozart.core.mixins import LoginRequiredMixin, RequestFormMixin, SuccessMessage
 from mozart.core.messages import success_messages, not_found_messages
 
-from .forms import ChangePasswordForm, ProfileForm
+from .forms import PasswordUpdateForm, ProfileForm
 
 
 class PasswordUpdateView(SuccessMessage, LoginRequiredMixin, RequestFormMixin, FormView):
     template_name = 'profiles/password_settings.html'
-    form_class = ChangePasswordForm
+    form_class = PasswordUpdateForm
     success_msg = success_messages['password_update']
     success_url = reverse_lazy('profiles:password_settings')
 

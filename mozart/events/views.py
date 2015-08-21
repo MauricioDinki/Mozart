@@ -16,7 +16,7 @@ class EventListView(TemplateView):
     template_name = 'events/event_list.html'
 
 
-class CreateEventView(SuccessMessage, RequestFormMixin, CreateView):
+class EventCreateView(SuccessMessage, RequestFormMixin, CreateView):
     form_class = EventCreateForm
     success_url = reverse_lazy('events:event_list')
     success_msg = success_messages['event_create']

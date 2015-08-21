@@ -19,86 +19,6 @@ def presentation_file_url(self, filename):
     return str('presentation-file/%s/%s') % (self.user.username, filename)
 
 
-class ExtendedUser(models.Model):
-    user = models.OneToOneField(
-        User,
-        verbose_name=_('User'),
-    )
-    description = models.CharField(
-        _('Description'),
-        blank=True,
-        max_length=200,
-        null=True,
-    )
-    nationality = CountryField(
-        _('Nationality'),
-        blank=True,
-        max_length=200,
-        null=True,
-    )
-    presentation_file = models.FileField(
-        _('Presentation file'),
-        blank=True,
-        null=True,
-        upload_to=presentation_file_url,
-    )
-    profile_picture = models.ImageField(
-        _('Profile picture'),
-        blank=True,
-        null=True,
-        upload_to=profile_picture_url
-    )
-    sex = models.CharField(
-        _('Sex'),
-        blank=True,
-        choices=SEXUALITY,
-        max_length=50,
-        null=True,
-    )
-    user_type = models.CharField(
-        _('User type'),
-        blank=True,
-        choices=USER_TYPE,
-        max_length=50,
-        null=True,
-    )
-
-    def __unicode__(self):
-        return self.user.username
-
-    class Meta:
-        verbose_name = _('Mozart user')
-        verbose_name_plural = _('Mozart users')
-
-    def get_nationality(self):
-        return self.nationality.name
-
-
-class Contact(models.Model):
-    user = models.OneToOneField(
-        User,
-        verbose_name='User',
-    )
-    personal_homepage = models.URLField(
-        _('Personal homepage'),
-        blank=True,
-        max_length=50,
-        null=True,
-    )
-    phone_number = models.BigIntegerField(
-        _('Phone number'),
-        blank=True,
-        null=True,
-    )
-
-    def __unicode__(self):
-        return self.user.username
-
-    class Meta:
-        verbose_name = _('Contact')
-        verbose_name_plural = _('Contacts')
-
-
 class Address(models.Model):
     user = models.OneToOneField(
         User,
@@ -170,6 +90,86 @@ class Birthday(models.Model):
         return self.user.username
 
 
+class Contact(models.Model):
+    user = models.OneToOneField(
+        User,
+        verbose_name='User',
+    )
+    personal_homepage = models.URLField(
+        _('Personal homepage'),
+        blank=True,
+        max_length=50,
+        null=True,
+    )
+    phone_number = models.BigIntegerField(
+        _('Phone number'),
+        blank=True,
+        null=True,
+    )
+
+    def __unicode__(self):
+        return self.user.username
+
+    class Meta:
+        verbose_name = _('Contact')
+        verbose_name_plural = _('Contacts')
+
+
+class ExtendedUser(models.Model):
+    user = models.OneToOneField(
+        User,
+        verbose_name=_('User'),
+    )
+    description = models.CharField(
+        _('Description'),
+        blank=True,
+        max_length=200,
+        null=True,
+    )
+    nationality = CountryField(
+        _('Nationality'),
+        blank=True,
+        max_length=200,
+        null=True,
+    )
+    presentation_file = models.FileField(
+        _('Presentation file'),
+        blank=True,
+        null=True,
+        upload_to=presentation_file_url,
+    )
+    profile_picture = models.ImageField(
+        _('Profile picture'),
+        blank=True,
+        null=True,
+        upload_to=profile_picture_url
+    )
+    sex = models.CharField(
+        _('Sex'),
+        blank=True,
+        choices=SEXUALITY,
+        max_length=50,
+        null=True,
+    )
+    user_type = models.CharField(
+        _('User type'),
+        blank=True,
+        choices=USER_TYPE,
+        max_length=50,
+        null=True,
+    )
+
+    def __unicode__(self):
+        return self.user.username
+
+    class Meta:
+        verbose_name = _('Mozart user')
+        verbose_name_plural = _('Mozart users')
+
+    def get_nationality(self):
+        return self.nationality.name
+
+
 class Facebookauth(models.Model):
     user = models.OneToOneField(
         UserSocialAuth,
@@ -197,33 +197,6 @@ class Facebookauth(models.Model):
         return self.user.user.username
 
 
-class Twitterauth(models.Model):
-    user = models.OneToOneField(
-        UserSocialAuth,
-        verbose_name=_('User'),
-    )
-    profile_url = models.URLField(
-        _('Twitter profile url'),
-        blank=True,
-        max_length=200,
-        null=True,
-    )
-
-    network_username = models.CharField(
-        _('Social Network Username'),
-        blank=True,
-        null=True,
-        max_length=50,
-    )
-
-    class Meta:
-        verbose_name = _("Twitter information")
-        verbose_name_plural = _("Twitter information")
-
-    def __unicode__(self):
-        return self.user.user.username
-
-
 class Googleauth(models.Model):
     user = models.OneToOneField(
         UserSocialAuth,
@@ -246,6 +219,33 @@ class Googleauth(models.Model):
     class Meta:
         verbose_name = _("Google information")
         verbose_name_plural = _("Google information")
+
+    def __unicode__(self):
+        return self.user.user.username
+
+
+class Twitterauth(models.Model):
+    user = models.OneToOneField(
+        UserSocialAuth,
+        verbose_name=_('User'),
+    )
+    profile_url = models.URLField(
+        _('Twitter profile url'),
+        blank=True,
+        max_length=200,
+        null=True,
+    )
+
+    network_username = models.CharField(
+        _('Social Network Username'),
+        blank=True,
+        null=True,
+        max_length=50,
+    )
+
+    class Meta:
+        verbose_name = _("Twitter information")
+        verbose_name_plural = _("Twitter information")
 
     def __unicode__(self):
         return self.user.user.username

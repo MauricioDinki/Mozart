@@ -1,10 +1,11 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 from django.utils import translation
 from django.conf import settings
 from django.middleware.locale import LocaleMiddleware
 # from django.contrib.sites.models import Site
-#
 # from django.http import HttpResponseRedirect
-#
 # from preferences.models import Preference
 
 
