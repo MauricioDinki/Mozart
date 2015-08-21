@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 '''
 Production Configurations
@@ -9,7 +9,6 @@ Production Configurations
 - Use MEMCACHIER on Heroku
 '''
 from __future__ import absolute_import, unicode_literals
-
 
 from .base import *  # noqa
 from boto.s3.connection import OrdinaryCallingFormat
@@ -80,8 +79,7 @@ AWS_HEADERS = {
 MEDIAFILES_LOCATION = 'media'
 
 DEFAULT_FILE_STORAGE = 'mozart.custom_storages.MediaStorage'
-MEDIA_URL = "https://%s/%s/" % (env("AWS_BUCKET_URL", None),
-                                MEDIAFILES_LOCATION)
+MEDIA_URL = "https://%s/%s/" % (env("AWS_BUCKET_URL", None), MEDIAFILES_LOCATION)
 
 # Static Assests
 # ------------------------
@@ -89,5 +87,4 @@ STATICFILES_LOCATION = 'static'
 
 STATICFILES_STORAGE = 'mozart.custom_storages.StaticStorage'
 
-STATIC_URL = "https://%s/%s/" % (env("AWS_BUCKET_URL", None),
-                                STATICFILES_LOCATION)
+STATIC_URL = "https://%s/%s/" % (env("AWS_BUCKET_URL", None), STATICFILES_LOCATION)

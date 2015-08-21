@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 from django.contrib.auth.models import User
@@ -30,6 +30,14 @@ class ContactFilter(GenericUserFilter):
         model = Contact
 
 
+class EventFilter(GenericUserFilter):
+
+    class Meta(GenericUserFilter.Meta):
+        model = Event
+        fields = ['user', 'date']
+        order_by = ['-date']
+
+
 class ExtendedUserFilter(GenericUserFilter):
 
     class Meta(GenericUserFilter.Meta):
@@ -42,14 +50,6 @@ class UserFilter(django_filters.FilterSet):
     class Meta:
         model = User
         fields = ('username', 'date_joined', 'first_name', 'last_name', 'email')
-
-
-class EventFilter(GenericUserFilter):
-
-    class Meta(GenericUserFilter.Meta):
-        model = Event
-        fields = ['user', 'date']
-        order_by = ['-date']
 
 
 class WorkFilter(GenericUserFilter):

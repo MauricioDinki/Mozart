@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 from django.contrib.auth.models import User
@@ -18,20 +18,20 @@ class AddressSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('id', 'user', 'address', 'city', 'zip_code', 'neighborhood')
 
 
-class ContactSerializer(serializers.HyperlinkedModelSerializer):
-    user = serializers.SlugRelatedField(read_only=True, slug_field='username')
-
-    class Meta:
-        model = Contact
-        fields = ('id', 'user', 'personal_homepage', 'phone_number')
-
-
 class BirthdaySerializer(serializers.HyperlinkedModelSerializer):
     user = serializers.SlugRelatedField(read_only=True, slug_field='username')
 
     class Meta:
         model = Birthday
         fields = ('id', 'user', 'day', 'month', 'year')
+
+
+class ContactSerializer(serializers.HyperlinkedModelSerializer):
+    user = serializers.SlugRelatedField(read_only=True, slug_field='username')
+
+    class Meta:
+        model = Contact
+        fields = ('id', 'user', 'personal_homepage', 'phone_number')
 
 
 class EventSerializer(serializers.HyperlinkedModelSerializer):
