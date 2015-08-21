@@ -23,7 +23,7 @@ custom_error_messages = {
     'incorrect_password': _('The password is incorrect'),
 }
 
-media_messages = {
+media_error_messages = {
     'invalid_archive': _('201'),
     'invalid_audio': _('202'),
     'invalid_image': _('203'),
