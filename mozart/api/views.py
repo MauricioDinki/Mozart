@@ -6,8 +6,8 @@ from django.contrib.auth.models import User
 
 from mozart.works.models import Work
 from mozart.events.models import Event
-from mozart.profiles.models import Address, Contact, Birthday, ExtendedUser
-
+from mozart.profiles.models import Address, Contact, Birthday, ExtendedUser, \
+    Facebookauth, Googleauth, Twitterauth
 from . import serializers
 from . import filters as mz_filters
 
@@ -94,3 +94,18 @@ class ExtendedUserList(generics.ListCreateAPIView):
 class ExtendedUserDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = ExtendedUser.objects.all()
     serializer_class = serializers.ExtendedUserSerializer
+
+
+class FacebookauthList(generics.ListAPIView):
+    serializer_class = serializers.FacebookauthSerializer
+    queryset = Facebookauth.objects.all()
+
+
+class GoogleauthList(generics.ListAPIView):
+    serializer_class = serializers.GoogleauthSerializer
+    queryset = Googleauth.objects.all()
+
+
+class TwitterauthList(generics.ListAPIView):
+    serializer_class = serializers.TwitterauthSerializer
+    queryset = Twitterauth.objects.all()

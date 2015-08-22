@@ -22,4 +22,7 @@ urlpatterns = [
     url(regex=r'^contacts/(?P<pk>[0-9]+)/$', view=views.ContactDetail.as_view(), name='api_contact_detail'),
     url(regex=r'^birthdays/$', view=views.BirthdayList.as_view(), name='api_birthday_list'),
     url(regex=r'^birthdays/(?P<pk>[0-9]+)/$', view=views.BirthdayDetail.as_view(), name='api_birthday_detail'),
+    url(regex=r'^facebookauth/$', view=views.FacebookauthList.as_view(), name='api_facebookauth_list'),
+    url(regex=r'^googleauth/$', view=views.GoogleauthList.as_view(), name='api_googleauth_list'),
+    url(regex=r'^twitterauth/$', view=views.TwitterauthList.as_view(), name='api_twitterauth_list'),
 ]

@@ -6,8 +6,11 @@ from django.contrib.auth.models import User
 from rest_framework import serializers
 
 from mozart.events.models import Event
-from mozart.profiles.models import Address, Contact, Birthday, ExtendedUser
+from mozart.profiles.models import Address, Contact, Birthday, ExtendedUser, \
+    Facebookauth, Googleauth, Twitterauth
 from mozart.works.models import Work
+
+from .mixins import GenericSocialSerializer
 
 
 class AddressSerializer(serializers.HyperlinkedModelSerializer):
@@ -48,6 +51,21 @@ class ExtendedUserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = ExtendedUser
         fields = ('id', 'user', 'description', 'nationality', 'presentation_file', 'profile_picture', 'sex', 'user_type')
+
+
+class FacebookauthSerializer(GenericSocialSerializer):
+    class Meta(GenericSocialSerializer.Meta):
+        model = Facebookauth
+
+
+class GoogleauthSerializer(GenericSocialSerializer):
+    class Meta(GenericSocialSerializer.Meta):
+        model = Googleauth
+
+
+class TwitterauthSerializer(GenericSocialSerializer):
+    class Meta(GenericSocialSerializer.Meta):
+        model = Twitterauth
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
