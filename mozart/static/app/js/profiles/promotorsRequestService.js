@@ -1,37 +1,34 @@
-(function() {
-  'use strict';
+(function () {
+    'use strict';
 
-  function promotersRequestService($http, $filter) {
-    /* jshint validthis:true */
-    var apiBaseUrl = '/api/v1/extendedusers/?user_type=promoter';
-    // this.get=function(fnOK,fnError, nameFirstLetter, paginate) {
-    //   $http({
-    //     method: 'GET',
-    //     url: apiBaseUrl + '?' + 'nameFirstLetter=' + nameFirstLetter +  '&paginate=' + paginate
-    //   })
-    this.get=function(fnOK,fnError, paginate) {
-      $http({
-        method: 'GET',
-        url: apiBaseUrl + '&page=' + paginate
-      })
-      .success(function(data, status, headers, config) {
-        fnOK(data.results, data.next);
-      })
-      .error(function(data, status, headers, config) {
-        fnError(data,status);
-      });
-    };
-    this.checkRepeatedUser = function(usersArray, user) {
-      return $filter('filter')(
-        usersArray,
-        user,
-        true
-      )[0] ? true: false;
-    };
-  }
+    function promotersRequestService(baseRequest, $window) {
+        /* jslint validthis:true */
+        var apiSectionName = 'extendedusers';
+        function getParameters(pageNumber) {
+            var parameters;
+            parameters = '?user_type=Promoter&page=' + pageNumber;
+            return parameters;
+        }
+        /*jslint unparam: true*/
+        this.get = function (fnOK, parameters, pageNumber) {
+            var requestParameters = getParameters(pageNumber);
+            baseRequest.get(
+                fnOK,
+                function (status) {
+                    $window.alert('Ha fallado la petición. Estado HTTP:' + status);
+                },
+                apiSectionName,
+                requestParameters
+            );
+        };
+        /*jslint unparam: false*/
+        this.checkRepeatedUser = function (usersArray, user) {
+            return baseRequest.checkRepeatedItem(usersArray, user);
+        };
+    }
 
-  promotersRequestService.$inject = ['$http', '$filter'];
+    promotersRequestService.$inject = ['baseRequest', '$window'];
 
-  angular.module('mozArtApp')
-    .service('promotersRequest', promotersRequestService);
-})();
+    angular.module('mozArtApp')
+        .service('promotersRequest', promotersRequestService);
+}());

@@ -1,14 +1,14 @@
-(function() {
-	'use strict';
+(function () {
+    'use strict';
 
-	function editWorkController($scope) {
-		$scope.validate = function(){
-	    return $scope.editworkform.$valid;
-	  };
-	}
+    function editWorkController($scope) {
+        $scope.validate = function () {
+            return $scope.editworkform.$valid;
+        };
+    }
 
-	editWorkController.$inject = ['$scope'];
+    editWorkController.$inject = ['$scope'];
 
-	angular.module('mozArtApp')
-		.controller('editWorkCtrl', editWorkController);
-})();
+    angular.module('mozArtApp')
+        .controller('editWorkCtrl', editWorkController);
+}());
