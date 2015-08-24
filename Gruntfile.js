@@ -25,8 +25,19 @@ module.exports = function(grunt) {
         }
       }
     },
-    jshint: {
-      all: ['Gruntfile.js', 'mozart/static/app/js/app.js', 'mozart/static/app/js/*/*.js']
+    jslint: {
+      client: {
+        src: ['Gruntfile.js',
+          'app/js/app.js',
+          'app/js/*/*.js'
+          ],
+        directives: {
+          browser: true,
+          predef: [
+            'angular'
+          ]
+        }
+      }
     },
     concat: {
       options: {
@@ -89,8 +100,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.registerTask('default', ['stylus', 'jshint', 'concat','bower_concat','uglify','copy', 'watch']);
+  grunt.loadNpmTasks('grunt-jslint');
+  grunt.registerTask('default', ['stylus', 'jslint', 'concat','bower_concat','uglify','copy', 'watch']);
   grunt.registerTask('compileStylus', ['stylus']);
-  grunt.registerTask('compileJavascript', ['jshint', 'concat', 'uglify']);
+  grunt.registerTask('compileJavascript', ['jslint', 'concat', 'uglify']);
 };
