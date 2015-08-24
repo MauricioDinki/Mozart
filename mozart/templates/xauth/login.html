@@ -7,9 +7,11 @@
 	  <h2> Inicia sesión con tu nombre de usuario </h2>
 		{% if form.non_field_errors %}
 			{% ifnotequal form.non_field_errors.as_text|cut:"* " "$message" %}
-				<mz-basic-okay-modal modal-title="No se pudo iniciar sesión" okay-text="Entendido">
-				{{ form.non_field_errors.as_text|cut:"$message"|cut:"* " }}
-				</mz-basic-okay-modal>
+			<as-modal-container trigger="false">
+		      <as-modal-dialog modal-title="Login error">
+		        {{ form.non_field_errors.as_text|cut:"$message"|cut:"* " }}
+		      </as-modal-dialog>
+		    </as-modal-container>
 			{% endifnotequal %}
 		{% endif %}
 	  <form action="" method="post" id="id_{{form.form_name}}" name="{{form.form_name}}" novalidate>

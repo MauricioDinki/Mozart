@@ -24,9 +24,14 @@
           <a class="thin-button okay-button" ng-href="{% url 'works:work_settings' %}{$work.slug$}">
             Editar
           </a>
-          <mz-triggered-decision-modal modal-title="¿Seguro de que quieres eliminar esta obra?" cancel-text="No" okay-text="Si" okay-link="/delete/work/{$work.slug$}" trigger-text="Eliminar" trigger-button-class="cancel" trigger-button-weight="thin-button">
-            Ya no podrás iniciar sesión con ella, pero podrás revincularla en cualquier momento si así lo deseas.
-          </mz-triggered-decision-modal>
+          <as-modal-container trigger="true">
+            <as-modal-trigger display="inline" size="small" color="red">
+              Eliminar
+            </as-modal-trigger>
+            <as-modal-dialog type="desition" accept-color="red" mode="link" action="/delete/work/{$work.slug$}" modal-title="¿Seguro de que quieres eliminar esta obra?" accept-text="Si" cancel-text="No">
+              Una vez que la obra sea eliminada, no podrás recuperarla.
+            </as-modal-dialog>
+          </as-modal-container>
         </div>
       </div>
     </article>

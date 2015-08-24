@@ -32,9 +32,14 @@
 							</a>
 						</div>
 				{% endif %}
-					<mz-triggered-decision-modal class="social-media-delete-button" modal-title="¿Seguro de que quieres desvincular esta cuenta?" cancel-text="No" okay-text="Si" okay-link="{% url 'profiles:social_delete' account.provider account.id %}" trigger-text="x" trigger-button-class="cancel" trigger-button-weight="button">
-						Ya no podrás iniciar sesión con ella, pero podrás revincularla en cualquier momento si así lo deseas.
-					</mz-triggered-decision-modal>
+					<as-modal-container trigger="true">
+			            <as-modal-trigger class="social-media-delete-button" display="inline" size="medium" color="red">
+			              x
+			            </as-modal-trigger>
+			            <as-modal-dialog type="desition" accept-color="red" mode="link" action="{% url 'profiles:social_delete' account.provider account.id %}" modal-title="¿Seguro de que quieres desvincular esta cuenta?" accept-text="Si" cancel-text="No">
+			              Ya no podrás iniciar sesión con ella, pero podrás revincularla en cualquier momento si así lo deseas.
+			            </as-modal-dialog>
+			        </as-modal-container>
 				</li>
 			{% empty %}
 			<li>

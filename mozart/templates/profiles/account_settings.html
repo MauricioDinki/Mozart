@@ -9,13 +9,6 @@
 {% block option-name %} Editar información {% endblock %}
 
 {% block section %}
-	{% if form.non_field_errors %}
-    {% ifnotequal form.non_field_errors.as_text|cut:"* " "$message" %}
-	    <div class="aviso-error">
-	      {{ form.non_field_errors.as_text|cut:"$message"|cut:"* " }}
-	    </div>
-	  {% endifnotequal %}
-	{% endif %}
   <form class="text-center" action="" method="post" id="id_{{form.form_name}}" name="{{form.form_name}}" enctype="multipart/form-data" ng-controller="{{form.form_controller}}">
   	{% csrf_token %}
     <fieldset class="two-elements">
@@ -23,9 +16,6 @@
       {% if not user.extendeduser.profile_picture %}
 	      <img class="circle" src="{% static "img/default.png" %}" width="250px"/><br/>
       {% else %}
-				<p>
-					Dinki
-				</p>
         {% thumbnail user.extendeduser.profile_picture "250x250" crop="center" as im %}
 	      	<img class="circle" src="{{ im.url }}"/>
 					<br/>
@@ -209,15 +199,17 @@
 	  </fieldset>
   </form>
 	{% if messages %}
-    <ul class="messages">
-      {% for message in messages %}
-        <li id="message_{{ forloop.counter }}"
-          {% if message.tags %}
-            class="{{ message.tags }}"
-          {% endif %}>
-          {{ message }}
-        </li>
-      {% endfor %}
-    </ul>
-  {% endif %}
+    <as-modal-container trigger="false">
+      <as-modal-dialog modal-title="Done">
+        {% for message in messages %}
+          <div id="message_{{ forloop.counter }}"
+            {% if message.tags %}
+              class="{{ message.tags }}"
+            {% endif %}>
+            {{ message }}
+          </div>
+        {% endfor %}
+      </as-modal-dialog>
+    </as-modal-container>
+    {% endif %}
 {% endblock %}

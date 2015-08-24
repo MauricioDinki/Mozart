@@ -9,12 +9,13 @@
                 fileBind : '@'
             },
             link: function (scope, el, attrs) {
-                var files;
+                var files, counter;
                 el.bind('change', function (event) {
                     files = event.target.files;
-                    files.forEach(function (element) {
-                        scope.$emit(scope.fileBind, {file: element});
-                    });
+                    console.log(files);
+                    for (counter = 0; counter < files.length; counter += 1) {
+                        scope.$emit(scope.fileBind, {file: files[counter]});
+                    }
                 });
             }
         };

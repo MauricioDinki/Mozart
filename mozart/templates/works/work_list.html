@@ -63,15 +63,17 @@
     </section>
   </div>
   {% if messages %}
-    <ul class="messages">
-      {% for message in messages %}
-        <li id="message_{{ forloop.counter }}"
-          {% if message.tags %}
-            class="{{ message.tags }}"
-          {% endif %}>
-          {{ message }}
-        </li>
-      {% endfor %}
-    </ul>
-  {% endif %}
+    <as-modal-container trigger="false">
+      <as-modal-dialog modal-title="Done">
+        {% for message in messages %}
+          <div id="message_{{ forloop.counter }}"
+            {% if message.tags %}
+              class="{{ message.tags }}"
+            {% endif %}>
+            {{ message }}
+          </div>
+        {% endfor %}
+      </as-modal-dialog>
+    </as-modal-container>
+    {% endif %}
 {% endblock %}
