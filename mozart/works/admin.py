@@ -1,12 +1,12 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 from django.contrib import admin
 
-from .models import Work
+from . import models
 
 
-@admin.register(Work)
+@admin.register(models.Work)
 class AdminWork(admin.ModelAdmin):
     list_display = ('title', 'category', 'date',)
     list_filter = ('category', 'date', )

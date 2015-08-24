@@ -6,8 +6,8 @@ from django.views.generic import CreateView, TemplateView
 from django.contrib.auth.models import User
 from django.http import Http404
 
-from mozart.core.mixins import RequestFormMixin
-from mozart.core.messages import not_found_messages
+from mozart.core.mixins import RequestFormMixin, SuccessMessage
+from mozart.core.messages import not_found_messages, success_messages
 
 from .forms import EventCreateForm
 
@@ -16,9 +16,10 @@ class EventListView(TemplateView):
     template_name = 'events/event_list.html'
 
 
-class CreateEventView(RequestFormMixin, CreateView):
+class EventCreateView(SuccessMessage, RequestFormMixin, CreateView):
     form_class = EventCreateForm
     success_url = reverse_lazy('events:event_list')
+    success_msg = success_messages['event_create']
     template_name = 'events/create_event.html'
 
 

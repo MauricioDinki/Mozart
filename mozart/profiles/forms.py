@@ -13,8 +13,8 @@ from mozart.core import validators
 from mozart.core.messages import regex_sentences, custom_error_messages
 
 
-# class ChangePasswordForm(forms.Form):
-class ChangePasswordForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValidationMixin, forms.Form)):
+# class PasswordUpdateForm(forms.Form):
+class PasswordUpdateForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValidationMixin, forms.Form)):
     form_name = 'passwordform'
 
     old_password = forms.CharField(
@@ -53,7 +53,7 @@ class ChangePasswordForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgForm
 
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request', None)
-        super(ChangePasswordForm, self).__init__(*args, **kwargs)
+        super(PasswordUpdateForm, self).__init__(*args, **kwargs)
         for field in self.fields:
             self.fields[field].validators = [validators.eval_blank]
             self.fields[field].required = True
@@ -64,7 +64,7 @@ class ChangePasswordForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgForm
         return validators.eval_password(username, password)
 
     def clean(self):
-        cleaned_data = super(ChangePasswordForm, self).clean()
+        cleaned_data = super(PasswordUpdateForm, self).clean()
         new_password_1 = cleaned_data.get('new_password_1')
         new_password_2 = cleaned_data.get('new_password_2')
         if new_password_1 and new_password_2:
@@ -72,7 +72,7 @@ class ChangePasswordForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgForm
         return cleaned_data
 
     def save(self):
-        cleaned_data = super(ChangePasswordForm, self).clean()
+        cleaned_data = super(PasswordUpdateForm, self).clean()
         print cleaned_data
         user_instance = self.request.user
         user_instance.set_password(cleaned_data.get('new_password_2'))

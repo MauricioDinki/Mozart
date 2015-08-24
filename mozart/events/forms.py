@@ -21,6 +21,7 @@ from .models import Event
 current_date = datetime.date.today()
 
 
+# class EventAbstractForm(forms.ModelForm):
 class EventAbstractForm(NgFormValidationMixin, NgModelForm):
     class Meta:
         model = Event

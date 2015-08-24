@@ -1,44 +1,42 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse_lazy
-from django.shortcuts import render_to_response, redirect
-from django.template import RequestContext
+from django.shortcuts import redirect
 from django.views.generic import FormView, TemplateView
 from django.http import Http404
 from django.core.exceptions import PermissionDenied
 
 from social.apps.django_app.default.models import UserSocialAuth
 
-from mozart.core.mixins import LoginRequiredMixin, RequestFormMixin
-from mozart.core.messages import confirmation_messages, not_found_messages
+from mozart.core.mixins import LoginRequiredMixin, RequestFormMixin, SuccessMessage
+from mozart.core.messages import success_messages, not_found_messages
 
-from .forms import ChangePasswordForm, ProfileForm
+from .forms import PasswordUpdateForm, ProfileForm
 
 
-class ChangePasswordView(LoginRequiredMixin, RequestFormMixin, FormView):
+class PasswordUpdateView(SuccessMessage, LoginRequiredMixin, RequestFormMixin, FormView):
     template_name = 'profiles/password_settings.html'
-    form_class = ChangePasswordForm
-    success_url = reverse_lazy('landing:home')
+    form_class = PasswordUpdateForm
+    success_msg = success_messages['password_update']
+    success_url = reverse_lazy('profiles:password_settings')
 
     def form_valid(self, form):
         form.save()
-        logout(self.request)
-        return super(ChangePasswordView, self).form_valid(form)
+        return super(PasswordUpdateView, self).form_valid(form)
 
 
-class ProfileSettingsView(LoginRequiredMixin, RequestFormMixin, FormView):
+class ProfileSettingsView(SuccessMessage, LoginRequiredMixin, RequestFormMixin, FormView):
     template_name = 'profiles/account_settings.html'
     form_class = ProfileForm
-    success_url = reverse_lazy('profiles:settings_account')
+    success_msg = success_messages['user_update']
+    success_url = reverse_lazy('profiles:account_settings')
 
     def form_valid(self, form):
         form.save()
-        ctx = {'updated': confirmation_messages['updated_user'], 'form': form}
-        return render_to_response(self.template_name, ctx, context_instance=RequestContext(self.request))
+        return super(ProfileSettingsView, self).form_valid(form)
 
     def get_initial(self):
         initial = {

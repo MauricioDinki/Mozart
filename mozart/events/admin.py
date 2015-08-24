@@ -3,10 +3,10 @@
 
 from django.contrib import admin
 
-from .models import Event
+from . import models
 
 
-@admin.register(Event)
+@admin.register(models.Event)
 class AdminEvent(admin.ModelAdmin):
     list_display = ('name', 'place',)
     prepopulated_fields = {'slug': ('name',)}

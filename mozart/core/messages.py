@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 from __future__ import unicode_literals
@@ -23,20 +23,26 @@ custom_error_messages = {
     'incorrect_password': _('The password is incorrect'),
 }
 
-media_messages = {
+media_error_messages = {
     'invalid_archive': _('201'),
     'invalid_audio': _('202'),
     'invalid_image': _('203'),
 }
 
-confirmation_messages = {
-    'updated_user': _('Profile updated'),
+success_messages = {
+    'event_create': _('Event created successfully'),
+    'password_update': _('Password updated successfully'),
+    'user_update': _('Profile updated successfully'),
+    'work_create': _('Work created successfully'),
+    'work_update': _('Work updated successfully'),
 }
 
 not_found_messages = {
     '404_user': _("Thers any user with this username"),
     '404_work_category': _("Thers any work with this category")
 }
+
+# CHOICES
 
 DAYS = (
     ('1', '1'),

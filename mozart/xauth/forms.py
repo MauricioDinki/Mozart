@@ -17,6 +17,7 @@ from mozart.core.messages import DAYS, MONTHS, SEXUALITY, USER_TYPE
 from mozart.profiles.models import ExtendedUser, Contact, Address, Birthday
 
 
+# class LoginForm(forms.Form):
 class LoginForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValidationMixin, forms.Form)):
     form_name = 'loginform'
 

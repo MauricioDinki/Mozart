@@ -1,42 +1,43 @@
-(function() {
-  'use strict';
+(function () {
+    'use strict';
 
-  function eventsRequestService($http, $filter, validateDates) {
-    /* jshint validthis:true */
-    var apiBaseUrl = '/api/v1/events/';
-    this.get = function(fnOK,fnError, creator, pageNumber) {
-        var requestUrl;
-        if(creator==='all') {
-          requestUrl = apiBaseUrl + '?page=' + pageNumber;
+    function eventsRequestService(baseRequest, validateDates, $window) {
+    /* jslint validthis:true */
+        var apiSectionName = 'events';
+        function getParameters(creator, pageNumber) {
+            var parameters;
+            if (creator === 'all') {
+                parameters = '?page=' + pageNumber;
+            } else {
+                parameters = '?user=' + creator + '&page=' + pageNumber;
+            }
+            return parameters;
         }
-        else {
-          requestUrl = apiBaseUrl + '?user=' + creator + '&page=' + pageNumber;
-        }
-        $http({
-          method: 'GET',
-          url: requestUrl
-        })
-        .success(function(data, status, headers, config) {
-          fnOK(data.results, data.next);
-        })
-        .error(function(data, status, headers, config) {
-          fnError(data,status);
-        });
-    };
-    this.checkRepeatedEvent = function(eventsArray, _event) {
-      return $filter('filter')(
-        eventsArray,
-        _event,
-        true
-      )[0] ? true: false;
-    };
-    this.checkFinishedEvent = function(_event) {
-      return !validateDates.futureDate(_event.date);
-    };
-  }
+        this.get = function (fnOK, parameters, pageNumber) {
+            var creator, requestParameters;
+            creator = parameters[0];
+            requestParameters = getParameters(creator, pageNumber);
+            /*jslint unparam: true*/
+            baseRequest.get(
+                fnOK,
+                function (data, status) {
+                    $window.alert('Ha fallado la petición. Estado HTTP:' + status);
+                },
+                apiSectionName,
+                requestParameters
+            );
+            /*jslint unparam: false*/
+        };
+        this.checkRepeatedEvent = function (events, mzEvent) {
+            return baseRequest.checkRepeatedItem(events, mzEvent);
+        };
+        this.checkFinishedEvent = function (mzEvent) {
+            return !validateDates.futureDate(mzEvent.date);
+        };
+    }
 
-  eventsRequestService.$inject = ['$http', '$filter', 'validateDates'];
+    eventsRequestService.$inject = ['baseRequest', 'validateDates', '$window'];
 
-  angular.module('mozArtApp')
-    .service('eventsRequest', eventsRequestService);
-})();
+    angular.module('mozArtApp')
+        .service('eventsRequest', eventsRequestService);
+}());

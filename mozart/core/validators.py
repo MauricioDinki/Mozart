@@ -1,11 +1,11 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 from django import forms
 from django.utils.text import slugify
 from django.contrib.auth import authenticate
 
-from mozart.core.messages import custom_error_messages, media_messages
+from mozart.core.messages import custom_error_messages, media_error_messages
 
 
 def eval_blank(data):
@@ -49,15 +49,7 @@ def eval_audio(data):
     file_type = str(data.content_type)
     if file_type == 'audio/mp3':
         return data
-    raise forms.ValidationError(media_messages['invalid_audio'],)
-
-
-def eval_image(data):
-    file_type = str(data.content_type)
-    if file_type == 'image/jpeg' or file_type == 'image/bmp' \
-       or file_type == 'image/png':
-        return data
-    raise forms.ValidationError(media_messages['invalid_image'],)
+    raise forms.ValidationError(media_error_messages['invalid_audio'],)
 
 
 def eval_general(data):
@@ -65,4 +57,12 @@ def eval_general(data):
     if file_type == 'image/jpeg' or file_type == 'image/bmp' \
        or file_type == 'image/png' or file_type == 'audio/mp3':
         return data
-    raise forms.ValidationError(media_messages['invalid_archive'],)
+    raise forms.ValidationError(media_error_messages['invalid_archive'],)
+
+
+def eval_image(data):
+    file_type = str(data.content_type)
+    if file_type == 'image/jpeg' or file_type == 'image/bmp' \
+       or file_type == 'image/png':
+        return data
+    raise forms.ValidationError(media_error_messages['invalid_image'],)
