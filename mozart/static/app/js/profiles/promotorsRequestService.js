@@ -6,7 +6,7 @@
         var apiSectionName = 'extendedusers';
         function getParameters(pageNumber) {
             var parameters;
-            parameters = '?user_type=Promoter&page=' + pageNumber;
+            parameters = '?user_type=promoter&page=' + pageNumber;
             return parameters;
         }
         /*jslint unparam: true*/
