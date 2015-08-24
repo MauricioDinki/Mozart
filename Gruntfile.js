@@ -1,4 +1,7 @@
-module.exports = function(grunt) {
+/*jslint node: true, indent: 2,nomen:true */
+'use strict';
+
+module.exports = function (grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     watch: {
@@ -14,7 +17,7 @@ module.exports = function(grunt) {
     stylus: {
       options: {
         use : [
-          function(){
+          function () {
             return require('autoprefixer-stylus')('last 2 versions', 'ie 8');
           }
         ]
@@ -28,8 +31,8 @@ module.exports = function(grunt) {
     jslint: {
       client: {
         src: ['Gruntfile.js',
-          'app/js/app.js',
-          'app/js/*/*.js'
+          'mozart/static/app/js/app.js',
+          'mozart/static/app/js/*/*.js'
           ],
         directives: {
           browser: true,
@@ -101,7 +104,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-jslint');
-  grunt.registerTask('default', ['stylus', 'jslint', 'concat','bower_concat','uglify','copy', 'watch']);
+  grunt.registerTask('default', ['stylus', 'jslint', 'concat', 'bower_concat', 'uglify', 'copy', 'watch']);
   grunt.registerTask('compileStylus', ['stylus']);
   grunt.registerTask('compileJavascript', ['jslint', 'concat', 'uglify']);
 };
