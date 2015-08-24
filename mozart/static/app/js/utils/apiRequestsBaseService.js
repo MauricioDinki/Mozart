@@ -3,7 +3,7 @@
 
     function baseRequestService($http, $filter) {
         /* jslint validthis:true */
-        var apiBaseUrl = '/api/';
+        var apiBaseUrl = '/api/v1/';
         /*jslint unparam: true*/
         this.get = function (fnOK, fnError, apiSection, parameters) {
             $http({

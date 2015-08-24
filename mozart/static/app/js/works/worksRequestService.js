@@ -3,7 +3,7 @@
 
     function worksRequestService(baseRequest, $window) {
         /* jslint validthis:true */
-        var apiSectionName = 'worksets';
+        var apiSectionName = 'works';
         function getParameters(category, author, pageNumber) {
             var parameters;
             if (category === 'all' && author === 'all') {
