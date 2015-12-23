@@ -2,7 +2,7 @@
     'use strict';
 
     function baseRequestsController() {
-        /* jshint validthis:true */
+        /* jslint validthis:true */
         this.getController = function ($scope, arrayName, getFunctionName, requestFunction, filterFunction, filterAttribute, extraFunctions, parameters) {
             var scope, getItems;
             scope = $scope;
@@ -59,5 +59,5 @@
     }
 
     angular.module('mozArtApp')
-        .service('baseController', baseRequestsController);
+        .service('baseController', [baseRequestsController]);
 }());

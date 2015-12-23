@@ -1,3 +1,4 @@
+/*global console */
 (function () {
     'use strict';
 
@@ -12,9 +13,7 @@
                 var files;
                 el.bind('change', function (event) {
                     files = event.target.files;
-                    files.forEach(function (element) {
-                        scope.$emit(scope.fileBind, {file: element});
-                    });
+                    scope.$emit(scope.fileBind, {file: files[0]});
                 });
             }
         };
